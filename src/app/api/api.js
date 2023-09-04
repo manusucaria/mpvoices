@@ -1,5 +1,5 @@
 import { collection, getDocs, query, doc, getDoc, addDoc, where } from "firebase/firestore";
-import { db } from '../../firebase';
+import { db } from '../../../firebase';
 
 // CREATE
 export const createArticle = async(obj) => {
@@ -10,7 +10,7 @@ export const createArticle = async(obj) => {
 
 // READ
 export const getArticle = async ()  => {
-    const colRef = collection(db, 'empresas');
+    const colRef = collection(db, 'alumnos');
     const result = await getDocs(query(colRef));
     return getArrayFromCollection(result);
 }
