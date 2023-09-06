@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       <div>
-        <p>Hola Voices</p>
+        <p>Hola Voices 2</p>
         {alumnos.length >= 1 ? 
           <div>
             {alumnos.map((alumno) => (
