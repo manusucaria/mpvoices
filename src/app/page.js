@@ -1,5 +1,5 @@
 'use client';
-import { getArticle } from './api/api.js';
+import { getArticle } from './api/api';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
