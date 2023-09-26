@@ -1,21 +1,20 @@
-'use client';
-import { getArticle } from './api/api';
-import { useState } from 'react';
-import { useEffect } from 'react';
+'use client'
+import { getArticle } from './api/api'
+import React, { useState, useEffect } from 'react'
 
-export default function Home() {
-  const [alumnos, setAlumnos] = useState([]);
+export default function Home () {
+  const [alumnos, setAlumnos] = useState([])
   useEffect(() => {
-      getArticle().then(data => {
-          setAlumnos(data)
-      })
-  }, []);
+    getArticle().then(data => {
+      setAlumnos(data)
+    })
+  }, [])
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       <div>
         <p>Hola Voices</p>
-        {alumnos.length >= 1 ? 
-          <div>
+        {alumnos.length >= 1
+          ? <div>
             {alumnos.map((alumno) => (
               <div key={alumno.nombre}>
                 <p>{alumno.nombre}</p>
@@ -24,7 +23,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-        : ""}
+          : ''}
       </div>
     </main>
   )
