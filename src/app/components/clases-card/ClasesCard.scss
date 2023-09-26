@@ -8,7 +8,8 @@
   &-illustration {
     @apply bg-gray-200;
     @apply w-40 h-40 overflow-hidden;
-    @apply rounded-full}
+    @apply rounded-full
+  }
   &-image {
     @apply w-full h-full;
     @apply object-cover object-center;

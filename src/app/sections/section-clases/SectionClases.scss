@@ -15,7 +15,10 @@
   &-p {}
   &-container {
     @apply w-[80%] mx-auto my-14;
-    @apply grid grid-cols-4 gap-8;
+    @apply grid grid-cols-1 gap-8;
+    @apply sm:grid-cols-2;
+    @apply md:grid-cols-3;
+    @apply lg:grid-cols-4;
   }
   &-link {
     @apply bg-orange-600 text-white;
