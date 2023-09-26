@@ -1,7 +1,13 @@
 import React from 'react'
+import Wrapper from './components/wrapper/Wrapper'
+import SectionClases from './sections/section-clases/SectionClases'
 
-export default function Home () {
+export default async function Home () {
   return (
-    <main></main>
+    <main>
+      <Wrapper>
+        <SectionClases />
+      </Wrapper>
+    </main>
   )
 }

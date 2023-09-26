@@ -1,0 +1,16 @@
+.Card {
+  @apply bg-gray-100;
+  @apply h-80 p-4;
+  @apply flex flex-col justify-center items-center gap-6;
+  &-title {
+    @apply text-center text-xl;
+  }
+  &-illustration {
+    @apply bg-gray-200;
+    @apply w-40 h-40 overflow-hidden;
+    @apply rounded-full}
+  &-image {
+    @apply w-full h-full;
+    @apply object-cover object-center;
+  }
+}
