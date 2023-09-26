@@ -13,11 +13,9 @@ h4{
 h1,h2{
   font-family: 'Playfair', serif;
 };
-h1 , h2 , h3, h4, h5, h6 {
-  color: #ffffff;
-};
 p, button, Link, li, a {
-    color: #ffffff;
+  font-family: 'Open Sans', sans-serif;
+  color: #ffffff;
 }
 
 

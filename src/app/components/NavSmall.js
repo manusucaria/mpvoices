@@ -1,5 +1,6 @@
 'use client';
 import { useState } from "react";
+import Link from "next/link";
 
 
 const NavSmall = () => {
@@ -24,7 +25,7 @@ const NavSmall = () => {
                     </div>
                     <div className="flex ml-auto pr-6">
                         <div className="flex" onClick={() =>  scrollToTop()}>
-                            <h4 className="">LOGO</h4>
+                            <Link href='/' className="">LOGO</Link>
                         </div>
                     </div>
                 </div>
@@ -52,44 +53,44 @@ const NavSmall = () => {
                     {/* Espacio Voices */}
                     <div className="flex w-4/6 my-2 bg-[#ffffff]">
                         <div onClick={() => setIsNavOpen(false)} className="font-botones bg-[#ffffff] text-[#0D0D0D] hover:translate-y-cursor font-bold transition-all duration-150 ease-in-out">
-                            <h4 className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] transition-all duration-150 ease-in-out">Espacio voices</h4>
+                            <Link href='/' className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] transition-all duration-150 ease-in-out">Espacio voices</Link>
                         </div>
                     </div>
 
                     {/* Maria Peña */}
                     <div className="flex justify-between items-center bg-[#ffffff]">
-                        <div onClick={() => setIsNavOpen(true)} className="mr-2 flex flex-col my-2 w-3/6 bg-[#ffffff]">
-                            <h4 className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] transition-all duration-150 ease-in-out">Maria Peña</h4>
+                        <div onClick={() => setIsNavOpen(false)} className="mr-2 flex flex-col my-2 w-3/6 bg-[#ffffff]">
+                            <Link href='/' className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] transition-all duration-150 ease-in-out">Maria Peña</Link>
                         </div>
                     </div>  
 
                     {/* Clases */}
                     <div className="flex justify-between items-center bg-[#ffffff]">
-                        <div onClick={() => setIsNavOpen(true)} className="mr-2 flex flex-col my-2 w-3/6 bg-[#ffffff]">
-                            <h4 className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] transition-all duration-150 ease-in-out">Clases</h4>
+                        <div onClick={() => setIsNavOpen(false)} className="mr-2 flex flex-col my-2 w-3/6 bg-[#ffffff]">
+                            <Link href='/' className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] transition-all duration-150 ease-in-out">Clases</Link>
                         </div>
                     </div>  
 
                     {/* Nuevos Proyectos */}
                     <div className="flex justify-between items-center bg-[#ffffff]">
-                        <div onClick={() => setIsNavOpen(true)} className="mr-2 flex flex-col my-2 w-3/6 bg-[#ffffff]">
-                            <h4 className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] transition-all duration-150 ease-in-out">Nuevos proyectos</h4>
+                        <div onClick={() => setIsNavOpen(false)} className="mr-2 flex flex-col my-2 w-3/6 bg-[#ffffff]">
+                            <Link href='/' className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] transition-all duration-150 ease-in-out">Nuevos proyectos</Link>
                         </div>
                     </div>  
 
                     {/* Contacto */}
                     <div className="flex justify-between items-center bg-[#ffffff]">
-                        <div onClick={() => setIsNavOpen(true)} className="mr-2 flex flex-col my-2 w-3/6 bg-[#ffffff]">
-                            <h4 className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] transition-all duration-150 ease-in-out">Contacto</h4>
+                        <div onClick={() => setIsNavOpen(false)} className="mr-2 flex flex-col my-2 w-3/6 bg-[#ffffff]">
+                            <Link href='/' className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] transition-all duration-150 ease-in-out">Contacto</Link>
                         </div>
                     </div>  
 
                     {/* Plataforma Alumnos */}
                     <div className="flex justify-between items-center bg-[#ffffff] pb-4">
-                            <div onClick={() => setIsNavOpen(true)} className="mr-2 flex flex-col my-2 w-3/6 bg-[#ffffff]">
-                                <h4 className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] transition-all duration-150 ease-in-out">Plataforma alumnos</h4>
-                            </div>
-                        </div>  
+                        <div onClick={() => setIsNavOpen(false)} className="mr-2 flex flex-col my-2 w-3/6 bg-[#ffffff]">
+                            <Link href='/' className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] transition-all duration-150 ease-in-out">Plataforma alumnos</Link>
+                        </div>
+                    </div>  
                 </div>
             : ""}
         </nav>
