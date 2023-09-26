@@ -1,14 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Playfair:opsz,wght@5..1200,500;5..1200,600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+*{
+  color: #ffffff;
+  background-color: #0D0D0D;
 }
+h4{
+  font-family: 'Open Sans', sans-serif;
+}
+h1,h2{
+  font-family: 'Playfair', serif;
+};
+h1 , h2 , h3, h4, h5, h6 {
+  color: #ffffff;
+};
+p, button, Link, li, a {
+    color: #ffffff;
+}
+
+
