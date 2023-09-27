@@ -2,8 +2,8 @@ import React from 'react'
 
 import ClasesCard from '@/app/components/clases-card/ClasesCard'
 import './SectionClases.scss'
-import Link from 'next/link'
 import Wrapper from '@/app/components/wrapper/Wrapper'
+import Button from '@/app/components/button/Button'
 
 const getAllClases = async () => {
   const res = await fetch('http://localhost:3000/api/clases')
@@ -40,9 +40,7 @@ async function SectionClases () {
           }
         </div>
 
-        <Link className='Clases-link' href="">
-          Quiero saber más
-        </Link>
+        <Button text="Quiero saber más" />
       </Wrapper>
     </section>
   )
