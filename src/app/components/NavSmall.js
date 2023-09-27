@@ -5,6 +5,7 @@ import Link from "next/link";
 
 const NavSmall = () => {
     const [isNavOpen, setIsNavOpen] = useState(false);
+    
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,
