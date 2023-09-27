@@ -27,7 +27,7 @@ export default function Footer() {
     return (
         <div className="flex flex-col mt-auto ">
             <Link className="mx-auto my-12" href="/" onClick={scrollToTop} scroll={false}>
-                <p className="mx-auto hover:translate-y-cursor transition-all duration-200 ease-in-out">LOGO</p>
+                <p className="mx-auto hover:translate-y-cursor">LOGO</p>
             </Link>
             <div className="flex flex-col w-full mx-auto mb-6 border-b pb-4 border-b-[#ffffff]">
                 <div className="mb-2 mx-auto flex">
@@ -47,7 +47,7 @@ export default function Footer() {
                 {redes.map(({label, route, img}) => (
                     <div key={route}>
                         <Link href={route} target='_blank'>
-                            <Image width={500} height={500} className="w-6 h-6 mx-2 hover:translate-y-cursor transition-all duration-150 ease-in-out" src={img} alt={label} />
+                            <Image width={500} height={500} className="w-6 h-6 mx-2 hover:translate-y-cursor" src={img} alt={label} />
                         </Link>
                     </div>
                 ))}
