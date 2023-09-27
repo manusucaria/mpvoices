@@ -1,0 +1,20 @@
+.Projects{
+  @apply bg-black text-white py-32;
+  &-title {
+    @apply font-serif text-4xl;
+  }
+  &-ul {
+    @apply flex flex-col items-center gap-8;
+  }
+  &-li {
+    @apply text-center flex flex-col items-center justify-center gap-2;
+  }
+  &-circle {
+    @apply 
+    border-orange-300 text-orange-300
+      w-9 h-9 border-4
+      opacity-80 rounded-full
+      flex items-center justify-center
+      font-extrabold;
+  }
+}
