@@ -1,6 +1,6 @@
-import { handlerGetAllClases } from '../get-clases-data'
+import { handler } from '../get-clases-data'
 
 export const GET = async () => {
-  const res = await handlerGetAllClases()
+  const res = await handler()
   return new Response(JSON.stringify(res))
 }

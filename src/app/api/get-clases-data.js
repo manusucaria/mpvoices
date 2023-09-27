@@ -1,10 +1,8 @@
-import { firestore } from '@/firebase'
-import { collection, getDocs } from 'firebase/firestore'
+import path from 'path'
+import { promises as fs } from 'fs'
 
-export const handlerGetAllClases = async () => {
-  const snapshot = await getDocs(collection(firestore, 'clases'))
-  return snapshot.docs.map((doc) => ({
-    id: doc.id,
-    ...doc.data()
-  }))
+export const handler = async () => {
+  const jsonDirectory = path.join(process.cwd(), 'src/app/api')
+  const fileContents = await fs.readFile(jsonDirectory + '/clases/clases.json', 'utf-8')
+  return JSON.parse(fileContents)
 }

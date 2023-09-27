@@ -31,7 +31,7 @@ async function SectionClases () {
           clases.lenght !== 0
             ? (
                 clases.map((clase) => (
-                  <ClasesCard key={clase.id} title={clase.nombre} imageSrc={''} />
+                  <ClasesCard key={clase.id} title={clase.nombre} imageSrc={clase.imagen} />
                 ))
               )
             : ''
