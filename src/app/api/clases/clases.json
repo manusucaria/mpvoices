@@ -2,41 +2,41 @@
   {
     "id": "P8nGMRmFqRKm1TM9yB5B",
     "nombre": "Canto",
-    "imagen": "/assets/images/canto.png"
+    "imagen": "/assets/static/clases/canto.png"
   },
   {
     "id": "XwfxlMwoaPaxF1tHflL1",
     "nombre": "Guitarra",
-    "imagen": "/assets/images/guitarra.png"
+    "imagen": "/assets/static/clases/guitarra.png"
   },
   {
     "id": "VsYvzD9G3uL988n17BRv",
     "nombre": "Bajo",
-    "imagen": "/assets/images/bajo.png"
+    "imagen": "/assets/static/clases/bajo.png"
   },
   {
     "id": "qGJEO7Hfp2b5WbGI1QuU",
     "nombre": "Batería",
-    "imagen": "/assets/images/batería.png"
+    "imagen": "/assets/static/clases/bateria.png"
   },
   {
     "id": "EEyrqvtUZ69OTga7KAyk",
     "nombre": "Percusión",
-    "imagen": "/assets/images/percusión.png"
+    "imagen": "/assets/static/clases/percusion.png"
   },
   {
     "id": "hr2MOjIi9vVyRWIWuGLb",
     "nombre": "Piano",
-    "imagen": "/assets/images/piano.png"
+    "imagen": "/assets/static/clases/piano.png"
   },
   {
     "id": "BsdPBfJxTDUMNH4FQjPf",
     "nombre": "Combinados",
-    "imagen": "/assets/images/combinados.png"
+    "imagen": "/assets/static/clases/combinados.png"
   },
   {
     "id": "js1lSdKXpuLik8zAKGrv",
     "nombre": "Rehabilitación y reeducación vocal",
-    "imagen": "/assets/images/reeducación-vocal.png"
+    "imagen": "/assets/static/clases/reeducacion-vocal.png"
   }
 ]

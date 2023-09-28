@@ -4,11 +4,11 @@ import ClasesCard from '@/app/components/clases-card/ClasesCard'
 import './SectionClases.scss'
 import Wrapper from '@/app/components/wrapper/Wrapper'
 import Button from '@/app/components/button/Button'
+import { handler } from '@/app/api/get-clases-data'
 
 const getAllClases = async () => {
-  const res = await fetch('http://localhost:3000/api/clases')
-  const data = await res.json()
-  return data
+  const res = await handler()
+  return res
 }
 
 async function SectionClases () {

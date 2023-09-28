@@ -13,8 +13,8 @@ function ClasesCard ({ title, imageSrc }) {
           className="Card-image"
           src={ imageSrc }
           alt={ title }
-          width={ 100 }
-          height={ 100 }
+          width={ 1000 }
+          height={ 1000 }
         />
       </div>
     </div>
