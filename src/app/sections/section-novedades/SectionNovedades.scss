@@ -1,0 +1,18 @@
+.Novedades {
+  @apply bg-stone-100 py-32 text-center;
+  &-title {
+    @apply font-serif text-5xl;
+  }
+  &-ilustration {
+    @apply bg-gray-500 w-48 h-48 rounded-full overflow-hidden;
+  }
+  &-image {
+    @apply w-full h-full object-cover;
+  }
+  &-sub {
+    @apply font-serif text-3xl;
+  }
+  &-p {
+    @apply max-w-sm;
+  }
+}
