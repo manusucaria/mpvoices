@@ -11,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className='flex flex-col h-screen mt-20'>
+      <body className='flex flex-col h-screen mt-12 lg:mt-20'>
         <Navigation />
         {children}
         <Footer />
