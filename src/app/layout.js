@@ -1,6 +1,7 @@
 import './globals.css'
 import Navigation from './components/Navigation.js';
 import Footer from './components/Footer.js';
+import WaButton from './components/WaButton';
 
 export const metadata = {
   title: 'Create Next App',
@@ -13,6 +14,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className='flex flex-col h-screen mt-12 lg:mt-20'>
         <Navigation />
+        <WaButton />
         {children}
         <Footer />
       </body>

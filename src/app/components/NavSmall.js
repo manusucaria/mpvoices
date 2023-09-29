@@ -58,14 +58,14 @@ const NavSmall = () => {
                     {/* Espacio Voices */}
                     <div className="flex bg-[#ffffff]">
                         <div onClick={() => setIsNavOpen(false)} className="flex mb-2 bg-[#ffffff]">
-                            <Link href='/' className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base">Espacio voices</Link>
+                            <Link href='/EspacioVoices' className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base">Espacio voices</Link>
                         </div>
                     </div>
 
                     {/* Maria Peña */}
                     <div className="flex bg-[#ffffff]">
                         <div onClick={() => setIsNavOpen(false)} className="flex my-2 bg-[#ffffff]">
-                            <Link href='/' className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base">Maria Peña</Link>
+                            <Link href='/MariaPeña' className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base">Maria Peña</Link>
                         </div>
                     </div>  
 
@@ -86,7 +86,7 @@ const NavSmall = () => {
                     {/* Contacto */}
                     <div className="flex bg-[#ffffff]">
                         <div onClick={() => setIsNavOpen(false)} className="flex my-2 bg-[#ffffff]">
-                            <Link href='/' className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base">Contacto</Link>
+                            <Link href='/#Footer' className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base">Contacto</Link>
                         </div>
                     </div>  
 

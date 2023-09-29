@@ -37,12 +37,12 @@ const NavFull = () => {
                 
                 {/* Espacio Voices */}
                 <div className="flex min-[1024px]:mr-2 min-[1245px]:mr-4 my-auto">
-                    <Link href='/' className="mr-auto hover:translate-y-cursor cursor-pointer font-[500] pr-3 text-base">Espacio voices</Link>                   
+                    <Link href='/#EspacioVoices' className="mr-auto hover:translate-y-cursor cursor-pointer font-[500] pr-3 text-base">Espacio voices</Link>                   
                 </div>
 
                 {/* Maria Peña */}
                 <div className="flex min-[1024px]:mx-2 min-[1245px]:mx-4 my-auto">
-                    <Link href='/' className="mr-auto hover:translate-y-cursor cursor-pointer font-[500] pr-3 text-base">Maria Peña</Link>                    
+                    <Link href='/#MariaPeña' className="mr-auto hover:translate-y-cursor cursor-pointer font-[500] pr-3 text-base">Maria Peña</Link>                    
                 </div>
 
                 {/* Clases */}
@@ -57,7 +57,7 @@ const NavFull = () => {
 
                 {/* Contacto */}
                 <div className="flex min-[1024px]:ml-2 min-[1245px]:ml-4 my-auto">
-                    <Link href='/' className="mr-auto hover:translate-y-cursor cursor-pointer font-[500] text-base">Contacto</Link>
+                    <Link href='/#Footer' className="mr-auto hover:translate-y-cursor cursor-pointer font-[500] text-base">Contacto</Link>
                 </div>
             </div>
             <Link href='/' className="flex my-auto w-[20%]">

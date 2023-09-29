@@ -46,8 +46,8 @@ const MariaPeñaFull = () => {
                 </ol>
                 <div className='flex mx-auto bg-[#ffffff]'>
                     <Image width={500} height={500} className="h-12 w-12 mr-8" src={disco} alt='Foto Tapa Disco' />
-                    <Image width={500} height={500} className="h-12 w-20 mr-8" src={usal} alt='Foto Usal' />
-                    <Image width={500} height={500} className="h-12 w-20 mr-8" src={newfield} alt='Foto Newfield' />
+                    <Image width={500} height={500} className="h-12 w-24 mr-8" src={usal} alt='Foto Usal' />
+                    <Image width={500} height={500} className="h-12 w-24 mr-8" src={newfield} alt='Foto Newfield' />
                     <Image width={500} height={500} className="h-12 w-12" src={ellipse} alt='Foto Ellipse' />
                 </div>
             </div>

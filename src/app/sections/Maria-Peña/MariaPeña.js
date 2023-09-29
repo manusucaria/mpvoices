@@ -4,7 +4,7 @@ import MariaPeñaFull from '../../components/MariaPeñaFull';
 
 const MariaPeña = () => {
     return (
-        <div>
+        <div id='MariaPeña'>
             <MariaPeñaSmall />
             <MariaPeñaFull />
         </div>
