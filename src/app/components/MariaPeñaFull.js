@@ -41,7 +41,7 @@ const MariaPeñaFull = () => {
                     </li>
                     <li className='mx-auto text-sm font-semibold bg-[#ffffff] text-[#0D0D0D]'>
                         <span className='w-1 h-1 bg-black rounded-full'></span>
-                        Creadora de su disco <a className='text-sm font-semibold bg-[#ffffff] text-[#0D0D0D]' href='https://open.spotify.com/intl-es/album/3VyyDvIRBzhZnJDSu3up08' target='_blank'>Sol Fuerte de Mayo</a>
+                        Creadora de su disco <a className='text-sm font-semibold bg-[#ffffff] text-yellow-500' href='https://open.spotify.com/intl-es/album/3VyyDvIRBzhZnJDSu3up08' target='_blank'>Sol Fuerte de Mayo</a>
                     </li>
                 </ol>
                 <div className='flex mx-auto bg-[#ffffff]'>

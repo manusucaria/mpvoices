@@ -13,7 +13,7 @@ const NavSmall = () => {
     };
 
     return (
-        <nav className="flex lg:hidden flex-col fixed top-0 left-0 right-0">
+        <nav className="flex lg:hidden flex-col fixed top-0 left-0 right-0 h-[3rem]">
             <div className="flex items-center">
                 {isNavOpen === false ?
                 <div className="flex items-center w-full h-auto py-4">
