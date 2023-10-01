@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import alas from '../assets/alas.jpg';
+import alas from '../../assets/alas.jpg';
 
 const SeparadorAlas = () => {
     return (

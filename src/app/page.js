@@ -1,17 +1,17 @@
-import Hero from "./components/Hero";
-import EspacioVoices from "./sections/Espacio-Voices/Espacio-Voices";
-import MariaPeña from "./sections/Maria-Peña/MariaPeña"
-import SeparadorVoices from "./components/SeparadorVoices";
-import SeparadorAlas from "./components/SeparadorAlas";
+import SectionHero from "./sections/SectionHero/Hero";
+import SectionEspacioVoices from "./sections/SectionEspacioVoices/SectionEspacioVoices";
+import SectionMariaPeña from "./sections/SectionMariaPeña/SectionMariaPeña"
+import SectionSeparadorVoices from "./sections/SectionSeparadorVoices/SeparadorVoices";
+import SectionSeparadorAlas from "./sections/SectionSeparadorAlas/SeparadorAlas";
 
 export default function Home() {
   return (
     <main className="flex flex-col">
-      <Hero />
-      <EspacioVoices />
-      <MariaPeña />
-      <SeparadorVoices />
-      <SeparadorAlas />
+      <SectionHero />
+      <SectionEspacioVoices />
+      <SectionMariaPeña />
+      <SectionSeparadorVoices />
+      <SectionSeparadorAlas />
     </main>
   )
 }
