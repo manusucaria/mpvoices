@@ -1,8 +1,8 @@
-import SectionHero from "./sections/SectionHero/Hero";
-import SectionEspacioVoices from "./sections/SectionEspacioVoices/SectionEspacioVoices";
-import SectionMariaPeña from "./sections/SectionMariaPeña/SectionMariaPeña"
-import SectionSeparadorVoices from "./sections/SectionSeparadorVoices/SeparadorVoices";
-import SectionSeparadorAlas from "./sections/SectionSeparadorAlas/SeparadorAlas";
+import SectionHero from "./sections/section-hero/Hero";
+import SectionEspacioVoices from "./sections/section-espacio-voices/SectionEspacioVoices";
+import SectionMariaPeña from "./sections/section-maria-peña/SectionMariaPeña"
+import SectionSeparadorVoices from "./sections/section-separador-voices/SeparadorVoices";
+import SectionSeparadorAlas from "./sections/section-separador-alas/SeparadorAlas";
 
 export default function Home() {
   return (
