@@ -8,7 +8,7 @@ import disco from '../assets/disco.jpg';
 
 const MariaPeñaSmall = () => {
     return (
-        <div className='bg-[#ffffff] flex flex-col lg:hidden'>
+        <div className='bg-[#ffffff] flex flex-col lg:hidden py-6'>
             <Image width={500} height={500} className="w-44 h-44 mx-auto rounded-full my-10" src={maria} alt='Foto Maria' />
             <h2 className='text-center text-2xl font-bold bg-[#ffffff] text-[#0D0D0D] mb-6'>María Peña</h2>
             <ol className='flex flex-col bg-[#ffffff] mb-8 list-disc'>

@@ -9,6 +9,7 @@ export default function Footer() {
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,
+            behavior: 'smooth',
         });
     };
     return (
@@ -67,7 +68,7 @@ export default function Footer() {
                 </Link>                   
             </div>
             <div className="flex flex-col lg:hidden">
-            <p className="m-auto text-xs">© MP Voices 2022.</p>
+                <p className="m-auto text-xs">© MP Voices 2022.</p>
                 <p className="mx-auto text-xs">Todos los derechos reservados.</p>
             </div>
             <div className="hidden lg:flex lg:flex-col">

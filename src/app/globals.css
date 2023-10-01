@@ -7,13 +7,13 @@
   color: #ffffff;
   background-color: #0D0D0D;
 }
-h4{
-  font-family: 'Open Sans', sans-serif;
-}
 h1,h2{
   font-family: 'Playfair', serif;
 };
-p, button, Link, li, a {
+h4{
+  font-family: 'Open Sans', sans-serif;
+}
+p, button, Link, li, a, span {
   font-family: 'Open Sans', sans-serif;
   color: #ffffff;
 }

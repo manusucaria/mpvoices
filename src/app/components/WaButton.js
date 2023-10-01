@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const WaButton = () =>{
     return (
-        <Link href='https://wa.me/5491133825678?text=Hola!%20Escribinos%20tu%20consulta!' target='_blank' className='rounded-full hover:animate-pulse fixed right-3 lg:right-4 bottom-16 min-[450px]:bottom-36 lg:bottom-8 z-50'>
+        <Link href='https://wa.me/5491133825678?text=Hola!%20Escribinos%20tu%20consulta!' target='_blank' className='rounded-full hover:animate-pulse fixed right-3 lg:right-6 bottom-16 min-[450px]:bottom-36 lg:bottom-8 z-50'>
             <svg className='rounded-full' xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 34 34" fill="none">
                 <g clipPath="url(#clip0_510_209)">
                 <path d="M0.829445 17.0063C0.828663 19.8086 1.5666 22.5448 2.96977 24.9566L0.695251 33.1968L9.194 30.9857C11.5446 32.2555 14.1784 32.9208 16.8548 32.9209H16.8618C25.6971 32.9209 32.8892 25.7872 32.893 17.0188C32.8947 12.7699 31.2286 8.77458 28.2015 5.76867C25.175 2.76303 21.1499 1.10689 16.8611 1.10495C8.02482 1.10495 0.833223 8.23834 0.829575 17.0063" fill="url(#paint0_linear_510_209)"/>

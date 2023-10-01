@@ -1,6 +1,28 @@
+'use client';
 import Link from "next/link";
+import { useEffect } from "react";
 
 const NavFull = () => {
+    useEffect(() => {
+        const handleLinkClick = (event) => {
+            event.preventDefault();
+            const targetId = event.target.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                const offset = 70;
+                const targetOffsetTop = targetElement.offsetTop - offset;
+                window.scrollTo({
+                    top: targetOffsetTop,
+                    behavior: 'smooth',
+                });
+            }
+        };
+        const links = document.querySelectorAll('a[href^="#"]');
+        links.forEach((link) => {
+            link.addEventListener('click', handleLinkClick);
+        });
+    }, []);
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,
@@ -9,7 +31,7 @@ const NavFull = () => {
     return (
         <nav className="hidden lg:flex fixed top-0 left-0 right-0 py-2 h-[6rem]">
             <div className="my-auto flex w-[20%]">
-                <Link onClick={() => scrollToTop()} className="ml-auto" href='/'>
+                <Link className="ml-auto" href='/'>
                     <svg xmlns="http://www.w3.org/2000/svg" width="140" height="73" viewBox="0 0 140 73" fill="none">
                         <path d="M24.7441 51.6826C21.9504 51.6826 19.0902 50.2971 18.7244 47.0085C18.2255 42.518 21.9837 37.7604 24.7275 34.2714L25.3095 33.5369L25.3427 33.5536L25.4591 33.4034L25.7086 33.6037L25.5922 33.7373C25.4093 33.971 25.2097 34.2214 25.0102 34.4718C22.2996 37.9106 18.5913 42.6014 19.0736 46.9417C19.4561 50.3638 22.7486 51.5658 25.6421 51.2319L25.6753 51.5824C25.376 51.6492 25.06 51.6659 24.7441 51.6826ZM27.6376 47.8264C26.7562 47.8264 25.9248 47.4592 25.3427 46.8081C24.6776 46.0736 24.2619 45.1388 24.1621 44.1539L24.5113 44.1205C24.6111 45.0387 24.9935 45.89 25.6088 46.5577C26.2075 47.2255 27.0888 47.5593 27.9868 47.4592C29.1342 47.3256 30.2317 46.6412 31.1297 45.4727C32.9755 43.0855 33.9067 38.8955 33.3912 35.273C33.2415 34.2047 32.9921 33.1363 32.7759 32.2015C32.593 31.517 32.46 30.8159 32.3602 30.1148C32.2105 28.7626 32.8092 27.2269 34.4887 27.0432C35.2204 26.9264 35.9687 27.1267 36.5674 27.5941C37.5984 28.4288 37.8977 29.8811 37.9808 30.6824L37.6316 30.7158C37.5485 29.9813 37.2824 28.6124 36.3512 27.8612C35.8357 27.4606 35.1871 27.2936 34.5386 27.3938C33.1085 27.5607 32.6096 28.8962 32.726 30.0647C32.8258 30.7492 32.9588 31.4336 33.1418 32.1013C33.3746 33.0528 33.624 34.1212 33.7737 35.2063C34.3058 38.979 33.3746 43.1857 31.4456 45.673C30.4811 46.925 29.3005 47.6595 28.0533 47.8097C27.887 47.8264 27.7706 47.8264 27.6376 47.8264ZM17.6767 36.1077C17.5271 36.1077 17.3774 36.0409 17.261 35.9575C16.812 35.5902 16.5626 34.622 16.5293 34.2381C16.3797 32.8692 16.7455 31.4837 17.4938 30.5321C18.0758 29.7809 18.9406 29.3135 19.8718 29.2134C21.3185 29.0464 22.2996 29.6808 23.1477 30.2317C23.8628 30.6991 24.478 31.083 25.2596 30.9996C26.1742 30.8994 26.3904 30.3151 26.5899 29.5639L26.6066 29.4971C26.8227 28.7626 27.0555 27.9947 28.0699 27.8779C28.785 27.7944 29.3337 28.2785 29.4169 29.0464L29.0677 29.0965C29.0178 28.6625 28.7351 28.1617 28.1198 28.2451C27.3382 28.3286 27.1719 28.8962 26.9558 29.614L26.9391 29.6808C26.7728 30.3318 26.54 31.25 25.3095 31.3835C24.3949 31.4837 23.6965 31.0329 22.9648 30.5488C22.1167 29.998 21.252 29.4471 19.9217 29.5806C19.0736 29.6641 18.3087 30.0981 17.7765 30.7658C17.0781 31.6506 16.7455 32.936 16.8786 34.2047C16.9118 34.5719 17.1446 35.4066 17.4938 35.6737C17.5437 35.7238 17.6269 35.7572 17.71 35.7405L17.7433 36.091C17.7266 36.091 17.6934 36.091 17.6767 36.1077Z" fill="#EC6327"/>
                         <path d="M81.8149 40.665C80.8671 40.6817 79.9525 40.281 79.3206 39.5632C78.672 38.8454 78.2397 37.8104 78.1066 36.6586L78.4559 36.6252C78.5723 37.7103 78.9714 38.6618 79.57 39.3295C80.2352 40.064 81.2329 40.4313 82.214 40.2977C85.174 39.9639 87.1362 37.126 88.2504 34.8223L88.3335 34.6554L89.7802 35.4901L89.5973 35.8072L88.4832 35.1562C86.8369 38.4949 84.6751 40.3979 82.2473 40.665C82.1143 40.665 81.9646 40.6817 81.8149 40.665ZM71.8375 36.2746C71.4384 32.5353 72.3696 28.7626 74.4483 25.6243C76.6599 22.3357 79.886 20.2991 83.5277 19.8818C85.0243 19.7148 86.6041 19.9319 87.818 20.5161C89.3313 21.2172 90.2126 22.3858 90.3789 23.8882C90.5784 25.6911 89.3978 27.3103 87.7515 27.4939C86.0221 27.6943 84.5753 26.6092 84.3758 24.9899L84.725 24.9399C84.8913 26.3922 86.1385 27.3103 87.7016 27.1434C89.3313 26.9598 90.1793 25.3405 90.0297 23.9383C89.8301 22.2021 88.6328 21.3007 87.6684 20.85C86.5043 20.3158 85.0077 20.0988 83.5776 20.249C80.0356 20.6497 76.8927 22.6362 74.7476 25.8246C72.7188 28.8962 71.8209 32.5687 72.2033 36.2413L71.8375 36.2746Z" fill="#EC6327"/>
@@ -39,27 +61,27 @@ const NavFull = () => {
                 
                 {/* Espacio Voices */}
                 <div className="flex min-[1024px]:mr-2 min-[1245px]:mr-4 my-auto">
-                    <Link href='/#EspacioVoices' className="mr-auto hover:translate-y-cursor cursor-pointer font-[500] pr-3 text-base">Espacio voices</Link>                   
+                    <a href='#EspacioVoices' className="mr-auto hover:translate-y-cursor cursor-pointer font-[500] pr-3 text-base">Espacio voices</a>
                 </div>
 
                 {/* Maria Peña */}
                 <div className="flex min-[1024px]:mx-2 min-[1245px]:mx-4 my-auto">
-                    <Link href='/#MariaPeña' className="mr-auto hover:translate-y-cursor cursor-pointer font-[500] pr-3 text-base">Maria Peña</Link>                    
+                    <a href='#MariaPeña' className="mr-auto hover:translate-y-cursor cursor-pointer font-[500] pr-3 text-base">Maria Peña</a>
                 </div>
 
                 {/* Clases */}
                 <div className="flex min-[1024px]:mx-2 min-[1245px]:mx-4 my-auto">
-                    <Link href='/' className="mr-auto hover:translate-y-cursor cursor-pointer font-[500] pr-3 text-base">Clases</Link>                      
+                    <a href='#Clases' className="mr-auto hover:translate-y-cursor cursor-pointer font-[500] pr-3 text-base">Clases</a>
                 </div>
 
                 {/* Nuevos Proyectos */}
                 <div className="flex min-[1024px]:mx-2 min-[1245px]:mx-4 my-auto">
-                    <Link href='/' className="mr-auto hover:translate-y-cursor cursor-pointer font-[500] pr-3 text-base">Nuevos Proyectos</Link>                   
+                    <a href='#NuevosProyectos' className="mr-auto hover:translate-y-cursor cursor-pointer font-[500] pr-3 text-base">Nuevos Proyectos</a>
                 </div>
 
                 {/* Contacto */}
                 <div className="flex min-[1024px]:ml-2 min-[1245px]:ml-4 my-auto">
-                    <Link href='/#Footer' className="mr-auto hover:translate-y-cursor cursor-pointer font-[500] text-base">Contacto</Link>
+                    <a href='#Footer' className="mr-auto hover:translate-y-cursor cursor-pointer font-[500] text-base">Contacto</a>
                 </div>
             </div>
             <div className="flex my-auto w-[20%]">

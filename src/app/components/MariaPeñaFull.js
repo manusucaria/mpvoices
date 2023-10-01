@@ -8,7 +8,7 @@ import disco from '../assets/disco.jpg';
 
 const MariaPeñaFull = () => {
     return (
-        <div className='bg-[#ffffff] hidden lg:flex py-16'>
+        <div className='bg-[#ffffff] hidden lg:flex py-12'>
             <div className='flex w-auto ml-auto bg-[#ffffff] pt-6'>
                 <Image width={500} height={500} className="w-60 h-60 rounded-full" src={maria} alt='Foto Maria' />
             </div>

@@ -29,7 +29,7 @@ const Hero = () => {
                         }`}
                         data-te-carousel-item={index === currentImage}
                     >
-                        <Image height={500} width={500} src={image} className="block w-full" alt={`Foto Hero ${index + 1}`} />
+                        <Image height={500} width={500} src={image} className="block w-full" alt={`Foto Hero ${index + 1}`} priority />
                     </div>
                 ))}
             </div>
