@@ -4,10 +4,10 @@ import MariaPeñaFull from '../../components/MariaPeñaFull';
 
 const MariaPeña = () => {
     return (
-        <div id='MariaPeña'>
+        <section id='MariaPeña'>
             <MariaPeñaSmall />
             <MariaPeñaFull />
-        </div>
+        </section>
     )
 }
 

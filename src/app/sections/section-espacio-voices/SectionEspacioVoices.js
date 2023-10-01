@@ -2,7 +2,7 @@ import React from 'react'
 
 const EspacioVoices = () => {
     return (
-        <div id='EspacioVoices' className='flex flex-col mx-auto mb-12 pt-6'>
+        <section id='EspacioVoices' className='flex flex-col mx-auto mb-12 pt-6'>
             <h2 className='text-center text-2xl font-bold my-8'>Espacio Voices</h2>
             <p className='lg:hidden text-center text-sm font-base px-16'>Un <span className='font-semibold'>lugar único y especial</span> para aprender a tocar <span className='font-semibold'>instrumentos y cantar</span>.</p>
             <p className='hidden lg:flex text-center text-sm font-base px-16 font-semibold mx-auto'>Un lugar único y especial para aprender a tocar instrumentos y cantar.</p>
@@ -40,7 +40,7 @@ const EspacioVoices = () => {
                     <p className='text-center text-sm font-base px-20'>Tenemos 35 años de <span className='font-semibold'>experiencia</span></p>
                 </div>
             </div>
-        </div>
+        </section>
     )
 }
 
