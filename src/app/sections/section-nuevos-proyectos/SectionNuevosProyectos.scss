@@ -1,7 +1,7 @@
 .Projects{
   @apply bg-black text-white py-32;
   &-title {
-    @apply text-5xl;
+    @apply text-5xl text-center;
   }
   &-ul {
     @apply flex flex-col items-center gap-8;
