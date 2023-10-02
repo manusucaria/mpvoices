@@ -6,7 +6,7 @@ import SectionNovedades from './sections/section-novedades/SectionNovedades'
 import SectionHeroBottom from './sections/section-hero-bottom/SectionHeroBottom'
 import SectionMaps from './sections/section-maps/SectionMaps'
 
-export default async function Home () {
+export default function Home () {
   return (
     <main>
       <SectionTalleres />
