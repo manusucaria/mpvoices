@@ -1,0 +1,7 @@
+.Maps {
+  @apply bg-stone-100 py-28;
+
+  &-map {
+    @apply w-4/5 h-[30rem] border-2 rounded-md;
+  }
+}

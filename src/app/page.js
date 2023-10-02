@@ -1,31 +1,20 @@
-'use client';
-import { getArticle } from './api/api';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import React from 'react'
+import SectionClases from './sections/section-clases/SectionClases'
+import SectionTalleres from './sections/section-talleres/SectionTalleres'
+import SectionNuevosProyectos from './sections/section-nuevos-proyectos/SectionNuevosProyectos'
+import SectionNovedades from './sections/section-novedades/SectionNovedades'
+import SectionHeroBottom from './sections/section-hero-bottom/SectionHeroBottom'
+import SectionMaps from './sections/section-maps/SectionMaps'
 
-export default function Home() {
-  const [alumnos, setAlumnos] = useState([]);
-  useEffect(() => {
-      getArticle().then(data => {
-          setAlumnos(data)
-      })
-  }, []);
+export default async function Home () {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
-      <div>
-        <p>Hola Voices</p>
-        {alumnos.length >= 1 ? 
-          <div>
-            {alumnos.map((alumno) => (
-              <div key={alumno.nombre}>
-                <p>{alumno.nombre}</p>
-                <p>{alumno.edad}</p>
-                <p>{alumno.instrumento}</p>
-              </div>
-            ))}
-          </div>
-        : ""}
-      </div>
+    <main>
+      <SectionTalleres />
+      <SectionClases />
+      <SectionNuevosProyectos />
+      <SectionHeroBottom />
+      <SectionNovedades />
+      <SectionMaps />
     </main>
   )
 }
