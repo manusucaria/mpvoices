@@ -30,7 +30,7 @@ const projects = [
 
 function SectionNuevosProyectos () {
   return (
-    <section className="Projects">
+    <section className="Projects" id='NuevosProyectos'>
       <Wrapper className="flex flex-col justify-center items-center gap-16">
         <h2 className="Projects-title">Nuevos Proyectos</h2>
         <ul className="Projects-ul">
