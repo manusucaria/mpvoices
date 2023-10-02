@@ -1,0 +1,12 @@
+.Hero {
+  @apply w-full h-auto overflow-hidden relative;
+  &-image {
+    @apply w-full object-cover;
+  }
+  &-gradient {
+    @apply absolute top-0 left-0 w-full h-full p-20;
+    &--content {
+      @apply bg-black opacity-40 w-full h-full border-2 border-white;
+    }
+  }
+}
