@@ -30,7 +30,7 @@ const NavFull = () => {
     })
   }
   return (
-    <nav className="hidden lg:flex fixed top-0 left-0 right-0 py-2 h-[6rem]">
+    <nav className="bg-black text-white hidden lg:flex fixed top-0 left-0 right-0 py-2 h-[6rem]">
       <div className="my-auto flex w-[20%]">
         <Link onClick={() => scrollToTop()} className="ml-auto" href="/">
           <svg
