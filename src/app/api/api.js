@@ -1,4 +1,12 @@
-import { collection, getDocs, query, doc, getDoc, addDoc, where } from 'firebase/firestore'
+import {
+  collection,
+  getDocs,
+  query,
+  doc,
+  getDoc,
+  addDoc,
+  where
+} from 'firebase/firestore'
 import { firestore } from '@/firebase'
 
 // CREATE
@@ -30,7 +38,7 @@ export const getArticleById = async (idArticulo) => {
 }
 
 const getArrayFromCollection = (collection) => {
-  return collection.docs.map(doc => {
+  return collection.docs.map((doc) => {
     return { ...doc.data(), id: doc.id }
   })
 }

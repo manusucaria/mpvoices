@@ -1,14 +1,14 @@
-import React from 'react';
-import MariaPeñaSmall from '../../components/MariaPeñaSmall';
-import MariaPeñaFull from '../../components/MariaPeñaFull';
+import React from 'react'
+import MariaPeñaSmall from '../../components/MariaPeñaSmall'
+import MariaPeñaFull from '../../components/MariaPeñaFull'
 
 const MariaPeña = () => {
-    return (
-        <section id='MariaPeña'>
-            <MariaPeñaSmall />
-            <MariaPeñaFull />
-        </section>
-    )
+  return (
+    <section id="MariaPeña">
+      <MariaPeñaSmall />
+      <MariaPeñaFull />
+    </section>
+  )
 }
 
 export default MariaPeña

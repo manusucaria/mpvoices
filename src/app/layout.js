@@ -19,7 +19,7 @@ export default function RootLayout ({ children }) {
       <head>
         <link rel="shortcut icon" href="/voices.svg" type="image/x-icon" />
       </head>
-      <body className='flex flex-col h-screen mt-[3rem] lg:mt-[6rem]'>
+      <body className="flex flex-col h-screen mt-[3rem] lg:mt-[6rem]">
         <Navigation />
         <WaButton />
         {children}
