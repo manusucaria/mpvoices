@@ -1,7 +1,7 @@
 .Novedades {
-  @apply bg-stone-100 py-32 text-center;
+  @apply bg-stone-100 text-black py-32 text-center;
   &-title {
-    @apply font-serif text-5xl;
+    @apply text-5xl;
   }
   &-ilustration {
     @apply bg-gray-500 w-48 h-48 rounded-full overflow-hidden;
@@ -10,7 +10,7 @@
     @apply w-full h-full object-cover;
   }
   &-sub {
-    @apply font-serif text-3xl;
+    @apply text-3xl;
   }
   &-p {
     @apply max-w-sm;
@@ -20,7 +20,7 @@
 .News {
   @apply bg-white py-20;
   &-title {
-    @apply font-serif text-2xl;
+    @apply text-2xl;
   }
   &-images {
     @apply flex flex-wrap items-center justify-around gap-20;

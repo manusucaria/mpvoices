@@ -1,11 +1,11 @@
 .Clases {
-  @apply font-serif;
+  @apply bg-white text-black;
   @apply py-32;
   &-title {
     @apply text-center text-5xl;
   }
   &-ul {
-    @apply mt-4;
+    @apply text-black mt-4;
     @apply flex flex-col items-center justify-center list-disc;
   }
   &-li {
