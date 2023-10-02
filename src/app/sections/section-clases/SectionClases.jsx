@@ -15,7 +15,7 @@ async function SectionClases () {
   const clases = await getAllClases()
 
   return (
-    <section className='Clases'>
+    <section id='Clases' className='Clases'>
       <Wrapper className="flex flex-col items-center">
         <h1 className='Clases-title'>Clases</h1>
 

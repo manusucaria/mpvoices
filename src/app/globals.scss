@@ -1,3 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Playfair:opsz,wght@5..1200,500;5..1200,600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+*{
+  color: #ffffff;
+  background-color: #0D0D0D;
+}
+h4{
+  font-family: 'Open Sans', sans-serif;
+}
+h1,h2{
+  font-family: 'Playfair', serif;
+};
+p, button, Link, li, a {
+  font-family: 'Open Sans', sans-serif;
+  color: #ffffff;
+}
