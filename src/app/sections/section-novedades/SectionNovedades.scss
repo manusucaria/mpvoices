@@ -13,7 +13,7 @@
     @apply text-3xl;
   }
   &-p {
-    @apply max-w-sm;
+    @apply max-w-sm text-lg sm:text-base;
   }
 }
 

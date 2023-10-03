@@ -1,7 +1,7 @@
 .Projects{
   @apply bg-black text-white py-32;
   &-title {
-    @apply text-5xl text-center;
+    @apply text-4xl sm:text-5xl text-center;
   }
   &-ul {
     @apply flex flex-col items-center gap-8;
@@ -14,7 +14,6 @@
     border-orange-300 text-orange-300
       w-9 h-9 border-4
       opacity-80 rounded-full
-      flex items-center justify-center
-      font-extrabold;
+      flex items-center justify-center;
   }
 }
