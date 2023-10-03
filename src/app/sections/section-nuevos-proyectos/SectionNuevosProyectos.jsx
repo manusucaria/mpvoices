@@ -1,9 +1,12 @@
 import React from 'react'
 
 import { v4 as uuidv4 } from 'uuid'
+import { Playfair } from 'next/font/google'
 import './SectionNuevosProyectos.scss'
 import Wrapper from '@/app/components/wrapper/Wrapper'
 import Button from '@/app/components/button/Button'
+
+const playfair = Playfair({ subsets: ['latin'], weight: '500' })
 
 const projects = [
   {
@@ -30,7 +33,7 @@ const projects = [
 
 function SectionNuevosProyectos () {
   return (
-    <section className="Projects" id='NuevosProyectos'>
+    <section className={`Projects ${playfair.className}`} id='NuevosProyectos'>
       <Wrapper className="flex flex-col justify-center items-center gap-16">
         <h2 className="Projects-title">Nuevos Proyectos</h2>
         <ul className="Projects-ul">
