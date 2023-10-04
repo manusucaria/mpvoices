@@ -29,35 +29,6 @@ function SectionNovedades () {
           <Button text="Enterate en Instagram"/>
         </Wrapper>
       </section>
-
-      <div className='News'>
-        <Wrapper className="flex flex-col items-center justify-center gap-10">
-          <p className='News-title'>¡Voices en movimiento!</p>
-
-          <div className='News-images'>
-            <div className="News-illustration">
-              <Image
-                className='News-image'
-                src="/assets/static/mpvso.png"
-                loading='lazy'
-                alt='maríapeña voices simplemente orquesta'
-                width={1000}
-                height={1000}
-              />
-            </div>
-            <div className="News-illustration">
-              <Image
-                className='News-image'
-                src="/assets/static/mpvvi.png"
-                loading='lazy'
-                alt='maríapeña voices video'
-                width={1000}
-                height={1000}
-              />
-            </div>
-          </div>
-        </Wrapper>
-      </div>
     </>
   )
 }

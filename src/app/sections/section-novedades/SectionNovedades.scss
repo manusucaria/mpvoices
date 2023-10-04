@@ -16,20 +16,3 @@
     @apply max-w-md text-lg sm:text-base;
   }
 }
-
-.News {
-  @apply bg-white py-20;
-  &-title {
-    @apply text-2xl;
-  }
-  &-images {
-    @apply flex flex-wrap items-center justify-around gap-20;
-  }
-  &-illustration {
-    @apply bg-gray-400;
-    @apply w-80 h-80 overflow-hidden;
-  }
-  &-image {
-    @apply w-full h-full object-cover;
-  }
-}

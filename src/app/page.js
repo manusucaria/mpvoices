@@ -10,6 +10,7 @@ import SectionEspacioVoices from './sections/section-espacio-voices/SectionEspac
 import SectionMariaPeña from './sections/section-maria-peña/SectionMariaPeña'
 import SectionSeparadorVoices from './sections/section-separador-voices/SeparadorVoices'
 import SectionSeparadorAlas from './sections/section-separador-alas/SeparadorAlas'
+import SectionInsta from './sections/section-insta/SectionInsta'
 
 export default function Home () {
   return (
@@ -24,6 +25,7 @@ export default function Home () {
       <SectionNuevosProyectos />
       <SectionHeroBottom />
       <SectionNovedades />
+      <SectionInsta />
       <SectionMaps />
     </main>
   )
