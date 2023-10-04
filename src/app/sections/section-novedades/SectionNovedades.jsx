@@ -1,17 +1,21 @@
 import React from 'react'
 
 import Image from 'next/image'
+import { Playfair, Open_Sans as OpenSans } from 'next/font/google'
 import Button from '@/app/components/button/Button'
 import Wrapper from '@/app/components/wrapper/Wrapper'
 
 import './SectionNovedades.scss'
+
+const playfair = Playfair({ subsets: ['latin'], weight: '400' })
+const openSans = OpenSans({ subsets: ['latin'], weight: '500' })
 
 function SectionNovedades () {
   return (
     <>
       <section className="Novedades">
         <Wrapper className="flex flex-col justify-center items-center gap-10">
-          <h2 className="Novedades-title">Novedades</h2>
+          <h2 className={`Novedades-title ${playfair.className}`}>Novedades</h2>
           <div className="Novedades-ilustration">
             <Image
               className="Novedades-image"
@@ -22,8 +26,8 @@ function SectionNovedades () {
               height={1000}
             />
           </div>
-          <p className="Novedades-sub">Voices World</p>
-          <p className="Novedades-p">Te acompañamos con clases online donde estés, en cualquier parte del mundo</p>
+          <p className={`Novedades-sub ${playfair.className}`}>Voices World</p>
+          <p className={`Novedades-p ${openSans.className}`}>Te acompañamos con clases online donde estés, en cualquier parte del mundo</p>
 
           <Button text="Enterate en Instagram"/>
         </Wrapper>

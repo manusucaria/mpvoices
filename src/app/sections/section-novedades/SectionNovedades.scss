@@ -10,10 +10,10 @@
     @apply w-full h-full object-cover;
   }
   &-sub {
-    @apply text-3xl;
+    @apply text-4xl;
   }
   &-p {
-    @apply max-w-sm text-lg sm:text-base;
+    @apply max-w-md text-lg sm:text-base;
   }
 }
 
