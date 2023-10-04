@@ -1,0 +1,15 @@
+.Insta {
+  @apply bg-white text-black py-20;
+  &-title {
+    @apply text-3xl;
+  }
+  &-images {
+    @apply flex flex-wrap items-center justify-around gap-20;
+  }
+  &-illustration {
+    @apply w-80 h-80 overflow-hidden;
+  }
+  &-image {
+    @apply w-full h-full object-cover;
+  }
+}
