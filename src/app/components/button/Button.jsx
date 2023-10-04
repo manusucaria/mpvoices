@@ -3,7 +3,7 @@ import React from 'react'
 import { Open_Sans as OpenSans } from 'next/font/google'
 import './Button.scss'
 
-const openSans = OpenSans({ subsets: ['latin'], weight: '800' })
+const openSans = OpenSans({ subsets: ['latin'], weight: '700' })
 
 function Button ({ text, mode }) {
   return (
