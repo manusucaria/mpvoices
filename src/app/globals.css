@@ -1,0 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Playfair:opsz,wght@5..1200,500;5..1200,600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Inter } from 'next/font/google'
+import './globals.css'
 import './globals.scss'
 import Navigation from './components/Navigation.js'
 import Footer from './components/Footer.js'
