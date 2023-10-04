@@ -11,18 +11,14 @@ const NavSmall = () => {
       const targetElement = document.getElementById(targetId)
       if (targetElement) {
         const targetOffsetTop = targetElement.offsetTop
-        // Verifica si el enlace te llevará al final de la página
         if (targetOffsetTop + window.innerHeight >= document.body.scrollHeight) {
-          // Si te llevará al final, simplemente realiza un salto sin desplazamiento suave
           window.scrollTo(0, document.body.scrollHeight)
         } else {
-          // Si no, realiza el desplazamiento suave
           window.scrollTo({
             top: targetOffsetTop,
             behavior: 'smooth'
           })
         }
-        // Cierra el menú de navegación si está abierto
         setIsNavOpen(false)
       }
       setIsNavOpen(false)
