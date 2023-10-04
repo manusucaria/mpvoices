@@ -1,14 +1,11 @@
 import React from 'react'
 
 import ClasesCard from '@/app/components/clases-card/ClasesCard'
-import { Playfair, Open_Sans as OpenSans } from 'next/font/google'
+import { playfair400, openSans400 } from '@/utils/fonts/fonts'
 import './SectionClases.scss'
 import Wrapper from '@/app/components/wrapper/Wrapper'
 import Button from '@/app/components/button/Button'
 import { handler } from '@/app/api/get-clases-data'
-
-export const playfair = Playfair({ subsets: ['latin'], weight: '400' })
-export const openSans = OpenSans({ subsets: ['latin'], weight: '400' })
 
 const getAllClases = async () => {
   const res = await handler()
@@ -19,11 +16,11 @@ async function SectionClases () {
   const clases = await getAllClases()
 
   return (
-    <section id='Clases' className={`Clases ${playfair.className}`}>
+    <section id='Clases' className={`Clases ${playfair400.className}`}>
       <Wrapper className="flex flex-col items-center">
         <h1 className='Clases-title'>Clases</h1>
 
-        <ul className={`Clases-ul ${openSans.className}`}>
+        <ul className={`Clases-ul ${openSans400.className}`}>
           <li className="Clases-li">
             <p className="Clases-p">Personalizadas a medida.</p>
           </li>

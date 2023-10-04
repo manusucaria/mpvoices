@@ -2,7 +2,7 @@
   @apply bg-white text-black;
   @apply py-32;
   &-title {
-    @apply text-center text-5xl;
+    @apply text-4xl sm:text-5xl text-center;
   }
   &-ul {
     @apply text-black mt-4;

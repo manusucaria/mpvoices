@@ -1,12 +1,9 @@
 import React from 'react'
-import { Inter } from 'next/font/google'
 import './globals.css'
 import './globals.scss'
 import Navigation from './components/Navigation.js'
 import Footer from './components/Footer.js'
 import WaButton from './components/WaButton'
-
-export const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'MP Voices',
