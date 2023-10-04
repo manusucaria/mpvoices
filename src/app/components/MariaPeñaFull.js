@@ -17,6 +17,7 @@ const MariaPeñaFull = () => {
           className="w-60 h-60 rounded-full"
           src={maria}
           alt="Foto Maria"
+          priority
         />
       </div>
       <div className="w-[50%] bg-[#ffffff] mr-auto flex flex-col pt-6">

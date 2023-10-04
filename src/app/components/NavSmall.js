@@ -9,21 +9,36 @@ const NavSmall = () => {
       event.preventDefault()
       const targetId = event.target.getAttribute('href').substring(1)
       const targetElement = document.getElementById(targetId)
-
       if (targetElement) {
-        const offset = 70
-        const targetOffsetTop = targetElement.offsetTop - offset
-        window.scrollTo({
-          top: targetOffsetTop,
-          behavior: 'smooth'
-        })
+        const targetOffsetTop = targetElement.offsetTop
+        // Verifica si el enlace te llevará al final de la página
+        if (targetOffsetTop + window.innerHeight >= document.body.scrollHeight) {
+          // Si te llevará al final, simplemente realiza un salto sin desplazamiento suave
+          window.scrollTo(0, document.body.scrollHeight)
+        } else {
+          // Si no, realiza el desplazamiento suave
+          window.scrollTo({
+            top: targetOffsetTop,
+            behavior: 'smooth'
+          })
+        }
+        // Cierra el menú de navegación si está abierto
+        setIsNavOpen(false)
       }
+      setIsNavOpen(false)
     }
-    const links = document.querySelectorAll('a[href^="#"]')
-    links.forEach((link) => {
-      link.addEventListener('click', handleLinkClick)
-    })
-  }, [])
+    if (isNavOpen) {
+      const links = document.querySelectorAll('a[href^="#"]')
+      links.forEach((link) => {
+        link.addEventListener('click', handleLinkClick)
+      })
+    } else {
+      const links = document.querySelectorAll('a[href^="#"]')
+      links.forEach((link) => {
+        link.removeEventListener('click', handleLinkClick)
+      })
+    }
+  }, [isNavOpen])
 
   const scrollToTop = () => {
     window.scrollTo({

@@ -16,6 +16,7 @@ const MariaPeñaSmall = () => {
         className="w-44 h-44 mx-auto rounded-full my-10"
         src={maria}
         alt="Foto Maria"
+        priority
       />
       <h2 className="text-center text-2xl font-bold bg-[#ffffff] text-[#0D0D0D] mb-6">
         María Peña
