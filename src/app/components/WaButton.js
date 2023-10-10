@@ -5,7 +5,7 @@ import Link from 'next/link'
 const WaButton = () => {
   return (
     <Link
-      href="https://wa.me/5491133825678?text=Hola!%20Escribinos%20tu%20consulta!"
+      href="https://wa.me/5491133825678?text=¡Hola!%20¡Podés%20Escribirnos%20tu%20consulta%20acá!"
       target="_blank"
       className="rounded-full hover:animate-pulse fixed right-3 lg:right-6 bottom-16 min-[450px]:bottom-36 lg:bottom-8 z-50"
     >

@@ -4,7 +4,7 @@ import React from 'react'
 import Link from 'next/link'
 
 const email = 'info@mpvoices.com.ar'
-const tel = '5491133825678'
+const tel = '+54 9 1133825678'
 const dir = 'Blanco Encalada 2405, Béccar.'
 
 export default function Footer () {
@@ -113,7 +113,7 @@ export default function Footer () {
       </div>
       <div className="flex flex-col w-full mx-auto mb-6 border-b pb-4 border-b-[#ffffff]">
         <div className="mb-2 mx-auto flex">
-          <p className="mx-auto font-semibold text-sm">E-Mail:&nbsp;</p>
+          <p className="mx-auto text-sm">E-Mail:&nbsp;</p>
           <a
             className="mx-auto text-sm"
             href="mailto:info@mpvoices.com.ar"
@@ -124,7 +124,7 @@ export default function Footer () {
           </a>
         </div>
         <div className="mb-2 mx-auto flex">
-          <p className="mx-auto font-semibold text-sm">Teléfono:&nbsp;</p>
+          <p className="mx-auto text-sm">Teléfono:&nbsp;</p>
           <a
             className="mx-auto text-sm"
             href="https://wa.me/15551234567"
@@ -135,7 +135,7 @@ export default function Footer () {
           </a>
         </div>
         <div className="mb-2 mx-auto flex">
-          <p className="mx-auto font-semibold text-sm">Dirección:&nbsp;</p>
+          <p className="mx-auto text-sm">Dirección:&nbsp;</p>
           <a
             className="mx-auto text-sm"
             href="https://maps.app.goo.gl/ERhpKbwzmMoBBZLy9"

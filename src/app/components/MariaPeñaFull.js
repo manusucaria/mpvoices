@@ -27,7 +27,7 @@ const MariaPeñaFull = () => {
         <ol className="flex flex-col bg-[#ffffff] mb-10 list-disc">
           <li className="mx-auto text-sm font-semibold bg-[#ffffff] text-[#0D0D0D] mb-3">
             <span className="w-1 h-1 bg-black rounded-full"></span>
-            En 2003 crea Voices.
+            En 2003 crea Voices
           </li>
           <li className="mx-auto text-sm font-semibold bg-[#ffffff] text-[#0D0D0D] mb-3">
             <span className="w-1 h-1 bg-black rounded-full"></span>
@@ -66,28 +66,28 @@ const MariaPeñaFull = () => {
           <Image
             width={500}
             height={500}
-            className="h-12 w-12 mr-8"
+            className="h-16 w-16 mr-10"
             src={disco}
             alt="Foto Tapa Disco"
           />
           <Image
             width={500}
             height={500}
-            className="h-12 w-24 mr-8"
+            className="h-10 w-28 mr-10 my-auto"
             src={usal}
             alt="Foto Usal"
           />
           <Image
             width={500}
             height={500}
-            className="h-12 w-24 mr-8"
+            className="h-10 w-28 mr-10 my-auto"
             src={newfield}
             alt="Foto Newfield"
           />
           <Image
             width={500}
             height={500}
-            className="h-12 w-12"
+            className="h-14 w-14"
             src={ellipse}
             alt="Foto Ellipse"
           />
