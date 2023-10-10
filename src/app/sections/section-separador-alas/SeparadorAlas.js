@@ -9,7 +9,6 @@ const SeparadorAlas = () => {
         <h2 className='text-lg md:text-2xl lg:text-3xl xl:text-5xl font-bold z-40 m-auto mb-2 lg:mb-4'>Voices le pone</h2>
         <h2 className='text-lg md:text-2xl lg:text-3xl xl:text-5xl font-bold z-40 m-auto'>alas a tu música</h2>
       </div>
-
       <Image
         width={500}
         height={500}
