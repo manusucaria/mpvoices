@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 const email = 'info@mpvoices.com.ar'
 const tel = '+54 9 1133825678'
-const dir = 'Blanco Encalada 2405, Béccar.'
+const dir = 'Blanco Encalada 2405, Beccar.'
 
 export default function Footer () {
   const scrollToTop = () => {

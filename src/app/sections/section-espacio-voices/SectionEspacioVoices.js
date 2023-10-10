@@ -5,16 +5,14 @@ const EspacioVoices = () => {
     <section id="EspacioVoices" className="flex flex-col mx-auto mb-12 pt-6">
       <h2 className="text-center text-2xl font-bold my-8">Espacio Voices</h2>
       <p className="lg:hidden text-center text-sm font-base px-16">
-        Un <span className="">lugar único y especial</span> para
-        aprender a tocar{' '}
-        <span className="">instrumentos y cantar</span>.
+        Un lugar único y especial para
+        aprender a tocar instrumentos y cantar
       </p>
       <p className="hidden lg:flex text-center text-sm font-base px-16 mx-auto">
-        Un lugar único y especial para aprender a tocar instrumentos y cantar.
+        Un lugar único y especial para aprender a tocar instrumentos y cantar
       </p>
       <p className="lg:hidden text-center text-sm font-base px-20">
-        Clases que acompañan tus{' '}
-        <span className="">ganas de hacer música</span>.
+        Clases que acompañan tus ganas de hacer música
       </p>
       <p className="hidden lg:flex text-center text-sm font-base px-20 mx-auto">
         Clases que acompañan tus ganas de hacer música.
@@ -73,8 +71,7 @@ const EspacioVoices = () => {
             />
           </svg>
           <p className="text-center text-sm font-base px-20">
-            <span className="">Te acompañamos</span> en todo
-            momento
+            Te acompañamos en todo momento
           </p>
         </div>
         <div className="flex flex-col mx-auto mb-6">
@@ -92,8 +89,7 @@ const EspacioVoices = () => {
             />
           </svg>
           <p className="text-center text-sm font-base px-20">
-            <span className="">Cuidamos tu voz</span> tu voz con
-            técnica
+            Cuidamos tu voz con técnica
           </p>
         </div>
         <div className="flex flex-col mx-auto mb-6">
@@ -111,7 +107,7 @@ const EspacioVoices = () => {
             />
           </svg>
           <p className="text-center text-sm font-base px-20">
-            <span className="">Calidad</span> profesional
+            Calidad profesional
           </p>
         </div>
         <div className="flex flex-col mx-auto">
@@ -129,8 +125,7 @@ const EspacioVoices = () => {
             />
           </svg>
           <p className="text-center text-sm font-base px-20">
-            Tenemos 35 años de{' '}
-            <span className="">experiencia</span>
+            Tenemos 35 años de experiencia
           </p>
         </div>
       </div>
