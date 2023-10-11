@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 const email = 'info@mpvoices.com.ar'
 const tel = '+54 9 1133825678'
-const dir = 'Blanco Encalada 2405, Beccar.'
+const dir = 'Blanco Encalada 2405, Beccar'
 
 export default function Footer () {
   const scrollToTop = () => {
@@ -127,7 +127,7 @@ export default function Footer () {
           <p className="mx-auto text-sm">Teléfono:&nbsp;</p>
           <a
             className="mx-auto text-sm"
-            href="https://wa.me/15551234567"
+            href="https://wa.me/5491133825678?text=¡Hola!%20¡Podés%20Escribirnos%20tu%20consulta%20acá!"
             target="_blank"
             rel="noreferrer"
           >
