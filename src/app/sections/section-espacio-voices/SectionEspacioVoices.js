@@ -6,13 +6,13 @@ const EspacioVoices = () => {
       <h2 className="text-center text-2xl font-bold my-8">Espacio Voices</h2>
       <p className="lg:hidden text-center text-sm font-base px-16">
         Un lugar único y especial para
-        aprender a tocar instrumentos y cantar
+        aprender a tocar instrumentos y cantar.
       </p>
       <p className="hidden lg:flex text-center text-sm font-base px-16 mx-auto">
-        Un lugar único y especial para aprender a tocar instrumentos y cantar
+        Un lugar único y especial para aprender a tocar instrumentos y cantar.
       </p>
       <p className="lg:hidden text-center text-sm font-base px-20">
-        Clases que acompañan tus ganas de hacer música
+        Clases que acompañan tus ganas de hacer música.
       </p>
       <p className="hidden lg:flex text-center text-sm font-base px-20 mx-auto">
         Clases que acompañan tus ganas de hacer música.
