@@ -49,7 +49,7 @@ function SectionNuevosProyectos () {
             ))
           }
         </ul>
-        <Button text="Más información" mode="light"/>
+        <Button text="Más información" mode="light" alterColor/>
       </Wrapper>
     </section>
 

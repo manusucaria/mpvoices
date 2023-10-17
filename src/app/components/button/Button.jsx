@@ -5,9 +5,11 @@ import './Button.scss'
 
 const openSans = OpenSans({ subsets: ['latin'], weight: '700' })
 
-function Button ({ text, mode }) {
+function Button ({ text, mode, alterColor }) {
   return (
-    <button className={`Button Button-${mode} ${openSans.className}`}>{ text }</button>
+    <>
+      <button className={`Button Button-${mode} ${openSans.className} ${alterColor ? 'Button-alter' : ''}`}>{ text }</button>
+    </>
   )
 }
 export default Button
