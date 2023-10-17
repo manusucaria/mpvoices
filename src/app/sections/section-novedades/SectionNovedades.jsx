@@ -26,7 +26,7 @@ function SectionNovedades () {
           <p className={`Novedades-sub ${playfair400.className}`}>Voices World</p>
           <p className={`Novedades-p ${openSans500.className}`}>Te acompañamos con clases online donde estés, en cualquier parte del mundo</p>
 
-          <Button text="Enterate en Instagram"/>
+          <Button text="Enterate en Instagram" path='https://www.instagram.com/voicesworld/' />
         </Wrapper>
       </section>
     </>

@@ -22,10 +22,10 @@ async function SectionClases () {
 
         <ul className={`Clases-ul ${openSans400.className}`}>
           <li className="Clases-li">
-            <p className="Clases-p">Personalizadas a medida.</p>
+            <p className="Clases-p">Personalizadas a medida</p>
           </li>
           <li className="Clases-li">
-            <p className="Clases-p">Online o presenciales.</p>
+            <p className="Clases-p">Online o presenciales</p>
           </li>
         </ul>
 
@@ -41,7 +41,7 @@ async function SectionClases () {
           }
         </div>
 
-        <Button text="Quiero saber más" />
+        <Button text="Quiero saber más" path='https://wa.me/5491133825678' />
       </Wrapper>
     </section>
   )

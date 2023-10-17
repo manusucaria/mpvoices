@@ -1,7 +1,7 @@
 .Button {
-  @apply bg-orange-600 text-white;
-  @apply py-3 px-14 md:py-2 md:px-10 rounded-full text-lg md:text-sm;
-  @apply transition-opacity ease-linear duration-100;
+  @apply bg-orange-600 text-white text-center;
+  @apply w-60 py-3 px-14 md:py-2 md:px-10 rounded-full text-lg md:text-sm;
+  @apply transition-opacity ease-linear duration-100 hover:opacity-70;
   
   &-light {
     @apply bg-white text-black;
@@ -10,7 +10,7 @@
     @apply bg-black text-white;
   }
 
-  &:hover {
-    @apply opacity-70;
+  &-alter {
+    @apply  hover:bg-navy-blue hover:text-white hover:opacity-100;
   }
 }
