@@ -10,23 +10,23 @@ import './SectionNuevosProyectos.scss'
 const projects = [
   {
     id: uuidv4(),
-    name: 'Taller de interpretación y puesta en escena.'
+    name: 'Taller de interpretación y puesta en escena'
   },
   {
     id: uuidv4(),
-    name: 'Taller de sonido en vivo.'
+    name: 'Taller de sonido en vivo'
   },
   {
     id: uuidv4(),
-    name: 'Curso de formación de profesores.'
+    name: 'Curso de formación de profesores'
   },
   {
     id: uuidv4(),
-    name: 'Festejo de cumpleaños musicales.'
+    name: 'Festejo de cumpleaños musicales'
   },
   {
     id: uuidv4(),
-    name: 'Regalar vouchers de clases.'
+    name: 'Regalar vouchers de clases'
   }
 ]
 
