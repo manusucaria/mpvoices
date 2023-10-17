@@ -41,7 +41,7 @@ async function SectionClases () {
           }
         </div>
 
-        <Button text="Quiero saber más" />
+        <Button text="Quiero saber más" path='https://wa.me/5491133825678' />
       </Wrapper>
     </section>
   )

@@ -49,7 +49,7 @@ function SectionNuevosProyectos () {
             ))
           }
         </ul>
-        <Button text="Más información" mode="light" alterColor/>
+        <Button text="Más información" mode="light" alterColor path='https://wa.me/5491133825678' />
       </Wrapper>
     </section>
 
