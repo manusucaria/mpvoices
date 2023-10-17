@@ -1,6 +1,6 @@
 .Button {
   @apply bg-orange-600 text-white;
-  @apply py-3 px-14 md:py-2 md:px-10 rounded-full text-lg md:text-sm;
+  @apply w-60 py-3 px-14 md:py-2 md:px-10 rounded-full text-lg md:text-sm;
   @apply transition-opacity ease-linear duration-100;
   
   &-light {
