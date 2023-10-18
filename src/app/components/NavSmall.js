@@ -1,9 +1,10 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 
 const NavSmall = () => {
   const [isNavOpen, setIsNavOpen] = useState(false)
+  const appContainerRef = useRef(null)
   useEffect(() => {
     const handleLinkClick = (event) => {
       event.preventDefault()
@@ -21,15 +22,27 @@ const NavSmall = () => {
         }
         setIsNavOpen(false)
       }
-      setIsNavOpen(false)
     }
+
+    const handleClickOutside = (event) => {
+      if (appContainerRef.current && !appContainerRef.current.contains(event.target)) {
+        setIsNavOpen(false)
+      }
+    }
+
     if (isNavOpen) {
-      const links = document.querySelectorAll('a[href^="#"]')
-      links.forEach((link) => {
-        link.addEventListener('click', handleLinkClick)
-      })
+      document.addEventListener('click', handleClickOutside)
     } else {
-      const links = document.querySelectorAll('a[href^="#"]')
+      document.removeEventListener('click', handleClickOutside)
+    }
+
+    const links = document.querySelectorAll('a[href^="#"]')
+    links.forEach((link) => {
+      link.addEventListener('click', handleLinkClick)
+    })
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside)
       links.forEach((link) => {
         link.removeEventListener('click', handleLinkClick)
       })
@@ -82,7 +95,7 @@ const NavSmall = () => {
           </div>
             )
           : (
-          <div className="flex items-center w-full pl-8 py-6 bg-[#ffffff]">
+          <div ref={appContainerRef} className="flex items-center w-[60%] sm:w-1/2 pl-8 py-6 bg-[#ffffff]">
             <svg
               onClick={() => setIsNavOpen((prev) => !prev)}
               className="h-4 w-4 bg-[#ffffff] mr-auto cursor-pointer animate-pulse"
@@ -100,7 +113,7 @@ const NavSmall = () => {
             )}
       </div>
       {isNavOpen === true
-        ? <div className="flex flex-col justify-between h-auto mb-3 pl-6 animate-display bg-[#ffffff]">
+        ? <div ref={appContainerRef} className="flex flex-col w-[60%] sm:w-1/2 justify-between h-auto mb-3 pl-6 animate-display bg-[#ffffff]">
           {/* Espacio Voices */}
           <div className="flex bg-[#ffffff]">
             <div className="flex mb-2 bg-[#ffffff]">
@@ -167,7 +180,7 @@ const NavSmall = () => {
           </div>
 
           {/* Plataforma Alumnos */}
-          <div className="flex bg-[#ffffff] pb-4">
+          <div className="flex bg-[#ffffff] pb-32 sm:pb-52">
             <div className="flex my-2 bg-[#ffffff]">
               <Link
                 onClick={() => setIsNavOpen(false)}
