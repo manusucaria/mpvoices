@@ -21,7 +21,8 @@ module.exports = {
       },
       stone: {
         100: '#F5F5F4'
-      }
+      },
+      'navy-blue': '#663481'
     },
     extend: {
       backgroundImage: {
