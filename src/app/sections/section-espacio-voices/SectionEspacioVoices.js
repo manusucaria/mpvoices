@@ -70,7 +70,7 @@ const EspacioVoices = () => {
               fill="white"
             />
           </svg>
-          <p className="text-center text-sm font-base px-20">
+          <p className="text-center text-base font-base px-20">
             Te acompañamos en todo momento
           </p>
         </div>
@@ -88,7 +88,7 @@ const EspacioVoices = () => {
               fill="white"
             />
           </svg>
-          <p className="text-center text-sm font-base px-20">
+          <p className="text-center text-base font-base px-20">
             Cuidamos tu voz con técnica
           </p>
         </div>
@@ -106,7 +106,7 @@ const EspacioVoices = () => {
               fill="white"
             />
           </svg>
-          <p className="text-center text-sm font-base px-20">
+          <p className="text-center text-base font-base px-20">
             Calidad profesional
           </p>
         </div>
@@ -124,7 +124,7 @@ const EspacioVoices = () => {
               fill="white"
             />
           </svg>
-          <p className="text-center text-sm font-base px-20">
+          <p className="text-center text-base font-base px-20">
             Tenemos 35 años de experiencia
           </p>
         </div>
