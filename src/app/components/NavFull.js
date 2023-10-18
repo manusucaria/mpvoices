@@ -180,7 +180,7 @@ const NavFull = () => {
       <div className="group flex flex-col my-auto w-[20%]">
         <Link className='min-[1024px]:ml-6' href="/">
           <svg
-            className="cursor-pointer fill-current text-white hover:text-[#E9500E] mr-auto min-[1024px]:ml-6 min-[1245px]:ml-0"
+            className="flex w-auto cursor-pointer fill-current text-white hover:text-[#E9500E] mr-auto min-[1024px]:ml-6 min-[1245px]:ml-0"
             xmlns="http://www.w3.org/2000/svg"
             width="17"
             height="19"
@@ -195,7 +195,7 @@ const NavFull = () => {
             />
           </svg>
         </Link>
-        <span className="absolute top-20 ml-5 min-[1245px]:ml-0 scale-0 rounded bg-white p-2 text-xs text-[#0D0D0D] group-hover:scale-100">Plataforma</span>
+        <span className="absolute top-20 ml-5 min-[1245px]:ml-0 scale-0 rounded bg-white p-2 text-xs text-[#0D0D0D] group-hover:scale-100">Plataforma alumnos</span>
       </div>
     </nav>
   )

@@ -50,7 +50,7 @@ const MariaPeñaSmall = () => {
           <span className="w-1 h-1 bg-black rounded-full"></span>
           Creadora de su disco{' '}
           <a
-            className="text-sm font-semibold bg-[#ffffff] text-[#E9500E]"
+            className="text-base font-semibold bg-[#ffffff] text-[#E9500E]"
             href="https://open.spotify.com/intl-es/album/3VyyDvIRBzhZnJDSu3up08"
             target="_blank"
             rel="noreferrer"
@@ -76,7 +76,7 @@ const MariaPeñaSmall = () => {
       <Image
         width={500}
         height={500}
-        className="mx-auto w-28 h-auto mb-6"
+        className="mx-auto w-28 h-12 mb-6"
         src={newfield}
         alt="Foto Newfield"
       />

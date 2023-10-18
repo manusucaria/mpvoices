@@ -4,7 +4,7 @@ const EspacioVoices = () => {
   return (
     <section id="EspacioVoices" className="flex flex-col mx-auto mb-12 pt-6">
       <h2 className="text-center text-3xl font-bold my-8">Espacio Voices</h2>
-      <p className="lg:hidden text-center text-base font-base px-16">
+      <p className="lg:hidden text-center text-base font-base px-12">
         Un lugar único y especial para
         aprender a tocar instrumentos y cantar.
       </p>
@@ -70,7 +70,7 @@ const EspacioVoices = () => {
               fill="white"
             />
           </svg>
-          <p className="text-center text-base font-base px-20">
+          <p className="text-center text-base font-base px-10">
             Te acompañamos en todo momento
           </p>
         </div>

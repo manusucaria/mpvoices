@@ -138,7 +138,7 @@ export default function Footer () {
           <p className="mx-auto text-sm">Dirección:&nbsp;</p>
           <a
             className="mx-auto text-sm"
-            href="https://maps.app.goo.gl/ERhpKbwzmMoBBZLy9"
+            href="https://www.google.com/maps/place/Blanco+Encalada,+B%C3%A9ccar,+Provincia+de+Buenos+Aires/@-34.4775915,-58.5713087,19z/data=!4m6!3m5!1s0x95bcbab1514bcc71:0x15c0ac592cae552f!8m2!3d-34.4774574!4d-58.5711003!16s%2Fg%2F11k6n_82l1?entry=ttu"
             target="_blank"
             rel="noreferrer"
           >
