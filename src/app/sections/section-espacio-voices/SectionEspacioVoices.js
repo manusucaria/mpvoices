@@ -2,7 +2,7 @@ import React from 'react'
 
 const EspacioVoices = () => {
   return (
-    <section id="EspacioVoices" className="flex flex-col mx-auto mb-12 pt-6">
+    <section id="EspacioVoices" className="flex flex-col mx-auto py-6 lg:pb-12 lg:pt-16">
       <h2 className="text-center text-3xl font-bold my-8">Espacio Voices</h2>
       <p className="lg:hidden text-center text-base font-base px-12">
         Un lugar único y especial para

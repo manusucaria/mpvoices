@@ -1,5 +1,4 @@
 import React from 'react'
-
 import Image from 'next/image'
 import maria from '../assets/maria.png'
 import usal from '../assets/usal.jpg'
