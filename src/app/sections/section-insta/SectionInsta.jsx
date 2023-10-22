@@ -1,18 +1,18 @@
 import Wrapper from '@/app/components/wrapper/Wrapper'
-import { playfair400 } from '@/utils/fonts/fonts'
+import { playfair700 } from '@/utils/fonts/fonts'
 import Image from 'next/image'
 import React from 'react'
+import Link from 'next/link'
 
 import './SectionInsta.scss'
-import Link from 'next/link'
 
 function SectionInsta () {
   return (
     <div className="Insta">
       <Wrapper className="flex flex-col items-center justify-center gap-10">
-        <p className={`Insta-title ${playfair400.className}`}>
+        <h2 className={`Insta-title ${playfair700.className}`}>
           ¡Voices en movimiento!
-        </p>
+        </h2>
 
         <div className="Insta-images">
           <Link

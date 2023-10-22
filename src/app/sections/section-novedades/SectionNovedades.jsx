@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Image from 'next/image'
-import { playfair400, openSans500 } from '@/utils/fonts/fonts'
+import { playfair400, openSans500, playfair700 } from '@/utils/fonts/fonts'
 import Button from '@/app/components/button/Button'
 import Wrapper from '@/app/components/wrapper/Wrapper'
 
@@ -11,8 +11,8 @@ function SectionNovedades () {
   return (
     <>
       <section className="Novedades">
-        <Wrapper className="flex flex-col justify-center items-center gap-10">
-          <h2 className={`Novedades-title ${playfair400.className}`}>Novedades</h2>
+        <Wrapper className="flex flex-col justify-center items-center gap-5">
+          <h2 className={`Novedades-title ${playfair700.className}`}>Novedades</h2>
           <div className="Novedades-ilustration">
             <Image
               className="Novedades-image"
