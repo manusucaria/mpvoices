@@ -1,6 +1,5 @@
 .Clases {
-  @apply bg-white text-black;
-  @apply py-32;
+  @apply bg-white text-black py-24;
   &-title {
     @apply text-4xl sm:text-5xl text-center;
   }
