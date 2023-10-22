@@ -1,18 +1,18 @@
 .Novedades {
   @apply bg-stone-100 text-black py-24 text-center;
   &-title {
-    @apply text-4xl sm:text-5xl text-center;
+    @apply text-3xl text-center;
   }
   &-ilustration {
-    @apply bg-gray-500 w-48 h-48 rounded-full overflow-hidden;
+    @apply bg-gray-500 w-44 h-44 rounded-full overflow-hidden;
   }
   &-image {
     @apply w-full h-full object-cover;
   }
   &-sub {
-    @apply text-4xl;
+    @apply text-2xl;
   }
   &-p {
-    @apply max-w-md text-lg sm:text-base;
+    @apply max-w-md text-base;
   }
 }

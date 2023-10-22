@@ -1,7 +1,7 @@
 .Clases {
   @apply bg-white text-black py-24;
   &-title {
-    @apply text-4xl sm:text-5xl text-center;
+    @apply text-3xl text-center;
   }
   &-ul {
     @apply text-black mt-4;
@@ -11,7 +11,7 @@
     @apply p-1;
   }
   &-p {
-    @apply text-lg;
+    @apply text-base;
   }
   &-container {
     @apply w-[80%] mx-auto my-14;

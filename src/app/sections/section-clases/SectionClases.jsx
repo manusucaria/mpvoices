@@ -1,7 +1,7 @@
 import React from 'react'
 
 import ClasesCard from '@/app/components/clases-card/ClasesCard'
-import { playfair400, openSans400 } from '@/utils/fonts/fonts'
+import { playfair400, openSans400, playfair700 } from '@/utils/fonts/fonts'
 import './SectionClases.scss'
 import Wrapper from '@/app/components/wrapper/Wrapper'
 import Button from '@/app/components/button/Button'
@@ -18,7 +18,7 @@ async function SectionClases () {
   return (
     <section id='Clases' className={`Clases ${playfair400.className}`}>
       <Wrapper className="flex flex-col items-center">
-        <h1 className='Clases-title'>Clases</h1>
+        <h1 className={`Clases-title ${playfair700.className}`}>Clases</h1>
 
         <ul className={`Clases-ul ${openSans400.className}`}>
           <li className="Clases-li">
