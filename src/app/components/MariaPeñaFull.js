@@ -72,14 +72,14 @@ const MariaPeñaFull = () => {
           <Image
             width={500}
             height={500}
-            className="h-10 w-28 mr-10 my-auto"
+            className="h-10 w-32 mr-10 my-auto"
             src={usal}
             alt="Foto Usal"
           />
           <Image
             width={500}
             height={500}
-            className="h-10 w-28 mr-10 my-auto"
+            className="h-10 w-32 mr-10 my-auto"
             src={newfield}
             alt="Foto Newfield"
           />

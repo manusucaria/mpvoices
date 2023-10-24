@@ -142,7 +142,7 @@ const NavFull = () => {
             href="#MariaPeña"
             className="mr-auto hover:translate-y-cursor hover:text-[#E9500E] cursor-pointer font-[550] pr-3 text-base"
           >
-            Maria Peña
+            María Peña
           </a>
         </div>
 

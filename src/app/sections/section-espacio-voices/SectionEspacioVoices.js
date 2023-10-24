@@ -107,7 +107,7 @@ const EspacioVoices = () => {
             />
           </svg>
           <p className="text-center text-base font-base px-20">
-            Calidad profesional
+            Enseñamos con calidad profesional
           </p>
         </div>
         <div className="flex flex-col mx-auto">

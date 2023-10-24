@@ -135,7 +135,7 @@ const NavSmall = () => {
                 href="#MariaPeña"
                 className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base"
               >
-                Maria Peña
+                María Peña
               </a>
             </div>
           </div>
