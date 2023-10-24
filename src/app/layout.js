@@ -1,5 +1,4 @@
 import React from 'react'
-import Head from 'next/head'
 import './globals.css'
 import './globals.scss'
 import Navigation from './components/Navigation.js'
@@ -15,10 +14,9 @@ export const metadata = {
 export default function RootLayout ({ children }) {
   return (
     <div className="flex flex-col min-h-screen mt-[3rem] lg:mt-[6rem]">
-      <Head>
-        <meta charSet="utf-8" />
+      <head>
         <link rel="shortcut icon" href="/voices.svg" type="image/x-icon" />
-      </Head>
+      </head>
       <Navigation />
       <WaButton />
       {children}
