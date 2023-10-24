@@ -61,28 +61,28 @@ const MariaPeñaSmall = () => {
       <Image
         width={500}
         height={500}
-        className="mx-auto w-16 h-auto mb-6"
+        className="mx-auto w-20 h-auto mb-6"
         src={disco}
         alt="Foto Tapa Disco"
       />
       <Image
         width={500}
         height={500}
-        className="mx-auto w-28 h-auto mb-6"
+        className="mx-auto w-36 h-auto mb-6"
         src={usal}
         alt="Foto Usal"
       />
       <Image
         width={500}
         height={500}
-        className="mx-auto w-28 h-12 mb-6"
+        className="mx-auto w-36 h-12 mb-6"
         src={newfield}
         alt="Foto Newfield"
       />
       <Image
         width={500}
         height={500}
-        className="mx-auto w-14 h-auto mb-6"
+        className="mx-auto w-16 h-auto mb-6"
         src={ellipse}
         alt="Foto Ellipse"
       />
