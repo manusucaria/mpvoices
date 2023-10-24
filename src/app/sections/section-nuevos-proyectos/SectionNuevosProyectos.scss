@@ -1,13 +1,13 @@
 .Projects{
-  @apply bg-black text-white py-32;
+  @apply bg-black text-white py-24;
   &-title {
-    @apply text-4xl sm:text-5xl text-center;
+    @apply text-3xl text-center;
   }
   &-ul {
     @apply flex flex-col items-center gap-8;
   }
   &-li {
-    @apply text-center flex flex-col items-center justify-center gap-2;
+    @apply text-center flex flex-col items-center justify-center gap-2 text-base;
   }
   &-circle {
     @apply 
