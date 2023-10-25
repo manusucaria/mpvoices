@@ -13,14 +13,17 @@ export const metadata = {
 
 export default function RootLayout ({ children }) {
   return (
-    <div className="flex flex-col min-h-screen mt-[3rem] lg:mt-[6rem]">
+    <html>
       <head>
         <link rel="shortcut icon" href="/voices.svg" type="image/x-icon" />
       </head>
-      <Navigation />
-      <WaButton />
-      {children}
-      <Footer />
-    </div>
+      <body className="flex flex-col min-h-screen mt-[3rem] lg:mt-[6rem]">
+        <Navigation />
+        <WaButton />
+        {children}
+        <Footer />
+      </body>
+    </html>
+
   )
 }
