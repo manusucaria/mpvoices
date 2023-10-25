@@ -11,7 +11,6 @@ import SectionMariaPeña from './sections/section-maria-peña/SectionMariaPeña'
 import SectionSeparadorVoices from './sections/section-separador-voices/SeparadorVoices'
 import SectionSeparadorAlas from './sections/section-separador-alas/SeparadorAlas'
 import SectionInsta from './sections/section-insta/SectionInsta'
-import NuevoUsuario from './components/usuarios/NuevoUsuario'
 
 export default function Home () {
   return (
@@ -28,7 +27,6 @@ export default function Home () {
       <SectionNovedades />
       <SectionInsta />
       <SectionMaps />
-      <NuevoUsuario />
     </main>
   )
 }
