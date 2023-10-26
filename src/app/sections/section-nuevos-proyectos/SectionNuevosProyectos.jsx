@@ -42,7 +42,7 @@ function SectionNuevosProyectos () {
                 <div className='Projects-circle'>
                   { i + 1 }
                 </div>
-                <p className='w-64 font-serif text-2xl'>
+                <p className={`w-64 ${playfair400.className} text-2xl`}>
                   { project.name }
                 </p>
               </li>
