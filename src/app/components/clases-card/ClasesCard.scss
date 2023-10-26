@@ -1,14 +1,16 @@
 .Card {
   @apply bg-gray-100;
   @apply h-72 p-4;
-  @apply flex flex-col justify-center items-center gap-5;
+  @apply flex flex-col justify-center items-center gap-1;
   &-title {
+    @apply h-1/5;
+  }
+  &-h3 {
     @apply text-center text-2xl leading-6;
   }
   &-illustration {
-    @apply bg-gray-200;
     @apply w-32 h-32;
-    @apply rounded-full
+    @apply rounded-full overflow-hidden;
   }
   &-image {
     @apply w-full h-full;
