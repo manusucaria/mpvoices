@@ -7,7 +7,9 @@ import { playfair700 } from '@/utils/fonts/fonts'
 function ClasesCard ({ title, imageSrc }) {
   return (
     <div className='Card relative'>
-      <h3 className={`Card-title ${playfair700.className}`}>{ title }</h3>
+      <div className="Card-title">
+        <h3 className={`Card-h3 ${playfair700.className}`}>{ title }</h3>
+      </div>
 
       <div className="Card-illustration">
         <Image
