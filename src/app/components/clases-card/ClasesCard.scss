@@ -3,7 +3,7 @@
   @apply h-72 p-4;
   @apply flex flex-col justify-center items-center gap-5;
   &-title {
-    @apply text-center text-2xl;
+    @apply text-center text-2xl leading-6;
   }
   &-illustration {
     @apply bg-gray-200;
