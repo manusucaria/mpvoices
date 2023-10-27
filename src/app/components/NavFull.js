@@ -9,7 +9,7 @@ const NavFull = () => {
       const targetId = event.target.getAttribute('href').substring(1)
       const targetElement = document.getElementById(targetId)
       if (targetElement) {
-        const offset = 70
+        const offset = 1700
         const targetOffsetTop = targetElement.offsetTop - offset
         window.scrollTo({
           top: targetOffsetTop,

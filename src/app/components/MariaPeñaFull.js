@@ -8,19 +8,19 @@ import disco from '../assets/disco.jpg'
 
 const MariaPeñaFull = () => {
   return (
-    <div className="bg-[#ffffff] hidden lg:flex py-12">
-      <div className="flex w-auto ml-auto bg-[#ffffff] pt-6">
+    <div className="bg-[#ffffff] hidden lg:flex pt-24 pb-12">
+      <div className="flex w-auto ml-auto bg-[#ffffff]">
         <Image
           width={500}
           height={500}
-          className="w-60 h-60 rounded-full"
+          className="w-60 h-60 rounded-full mt-6"
           src={maria}
           alt="Foto Maria"
           priority
         />
       </div>
-      <div className="w-[50%] bg-[#ffffff] mr-auto flex flex-col pt-6">
-        <h2 className="text-center text-3xl font-bold bg-[#ffffff] text-[#0D0D0D] mb-6">
+      <div className="w-[50%] bg-[#ffffff] mr-auto flex flex-col">
+        <h2 className="text-center text-3xl font-bold bg-[#ffffff] text-[#0D0D0D] pb-6">
           María Peña
         </h2>
         <ol className="flex flex-col bg-[#ffffff] mb-10 list-disc">
