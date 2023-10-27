@@ -8,11 +8,11 @@ import disco from '../assets/disco.jpg'
 
 const MariaPeñaSmall = () => {
   return (
-    <div className="bg-[#ffffff] flex flex-col lg:hidden py-6">
+    <div className="bg-[#ffffff] flex flex-col lg:hidden pt-8 pb-6">
       <Image
         width={500}
         height={500}
-        className="w-44 h-44 mx-auto rounded-full my-10"
+        className="w-44 h-44 mx-auto rounded-full my-8"
         src={maria}
         alt="Foto Maria"
         priority
@@ -20,7 +20,7 @@ const MariaPeñaSmall = () => {
       <h2 className="text-center text-3xl font-bold bg-[#ffffff] text-[#0D0D0D] mb-6">
         María Peña
       </h2>
-      <ol className="flex flex-col bg-[#ffffff] mb-8 list-disc">
+      <ol className="flex flex-col bg-[#ffffff] mb-8 list-disc mx-4">
         <li className="mx-auto text-base font-semibold bg-[#ffffff] text-[#0D0D0D] mb-4">
           <span className="w-1 h-1 bg-black rounded-full"></span>
           En 2003 crea Voices
@@ -82,7 +82,7 @@ const MariaPeñaSmall = () => {
       <Image
         width={500}
         height={500}
-        className="mx-auto w-16 h-auto mb-6"
+        className="mx-auto w-16 h-auto"
         src={ellipse}
         alt="Foto Ellipse"
       />

@@ -2,22 +2,22 @@ import React from 'react'
 
 const EspacioVoices = () => {
   return (
-    <section id="EspacioVoices" className="flex flex-col mx-auto py-6 lg:pb-12 lg:pt-16">
-      <h2 className="text-center text-3xl font-bold my-8">Espacio Voices</h2>
-      <p className="lg:hidden text-center text-base font-base px-12">
+    <section id="EspacioVoices" className="flex flex-col mx-auto pt-8 pb-6 lg:pt-24 lg:pb-16">
+      <h2 className="text-center text-3xl font-bold mb-8">Espacio Voices</h2>
+      <p className="lg:hidden text-center text-base px-12">
         Un lugar único y especial para
         aprender a tocar instrumentos y cantar.
       </p>
-      <p className="hidden lg:flex text-center text-base font-base px-16 mx-auto">
+      <p className="hidden lg:flex text-center text-base px-16 mx-auto">
         Un lugar único y especial para aprender a tocar instrumentos y cantar.
       </p>
-      <p className="lg:hidden text-center text-base font-base px-20">
+      <p className="lg:hidden text-center text-base px-20">
         Clases que acompañan tus ganas de hacer música.
       </p>
-      <p className="hidden lg:flex text-center text-base font-base px-20 mx-auto">
+      <p className="hidden lg:flex text-center text-base px-20 mx-auto">
         Clases que acompañan tus ganas de hacer música.
       </p>
-      <div className="flex flex-col mx-auto mt-12">
+      <div className="flex flex-col mx-auto pt-12">
         <div className="flex flex-col mx-auto mb-4">
           <svg
             className="mx-auto mb-2"
@@ -70,7 +70,7 @@ const EspacioVoices = () => {
               fill="white"
             />
           </svg>
-          <p className="text-center text-base font-base px-10">
+          <p className="text-center text-base px-10">
             Te acompañamos en todo momento
           </p>
         </div>
@@ -88,7 +88,7 @@ const EspacioVoices = () => {
               fill="white"
             />
           </svg>
-          <p className="text-center text-base font-base px-20">
+          <p className="text-center text-base px-20">
             Cuidamos tu voz con técnica
           </p>
         </div>
@@ -106,7 +106,7 @@ const EspacioVoices = () => {
               fill="white"
             />
           </svg>
-          <p className="text-center text-base font-base px-20">
+          <p className="text-center text-base px-20">
             Enseñamos con calidad profesional
           </p>
         </div>
@@ -124,7 +124,7 @@ const EspacioVoices = () => {
               fill="white"
             />
           </svg>
-          <p className="text-center text-base font-base px-20">
+          <p className="text-center text-base px-20 pb-6 lg:pb-0">
             Tenemos 35 años de experiencia
           </p>
         </div>
