@@ -73,7 +73,7 @@ const NavSmall = () => {
             </div>
             <div className="flex ml-auto my-auto pr-6">
               <div className="flex" onClick={() => scrollToTop()}>
-                <Link href="/" className="flex my-auto">
+                <Link href="/login" className="flex my-auto">
                   <svg
                     className="cursor-pointer"
                     xmlns="http://www.w3.org/2000/svg"
@@ -183,7 +183,6 @@ const NavSmall = () => {
           <div className="flex bg-[#ffffff] pb-32 sm:pb-52">
             <div className="flex my-2 bg-[#ffffff]">
               <Link
-                onClick={() => setIsNavOpen(false)}
                 href="/login"
                 className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base"
               >
