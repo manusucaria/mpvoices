@@ -12,7 +12,7 @@ const MariaPeñaSmall = () => {
       <Image
         width={500}
         height={500}
-        className="w-44 h-44 mx-auto rounded-full my-8"
+        className="w-44 h-44 mx-auto rounded-full my-6"
         src={maria}
         alt="Foto Maria"
         priority
