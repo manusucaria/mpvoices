@@ -21,10 +21,10 @@ const LoginForm = () => {
 
     const formErrors = {}
     if (!validateEmail(email)) {
-      formErrors.email = 'Invalid email address'
+      formErrors.email = 'Usuario incorrecto'
     }
     if (!password) {
-      formErrors.password = 'Password is required'
+      formErrors.password = 'Se necesita contraseña'
     }
 
     if (Object.keys(formErrors).length === 0) {
@@ -37,14 +37,14 @@ const LoginForm = () => {
   }
 
   return (
-    <div className='w-screen h-screen bg-purple-50 flex flex-col justify-center items-center md:justify-start'>
-      <div className='md:mt-14'>
-        <p className='text-3xl text-purple-600'>Inicia Sesión</p>
+    <div className='w-screen h-auto mt-8 lg:mt-2 lg:h-screen bg-purple-50 flex flex-col justify-center items-center md:justify-start'>
+      <div className='md:mt-14 lg:mb-4'>
+        <p className='text-3xl text-white'>Ingresar</p>
       </div>
 
-      <form className='border-2 border-purple-200 rounded p-2 m-4 flex flex-col gap-4' onSubmit={handleSubmit}>
+      <form className='border-2 border-purple-200 rounded m-4 flex flex-col gap-4 py-6 px-4' onSubmit={handleSubmit}>
         <div>
-          <label className='text-slate-600 mr-2' htmlFor="email">Email:</label>
+          <label className='text-white mr-2' htmlFor="email">Usuario:</label>
           <input
             className='text-black border-2 border-slate-200 rounded p-2 w-full'
             id="email"
@@ -56,7 +56,7 @@ const LoginForm = () => {
         </div>
 
         <div>
-          <label className='text-slate-600 mr-2' htmlFor="password">Password:</label>
+          <label className='text-white mr-2' htmlFor="password">Contraseña:</label>
           <input
             className='text-black border-2 border-slate-200 rounded p-2 w-full'
             id="password"
@@ -67,7 +67,7 @@ const LoginForm = () => {
           {errors.password && <p>{errors.password}</p>}
         </div>
 
-        <button className='w-full py-3 px-4 bg-purple-600 shadow-md shadow-orange-300 text-white font-bold rounded hover:bg-purple-800 mt-5'
+        <button className='hover:bg-[#E9500E] hover:border-white transition-all w-full py-3 px-4 shadow-md border border-[#E9500E] text-white font-bold rounded mt-5'
           type="submit">
             Iniciar Sesión
         </button>
