@@ -1,7 +1,7 @@
 .Insta {
   @apply bg-white text-black py-24;
   &-title {
-    @apply text-3xl;
+    @apply text-2xl;
   }
   &-images {
     @apply flex flex-wrap items-center justify-around gap-20;
