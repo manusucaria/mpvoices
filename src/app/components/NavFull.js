@@ -177,7 +177,7 @@ const NavFull = () => {
         </div>
       </div>
       <div className="flex flex-col my-auto w-[20%]">
-        <Link className='flex mr-auto min-[1024px]:ml-6' href="/">
+        <Link className='flex mr-auto min-[1024px]:ml-6' href="/login">
           <div className="relative group">
             <svg
               className="flex w-auto cursor-pointer fill-current text-white hover:text-[#E9500E] mr-auto min-[1024px]:ml-6 min-[1245px]:ml-0"

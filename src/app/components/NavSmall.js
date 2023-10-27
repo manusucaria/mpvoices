@@ -184,7 +184,7 @@ const NavSmall = () => {
             <div className="flex my-2 bg-[#ffffff]">
               <Link
                 onClick={() => setIsNavOpen(false)}
-                href="/"
+                href="/login"
                 className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base"
               >
                 Plataforma alumnos
