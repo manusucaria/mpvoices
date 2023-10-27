@@ -7,7 +7,7 @@ import {
   addDoc,
   where
 } from 'firebase/firestore'
-import { firestore } from '@/firebase'
+import { firestore } from '@/lib/firebase'
 
 // CREATE
 export const createAlumno = async (obj) => {
