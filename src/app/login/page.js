@@ -52,6 +52,7 @@ const LoginForm = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value.trimStart())}
+            autoComplete="email"
           />
           {errors.email && <p className='text-[#E9500E] text-sm pt-2'>{errors.email}</p>}
         </div>
@@ -65,6 +66,7 @@ const LoginForm = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            autoComplete="current-password"
           />
           {errors.password && <p className='text-[#E9500E] text-sm pt-2'>{errors.password}</p>}
         </div>
