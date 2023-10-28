@@ -18,5 +18,5 @@ export async function middleware (request, response) {
 }
 
 export const config = {
-  matcher: ['/plataforma-alumnos', '/plataforma-alumnos/:path*']
+  matcher: ['/plataforma-alumnos']
 }
