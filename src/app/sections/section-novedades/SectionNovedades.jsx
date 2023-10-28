@@ -24,7 +24,7 @@ function SectionNovedades () {
                 height={1000}
               />
             </div>
-            <p className={`Novedades-sub ${playfair400.className} text-2xl`}>Voices World</p>
+            <h3 className={`Novedades-sub ${playfair400.className} text-2xl`}>Voices World</h3>
             <p className={`Novedades-p ${openSans600.className}`}>Te acompañamos con clases online donde estés, en cualquier parte del mundo</p>
           </div>
 
