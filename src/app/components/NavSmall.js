@@ -119,7 +119,7 @@ const NavSmall = () => {
             <div className="flex mb-2 bg-[#ffffff]">
               <a
                 onClick={() => setIsNavOpen(false)}
-                href="#EspacioVoices"
+                href="/#EspacioVoices"
                 className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base"
               >
                 Espacio Voices
@@ -132,7 +132,7 @@ const NavSmall = () => {
             <div className="flex my-2 bg-[#ffffff]">
               <a
                 onClick={() => setIsNavOpen(false)}
-                href="#MariaPeña"
+                href="/#MariaPeña"
                 className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base"
               >
                 María Peña
@@ -145,7 +145,7 @@ const NavSmall = () => {
             <div className="flex my-2 bg-[#ffffff]">
               <a
                 onClick={() => setIsNavOpen(false)}
-                href="#Clases"
+                href="/#Clases"
                 className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base"
               >
                 Clases
@@ -158,7 +158,7 @@ const NavSmall = () => {
             <div className="flex my-2 bg-[#ffffff]">
               <a
                 onClick={() => setIsNavOpen(false)}
-                href="#NuevosProyectos"
+                href="/#NuevosProyectos"
                 className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base"
               >
                 Nuevos proyectos

@@ -29,7 +29,7 @@ const getAuth = async (email, password, router, isSignUp) => {
           }
         }).then((response) => {
           if (response.status === 200) {
-            router.push('/')
+            router.push('/plataforma-alumnos')
           }
         })
       })

@@ -15,7 +15,7 @@ export default function Footer () {
   }
   return (
     <div id="Footer" className="flex flex-col mt-auto ">
-      <div className="mx-auto my-6 flex" onClick={scrollToTop}>
+      <Link href='/' className="mx-auto my-6 flex" onClick={scrollToTop}>
         <svg
           className="cursor-pointer m-auto"
           xmlns="http://www.w3.org/2000/svg"
@@ -109,7 +109,7 @@ export default function Footer () {
             fill="white"
           />
         </svg>
-      </div>
+      </Link>
       <div className="flex flex-col w-full mx-auto mb-6 border-b pb-4 border-b-[#ffffff]">
         <div className="mb-2 mx-auto flex">
           <p className="mx-auto text-sm">E-Mail:&nbsp;</p>

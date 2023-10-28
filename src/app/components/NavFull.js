@@ -1,27 +1,8 @@
 'use client'
-import React, { useEffect } from 'react'
+import React from 'react'
 import Link from 'next/link'
 
 const NavFull = () => {
-  useEffect(() => {
-    const handleLinkClick = (event) => {
-      event.preventDefault()
-      const targetId = event.target.getAttribute('href').substring(1)
-      const targetElement = document.getElementById(targetId)
-      if (targetElement) {
-        const offset = 1700
-        const targetOffsetTop = targetElement.offsetTop - offset
-        window.scrollTo({
-          top: targetOffsetTop,
-          behavior: 'smooth'
-        })
-      }
-    }
-    const links = document.querySelectorAll('a[href^="#"]')
-    links.forEach((link) => {
-      link.addEventListener('click', handleLinkClick)
-    })
-  }, [])
   const scrollToTop = () => {
     window.scrollTo({
       top: 0
@@ -129,7 +110,7 @@ const NavFull = () => {
         {/* Espacio Voices */}
         <div className="flex min-[1024px]:mr-2 min-[1245px]:mr-4 my-auto">
           <a
-            href="#EspacioVoices"
+            href="/#EspacioVoices"
             className="mr-auto hover:translate-y-cursor hover:text-[#E9500E] cursor-pointer font-[550] pr-3 text-base"
           >
             Espacio Voices
@@ -139,7 +120,7 @@ const NavFull = () => {
         {/* Maria Peña */}
         <div className="flex min-[1024px]:mx-2 min-[1245px]:mx-4 my-auto">
           <a
-            href="#MariaPeña"
+            href="/#MariaPeña"
             className="mr-auto hover:translate-y-cursor hover:text-[#E9500E] cursor-pointer font-[550] pr-3 text-base"
           >
             María Peña
@@ -149,7 +130,7 @@ const NavFull = () => {
         {/* Clases */}
         <div className="flex min-[1024px]:mx-2 min-[1245px]:mx-4 my-auto">
           <a
-            href="#Clases"
+            href="/#Clases"
             className="mr-auto hover:translate-y-cursor hover:text-[#E9500E] cursor-pointer font-[550] pr-3 text-base"
           >
             Clases
@@ -159,7 +140,7 @@ const NavFull = () => {
         {/* Nuevos Proyectos */}
         <div className="flex min-[1024px]:mx-2 min-[1245px]:mx-4 my-auto">
           <a
-            href="#NuevosProyectos"
+            href="/#NuevosProyectos"
             className="mr-auto hover:translate-y-cursor hover:text-[#E9500E] cursor-pointer font-[550] pr-3 text-base"
           >
             Nuevos Proyectos
