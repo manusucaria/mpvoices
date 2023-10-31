@@ -1,10 +1,10 @@
 import React from 'react'
 import Image from 'next/image'
-import maria from '../assets/maria.png'
-import usal from '../assets/usal.jpg'
-import newfield from '../assets/newfield.jpg'
-import ellipse from '../assets/ellipse.jpg'
-import disco from '../assets/disco.jpg'
+import maria from '../../assets/maria.png'
+import usal from '../../assets/usal.jpg'
+import newfield from '../../assets/newfield.jpg'
+import ellipse from '../../assets/ellipse.jpg'
+import disco from '../../assets/disco.jpg'
 
 const MariaPeñaFull = () => {
   return (
