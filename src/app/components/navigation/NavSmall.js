@@ -1,37 +1,21 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react'
-import Link from 'next/link'
-
-const routes = [
-  {
-    label: 'Espacio Voices',
-    link: '/#EspacioVoices'
-  },
-  {
-    label: 'María Peña',
-    link: '/#MariaPeña'
-  },
-  {
-    label: 'Clases',
-    link: '/#Clases'
-  },
-  {
-    label: 'Nuevos Proyectos',
-    link: '/#NuevosProyectos'
-  },
-  {
-    label: 'Contacto',
-    link: '/#Footer'
-  },
-  {
-    label: 'Plataforma Alumnos',
-    link: '/login'
-  }
-]
 
 const NavSmall = () => {
   const [isNavOpen, setIsNavOpen] = useState(false)
   const appContainerRef = useRef(null)
+  const [userEmail, setUserEmail] = useState('')
+  const [userPassword, setUserPassword] = useState('')
+
+  useEffect(() => {
+    const email = localStorage.getItem('userEmail')
+    const password = localStorage.getItem('userPassword')
+
+    if (email && password) {
+      setUserEmail(email)
+      setUserPassword(password)
+    }
+  }, [])
   useEffect(() => {
     const handleLinkClick = (event) => {
       event.preventDefault()
@@ -82,6 +66,33 @@ const NavSmall = () => {
     })
   }
 
+  const routes = [
+    {
+      label: 'Espacio Voices',
+      link: '/#EspacioVoices'
+    },
+    {
+      label: 'María Peña',
+      link: '/#MariaPeña'
+    },
+    {
+      label: 'Clases',
+      link: '/#Clases'
+    },
+    {
+      label: 'Nuevos Proyectos',
+      link: '/#NuevosProyectos'
+    },
+    {
+      label: 'Contacto',
+      link: '/#Footer'
+    },
+    {
+      label: 'Plataforma Alumnos',
+      link: userEmail && userPassword ? '/plataforma-alumnos' : '/login'
+    }
+  ]
+
   return (
     <nav className="bg-black flex lg:hidden flex-col fixed top-0 left-0 right-0 h-[3rem]">
       <div className="flex items-center">
@@ -100,7 +111,7 @@ const NavSmall = () => {
             </div>
             <div className="flex ml-auto my-auto pr-6">
               <div className="flex" onClick={() => scrollToTop()}>
-                <Link href="/login" className="flex my-auto">
+                <a href={userEmail && userPassword ? '/plataforma-alumnos' : '/login'} className="flex my-auto">
                   <svg
                     className="cursor-pointer"
                     xmlns="http://www.w3.org/2000/svg"
@@ -116,7 +127,7 @@ const NavSmall = () => {
                       fill="white"
                     />
                   </svg>
-                </Link>
+                </a>
               </div>
             </div>
           </div>

@@ -30,13 +30,18 @@ const page = () => {
     <div className='flex'>
       {alumnos.length >= 1
         ? <div>
-          {alumnos.map((alumno) => (
-            <div key={alumno.nombre} className="flex flex-col rounded-xl shadow-lg bg-amber-50 w-64 h-64 mx-2 my-2">
+          {alumnos.filter(alumno => alumno.Email === userEmail && alumno.Contraseña === userPassword).map((alumno) => (
+            <div key={alumno.id} className="flex flex-col rounded-xl shadow-lg bg-amber-50 w-64 h-64 mx-2 my-2">
               <div className="flex flex-col mx-auto px-3 py-2 items-center">
-                <p className="text-white font-botones font-bold text-center text-sm mb-2">Correo Electrónico: {userEmail}</p>
-                <p className="text-white font-botones font-bold text-center text-sm mb-2">Contraseña: {userPassword}</p>
-                <p className="text-white font-botones font-bold text-center text-sm mb-2">{alumno.edad}</p>
-                <p className="text-white font-botones font-bold text-center text-sm mb-2">{alumno.usuario}</p>
+                <p className="text-white font-botones font-bold text-center text-sm mb-2">{alumno.Nombre}</p>
+                <p className="text-white font-botones font-bold text-center text-sm mb-2">{alumno.Apellido}</p>
+                <p className="text-white font-botones font-bold text-center text-sm mb-2">{alumno.Edad}</p>
+                <p className="text-white font-botones font-bold text-center text-sm mb-2">{alumno.Profesor}</p>
+                <p className="text-white font-botones font-bold text-center text-sm mb-2">{alumno.DIa}</p>
+                <p className="text-white font-botones font-bold text-center text-sm mb-2">{alumno.Horario}</p>
+                <p className="text-white font-botones font-bold text-center text-sm mb-2">{alumno.Duracion}</p>
+                <p className="text-white font-botones font-bold text-center text-sm mb-2">{alumno.Instrumento}</p>
+                <p className="text-white font-botones font-bold text-center text-sm mb-2">{alumno.Deuda}</p>
               </div>
             </div>
           ))}

@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 
 const routes = [
@@ -26,6 +26,18 @@ const routes = [
 ]
 
 const NavFull = () => {
+  const [userEmail, setUserEmail] = useState('')
+  const [userPassword, setUserPassword] = useState('')
+
+  useEffect(() => {
+    const email = localStorage.getItem('userEmail')
+    const password = localStorage.getItem('userPassword')
+
+    if (email && password) {
+      setUserEmail(email)
+      setUserPassword(password)
+    }
+  }, [])
   const scrollToTop = () => {
     window.scrollTo({
       top: 0
@@ -142,7 +154,7 @@ const NavFull = () => {
         ))}
       </div>
       <div className="flex flex-col my-auto w-[20%]">
-        <Link className='flex mr-auto min-[1024px]:ml-6' href="/login">
+        <a className='flex mr-auto min-[1024px]:ml-6' href={userEmail && userPassword ? '/plataforma-alumnos' : '/login'}>
           <div className="relative group">
             <svg
               className="flex w-auto cursor-pointer fill-current text-white hover:text-[#E9500E] mr-auto min-[1024px]:ml-6 min-[1245px]:ml-0"
@@ -161,7 +173,7 @@ const NavFull = () => {
             </svg>
             <span className="tooltip text-xs text-[#0D0D0D] absolute top-10 w-36 text-center ml-6 min-[1024px]:ml-0 p-2 bg-white rounded opacity-0 group-hover:opacity-100">Plataforma alumnos</span>
           </div>
-        </Link>
+        </a>
       </div>
     </nav>
   )
