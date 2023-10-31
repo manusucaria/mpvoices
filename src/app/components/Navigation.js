@@ -1,8 +1,8 @@
 'use client'
 import React from 'react'
 
-import NavSmall from './NavSmall'
-import NavFull from './NavFull'
+import NavSmall from './navigation/NavSmall'
+import NavFull from './navigation/NavFull'
 
 export default function Header () {
   return (

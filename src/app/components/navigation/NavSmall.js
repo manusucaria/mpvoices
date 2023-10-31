@@ -2,6 +2,33 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 
+const routes = [
+  {
+    label: 'Espacio Voices',
+    link: '/#EspacioVoices'
+  },
+  {
+    label: 'María Peña',
+    link: '/#MariaPeña'
+  },
+  {
+    label: 'Clases',
+    link: '/#Clases'
+  },
+  {
+    label: 'Nuevos Proyectos',
+    link: '/#NuevosProyectos'
+  },
+  {
+    label: 'Contacto',
+    link: '/#Footer'
+  },
+  {
+    label: 'Plataforma Alumnos',
+    link: '/login'
+  }
+]
+
 const NavSmall = () => {
   const [isNavOpen, setIsNavOpen] = useState(false)
   const appContainerRef = useRef(null)
@@ -113,83 +140,20 @@ const NavSmall = () => {
             )}
       </div>
       {isNavOpen === true
-        ? <div ref={appContainerRef} className="flex flex-col w-[60%] sm:w-1/2 justify-between h-auto mb-3 pl-6 animate-display bg-[#ffffff]">
-          {/* Espacio Voices */}
-          <div className="flex bg-[#ffffff]">
-            <div className="flex mb-2 bg-[#ffffff]">
-              <a
-                onClick={() => setIsNavOpen(false)}
-                href="/#EspacioVoices"
-                className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base"
-              >
-                Espacio Voices
-              </a>
+        ? <div ref={appContainerRef} className="flex flex-col w-[60%] sm:w-1/2 pb-28 justify-between h-auto pl-6 animate-display bg-[#ffffff]">
+          {routes.map((route) => (
+            <div key={route.label} className="flex bg-[#ffffff]">
+              <div className="flex mb-2 bg-[#ffffff]">
+                <a
+                  onClick={() => setIsNavOpen(false)}
+                  href={route.link}
+                  className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base"
+                >
+                  {route.label}
+                </a>
+              </div>
             </div>
-          </div>
-
-          {/* Maria Peña */}
-          <div className="flex bg-[#ffffff]">
-            <div className="flex my-2 bg-[#ffffff]">
-              <a
-                onClick={() => setIsNavOpen(false)}
-                href="/#MariaPeña"
-                className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base"
-              >
-                María Peña
-              </a>
-            </div>
-          </div>
-
-          {/* Clases */}
-          <div className="flex bg-[#ffffff]">
-            <div className="flex my-2 bg-[#ffffff]">
-              <a
-                onClick={() => setIsNavOpen(false)}
-                href="/#Clases"
-                className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base"
-              >
-                Clases
-              </a>
-            </div>
-          </div>
-
-          {/* Nuevos Proyectos */}
-          <div className="flex bg-[#ffffff]">
-            <div className="flex my-2 bg-[#ffffff]">
-              <a
-                onClick={() => setIsNavOpen(false)}
-                href="/#NuevosProyectos"
-                className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base"
-              >
-                Nuevos proyectos
-              </a>
-            </div>
-          </div>
-
-          {/* Contacto */}
-          <div className="flex bg-[#ffffff]">
-            <div className="flex my-2 bg-[#ffffff]">
-              <a
-                onClick={() => setIsNavOpen(false)}
-                href="#Footer"
-                className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base"
-              >
-                Contacto
-              </a>
-            </div>
-          </div>
-
-          {/* Plataforma Alumnos */}
-          <div className="flex bg-[#ffffff] pb-32 sm:pb-52">
-            <div className="flex my-2 bg-[#ffffff]">
-              <Link
-                href="/login"
-                className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base"
-              >
-                Plataforma alumnos
-              </Link>
-            </div>
-          </div>
+          ))}
         </div>
         : ''}
     </nav>

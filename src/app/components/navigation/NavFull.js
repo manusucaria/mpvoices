@@ -2,6 +2,29 @@
 import React from 'react'
 import Link from 'next/link'
 
+const routes = [
+  {
+    label: 'Espacio Voices',
+    link: '/#EspacioVoices'
+  },
+  {
+    label: 'María Peña',
+    link: '/#MariaPeña'
+  },
+  {
+    label: 'Clases',
+    link: '/#Clases'
+  },
+  {
+    label: 'Nuevos Proyectos',
+    link: '/#NuevosProyectos'
+  },
+  {
+    label: 'Contacto',
+    link: '/#Footer'
+  }
+]
+
 const NavFull = () => {
   const scrollToTop = () => {
     window.scrollTo({
@@ -107,55 +130,16 @@ const NavFull = () => {
         </Link>
       </div>
       <div className="flex w-[60%] justify-center my-auto mx-auto">
-        {/* Espacio Voices */}
-        <div className="flex min-[1024px]:mr-2 min-[1245px]:mr-4 my-auto">
-          <a
-            href="/#EspacioVoices"
-            className="mr-auto hover:translate-y-cursor hover:text-[#E9500E] cursor-pointer font-[550] pr-3 text-base"
-          >
-            Espacio Voices
-          </a>
-        </div>
-
-        {/* Maria Peña */}
-        <div className="flex min-[1024px]:mx-2 min-[1245px]:mx-4 my-auto">
-          <a
-            href="/#MariaPeña"
-            className="mr-auto hover:translate-y-cursor hover:text-[#E9500E] cursor-pointer font-[550] pr-3 text-base"
-          >
-            María Peña
-          </a>
-        </div>
-
-        {/* Clases */}
-        <div className="flex min-[1024px]:mx-2 min-[1245px]:mx-4 my-auto">
-          <a
-            href="/#Clases"
-            className="mr-auto hover:translate-y-cursor hover:text-[#E9500E] cursor-pointer font-[550] pr-3 text-base"
-          >
-            Clases
-          </a>
-        </div>
-
-        {/* Nuevos Proyectos */}
-        <div className="flex min-[1024px]:mx-2 min-[1245px]:mx-4 my-auto">
-          <a
-            href="/#NuevosProyectos"
-            className="mr-auto hover:translate-y-cursor hover:text-[#E9500E] cursor-pointer font-[550] pr-3 text-base"
-          >
-            Nuevos Proyectos
-          </a>
-        </div>
-
-        {/* Contacto */}
-        <div className="flex min-[1024px]:ml-2 min-[1245px]:ml-4 my-auto">
-          <a
-            href="#Footer"
-            className="mr-auto hover:translate-y-cursor hover:text-[#E9500E] cursor-pointer font-[550] text-base"
-          >
-            Contacto
-          </a>
-        </div>
+        {routes.map((route) => (
+          <div key={route.label} className="flex min-[1024px]:mx-2 min-[1245px]:mr-4 my-auto">
+            <a
+              href={route.link}
+              className="mr-auto hover:translate-y-cursor hover:text-[#E9500E] cursor-pointer font-[550] pr-3 text-base text-white"
+            >
+              {route.label}
+            </a>
+          </div>
+        ))}
       </div>
       <div className="flex flex-col my-auto w-[20%]">
         <Link className='flex mr-auto min-[1024px]:ml-6' href="/login">
