@@ -1,16 +1,10 @@
 import React from 'react'
 
-import { Open_Sans as OpenSans } from 'next/font/google'
 import './Button.scss'
 import Link from 'next/link'
-
-const openSans = OpenSans({ subsets: ['latin'], weight: '700' })
+import { openSans700 } from '@/utils/fonts/fonts'
 
 function Button ({ text, mode, alterColor, path }) {
-  return (
-    <>
-      <Link href={path} target='_blank' className={`Button Button-${mode} ${openSans.className} ${alterColor ? 'Button-alter' : ''}`}>{ text }</Link>
-    </>
-  )
+  return <Link href={path} target='_blank' className={`Button ${mode ? `Button-${mode}` : ''} ${openSans700.className} ${alterColor ? 'Button-alter' : ''}`}>{ text }</Link>
 }
 export default Button
