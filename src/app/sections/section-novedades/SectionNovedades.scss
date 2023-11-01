@@ -1,7 +1,7 @@
 .Novedades {
   @apply bg-stone-100 text-black py-24 text-center;
   &-title {
-    @apply text-3xl text-center;
+    @apply text-3xl sm:text-5xl text-center;
   }
   &-ilustration {
     @apply bg-gray-500 w-44 h-44 rounded-full overflow-hidden;
