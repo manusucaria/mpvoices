@@ -1,10 +1,10 @@
 .Insta {
   @apply bg-white text-black py-24;
   &-title {
-    @apply text-2xl;
+    @apply text-2xl sm:text-3xl;
   }
   &-images {
-    @apply flex flex-wrap items-center justify-around gap-20;
+    @apply flex flex-wrap items-center justify-around gap-3 lg:gap-20;
   }
   &-illustration {
     @apply w-80 h-80 overflow-hidden;
