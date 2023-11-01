@@ -4,18 +4,12 @@ import React, { useState, useEffect, useRef } from 'react'
 const NavSmall = () => {
   const [isNavOpen, setIsNavOpen] = useState(false)
   const appContainerRef = useRef(null)
-  const [userEmail, setUserEmail] = useState('')
-  const [userPassword, setUserPassword] = useState('')
-
+  const [usuario, setUsuario] = useState()
   useEffect(() => {
-    const email = localStorage.getItem('userEmail')
-    const password = localStorage.getItem('userPassword')
+    const usuario = localStorage.getItem('usuario')
+    setUsuario(usuario)
+  })
 
-    if (email && password) {
-      setUserEmail(email)
-      setUserPassword(password)
-    }
-  }, [])
   useEffect(() => {
     const handleLinkClick = (event) => {
       event.preventDefault()
@@ -89,7 +83,13 @@ const NavSmall = () => {
     },
     {
       label: 'Plataforma Alumnos',
-      link: userEmail && userPassword ? '/plataforma-alumnos' : '/login'
+      link: usuario === 'profesor'
+        ? '/plataforma-profes'
+        : usuario === 'alumno'
+          ? '/plataforma-alumnos'
+          : usuario === 'admin'
+            ? '/plataforma-admin'
+            : '/login'
     }
   ]
 
@@ -111,7 +111,14 @@ const NavSmall = () => {
             </div>
             <div className="flex ml-auto my-auto pr-6">
               <div className="flex" onClick={() => scrollToTop()}>
-                <a href={userEmail && userPassword ? '/plataforma-alumnos' : '/login'} className="flex my-auto">
+                <a href={usuario === 'profesor'
+                  ? '/plataforma-profes'
+                  : usuario === 'alumno'
+                    ? '/plataforma-alumnos'
+                    : usuario === 'admin'
+                      ? '/plataforma-admin'
+                      : '/login'} className="flex my-auto"
+                >
                   <svg
                     className="cursor-pointer"
                     xmlns="http://www.w3.org/2000/svg"

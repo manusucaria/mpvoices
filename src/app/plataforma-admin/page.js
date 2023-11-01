@@ -9,9 +9,8 @@ const page = () => {
 
   useEffect(() => {
     const email = localStorage.getItem('userEmail')
-    const password = localStorage.getItem('userPassword')
 
-    if (!email || !password) {
+    if (!email) {
       router.push('./login')
     }
   }, [router])

@@ -27,6 +27,11 @@ export const getProfesores = async () => {
   const result = await getDocs(query(colRef))
   return getArrayFromCollection(result)
 }
+export const getAdmin = async () => {
+  const colRef = collection(db, 'admin')
+  const result = await getDocs(query(colRef))
+  return getArrayFromCollection(result)
+}
 
 // READ WITH WHERE
 // Tener en cuenta que el tipo de dato de la condición debe coincidir con el tipo de dato que hay en Firebase o no obtendré un dato de respuesta

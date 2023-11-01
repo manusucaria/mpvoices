@@ -10,7 +10,7 @@ const page = () => {
 
   useEffect(() => {
     const email = localStorage.getItem('userEmail')
-    const password = localStorage.getItem('userPassword')
+
     getProfesores().then(data => {
       const profesoresFiltrados = data.filter(profesor => profesor.Email === email)
       if (profesoresFiltrados.length > 0) {
@@ -19,7 +19,7 @@ const page = () => {
       }
     })
 
-    if (!email || !password) {
+    if (!email) {
       router.push('./login')
     }
   }, [router])

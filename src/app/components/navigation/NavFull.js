@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 
 const routes = [
@@ -26,18 +26,11 @@ const routes = [
 ]
 
 const NavFull = () => {
-  const [userEmail, setUserEmail] = useState('')
-  const [userPassword, setUserPassword] = useState('')
-
+  const [usuario, setUsuario] = useState()
   useEffect(() => {
-    const email = localStorage.getItem('userEmail')
-    const password = localStorage.getItem('userPassword')
-
-    if (email && password) {
-      setUserEmail(email)
-      setUserPassword(password)
-    }
-  }, [])
+    const usuario = localStorage.getItem('usuario')
+    setUsuario(usuario)
+  })
   const scrollToTop = () => {
     window.scrollTo({
       top: 0
@@ -154,7 +147,15 @@ const NavFull = () => {
         ))}
       </div>
       <div className="flex flex-col my-auto w-[20%]">
-        <a className='flex mr-auto min-[1024px]:ml-6' href={userEmail && userPassword ? '/plataforma-alumnos' : '/login'}>
+        <a className='flex mr-auto min-[1024px]:ml-6' href={
+        usuario === 'profesor'
+          ? '/plataforma-profes'
+          : usuario === 'alumno'
+            ? '/plataforma-alumnos'
+            : usuario === 'admin'
+              ? '/plataforma-admin'
+              : '/login'
+        }>
           <div className="relative group">
             <svg
               className="flex w-auto cursor-pointer fill-current text-white hover:text-[#E9500E] mr-auto min-[1024px]:ml-6 min-[1245px]:ml-0"
