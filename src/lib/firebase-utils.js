@@ -1,5 +1,6 @@
 import { auth } from './firebase'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { getProfesores, getAlumnos, getAdmin } from '../app/api/api.js'
 
 const getAuth = async (email, password, router, isSignUp) => {
   if (isSignUp) {
@@ -12,7 +13,7 @@ const getAuth = async (email, password, router, isSignUp) => {
           }
         }).then((response) => {
           if (response.status === 200) {
-            router.push('/')
+            router.push('/login')
           }
         })
       })
@@ -27,9 +28,33 @@ const getAuth = async (email, password, router, isSignUp) => {
           headers: {
             Authorization: `Bearer ${await userCred.user.getIdToken()}`
           }
-        }).then((response) => {
+        }).then(async (response) => {
           if (response.status === 200) {
-            router.push('/plataforma-alumnos')
+            let userType = 'unknown'
+            const profesoresData = await getProfesores()
+            const alumnosData = await getAlumnos()
+            const adminData = await getAdmin()
+            if (profesoresData.some(profesor => profesor.Email === email)) {
+              userType = 'profesor'
+            } else if (alumnosData.some(alumno => alumno.Email === email)) {
+              userType = 'alumno'
+            } else if (adminData.some(admin => admin.Email === email)) {
+              userType = 'admin'
+            }
+            localStorage.setItem('usuario', userType)
+            switch (userType) {
+              case 'profesor':
+                router.push('/plataforma-profes')
+                break
+              case 'alumno':
+                router.push('/plataforma-alumnos')
+                break
+              case 'admin':
+                router.push('/plataforma-admin')
+                break
+              default:
+                break
+            }
           }
         })
       })

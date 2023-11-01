@@ -28,26 +28,24 @@ const LoginForm = () => {
     }
 
     if (Object.keys(formErrors).length === 0) {
-      // Funcion que realiza la autenticacion
       getAuth(email.trim(), password, router, false, false, undefined)
+      localStorage.setItem('userEmail', email)
     } else {
-      // si hay errores, mostrarlos en el formulario
       setErrors(formErrors)
     }
   }
-
   return (
     <div className='w-auto h-auto mt-8 lg:mt-2 lg:h-screen flex flex-col justify-center items-center md:justify-start'>
       <div className='md:mt-14 lg:mb-4'>
-        <p className='text-3xl text-white'>Ingresar</p>
+        <h2 className='text-3xl text-white'>Ingresar</h2>
       </div>
 
       <form className='border-2 border-white-200 rounded-md m-4 flex flex-col gap-4 py-6 px-4' onSubmit={handleSubmit}>
         <div>
-          <label className='text-white mr-2' htmlFor="email">Usuario:</label>
+          <label className='text-white mr-2 ml-3' htmlFor="email">Usuario:</label>
           <input
             placeholder='Nombre de Usuario'
-            className='text-black border-2 border-slate-200 rounded-xl p-2 w-full'
+            className='text-black border-2 border-slate-200 rounded-3xl p-2 mt-2 w-full'
             id="email"
             type="email"
             value={email}
@@ -58,10 +56,10 @@ const LoginForm = () => {
         </div>
 
         <div>
-          <label className='text-white mr-2' htmlFor="password">Contraseña:</label>
+          <label className='text-white mr-2 ml-3' htmlFor="password">Contraseña:</label>
           <input
             placeholder='Contraseña'
-            className='text-black border-2 border-slate-200 rounded-xl p-2 w-full'
+            className='text-black border-2 border-slate-200 rounded-3xl p-2 mt-2 w-full'
             id="password"
             type="password"
             value={password}
