@@ -1,13 +1,15 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import { routes } from './routes'
+import { openSans600 } from '@/utils/fonts/fonts'
 
 const NavSmall = () => {
   const [isNavOpen, setIsNavOpen] = useState(false)
   const appContainerRef = useRef(null)
   useEffect(() => {
     const handleLinkClick = (event) => {
-      event.preventDefault()
+      // event.preventDefault()
       const targetId = event.target.getAttribute('href').substring(1)
       const targetElement = document.getElementById(targetId)
       if (targetElement) {
@@ -66,9 +68,9 @@ const NavSmall = () => {
                 className="space-y-1 cursor-pointer"
                 onClick={() => setIsNavOpen((prev) => !prev)}
               >
-                <span className="block h-[.1rem] w-3 animate-pulse bg-[#ffffff]"></span>
-                <span className="block h-[.1rem] w-3 animate-pulse bg-[#ffffff]"></span>
-                <span className="block h-[.1rem] w-3 animate-pulse bg-[#ffffff]"></span>
+                <span className="block h-[.1rem] w-3 animate-pulse bg-white"></span>
+                <span className="block h-[.1rem] w-3 animate-pulse bg-white"></span>
+                <span className="block h-[.1rem] w-3 animate-pulse bg-white"></span>
               </div>
             </div>
             <div className="flex ml-auto my-auto pr-6">
@@ -95,10 +97,10 @@ const NavSmall = () => {
           </div>
             )
           : (
-          <div ref={appContainerRef} className="flex items-center w-[60%] sm:w-1/2 pl-8 py-6 bg-[#ffffff]">
+          <div ref={appContainerRef} className="flex items-center w-[60%] sm:w-1/2 pl-8 py-6 bg-white">
             <svg
               onClick={() => setIsNavOpen((prev) => !prev)}
-              className="h-4 w-4 bg-[#ffffff] mr-auto cursor-pointer animate-pulse"
+              className="h-4 w-4 mr-auto cursor-pointer animate-pulse"
               viewBox="0 0 24 24"
               fill="none"
               stroke="#0D0D0D"
@@ -113,84 +115,30 @@ const NavSmall = () => {
             )}
       </div>
       {isNavOpen === true
-        ? <div ref={appContainerRef} className="flex flex-col w-[60%] sm:w-1/2 justify-between h-auto mb-3 pl-6 animate-display bg-[#ffffff]">
-          {/* Espacio Voices */}
-          <div className="flex bg-[#ffffff]">
-            <div className="flex mb-2 bg-[#ffffff]">
-              <a
-                onClick={() => setIsNavOpen(false)}
-                href="/#EspacioVoices"
-                className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base"
-              >
-                Espacio Voices
-              </a>
-            </div>
-          </div>
-
-          {/* Maria Peña */}
-          <div className="flex bg-[#ffffff]">
-            <div className="flex my-2 bg-[#ffffff]">
-              <a
-                onClick={() => setIsNavOpen(false)}
-                href="/#MariaPeña"
-                className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base"
-              >
-                María Peña
-              </a>
-            </div>
-          </div>
-
-          {/* Clases */}
-          <div className="flex bg-[#ffffff]">
-            <div className="flex my-2 bg-[#ffffff]">
-              <a
-                onClick={() => setIsNavOpen(false)}
-                href="/#Clases"
-                className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base"
-              >
-                Clases
-              </a>
-            </div>
-          </div>
-
-          {/* Nuevos Proyectos */}
-          <div className="flex bg-[#ffffff]">
-            <div className="flex my-2 bg-[#ffffff]">
-              <a
-                onClick={() => setIsNavOpen(false)}
-                href="/#NuevosProyectos"
-                className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base"
-              >
-                Nuevos proyectos
-              </a>
-            </div>
-          </div>
-
-          {/* Contacto */}
-          <div className="flex bg-[#ffffff]">
-            <div className="flex my-2 bg-[#ffffff]">
-              <a
-                onClick={() => setIsNavOpen(false)}
-                href="#Footer"
-                className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base"
-              >
-                Contacto
-              </a>
-            </div>
-          </div>
-
-          {/* Plataforma Alumnos */}
-          <div className="flex bg-[#ffffff] pb-32 sm:pb-52">
-            <div className="flex my-2 bg-[#ffffff]">
+        ? <div ref={appContainerRef} className="flex flex-col gap-4 w-[60%] sm:w-1/2 justify-between h-auto mb-3 pl-6 animate-display bg-white">
+            {
+              routes.map((route) => (
+                <div key={route.id}>
+                  <Link
+                    onClick={() => setIsNavOpen(false)}
+                    href={route.href}
+                    className={` text-black mr-auto text-base ${openSans600.className}`}
+                  >
+                    {route.title}
+                  </Link>
+                </div>
+              ))
+            }
+            <div className="pb-32 sm:pb-52">
               <Link
+                onClick={() => setIsNavOpen(false)}
                 href="/login"
-                className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base"
+                className={`text-black mr-auto text-base ${openSans600.className}`}
               >
                 Plataforma alumnos
               </Link>
             </div>
           </div>
-        </div>
         : ''}
     </nav>
   )
