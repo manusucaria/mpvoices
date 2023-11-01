@@ -1,15 +1,15 @@
 .Card {
   @apply bg-gray-100;
-  @apply h-72 p-4;
+  @apply h-80 p-2;
   @apply flex flex-col justify-center items-center gap-1;
   &-title {
-    @apply h-1/5;
+    @apply h-1/6;
   }
   &-h3 {
-    @apply text-center text-2xl leading-6;
+    @apply text-center text-2xl 2xl:text-3xl leading-6;
   }
   &-illustration {
-    @apply w-32 h-32;
+    @apply w-36 h-36;
     @apply rounded-full overflow-hidden;
   }
   &-image {

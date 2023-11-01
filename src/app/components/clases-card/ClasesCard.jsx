@@ -2,13 +2,13 @@ import React from 'react'
 
 import Image from 'next/image'
 import './ClasesCard.scss'
-import { playfair700 } from '@/utils/fonts/fonts'
+import { playfair600 } from '@/utils/fonts/fonts'
 
 function ClasesCard ({ title, imageSrc }) {
   return (
     <div className='Card relative'>
       <div className="Card-title">
-        <h3 className={`Card-h3 ${playfair700.className}`}>{ title }</h3>
+        <h3 className={`Card-h3 ${playfair600.className}`}>{ title }</h3>
       </div>
 
       <div className="Card-illustration">
