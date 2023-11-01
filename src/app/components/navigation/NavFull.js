@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { openSans600 } from '@/utils/fonts/fonts'
 
 const routes = [
   {
@@ -134,20 +135,20 @@ const NavFull = () => {
           </svg>
         </Link>
       </div>
-      <div className="flex w-[60%] justify-center my-auto mx-auto">
+      <div className="flex w-[60%] justify-center my-auto mx-auto gap-2">
         {routes.map((route) => (
           <div key={route.label} className="flex min-[1024px]:mx-2 min-[1245px]:mr-4 my-auto">
-            <a
+            <Link
               href={route.link}
-              className="mr-auto hover:translate-y-cursor hover:text-[#E9500E] cursor-pointer font-[550] pr-3 text-base text-white"
+              className={`cursor-pointer text-base ${openSans600.className} hover:translate-y-cursor hover:text-orange-600`}
             >
               {route.label}
-            </a>
+            </Link>
           </div>
         ))}
       </div>
       <div className="flex flex-col my-auto w-[20%]">
-        <a className='flex mr-auto min-[1024px]:ml-6' href={
+        <Link className='flex mr-auto min-[1024px]:ml-6' href={
         usuario === 'profesor'
           ? '/plataforma-profes'
           : usuario === 'alumno'
@@ -158,7 +159,7 @@ const NavFull = () => {
         }>
           <div className="relative group">
             <svg
-              className="flex w-auto cursor-pointer fill-current text-white hover:text-[#E9500E] mr-auto min-[1024px]:ml-6 min-[1245px]:ml-0"
+              className="flex w-auto cursor-pointer fill-current hover:text-orange-600 mr-auto min-[1024px]:ml-6 min-[1245px]:ml-0"
               xmlns="http://www.w3.org/2000/svg"
               width="17"
               height="19"
@@ -172,9 +173,9 @@ const NavFull = () => {
                 fill="currentColor"
               />
             </svg>
-            <span className="tooltip text-xs text-[#0D0D0D] absolute top-10 w-36 text-center ml-6 min-[1024px]:ml-0 p-2 bg-white rounded opacity-0 group-hover:opacity-100">Plataforma alumnos</span>
+            <span className="tooltip text-xs text-black absolute top-10 w-36 text-center ml-6 min-[1024px]:ml-0 p-2 bg-white rounded opacity-0 group-hover:opacity-100">Plataforma alumnos</span>
           </div>
-        </a>
+        </Link>
       </div>
     </nav>
   )

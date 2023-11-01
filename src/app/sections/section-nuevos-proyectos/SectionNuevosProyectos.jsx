@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { v4 as uuidv4 } from 'uuid'
-import { openSans700, playfair600, playfair700 } from '@/utils/fonts/fonts'
+import { openSans700, playfair600 } from '@/utils/fonts/fonts'
 import Wrapper from '@/app/components/wrapper/Wrapper'
 import Button from '@/app/components/button/Button'
 
@@ -34,7 +34,7 @@ function SectionNuevosProyectos () {
   return (
     <section className={`Projects ${playfair600.className}`} id='NuevosProyectos'>
       <Wrapper className="flex flex-col justify-center items-center gap-16">
-        <h2 className={`Projects-title ${playfair700.className} sm:${playfair600.className}`}>Nuevos Proyectos</h2>
+        <h2 className='Projects-title'>Nuevos Proyectos</h2>
         <ul className="Projects-ul">
           {
             projects.map((project, i) => (
