@@ -42,7 +42,7 @@ function SectionNuevosProyectos () {
                 <div className={`Projects-circle ${openSans700.className}`}>
                   { i + 1 }
                 </div>
-                <p className='w-80 text-2xl sm:text-3xl'>
+                <p className={`w-80 text-2xl sm:text-3xl ${playfair600.className}`}>
                   { project.name }
                 </p>
               </li>

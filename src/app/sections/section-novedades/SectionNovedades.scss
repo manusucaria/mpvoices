@@ -9,7 +9,9 @@
   &-image {
     @apply w-full h-full object-cover;
   }
-  // &-sub {}
+  &-sub {
+    @apply text-2xl sm:text-3xl;
+  }
   &-p {
     @apply max-w-md text-base;
   }

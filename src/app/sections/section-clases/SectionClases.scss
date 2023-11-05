@@ -1,7 +1,7 @@
 .Clases {
   @apply bg-white text-black py-24;
   &-title {
-    @apply text-5xl text-center;
+    @apply text-3xl sm:text-5xl text-center;
   }
   &-ul {
     @apply text-black mt-4;

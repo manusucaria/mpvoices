@@ -1,11 +1,11 @@
-import { openSans600, playfair600, playfair700 } from '@/utils/fonts/fonts'
+import { openSans600, playfair600 } from '@/utils/fonts/fonts'
 import Image from 'next/image'
 import React from 'react'
 
 const EspacioVoices = () => {
   return (
     <section id="EspacioVoices" className="flex flex-col mx-auto pt-12 pb-6 lg:pt-24 lg:pb-16">
-      <h2 className={`text-center text-3xl sm:text-5xl mb-8 ${playfair700.className} sm:${playfair600.className}`}>Espacio Voices</h2>
+      <h2 className={`text-center text-3xl sm:text-5xl mb-8 ${playfair600.className}`}>Espacio Voices</h2>
       <div className={`w-full text-center flex flex-col justify-center text-base ${openSans600.className}`}>
         <p className="lg:hidden px-12">
           Un lugar único y especial para

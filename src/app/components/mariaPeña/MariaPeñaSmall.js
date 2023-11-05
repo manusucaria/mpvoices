@@ -6,7 +6,7 @@ import newfield from '../../assets/newfield.jpg'
 import ellipse from '../../assets/ellipse.jpg'
 import disco from '../../assets/disco.jpg'
 import { list } from './list'
-import { openSans600, playfair700 } from '@/utils/fonts/fonts'
+import { openSans600, playfair600 } from '@/utils/fonts/fonts'
 
 const MariaPeñaSmall = () => {
   return (
@@ -19,7 +19,7 @@ const MariaPeñaSmall = () => {
         alt="Foto Maria"
         priority
       />
-      <h2 className={`text-center mb-6 text-3xl ${playfair700.className}`}>
+      <h2 className={`text-center mb-6 text-5xl ${playfair600.className}`}>
         María Peña
       </h2>
       <ol className={`flex flex-col gap-4 mb-8 list-disc text-base mx-4 ${openSans600.className}`}>
