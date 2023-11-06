@@ -22,7 +22,7 @@ const MariaPeñaFull = () => {
         />
       </div>
       <div className="w-[50%] mr-auto flex flex-col">
-        <h2 className={`text-center pb-6 text-5xl ${playfair600.className}`}>
+        <h2 className={`text-center pb-6 text-3xl sm:text-5xl ${playfair600.className}`}>
           María Peña
         </h2>
         <ol className={`flex flex-col gap-4 mb-10 list-disc text-base ${openSans600.className}`}>

@@ -19,7 +19,7 @@ const MariaPeñaSmall = () => {
         alt="Foto Maria"
         priority
       />
-      <h2 className={`text-center mb-6 text-5xl ${playfair600.className}`}>
+      <h2 className={`text-center mb-6 text-3xl sm:text-5xl ${playfair600.className}`}>
         María Peña
       </h2>
       <ol className={`flex flex-col gap-4 mb-8 list-disc text-base mx-4 ${openSans600.className}`}>
