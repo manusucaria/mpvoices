@@ -20,7 +20,7 @@ const MariaPeñaFull = () => {
         />
       </div>
       <div className="w-[50%] bg-[#ffffff] mr-auto flex flex-col">
-        <h2 className="text-center text-3xl font-bold bg-[#ffffff] text-[#0D0D0D] pb-6">
+        <h2 className="text-center text-5xl font-bold bg-[#ffffff] text-[#0D0D0D] pb-6">
           María Peña
         </h2>
         <ol className="flex flex-col bg-[#ffffff] mb-10 list-disc">

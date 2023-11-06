@@ -17,7 +17,7 @@ const MariaPeñaSmall = () => {
         alt="Foto Maria"
         priority
       />
-      <h2 className="text-center text-3xl font-bold bg-[#ffffff] text-[#0D0D0D] mb-6">
+      <h2 className="text-center text-3xl sm:text-5xl font-bold bg-[#ffffff] text-[#0D0D0D] mb-6">
         María Peña
       </h2>
       <ol className="flex flex-col bg-[#ffffff] mb-8 list-disc">

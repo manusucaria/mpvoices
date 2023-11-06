@@ -3,7 +3,7 @@ import React from 'react'
 const EspacioVoices = () => {
   return (
     <section id="EspacioVoices" className="flex flex-col mx-auto pt-12 pb-6 lg:pt-24 lg:pb-16">
-      <h2 className="text-center text-3xl font-bold mb-8">Espacio Voices</h2>
+      <h2 className="text-center text-3xl sm:text-5xl font-bold mb-8">Espacio Voices</h2>
       <p className="lg:hidden text-center text-base px-12">
         Un lugar único y especial para
         aprender a tocar instrumentos y cantar.
