@@ -1,4 +1,6 @@
 'use client'
+import { openSans600 } from '@/utils/fonts/fonts'
+import Link from 'next/link'
 import React, { useState, useEffect, useRef } from 'react'
 
 const NavSmall = () => {
@@ -41,7 +43,7 @@ const NavSmall = () => {
       document.removeEventListener('click', handleClickOutside)
     }
 
-    const links = document.querySelectorAll('a[href^="#"]')
+    const links = document.querySelectorAll('Link[href^="#"]')
     links.forEach((link) => {
       link.addEventListener('click', handleLinkClick)
     })
@@ -104,9 +106,9 @@ const NavSmall = () => {
                 className="space-y-1 cursor-pointer"
                 onClick={() => setIsNavOpen((prev) => !prev)}
               >
-                <span className="block h-[.1rem] w-3 animate-pulse bg-[#ffffff]"></span>
-                <span className="block h-[.1rem] w-3 animate-pulse bg-[#ffffff]"></span>
-                <span className="block h-[.1rem] w-3 animate-pulse bg-[#ffffff]"></span>
+                <span className="block h-[.1rem] w-3 animate-pulse bg-white"></span>
+                <span className="block h-[.1rem] w-3 animate-pulse bg-white"></span>
+                <span className="block h-[.1rem] w-3 animate-pulse bg-white"></span>
               </div>
             </div>
             <div className="flex ml-auto my-auto pr-6">
@@ -140,10 +142,10 @@ const NavSmall = () => {
           </div>
             )
           : (
-          <div ref={appContainerRef} className="flex items-center w-[60%] sm:w-1/2 pl-8 py-6 bg-[#ffffff]">
+          <div ref={appContainerRef} className="flex items-center w-[60%] sm:w-1/2 pl-8 py-6 bg-white">
             <svg
               onClick={() => setIsNavOpen((prev) => !prev)}
-              className="h-4 w-4 bg-[#ffffff] mr-auto cursor-pointer animate-pulse"
+              className="h-4 w-4 bg-white mr-auto cursor-pointer animate-pulse"
               viewBox="0 0 24 24"
               fill="none"
               stroke="#0D0D0D"
@@ -158,17 +160,17 @@ const NavSmall = () => {
             )}
       </div>
       {isNavOpen === true
-        ? <div ref={appContainerRef} className="flex flex-col w-[60%] sm:w-1/2 pb-28 justify-between h-auto pl-6 animate-display bg-[#ffffff]">
+        ? <div ref={appContainerRef} className="flex flex-col w-[60%] sm:w-1/2 pb-28 justify-between h-auto pl-6 animate-display bg-white">
           {routes.map((route) => (
-            <div key={route.label} className="flex bg-[#ffffff]">
-              <div className="flex mb-2 bg-[#ffffff]">
-                <a
+            <div key={route.label} className="flex bg-white">
+              <div className="flex mb-2 bg-white">
+                <Link
                   onClick={() => setIsNavOpen(false)}
                   href={route.link}
-                  className="bg-[#ffffff] text-[#0D0D0D] mr-auto font-[550] text-base"
+                  className={`bg-white text-black mr-auto text-base ${openSans600.className}`}
                 >
                   {route.label}
-                </a>
+                </Link>
               </div>
             </div>
           ))}
