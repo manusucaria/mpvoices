@@ -1,1 +1,17 @@
-body { @apply bg-black text-white scroll-smooth }
+h4{
+  font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2 {
+  font-family: 'Playfair', serif;
+};
+
+p, button, Link, li, a {
+  font-family: 'Open Sans', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #0D0D0D;
+  color: #ffffff
+}

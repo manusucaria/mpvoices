@@ -2,30 +2,30 @@
 import React, { useState, useEffect } from 'react'
 import { getAlumnos } from '../api/api.js'
 import { useRouter } from 'next/navigation'
+import { useAuth } from '../../lib/auth'
 
 const page = () => {
+  const user = useAuth()
   const [alumnos, setAlumnos] = useState([])
+  const [userLoaded, setUserLoaded] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
-    const email = localStorage.getItem('userEmail')
-
-    if (!email) {
-      router.push('./login')
+    if (user) {
+      getAlumnos().then(data => {
+        setAlumnos(data)
+      })
+    } else if (user === null && !userLoaded) {
+      router.push('/login')
     }
-  }, [router])
-
-  useEffect(() => {
-    getAlumnos().then(data => {
-      setAlumnos(data)
-    })
-  }, [])
+    setUserLoaded(true)
+  }, [user, router, userLoaded])
   return (
     <div className='flex'>
       {alumnos.length >= 1
         ? <div>
           {alumnos.map((alumno) => (
-            <div key={alumno.nombre} className="flex flex-col rounded-xl shadow-lg bg-amber-50 w-64 h-64 mx-2 my-2">
+            <div key={alumno.id} className="flex flex-col rounded-xl shadow-lg bg-amber-50 w-64 h-64 mx-2 my-2">
               <div className="flex flex-col mx-auto px-3 py-2 items-center">
                 <p className="text-white font-botones font-bold text-center text-sm mb-2">{alumno.Nombre}</p>
                 <p className="text-white font-botones font-bold text-center text-sm mb-2">{alumno.Apellido}</p>

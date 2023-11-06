@@ -1,6 +1,6 @@
 import React from 'react'
-import MariaPeñaSmall from '../../components/mariaPeña/MariaPeñaSmall'
-import MariaPeñaFull from '../../components/mariaPeña/MariaPeñaFull'
+import MariaPeñaSmall from '../../components/maria-peña/MariaPeñaSmall'
+import MariaPeñaFull from '../../components/maria-peña/MariaPeñaFull'
 
 const MariaPeña = () => {
   return (
