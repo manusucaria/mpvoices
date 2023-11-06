@@ -20,7 +20,7 @@ const MariaPeñaSmall = () => {
       <h2 className="text-center text-3xl font-bold bg-[#ffffff] text-[#0D0D0D] mb-6">
         María Peña
       </h2>
-      <ol className="flex flex-col bg-[#ffffff] mb-8 list-disc mx-4">
+      <ol className="flex flex-col bg-[#ffffff] mb-8 list-disc">
         <li className="mx-auto text-base font-semibold bg-[#ffffff] text-[#0D0D0D] mb-4">
           <span className="w-1 h-1 bg-black rounded-full"></span>
           En 2003 crea Voices
@@ -47,7 +47,7 @@ const MariaPeñaSmall = () => {
         </li>
         <li className="mx-auto text-base font-semibold bg-[#ffffff] text-[#0D0D0D]">
           <span className="w-1 h-1 bg-black rounded-full"></span>
-          Creadora de su disco{' '}
+          <p className='text-base font-semibold bg-[#ffffff] text-[#0D0D0D] mb-2'>Creadora de su disco{' '}</p>
           <a
             className="text-base font-semibold bg-[#ffffff] text-[#E9500E]"
             href="https://open.spotify.com/intl-es/album/3VyyDvIRBzhZnJDSu3up08"
