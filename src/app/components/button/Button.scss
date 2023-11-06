@@ -1,6 +1,6 @@
 .Button {
   @apply bg-orange-600 text-white text-center;
-  @apply w-72 py-2 rounded-full text-base;
+  @apply w-[80%] sm:w-72 py-2 rounded-full text-base;
   @apply transition-opacity ease-linear duration-100 hover:opacity-70;
   
   &-light {
