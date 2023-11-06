@@ -2,33 +2,32 @@
 import React, { useState, useEffect } from 'react'
 import { getProfesores, getAlumnos } from '../api/api.js'
 import { useRouter } from 'next/navigation'
+import { useAuth } from '../../lib/auth'
 
 const page = () => {
+  const user = useAuth()
   const [profesor, setProfesor] = useState([])
   const [alumnos, setAlumnos] = useState([])
+  const [userLoaded, setUserLoaded] = useState(false)
   const router = useRouter()
-
   useEffect(() => {
-    const email = localStorage.getItem('userEmail')
-
-    getProfesores().then(data => {
-      const profesoresFiltrados = data.filter(profesor => profesor.Email === email)
-      if (profesoresFiltrados.length > 0) {
-        const profe = profesoresFiltrados[0]
-        setProfesor(profe)
-      }
-    })
-
-    if (!email) {
-      router.push('./login')
+    if (user) {
+      getAlumnos().then(data => {
+        setAlumnos(data)
+      })
+      getProfesores().then(data => {
+        const profesoresFiltrados = data.filter(profesor => profesor.Email === user.email)
+        if (profesoresFiltrados.length > 0) {
+          const profe = profesoresFiltrados[0]
+          setProfesor(profe)
+        }
+      })
+    } else if (user === null && !userLoaded) {
+      router.push('/login')
     }
-  }, [router])
+    setUserLoaded(true)
+  }, [user, router, userLoaded])
 
-  useEffect(() => {
-    getAlumnos().then(data => {
-      setAlumnos(data)
-    })
-  }, [])
   return (
     <div className='flex'>
       {profesor
