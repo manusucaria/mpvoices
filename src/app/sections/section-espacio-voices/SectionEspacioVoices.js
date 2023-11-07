@@ -11,7 +11,7 @@ const EspacioVoices = () => {
       <p className="hidden lg:flex text-center text-base px-4 sm:px-8 lg:px-16 mx-auto">
         Un lugar único y especial para aprender a tocar instrumentos y cantar.
       </p>
-      <p className="lg:hidden text-center text-base px-4 sm:px-8 lg:px-20">
+      <p className="lg:hidden text-center text-base px-8 sm:px-8 lg:px-20">
         Clases que acompañan tus ganas de hacer música.
       </p>
       <p className="hidden lg:flex text-center text-base px-4 sm:px-8 lg:px-20 mx-auto">
