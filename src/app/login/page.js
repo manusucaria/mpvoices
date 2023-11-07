@@ -29,7 +29,6 @@ const LoginForm = () => {
 
     if (Object.keys(formErrors).length === 0) {
       getAuth(email.trim(), password, router, false, false, undefined)
-      localStorage.setItem('userEmail', email)
     } else {
       setErrors(formErrors)
     }
