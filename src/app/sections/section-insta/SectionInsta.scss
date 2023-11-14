@@ -7,7 +7,7 @@
     @apply flex flex-wrap items-center justify-around gap-3 lg:gap-20;
   }
   &-illustration {
-    @apply w-80 h-80 overflow-hidden;
+    @apply w-80 h-80 bg-black overflow-hidden;
   }
   &-image {
     @apply w-full h-full object-cover;

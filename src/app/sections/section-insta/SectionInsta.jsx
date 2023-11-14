@@ -1,12 +1,29 @@
+import React from 'react'
 import Wrapper from '@/app/components/wrapper/Wrapper'
 import { playfair600 } from '@/utils/fonts/fonts'
-import Image from 'next/image'
-import React from 'react'
-import Link from 'next/link'
 
 import './SectionInsta.scss'
+import Link from 'next/link'
+import Image from 'next/image'
 
-function SectionInsta () {
+const fetchData = async () => {
+  try {
+    const url = `https://graph.instagram.com/me/media?fields=id,caption,media_url,timestamp,media_type,permalink&access_token=${process.env.INSTAGRAM_KEY}`
+    const data = await fetch(url)
+    const res = await data.json()
+    if (res.error) {
+      throw new Error(res.error.message)
+    }
+    return res.data.slice(0, 2)
+  } catch (error) {
+    console.error('Error fetching Instagram data:', error.message)
+    return []
+  }
+}
+
+async function SectionInsta () {
+  const feed = await fetchData()
+
   return (
     <div className="Insta">
       <Wrapper className="flex flex-col items-center justify-center gap-10">
@@ -15,34 +32,39 @@ function SectionInsta () {
         </h3>
 
         <div className="Insta-images">
-          <Link
-            className="Insta-illustration"
-            target="_blank"
-            href="https://www.instagram.com/mpvoices/"
-          >
-            <Image
-              className="Insta-image"
-              src="/assets/static/mpvso.png"
-              loading="lazy"
-              alt="maríapeña voices simplemente orquesta"
-              width={1000}
-              height={1000}
-            />
-          </Link>
-          <Link
-            className="Insta-illustration"
-            target="_blank"
-            href="https://www.instagram.com/p/Cxx19AyOnrT/"
-          >
-            <Image
-              className="Insta-image"
-              src="/assets/static/mpvvi.png"
-              loading="lazy"
-              alt="maríapeña voices video"
-              width={1000}
-              height={1000}
-            />
-          </Link>
+          {feed.map((item) => (
+            <Link
+              key={item.id}
+              className="Insta-illustration"
+              target="_blank"
+              href={item.permalink}
+            >
+              {item.media_type === 'VIDEO'
+                ? (
+                <video
+                  className="Insta-illustration"
+                  width={1000}
+                  height={1000}
+                  autoPlay={true}
+                  loop={true}
+                  muted
+                >
+                  <source src={item.media_url} type="video/mp4" />
+                  Tu navegador no soporta el elemento de video.
+                </video>
+                  )
+                : (
+                <Image
+                  className="Insta-image"
+                  src={item.media_url}
+                  loading="lazy"
+                  alt={item.caption}
+                  width={1000}
+                  height={1000}
+                />
+                  )}
+            </Link>
+          ))}
         </div>
       </Wrapper>
     </div>
