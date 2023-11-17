@@ -7,18 +7,11 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 const fetchData = async () => {
-  try {
-    const url = `https://graph.instagram.com/me/media?fields=id,caption,media_url,timestamp,media_type,permalink&access_token=${process.env.INSTAGRAM_KEY}`
-    const data = await fetch(url)
-    const res = await data.json()
-    if (res.error) {
-      throw new Error(res.error.message)
-    }
-    return res.data.slice(0, 2)
-  } catch (error) {
-    console.error('Error fetching Instagram data:', error.message)
-    return []
-  }
+  const url = `https://graph.instagram.com/me/media?fields=id,caption,media_url,timestamp,media_type,permalink&access_token=${process.env.INSTAGRAM_KEY}`
+  const data = await fetch(url)
+  const res = await data.json()
+  const images = res.data.filter((item) => item.media_type === 'IMAGE')
+  return images.slice(0, 2)
 }
 
 async function SectionInsta () {
@@ -39,30 +32,14 @@ async function SectionInsta () {
               target="_blank"
               href={item.permalink}
             >
-              {item.media_type === 'VIDEO'
-                ? (
-                <video
-                  className="Insta-illustration"
-                  width={1000}
-                  height={1000}
-                  autoPlay={true}
-                  loop={true}
-                  muted
-                >
-                  <source src={item.media_url} type="video/mp4" />
-                  Tu navegador no soporta el elemento de video.
-                </video>
-                  )
-                : (
-                <Image
-                  className="Insta-image"
-                  src={item.media_url}
-                  loading="lazy"
-                  alt={item.caption}
-                  width={1000}
-                  height={1000}
-                />
-                  )}
+              <Image
+                className="Insta-image"
+                src={item.media_url}
+                loading="lazy"
+                alt={item.caption}
+                width={1000}
+                height={1000}
+              />
             </Link>
           ))}
         </div>
