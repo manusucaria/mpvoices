@@ -74,7 +74,7 @@ const NavSmall = () => {
       link: '/#Clases'
     },
     {
-      label: 'Nuevos Proyectos',
+      label: 'Nuevos proyectos',
       link: '/#NuevosProyectos'
     },
     {
@@ -82,7 +82,7 @@ const NavSmall = () => {
       link: '/#Footer'
     },
     {
-      label: 'Plataforma Alumnos',
+      label: 'Plataforma alumnos',
       link: usuario === 'profesor'
         ? '/plataforma-profes'
         : usuario === 'alumno'
@@ -158,7 +158,7 @@ const NavSmall = () => {
             )}
       </div>
       {isNavOpen === true
-        ? <div ref={appContainerRef} className="flex flex-col w-[60%] sm:w-1/2 pb-44 justify-between h-screen pl-6 animate-display bg-[#ffffff]">
+        ? <div ref={appContainerRef} className="flex flex-col w-[60%] sm:w-1/2 pb-96 justify-between h-screen pl-6 animate-display bg-[#ffffff]">
           {routes.map((route) => (
             <div key={route.label} className="flex h-screen mt-6 bg-[#ffffff]">
               <div className="flex mb-2 bg-[#ffffff]">

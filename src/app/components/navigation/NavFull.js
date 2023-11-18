@@ -17,7 +17,7 @@ const routes = [
     link: '/#Clases'
   },
   {
-    label: 'Nuevos Proyectos',
+    label: 'Nuevos proyectos',
     link: '/#NuevosProyectos'
   },
   {
