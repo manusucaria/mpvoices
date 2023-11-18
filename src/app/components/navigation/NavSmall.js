@@ -1,6 +1,5 @@
 'use client'
 import { openSans600 } from '@/utils/fonts/fonts'
-import Link from 'next/link'
 import React, { useState, useEffect, useRef } from 'react'
 
 const NavSmall = () => {
@@ -160,25 +159,17 @@ const NavSmall = () => {
             )}
       </div>
       {isNavOpen === true
-<<<<<<< HEAD
-        ? <div ref={appContainerRef} className="flex flex-col w-[60%] sm:w-1/2 pb-28 justify-between h-auto pl-6 animate-display bg-white">
-          {routes.map((route) => (
-            <div key={route.label} className="flex bg-white">
-              <div className="flex mb-2 bg-white">
-                <Link
-=======
         ? <div ref={appContainerRef} className="flex flex-col w-[60%] sm:w-1/2 pb-44 justify-between h-screen pl-6 animate-display bg-[#ffffff]">
           {routes.map((route) => (
             <div key={route.label} className="flex h-screen mt-6 bg-[#ffffff]">
               <div className="flex mb-2 bg-[#ffffff]">
                 <a
->>>>>>> manu
                   onClick={() => setIsNavOpen(false)}
                   href={route.link}
                   className={`bg-white text-black mr-auto text-base ${openSans600.className}`}
                 >
                   {route.label}
-                </Link>
+                </a>
               </div>
             </div>
           ))}
