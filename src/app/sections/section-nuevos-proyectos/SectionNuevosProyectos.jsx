@@ -34,7 +34,7 @@ function SectionNuevosProyectos () {
   return (
     <section className={`Projects ${playfair600.className}`} id='NuevosProyectos'>
       <Wrapper className="flex flex-col justify-center items-center gap-16">
-        <h2 className='Projects-title'>Nuevos Proyectos</h2>
+        <h2 className='Projects-title'>Nuevos proyectos</h2>
         <ul className="Projects-ul">
           {
             projects.map((project, i) => (
