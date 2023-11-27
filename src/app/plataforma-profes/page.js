@@ -8,7 +8,7 @@ import { auth } from '../../lib/firebase.js'
 
 const page = () => {
   const user = useAuth()
-  const [profesor, setProfesor] = useState([])
+  const [profesor, setProfesor] = useState()
   const [usuario, setUsuario] = useState('')
   const [alumnos, setAlumnos] = useState([])
   const [userLoaded, setUserLoaded] = useState(false)
@@ -28,13 +28,11 @@ const page = () => {
           setProfesor(profe)
         }
       })
-      if (usuario !== 'profesor') {
-        router.push('/login')
-      }
-    } else if (user === null && !userLoaded) {
+      setUserLoaded(true)
+    } else if (user === null && !userLoaded && usuario !== 'profesor') {
+      setUserLoaded(false)
       router.push('/login')
     }
-    setUserLoaded(true)
   }, [user, router, userLoaded])
 
   const handleLogout = () => {
@@ -50,19 +48,19 @@ const page = () => {
         ? <div className='flex flex-col mx-auto'>
             <h1 className='text-center mx-auto text-white text-3xl sm:text-5xl'>Plataforma Profesores</h1>
             {alumnos.filter(alumno => alumno.Profesor === profesor.Nombre).map((alumno) => (
-              <div key={alumno.id} className="flex flex-col mx-auto my-16">
+              <div key={alumno.id} className="flex flex-col mx-auto my-8">
                 <div className="flex flex-col mx-auto px-3 py-2 items-center">
                   <p className="text-white font-botones font-bold text-center text-sm mb-2">Nombre: {alumno.Nombre}</p>
                   <p className="text-white font-botones font-bold text-center text-sm mb-2">Apellido: {alumno.Apellido}</p>
                   <p className="text-white font-botones font-bold text-center text-sm mb-2">Edad: {alumno.Edad}</p>
                   <p className="text-white font-botones font-bold text-center text-sm mb-2">Profesor: {alumno.Profesor}</p>
-                  <p className="text-white font-botones font-bold text-center text-sm mb-2">Dia: {alumno.DIa}</p>
+                  <p className="text-white font-botones font-bold text-center text-sm mb-2">Dia: {alumno.Dia}</p>
                   <p className="text-white font-botones font-bold text-center text-sm mb-2">Horario: {alumno.Horario}</p>
                   <p className="text-white font-botones font-bold text-center text-sm mb-2">Duración de Clase: {alumno.Duracion} minutos</p>
                   <p className="text-white font-botones font-bold text-center text-sm mb-2">Instrumento: {alumno.Instrumento}</p>
                   <p className="text-white font-botones font-bold text-center text-sm mb-2">Deuda: {alumno.Deuda}</p>
                 </div>
-                <div className='mx-auto border p-2 mt-6 border-white w-auto h-auto rounded-3xl' onClick={handleLogout}>
+                <div className='mx-auto border p-2 my-6 border-white w-auto h-auto rounded-3xl' onClick={handleLogout}>
                   <p>Cerrar Sesión</p>
                 </div>
               </div>

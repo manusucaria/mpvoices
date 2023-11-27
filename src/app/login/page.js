@@ -16,7 +16,6 @@ const LoginForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-
     setErrors({})
 
     const formErrors = {}
