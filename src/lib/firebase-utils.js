@@ -18,7 +18,11 @@ const getAuth = async (email, password, router, isSignUp) => {
         })
       })
       .catch(error => {
-        alert(`Sign up failed: ${error.message} - ${error.code}`)
+        const errorMessage = 'Usuario o contraseña incorrectos'
+        const errorCode = 'unknown'
+        error.message = errorMessage
+        error.code = errorCode
+        alert(`${error.message} - ${error.code}`)
       })
   } else {
     signInWithEmailAndPassword(auth, email.trim(), password)
@@ -59,7 +63,11 @@ const getAuth = async (email, password, router, isSignUp) => {
         })
       })
       .catch(error => {
-        alert(`Login failed: ${error.message} - ${error.code}`)
+        const errorMessage = 'Usuario o contraseña incorrectos'
+        const errorCode = 'unknown'
+        error.message = errorMessage
+        error.code = errorCode
+        alert(`${error.message} - ${error.code}`)
       })
   }
 }
