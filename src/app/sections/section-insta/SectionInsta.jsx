@@ -8,11 +8,10 @@ import Image from 'next/image'
 
 const fetchData = async () => {
   try {
-    const url = `https://graph.instagram.com/me/media?fields=id,caption,media_url,timestamp,media_type,permalink&access_token=${process.env.INSTAGRAM_KEY}`
+    const url = `https://graph.instagram.com/me/media?fields=id,caption,media_url,timestamp,media_type,thumbnail_url,permalink&access_token=${process.env.INSTAGRAM_KEY}`
     const data = await fetch(url)
     const res = await data.json()
-    const images = await res.data.filter((item) => item.media_type === 'IMAGE')
-    return await images.slice(0, 2)
+    return await res.data.slice(0, 2)
   } catch (error) {
     console.error('Error obteniendo datos de Instagram:', error)
     return []
@@ -39,7 +38,11 @@ async function SectionInsta () {
             >
               <Image
                 className="Insta-image"
-                src={item.media_url}
+                src={
+                  item.media_type === 'VIDEO'
+                    ? item.thumbnail_url
+                    : item.media_url
+                }
                 alt={item.caption}
                 width={1000}
                 height={1000}
