@@ -23,8 +23,11 @@ const page = () => {
         setAlumnos(data)
       })
       setUserLoaded(true)
-    } else if (user === null && !userLoaded && usuario !== 'alumno') {
-      setUserLoaded(false)
+      if (usuario !== 'alumno') {
+        setUserLoaded(false)
+        router.push('/login')
+      }
+    } else if (user === null && !userLoaded) {
       router.push('/login')
     }
   }, [user, router, userLoaded])

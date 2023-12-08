@@ -25,7 +25,11 @@ const page = () => {
         setProfesores(data)
       })
       setUserLoaded(true)
-    } else if (user === null && !userLoaded && usuario !== 'admin') {
+      if (usuario !== 'admin') {
+        setUserLoaded(false)
+        router.push('/login')
+      }
+    } else if (user === null && !userLoaded) {
       setUserLoaded(false)
       router.push('/login')
     }

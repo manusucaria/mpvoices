@@ -29,7 +29,11 @@ const page = () => {
         }
       })
       setUserLoaded(true)
-    } else if (user === null && !userLoaded && usuario !== 'profesor') {
+      if (usuario !== 'profesor') {
+        setUserLoaded(false)
+        router.push('/login')
+      }
+    } else if (user === null && !userLoaded) {
       setUserLoaded(false)
       router.push('/login')
     }
