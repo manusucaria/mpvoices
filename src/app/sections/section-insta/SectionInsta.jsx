@@ -36,6 +36,7 @@ async function SectionInsta () {
               className="Insta-illustration"
               target="_blank"
               href={item.permalink}
+              title={item.caption}
             >
               <Image
                 className="Insta-image"
