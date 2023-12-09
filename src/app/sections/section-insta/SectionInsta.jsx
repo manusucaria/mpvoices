@@ -10,6 +10,7 @@ const fetchData = async () => {
   try {
     const url = `https://graph.instagram.com/me/media?fields=id,caption,media_url,timestamp,media_type,thumbnail_url,permalink&access_token=${process.env.INSTAGRAM_KEY}`
     const data = await fetch(url)
+    if (!data.ok) throw new Error(`Error en la solicitud a Instagram API: ${data.status} ${data.statusText}`)
     const res = await data.json()
     return await res.data.slice(0, 2)
   } catch (error) {
