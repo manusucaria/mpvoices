@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import { useAuth } from '../../lib/auth'
 import { signOut } from 'firebase/auth'
 import { auth } from '../../lib/firebase.js'
-import Buscador from './components/buscador.js'
+import Buscador from './components/Buscador.js'
 import Agenda from './components/Agenda.js'
 
 const page = () => {
