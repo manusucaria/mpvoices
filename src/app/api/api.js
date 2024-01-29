@@ -34,7 +34,6 @@ export const getAdmin = async () => {
 }
 
 // READ WITH WHERE
-// Tener en cuenta que el tipo de dato de la condición debe coincidir con el tipo de dato que hay en Firebase o no obtendré un dato de respuesta
 export const getAlumnosByDia = async (IdDia) => {
   const colRef = collection(db, 'alumnos')
   const result = await getDocs(query(colRef, where('dia', '==', IdDia)))
