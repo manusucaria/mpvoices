@@ -37,6 +37,13 @@ const Agenda = () => {
     setSelectedDay('')
   }
 
+  const filteredProfesores = selectedDay ? profesores.filter((profesor) => profesor.Dia === selectedDay) : []
+  const filteredProfesoresSorted = filteredProfesores.slice().sort((a, b) => {
+    // Compara los nombres de los profesores
+    if (a.Nombre < b.Nombre) return -1
+    if (a.Nombre > b.Nombre) return 1
+    return 0
+  })
   const filteredAlumnos = selectedDay ? alumnos.filter((alumno) => alumno.Dia === selectedDay) : []
 
   const getBackgroundColor = (profesor, time) => {
@@ -74,7 +81,7 @@ const Agenda = () => {
     return timeSlots.map((time, index) => (
       <div key={time} className="grid grid-cols-[20%_40%_40%] grid-rows-auto">
         <div className='border border-white text-center'>{time}</div>
-        {profesores.slice(startIndex, startIndex + 2).map((profesor) => {
+        {filteredProfesoresSorted.slice(startIndex, startIndex + 2).map((profesor) => {
           const alumnoBackgroundColor = getBackgroundColor(profesor, time)
           const alumnoData = filteredAlumnos.filter(alumno => alumno.Profesor === profesor.Nombre && alumno.Horario === time)
           return (
@@ -99,7 +106,9 @@ const Agenda = () => {
   }
 
   const handleNext = () => {
-    setStartIndex((prevIndex) => Math.min(prevIndex + 2, profesores.length - 2))
+    if (startIndex + 2 < filteredProfesores.length) {
+      setStartIndex((prevIndex) => prevIndex + 2)
+    }
   }
 
   const handlePrev = () => {
@@ -146,7 +155,7 @@ const Agenda = () => {
           </div>
           <div className="grid grid-cols-[20%_40%_40%]">
             <div className="border border-white text-center">Horarios</div>
-            {profesores.slice(startIndex, startIndex + 2).map((profesor) => (
+            {filteredProfesoresSorted.slice(startIndex, startIndex + 2).map((profesor) => (
               <div key={profesor.id} className="border border-white text-center">
                 {profesor.Nombre}
               </div>

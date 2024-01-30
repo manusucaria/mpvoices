@@ -65,11 +65,9 @@ const Buscador = () => {
         className="text-black bg-white w-4/6 sm:w-2/6 mx-auto text-center px-3 py-2 mb-4 rounded-3xl"
       />
       {searchTerm.trim() !== '' && (
-        <div className='flex flex-col mx-auto'>
+        <div className='flex flex-col mx-auto w-full'>
           {buscarAlumnos.map((alumno) => (
-            <div key={alumno.id} className="flex flex-col mx-auto my-8 w-ful">
-              <button onClick={() => handleAlumnoClick(alumno)} className='bg-white text-black rounded-3xl h-8 w-4/6'>{alumno.Nombre} {alumno.Apellido}</button>
-            </div>
+            <button key={alumno.id} onClick={() => handleAlumnoClick(alumno)} className='mx-auto bg-white text-black rounded-3xl h-8 w-4/6 sm:w-2/6'>{alumno.Nombre} {alumno.Apellido}</button>
           ))}
         </div>
       )}
@@ -88,11 +86,9 @@ const Buscador = () => {
         </div>
       )}
       {searchTerm.trim() !== '' && (
-        <div className='flex flex-col mx-auto'>
+        <div className='flex flex-col mx-auto w-full'>
           {buscarProfesores.map((profesor) => (
-            <div key={profesor.id} className="flex flex-col mx-auto my-8 w-100">
-              <button onClick={() => handleProfesorClick(profesor)} className='bg-white text-black rounded-3xl h-8 w-4/6'>{profesor.Nombre} {profesor.Apellido}</button>
-            </div>
+            <button key={profesor.id} onClick={() => handleProfesorClick(profesor)} className='mx-auto bg-white text-black rounded-3xl h-8 w-4/6 sm:w-2/6'>{profesor.Nombre} {profesor.Apellido}</button>
           ))}
         </div>
       )}
@@ -100,7 +96,6 @@ const Buscador = () => {
         <div className="flex flex-col mx-auto px-3 py-2 items-center">
           <p className="text-white font-botones font-bold text-center text-sm mb-2">Nombre: {selectedProfesor.Nombre}</p>
           <p className="text-white font-botones font-bold text-center text-sm mb-2">Apellido: {selectedProfesor.Apellido}</p>
-          <p className="text-white font-botones font-bold text-center text-sm mb-2">Edad: {selectedProfesor.Edad}</p>
           <p className="text-white font-botones font-bold text-center text-sm mb-2">Instrumento: {selectedProfesor.Instrumento}</p>
           <button onClick={clearDetails} className='bg-white text-black font-botones font-bold text-center text-sm rounded-3xl h-8 w-4/6'>Volver</button>
         </div>
