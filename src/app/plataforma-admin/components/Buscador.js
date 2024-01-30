@@ -62,7 +62,7 @@ const Buscador = () => {
         value={searchTerm}
         onChange={handleSearchTermChange}
         onClick={clearDetails}
-        className="text-black bg-white w-3/6 mx-auto text-center px-3 py-2 mb-4 rounded-3xl"
+        className="text-black bg-white w-4/6 sm:w-2/6 mx-auto text-center px-3 py-2 mb-4 rounded-3xl"
       />
       {searchTerm.trim() !== '' && (
         <div className='flex flex-col mx-auto'>

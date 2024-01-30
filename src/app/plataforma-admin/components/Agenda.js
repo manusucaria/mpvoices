@@ -72,7 +72,7 @@ const Agenda = () => {
 
   const renderTimeSlots = () => {
     return timeSlots.map((time, index) => (
-      <div key={time} className="grid grid-cols-[20%_40%_40%]">
+      <div key={time} className="grid grid-cols-[20%_40%_40%] grid-rows-auto">
         <div className='border border-white text-center'>{time}</div>
         {profesores.slice(startIndex, startIndex + 2).map((profesor) => {
           const alumnoBackgroundColor = getBackgroundColor(profesor, time)
@@ -87,10 +87,8 @@ const Agenda = () => {
               className="border border-white text-center"
             >
               {alumnoData.map((alumno) => (
-                <div key={`${alumno.Nombre}-${time}`} className="flex flex-col text-center items-center">
+                <div key={`${alumno.Nombre}-${time}`} className="text-center items-center">
                   <div>{`${alumno.Nombre} ${alumno.Apellido}`}</div>
-                  <div>{alumno.Horario}</div>
-                  <div>Notificaciones</div>
                 </div>
               ))}
             </div>
@@ -123,19 +121,19 @@ const Agenda = () => {
           )
         : (
         <div className="flex flex-col justify-center mb-4">
-          <button onClick={() => filterAlumnosByDay('Lunes')} className="bg-white text-black text-lg rounded-3xl mx-auto h-8 w-[30%] mb-6">
+          <button onClick={() => filterAlumnosByDay('Lunes')} className="bg-white text-black text-lg rounded-3xl mx-auto h-8 w-4/6 sm:w-2/6 mb-6">
             Lunes
           </button>
-          <button onClick={() => filterAlumnosByDay('Martes')} className="bg-white text-black text-lg rounded-3xl mx-auto h-8 w-[30%] mb-6">
+          <button onClick={() => filterAlumnosByDay('Martes')} className="bg-white text-black text-lg rounded-3xl mx-auto h-8 w-4/6 sm:w-2/6 mb-6">
             Martes
           </button>
-          <button onClick={() => filterAlumnosByDay('Miércoles')} className="bg-white text-black text-lg rounded-3xl mx-auto h-8 w-[30%] mb-6">
+          <button onClick={() => filterAlumnosByDay('Miércoles')} className="bg-white text-black text-lg rounded-3xl mx-auto h-8 w-4/6 sm:w-2/6 mb-6">
             Miércoles
           </button>
-          <button onClick={() => filterAlumnosByDay('Jueves')} className="bg-white text-black text-lg rounded-3xl mx-auto h-8 w-[30%] mb-6">
+          <button onClick={() => filterAlumnosByDay('Jueves')} className="bg-white text-black text-lg rounded-3xl mx-auto h-8 w-4/6 sm:w-2/6 mb-6">
             Jueves
           </button>
-          <button onClick={() => filterAlumnosByDay('Viernes')} className="bg-white text-black text-lg rounded-3xl mx-auto h-8 w-[30%]">
+          <button onClick={() => filterAlumnosByDay('Viernes')} className="bg-white text-black text-lg rounded-3xl mx-auto h-8 w-4/6 sm:w-2/6">
             Viernes
           </button>
         </div>
