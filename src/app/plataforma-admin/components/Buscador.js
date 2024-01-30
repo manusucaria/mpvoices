@@ -62,13 +62,13 @@ const Buscador = () => {
         value={searchTerm}
         onChange={handleSearchTermChange}
         onClick={clearDetails}
-        className="text-black bg-white w-96 mx-auto text-center px-3 py-2 mb-4 rounded-3xl"
+        className="text-black bg-white w-3/6 mx-auto text-center px-3 py-2 mb-4 rounded-3xl"
       />
       {searchTerm.trim() !== '' && (
         <div className='flex flex-col mx-auto'>
           {buscarAlumnos.map((alumno) => (
-            <div key={alumno.id} className="flex flex-col mx-auto my-8 w-100">
-              <button onClick={() => handleAlumnoClick(alumno)} className='bg-white text-black rounded-3xl h-8 w-96'>{alumno.Nombre} {alumno.Apellido}</button>
+            <div key={alumno.id} className="flex flex-col mx-auto my-8 w-ful">
+              <button onClick={() => handleAlumnoClick(alumno)} className='bg-white text-black rounded-3xl h-8 w-4/6'>{alumno.Nombre} {alumno.Apellido}</button>
             </div>
           ))}
         </div>
@@ -84,14 +84,14 @@ const Buscador = () => {
           <p className="text-white font-botones font-bold text-center text-sm mb-2">Duración de Clase: {selectedAlumno.Duracion} minutos</p>
           <p className="text-white font-botones font-bold text-center text-sm mb-2">Instrumento: {selectedAlumno.Instrumento}</p>
           <p className="text-white font-botones font-bold text-center text-sm mb-2">Deuda: {selectedAlumno.Deuda}</p>
-          <button onClick={clearDetails} className='bg-white text-black font-botones font-bold text-center text-sm rounded-3xl h-8 w-96'>Volver</button>
+          <button onClick={clearDetails} className='bg-white text-black font-botones font-bold text-center text-sm rounded-3xl h-8 w-4/6'>Volver</button>
         </div>
       )}
       {searchTerm.trim() !== '' && (
         <div className='flex flex-col mx-auto'>
           {buscarProfesores.map((profesor) => (
             <div key={profesor.id} className="flex flex-col mx-auto my-8 w-100">
-              <button onClick={() => handleProfesorClick(profesor)} className='bg-white text-black rounded-3xl h-8 w-96'>{profesor.Nombre} {profesor.Apellido}</button>
+              <button onClick={() => handleProfesorClick(profesor)} className='bg-white text-black rounded-3xl h-8 w-4/6'>{profesor.Nombre} {profesor.Apellido}</button>
             </div>
           ))}
         </div>
@@ -102,7 +102,7 @@ const Buscador = () => {
           <p className="text-white font-botones font-bold text-center text-sm mb-2">Apellido: {selectedProfesor.Apellido}</p>
           <p className="text-white font-botones font-bold text-center text-sm mb-2">Edad: {selectedProfesor.Edad}</p>
           <p className="text-white font-botones font-bold text-center text-sm mb-2">Instrumento: {selectedProfesor.Instrumento}</p>
-          <button onClick={clearDetails} className='bg-white text-black font-botones font-bold text-center text-sm rounded-3xl h-8 w-96'>Volver</button>
+          <button onClick={clearDetails} className='bg-white text-black font-botones font-bold text-center text-sm rounded-3xl h-8 w-4/6'>Volver</button>
         </div>
       )}
     </div>
