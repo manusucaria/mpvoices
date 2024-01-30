@@ -72,19 +72,19 @@ const Agenda = () => {
 
   const renderTimeSlots = () => {
     return timeSlots.map((time, index) => (
-      <tr key={time}>
-        <td className='border border-white'>{time}</td>
+      <div key={time} className="grid grid-cols-[20%_40%_40%]">
+        <div className='border border-white text-center'>{time}</div>
         {profesores.slice(startIndex, startIndex + 2).map((profesor) => {
           const alumnoBackgroundColor = getBackgroundColor(profesor, time)
           const alumnoData = filteredAlumnos.filter(alumno => alumno.Profesor === profesor.Nombre && alumno.Horario === time)
           return (
-            <td
+            <div
               key={`${profesor.id}-${time}`}
               style={{
-                width: '10rem',
                 backgroundColor: alumnoBackgroundColor,
                 border: alumnoBackgroundColor === 'green' ? 'none' : '1px solid white'
               }}
+              className="border border-white text-center"
             >
               {alumnoData.map((alumno) => (
                 <div key={`${alumno.Nombre}-${time}`} className="flex flex-col text-center items-center">
@@ -93,10 +93,10 @@ const Agenda = () => {
                   <div>Notificaciones</div>
                 </div>
               ))}
-            </td>
+            </div>
           )
         })}
-      </tr>
+      </div>
     ))
   }
 
@@ -141,24 +141,20 @@ const Agenda = () => {
         </div>
           )}
       {selectedDay && (
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto mx-auto w-full px-6 sm:px-0 sm:w-4/6">
           <div className="flex justify-center mb-2">
-            <button className='mr-6' onClick={handlePrev}>Prev</button>
-            <button className='ml-6' onClick={handleNext}>Next</button>
+            <button className='mr-auto pl-4' onClick={handlePrev}>Prev</button>
+            <button className='ml-auto pr-4' onClick={handleNext}>Next</button>
           </div>
-          <table className="mx-auto border-collapse border border-white">
-            <thead>
-              <tr>
-                <th className="border border-white"></th>
-                {profesores.slice(startIndex, startIndex + 2).map((profesor) => (
-                  <th key={profesor.id} className="border border-white">
-                    {profesor.Nombre}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody >{renderTimeSlots()}</tbody>
-          </table>
+          <div className="grid grid-cols-[20%_40%_40%]">
+            <div className="border border-white text-center">Horarios</div>
+            {profesores.slice(startIndex, startIndex + 2).map((profesor) => (
+              <div key={profesor.id} className="border border-white text-center">
+                {profesor.Nombre}
+              </div>
+            ))}
+          </div>
+          <div>{renderTimeSlots()}</div>
         </div>
       )}
     </div>
