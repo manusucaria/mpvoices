@@ -5,6 +5,7 @@ import {
   doc,
   getDoc,
   addDoc,
+  updateDoc,
   where
 } from 'firebase/firestore'
 import { db } from '../../lib/firebase'
@@ -31,6 +32,16 @@ export const getAdmin = async () => {
   const colRef = collection(db, 'admin')
   const result = await getDocs(query(colRef))
   return getArrayFromCollection(result)
+}
+
+// UPDATE
+export const updateAlumno = async (id, obj) => {
+  const docRef = doc(db, 'alumnos', id)
+  await updateDoc(docRef, obj)
+}
+export const updateProfesor = async (id, obj) => {
+  const docRef = doc(db, 'profesores', id)
+  await updateDoc(docRef, obj)
 }
 
 // READ WITH WHERE

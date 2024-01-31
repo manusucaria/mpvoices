@@ -7,6 +7,7 @@ const LoginForm = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errors, setErrors] = useState({})
+  const [showPassword, setShowPassword] = useState(false)
   const router = useRouter()
 
   const validateEmail = (email) => {
@@ -32,6 +33,7 @@ const LoginForm = () => {
       setErrors(formErrors)
     }
   }
+
   return (
     <div className='w-auto h-auto mt-8 lg:mt-2 lg:h-screen flex flex-col justify-center items-center md:justify-start'>
       <div className='md:mt-14 lg:mb-4'>
@@ -52,21 +54,28 @@ const LoginForm = () => {
           />
           {errors.email && <p className='text-[#E9500E] text-sm pt-2'>{errors.email}</p>}
         </div>
-
-        <div>
+        <div className="flex flex-col">
           <label className='text-white mr-2 ml-3' htmlFor="password">Contraseña:</label>
-          <input
-            placeholder='Contraseña'
-            className='text-black border-2 border-slate-200 rounded-3xl p-2 mt-2 w-full'
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            autoComplete="current-password"
-          />
-          {errors.password && <p className='text-[#E9500E] text-sm pt-2'>{errors.password}</p>}
+          <div className='grid grid-cols-3 grid-rows-1 w-full'>
+            <input
+              placeholder='Contraseña'
+              className='text-black border-2 border-slate-200 rounded-3xl p-2 mt-2 w-full col-start-1 col-end-4 row-start-1 row-end-2'
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              autoComplete="current-password"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="text-black p-2 mt-1 bg-transparent border-none focus:outline-none mr-2 z-20 text-xs col-start-3 col-end-4 row-start-1 row-end-2"
+            >
+              {showPassword ? 'Ocultar' : 'Mostrar'}
+            </button>
+          </div>
         </div>
-
+        {errors.password && <p className='text-[#E9500E] text-sm pt-2'>{errors.password}</p>}
         <button className='hover:bg-[#E9500E] hover:border-white transition-all w-full py-3 px-4 shadow-md border border-[#E9500E] text-white font-bold rounded-3xl mt-5'
           type="submit">
             Iniciar Sesión

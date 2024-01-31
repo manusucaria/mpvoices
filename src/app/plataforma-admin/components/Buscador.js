@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { getAlumnos, getProfesores } from '../../api/api.js'
 import { useAuth } from '../../../lib/auth.js'
+import EditorAlumnos from './EditorAlumnos.js'
+import EditorProfesor from './EditorProfesor.js'
 
 const Buscador = () => {
   const user = useAuth()
@@ -17,7 +19,7 @@ const Buscador = () => {
     getProfesores().then(data => {
       setProfesores(data)
     })
-  }, [user])
+  }, [user, selectedAlumno, selectedProfesor])
 
   const handleSearchTermChange = (event) => {
     setSearchTerm(event.target.value)
@@ -72,16 +74,8 @@ const Buscador = () => {
         </div>
       )}
       {selectedAlumno && (
-        <div className="flex flex-col mx-auto px-3 py-2 items-center">
-          <p className="text-white font-botones font-bold text-center text-sm mb-2">Nombre: {selectedAlumno.Nombre}</p>
-          <p className="text-white font-botones font-bold text-center text-sm mb-2">Apellido: {selectedAlumno.Apellido}</p>
-          <p className="text-white font-botones font-bold text-center text-sm mb-2">Edad: {selectedAlumno.Edad}</p>
-          <p className="text-white font-botones font-bold text-center text-sm mb-2">Profesor: {selectedAlumno.Profesor}</p>
-          <p className="text-white font-botones font-bold text-center text-sm mb-2">Dia: {selectedAlumno.Dia}</p>
-          <p className="text-white font-botones font-bold text-center text-sm mb-2">Horario: {selectedAlumno.Horario}</p>
-          <p className="text-white font-botones font-bold text-center text-sm mb-2">Duración de Clase: {selectedAlumno.Duracion} minutos</p>
-          <p className="text-white font-botones font-bold text-center text-sm mb-2">Instrumento: {selectedAlumno.Instrumento}</p>
-          <p className="text-white font-botones font-bold text-center text-sm mb-2">Deuda: {selectedAlumno.Deuda}</p>
+        <div className="flex flex-col mx-auto px-3 py-2 items-center w-3/6">
+          <EditorAlumnos alumno={selectedAlumno} />
           <button onClick={clearDetails} className='bg-white text-black font-botones font-bold text-center text-sm rounded-3xl h-8 w-4/6'>Volver</button>
         </div>
       )}
@@ -93,10 +87,8 @@ const Buscador = () => {
         </div>
       )}
       {selectedProfesor && (
-        <div className="flex flex-col mx-auto px-3 py-2 items-center">
-          <p className="text-white font-botones font-bold text-center text-sm mb-2">Nombre: {selectedProfesor.Nombre}</p>
-          <p className="text-white font-botones font-bold text-center text-sm mb-2">Apellido: {selectedProfesor.Apellido}</p>
-          <p className="text-white font-botones font-bold text-center text-sm mb-2">Instrumento: {selectedProfesor.Instrumento}</p>
+        <div className="flex flex-col mx-auto px-3 py-2 items-center w-3/6">
+          <EditorProfesor profesor={selectedProfesor} />
           <button onClick={clearDetails} className='bg-white text-black font-botones font-bold text-center text-sm rounded-3xl h-8 w-4/6'>Volver</button>
         </div>
       )}
