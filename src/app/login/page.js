@@ -42,42 +42,46 @@ const LoginForm = () => {
 
       <form className='border-2 border-white-200 rounded-md m-4 flex flex-col gap-4 py-6 px-4' onSubmit={handleSubmit}>
         <div>
-          <label className='text-white mr-2 ml-3' htmlFor="email">Usuario:</label>
+          <label className='text-white mr-2 ml-3' htmlFor='email'>Usuario:</label>
           <input
             placeholder='Nombre de Usuario'
             className='text-black border-2 border-slate-200 rounded-3xl p-2 mt-2 w-full'
-            id="email"
-            type="email"
+            id='email'
+            type='email'
             value={email}
             onChange={(e) => setEmail(e.target.value.trimStart())}
-            autoComplete="email"
+            autoComplete='email'
           />
           {errors.email && <p className='text-[#E9500E] text-sm pt-2'>{errors.email}</p>}
         </div>
-        <div className="flex flex-col">
-          <label className='text-white mr-2 ml-3' htmlFor="password">Contraseña:</label>
-          <div className='grid grid-cols-3 grid-rows-1 w-full'>
+        <div className='flex flex-col'>
+          <label className='text-white mr-2 ml-3' htmlFor='password'>Contraseña:</label>
+          <div className='grid grid-cols-3 grid-rows-1 w-full mt-2'>
             <input
               placeholder='Contraseña'
-              className='text-black border-2 border-slate-200 rounded-3xl p-2 mt-2 w-full col-start-1 col-end-4 row-start-1 row-end-2'
-              id="password"
+              className='text-black border-2 border-slate-200 rounded-3xl p-2 w-full col-start-1 col-end-4 row-start-1 row-end-2'
+              id='password'
               type={showPassword ? 'text' : 'password'}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              autoComplete="current-password"
+              autoComplete='current-password'
             />
             <button
-              type="button"
+              type='button'
               onClick={() => setShowPassword(!showPassword)}
-              className="text-black p-2 mt-1 bg-transparent border-none focus:outline-none mr-2 z-20 text-xs col-start-3 col-end-4 row-start-1 row-end-2"
+              className='p-2 mt-1 bg-transparent border-none focus:outline-none mr-2 z-20 col-start-3 col-end-4 row-start-1 row-end-2'
             >
-              {showPassword ? 'Ocultar' : 'Mostrar'}
+              <img
+                src={showPassword ? '/ocultar.png' : '/mostrar.png'}
+                alt={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+                className='w-5 h-5 ml-auto'
+              />
             </button>
           </div>
         </div>
         {errors.password && <p className='text-[#E9500E] text-sm pt-2'>{errors.password}</p>}
         <button className='hover:bg-[#E9500E] hover:border-white transition-all w-full py-3 px-4 shadow-md border border-[#E9500E] text-white font-bold rounded-3xl mt-5'
-          type="submit">
+          type='submit'>
             Iniciar Sesión
         </button>
       </form>

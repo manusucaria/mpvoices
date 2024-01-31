@@ -38,7 +38,7 @@ const page = () => {
   return (
     <div className='flex flex-col'>
       {user
-        ? <div>
+        ? <div className='flex flex-col'>
         <h1 className='text-center text-white text-3xl sm:text-5xl mt-6 mb-12'>¡Bienvenido Administrador!</h1>
         <Agenda />
         <Buscador />

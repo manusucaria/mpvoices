@@ -9,6 +9,7 @@ const Agenda = () => {
   const [selectedDay, setSelectedDay] = useState('')
   const [timeSlots, setTimeSlots] = useState([])
   const [startIndex, setStartIndex] = useState(0)
+  const [nextClicked, setNextClicked] = useState(false) // Estado para controlar si se ha hecho clic en "Next"
 
   useEffect(() => {
     getAlumnos().then((data) => {
@@ -108,11 +109,17 @@ const Agenda = () => {
   const handleNext = () => {
     if (startIndex + 2 < filteredProfesores.length) {
       setStartIndex((prevIndex) => prevIndex + 2)
+      setNextClicked(true) // Establecer que se hizo clic en "Next"
     }
   }
 
   const handlePrev = () => {
-    setStartIndex((prevIndex) => Math.max(prevIndex - 2, 0))
+    setStartIndex((prevIndex) => {
+      if (prevIndex === 2) {
+        setNextClicked(false) // Resetear nextClicked cuando se vuelve al inicio
+      }
+      return Math.max(prevIndex - 2, 0)
+    })
   }
 
   return (
@@ -150,7 +157,9 @@ const Agenda = () => {
       {selectedDay && (
         <div className="overflow-x-auto mx-auto w-full px-6 sm:px-0 sm:w-4/6">
           <div className="flex justify-center mb-2">
-            <button className='mr-auto pl-4' onClick={handlePrev}>Prev</button>
+            {nextClicked && (
+              <button className='mr-auto pl-4' onClick={handlePrev}>Prev</button>
+            )}
             <button className='ml-auto pr-4' onClick={handleNext}>Next</button>
           </div>
           <div className="grid grid-cols-[20%_40%_40%]">

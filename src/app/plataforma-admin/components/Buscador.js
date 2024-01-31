@@ -69,12 +69,12 @@ const Buscador = () => {
       {searchTerm.trim() !== '' && (
         <div className='flex flex-col mx-auto w-full'>
           {buscarAlumnos.map((alumno) => (
-            <button key={alumno.id} onClick={() => handleAlumnoClick(alumno)} className='mx-auto bg-white text-black rounded-3xl h-8 w-4/6 sm:w-2/6'>{alumno.Nombre} {alumno.Apellido}</button>
+            <button key={alumno.id} onClick={() => handleAlumnoClick(alumno)} className='mx-auto mb-4 bg-white text-black rounded-3xl h-8 w-4/6 sm:w-2/6'>{alumno.Nombre} {alumno.Apellido}</button>
           ))}
         </div>
       )}
       {selectedAlumno && (
-        <div className="flex flex-col mx-auto px-3 py-2 items-center w-3/6">
+        <div className="flex flex-col mx-auto px-3 py-2 items-center w-full sm:w-3/6">
           <EditorAlumnos alumno={selectedAlumno} />
           <button onClick={clearDetails} className='bg-white text-black font-botones font-bold text-center text-sm rounded-3xl h-8 w-4/6'>Volver</button>
         </div>
@@ -82,7 +82,7 @@ const Buscador = () => {
       {searchTerm.trim() !== '' && (
         <div className='flex flex-col mx-auto w-full'>
           {buscarProfesores.map((profesor) => (
-            <button key={profesor.id} onClick={() => handleProfesorClick(profesor)} className='mx-auto bg-white text-black rounded-3xl h-8 w-4/6 sm:w-2/6'>{profesor.Nombre} {profesor.Apellido}</button>
+            <button key={profesor.id} onClick={() => handleProfesorClick(profesor)} className='mx-auto mb-4 bg-white text-black rounded-3xl h-8 w-4/6 sm:w-2/6'>{profesor.Nombre} {profesor.Apellido}</button>
           ))}
         </div>
       )}

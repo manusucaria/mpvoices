@@ -50,7 +50,7 @@ const page = () => {
     <div className='flex'>
       {profesor
         ? <div className='flex flex-col mx-auto'>
-            <h1 className='text-center mx-auto text-white text-3xl sm:text-5xl'>Plataforma Profesores</h1>
+            <h1 className='text-center mx-auto text-white text-3xl sm:text-5xl'>¡Bienvenido {profesor.Nombre}!</h1>
             {alumnos.filter(alumno => alumno.Profesor === profesor.Nombre).map((alumno) => (
               <div key={alumno.id} className="flex flex-col mx-auto my-8">
                 <div className="flex flex-col mx-auto px-3 py-2 items-center">
@@ -64,11 +64,11 @@ const page = () => {
                   <p className="text-white font-botones font-bold text-center text-sm mb-2">Instrumento: {alumno.Instrumento}</p>
                   <p className="text-white font-botones font-bold text-center text-sm mb-2">Deuda: {alumno.Deuda}</p>
                 </div>
-                <div className='mx-auto border p-2 my-6 border-white w-auto h-auto rounded-3xl' onClick={handleLogout}>
-                  <p>Cerrar Sesión</p>
-                </div>
               </div>
             ))}
+            <div className='mx-auto border p-2 my-6 border-white w-auto h-auto rounded-3xl' onClick={handleLogout}>
+              <p>Cerrar Sesión</p>
+            </div>
         </div>
         : ''}
     </div>
