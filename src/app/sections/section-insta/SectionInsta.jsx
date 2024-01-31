@@ -1,4 +1,5 @@
 import React from 'react'
+import { v4 as uuidv4 } from 'uuid'
 import Wrapper from '@/app/components/wrapper/Wrapper'
 import { playfair600 } from '@/utils/fonts/fonts'
 
@@ -6,21 +7,21 @@ import './SectionInsta.scss'
 import Link from 'next/link'
 import Image from 'next/image'
 
-const fetchData = async () => {
-  try {
-    const url = `https://graph.instagram.com/me/media?fields=id,caption,media_url,timestamp,media_type,thumbnail_url,permalink&access_token=${process.env.INSTAGRAM_KEY}`
-    const data = await fetch(url)
-    if (!data.ok) throw new Error(`Error en la solicitud a Instagram API: ${data.status} ${data.statusText}`)
-    const res = await data.json()
-    return await res.data.slice(0, 2)
-  } catch (error) {
-    console.error('Error obteniendo datos de Instagram:', error)
-    return []
-  }
-}
-
 async function SectionInsta () {
-  const feed = await fetchData()
+  const feed = [
+    {
+      id: uuidv4(),
+      permalink: 'https://www.instagram.com/mpvoices/',
+      caption: '+SHOW +Alumnos @mpvoices',
+      media_url: '/assets/static/insta/image1.jpeg'
+    },
+    {
+      id: uuidv4(),
+      permalink: 'https://www.instagram.com/mpvoices/',
+      caption: 'CANTO y COACHING escénico individual',
+      media_url: '/assets/static/insta/image2.jpeg'
+    }
+  ]
 
   return (
     <div className="Insta">
@@ -40,11 +41,7 @@ async function SectionInsta () {
             >
               <Image
                 className="Insta-image"
-                src={
-                  item.media_type === 'VIDEO'
-                    ? item.thumbnail_url
-                    : item.media_url
-                }
+                src={item.media_url}
                 alt={item.caption}
                 width={1000}
                 height={1000}
