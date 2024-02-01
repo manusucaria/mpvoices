@@ -17,7 +17,7 @@ const page = () => {
     if (user) {
       setUserLoaded(true)
       if (user.displayName !== 'Administrador') {
-        // No necesitas setUserLoaded(false) aquí
+        setUserLoaded(false)
         router.push('/login')
       }
     } else if (user === null && !userLoaded) {
@@ -28,6 +28,7 @@ const page = () => {
 
   const handleLogout = () => {
     signOut(auth).then(() => {
+      setUserLoaded(false)
       router.push('/')
     })
   }

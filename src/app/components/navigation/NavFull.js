@@ -1,7 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { openSans600 } from '@/utils/fonts/fonts'
 import { useAuth } from '../../../lib/auth'
 
 const routes = [
@@ -143,7 +142,7 @@ const NavFull = () => {
           <div key={route.label} className="flex min-[1024px]:mx-2 min-[1245px]:mr-4 my-auto">
             <Link
               href={route.link}
-              className={`cursor-pointer text-base ${openSans600.className} hover:translate-y-cursor hover:text-orange-600`}
+              className={'cursor-pointer text-base hover:translate-y-cursor hover:text-orange-600'}
             >
               {route.label}
             </Link>

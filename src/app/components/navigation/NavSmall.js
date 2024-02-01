@@ -121,7 +121,8 @@ const NavSmall = () => {
                     ? '/plataforma-alumnos'
                     : rol === 'Administrador'
                       ? '/plataforma-admin'
-                      : '/login'} className="flex my-auto"
+                      : '/login'}
+                      className="flex my-auto"
                 >
                   <svg
                     className="cursor-pointer"

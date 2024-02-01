@@ -27,15 +27,18 @@ const page = () => {
       })
       setUserLoaded(true)
       if (user.displayName !== 'Profesor') {
+        setUserLoaded(false)
         router.push('/login')
       }
     } else if (user === null && !userLoaded) {
+      setUserLoaded(false)
       router.push('/login')
     }
   }, [user, router, userLoaded])
 
   const handleLogout = () => {
     signOut(auth).then(() => {
+      setUserLoaded(false)
       router.push('/')
     })
   }
