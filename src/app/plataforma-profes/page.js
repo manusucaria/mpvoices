@@ -9,14 +9,11 @@ import { auth } from '../../lib/firebase.js'
 const page = () => {
   const user = useAuth()
   const [profesor, setProfesor] = useState()
-  const [usuario, setUsuario] = useState('')
   const [alumnos, setAlumnos] = useState([])
   const [userLoaded, setUserLoaded] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
-    const userType = localStorage.getItem('usuario')
-    setUsuario(userType)
     if (user) {
       getAlumnos().then(data => {
         setAlumnos(data)
@@ -29,19 +26,17 @@ const page = () => {
         }
       })
       setUserLoaded(true)
-      if (usuario !== 'profesor') {
-        setUserLoaded(false)
+      // Verificar si el usuario es un profesor
+      if (user.displayName !== 'Profesor') {
         router.push('/login')
       }
     } else if (user === null && !userLoaded) {
-      setUserLoaded(false)
       router.push('/login')
     }
   }, [user, router, userLoaded])
 
   const handleLogout = () => {
     signOut(auth).then(() => {
-      localStorage.removeItem('usuario')
       router.push('/')
     })
   }

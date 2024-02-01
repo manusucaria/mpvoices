@@ -1,14 +1,18 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react'
+import { useAuth } from '../../../lib/auth'
 
 const NavSmall = () => {
+  const user = useAuth()
   const [isNavOpen, setIsNavOpen] = useState(false)
   const appContainerRef = useRef(null)
-  const [usuario, setUsuario] = useState()
+  const [rol, setRol] = useState('')
+
   useEffect(() => {
-    const usuario = localStorage.getItem('usuario')
-    setUsuario(usuario)
-  })
+    if (user) {
+      setRol(user.displayName)
+    }
+  }, [user])
 
   useEffect(() => {
     const handleLinkClick = (event) => {
@@ -83,11 +87,11 @@ const NavSmall = () => {
     },
     {
       label: 'Plataforma alumnos',
-      link: usuario === 'profesor'
+      link: rol === 'Profesor'
         ? '/plataforma-profes'
-        : usuario === 'alumno'
+        : rol === 'Alumno'
           ? '/plataforma-alumnos'
-          : usuario === 'admin'
+          : rol === 'Administrador'
             ? '/plataforma-admin'
             : '/login'
     }
@@ -111,11 +115,11 @@ const NavSmall = () => {
             </div>
             <div className="flex ml-auto my-auto pr-6">
               <div className="flex" onClick={() => scrollToTop()}>
-                <a href={usuario === 'profesor'
+                <a href={rol === 'Profesor'
                   ? '/plataforma-profes'
-                  : usuario === 'alumno'
+                  : rol === 'Alumno'
                     ? '/plataforma-alumnos'
-                    : usuario === 'admin'
+                    : rol === 'Administrador'
                       ? '/plataforma-admin'
                       : '/login'} className="flex my-auto"
                 >

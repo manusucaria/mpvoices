@@ -69,11 +69,11 @@ const EditorPagos = ({ alumno }) => {
               />
             </div>
             <div className='flex w-full mx-auto my-8'>
-              <button className='rounded-3xl bg-white text-black p-3' type='submit'>
+              <button className='rounded-3xl bg-white text-black px-3 py-2' type='submit'>
                 Guardar cambios
               </button>
               <button
-                className='rounded-3xl ml-auto bg-orange-600 text-white p-3'
+                className='rounded-3xl ml-auto bg-orange-600 text-white px-3 py-2'
                 onClick={cancelarClick}
                 type='button'
               >

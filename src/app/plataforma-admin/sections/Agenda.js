@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { getAlumnos, getProfesores } from '../../api/api.js'
-import { useAuth } from '../../../lib/auth'
+import { useAuth } from '../../../lib/auth.js'
 
 const Agenda = () => {
   const user = useAuth()
@@ -40,7 +40,6 @@ const Agenda = () => {
 
   const filteredProfesores = selectedDay ? profesores.filter((profesor) => profesor.Dia === selectedDay) : []
   const filteredProfesoresSorted = filteredProfesores.slice().sort((a, b) => {
-    // Compara los nombres de los profesores
     if (a.Nombre < b.Nombre) return -1
     if (a.Nombre > b.Nombre) return 1
     return 0
@@ -109,14 +108,14 @@ const Agenda = () => {
   const handleNext = () => {
     if (startIndex + 2 < filteredProfesores.length) {
       setStartIndex((prevIndex) => prevIndex + 2)
-      setNextClicked(true) // Establecer que se hizo clic en "Next"
+      setNextClicked(true)
     }
   }
 
   const handlePrev = () => {
     setStartIndex((prevIndex) => {
       if (prevIndex === 2) {
-        setNextClicked(false) // Resetear nextClicked cuando se vuelve al inicio
+        setNextClicked(false)
       }
       return Math.max(prevIndex - 2, 0)
     })

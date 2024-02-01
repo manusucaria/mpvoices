@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { getAlumnos, getProfesores } from '../../api/api.js'
 import { useAuth } from '../../../lib/auth.js'
-import EditorAlumnos from './EditorAlumnos.js'
-import EditorProfesor from './EditorProfesor.js'
+import EditorAlumnos from '../components/EditorAlumnos.js'
+import EditorProfesor from '../components/EditorProfesor.js'
 
 const Buscador = () => {
   const user = useAuth()
@@ -87,7 +87,7 @@ const Buscador = () => {
         </div>
       )}
       {selectedProfesor && (
-        <div className="flex flex-col mx-auto px-3 py-2 items-center w-3/6">
+        <div className="flex flex-col mx-auto px-3 py-2 items-center w-full sm:w-3/6">
           <EditorProfesor profesor={selectedProfesor} />
           <button onClick={clearDetails} className='bg-white text-black font-botones font-bold text-center text-sm rounded-3xl h-8 w-4/6'>Volver</button>
         </div>

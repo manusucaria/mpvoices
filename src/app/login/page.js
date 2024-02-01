@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { getAuth } from '../../lib/firebase-utils'
+import { signIn } from '../../lib/firebase-utils'
 
 const LoginForm = () => {
   const [email, setEmail] = useState('')
@@ -28,7 +28,7 @@ const LoginForm = () => {
     }
 
     if (Object.keys(formErrors).length === 0) {
-      getAuth(email.trim(), password, router, false, false, undefined)
+      signIn(email.trim(), password, router, false, false, undefined)
     } else {
       setErrors(formErrors)
     }

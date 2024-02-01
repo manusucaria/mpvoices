@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { openSans600 } from '@/utils/fonts/fonts'
+import { useAuth } from '../../../lib/auth'
 
 const routes = [
   {
@@ -27,11 +28,13 @@ const routes = [
 ]
 
 const NavFull = () => {
-  const [usuario, setUsuario] = useState()
+  const user = useAuth()
+  const [rol, setRol] = useState('')
   useEffect(() => {
-    const usuario = localStorage.getItem('usuario')
-    setUsuario(usuario)
-  })
+    if (user) {
+      setRol(user.displayName)
+    }
+  }, [user])
   const scrollToTop = () => {
     window.scrollTo({
       top: 0
@@ -149,13 +152,13 @@ const NavFull = () => {
       </div>
       <div className="flex flex-col my-auto w-[20%]">
         <Link className='flex mr-auto min-[1024px]:ml-6' href={
-        usuario === 'profesor'
-          ? '/plataforma-profes'
-          : usuario === 'alumno'
-            ? '/plataforma-alumnos'
-            : usuario === 'admin'
-              ? '/plataforma-admin'
-              : '/login'
+          rol === 'Profesor'
+            ? '/plataforma-profes'
+            : rol === 'Alumno'
+              ? '/plataforma-alumnos'
+              : rol === 'Administrador'
+                ? '/plataforma-admin'
+                : '/login'
         }>
           <div className="relative group">
             <svg

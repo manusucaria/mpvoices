@@ -16,6 +16,11 @@ export const createAlumno = async (obj) => {
   const data = await addDoc(colRef, obj)
   return data.id
 }
+export const createProfesor = async (obj) => {
+  const colRef = collection(db, 'profesores')
+  const data = await addDoc(colRef, obj)
+  return data.id
+}
 
 // READ
 export const getAlumnos = async () => {

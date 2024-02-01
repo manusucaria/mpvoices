@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link.js'
 import { getAuth } from '../../lib/firebase-utils'
 
 const SignUpForm = () => {
@@ -11,20 +10,17 @@ const SignUpForm = () => {
   const router = useRouter()
 
   const validateEmail = (email) => {
-    // validar email usando regex
     const re = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
     return re.test(email)
   }
 
   const validatePassword = (password) => {
-    // Passwordtiene que ser al menos 6 caracteres
     return password.length >= 6
   }
 
   const handleSubmit = (event) => {
     event.preventDefault()
 
-    // verficiar si hay errores
     setErrors({})
 
     const formErrors = {}
@@ -36,10 +32,8 @@ const SignUpForm = () => {
     }
 
     if (Object.keys(formErrors).length === 0) {
-      // Funcion que realiza la autenticacion
       getAuth(email.trim(), password, router, true, false, undefined)
     } else {
-      // si hay errores, mostrarlos en el formulario
       setErrors(formErrors)
     }
   }
@@ -80,10 +74,6 @@ const SignUpForm = () => {
             Crear Cuenta
         </button>
       </form>
-
-      <div>
-        <p className='text-slate-600'>¿Ya tienes cuenta? <Link className='cursor-pointer underline' href="/login">Inicia Sesión</Link></p>
-      </div>
     </div>
   )
 }
