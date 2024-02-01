@@ -26,7 +26,6 @@ const page = () => {
         }
       })
       setUserLoaded(true)
-      // Verificar si el usuario es un profesor
       if (user.displayName !== 'Profesor') {
         router.push('/login')
       }

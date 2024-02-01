@@ -17,18 +17,29 @@ const Alta = () => {
   }
 
   const handleShowProfesorForm = () => {
-    setShowProfesorForm(true)
-    setShowAlumnoForm(false)
-    setAlumnoFormSubmitted(false)
-    setProfesorFormSubmitted(false)
+    if (showProfesorForm) {
+      setShowProfesorForm(false)
+      setProfesorFormSubmitted(false)
+    } else {
+      setShowProfesorForm(true)
+      setShowAlumnoForm(false)
+      setAlumnoFormSubmitted(false)
+      setProfesorFormSubmitted(false)
+    }
   }
 
   const handleShowAlumnoForm = () => {
-    setShowAlumnoForm(true)
-    setShowProfesorForm(false)
-    setAlumnoFormSubmitted(false)
-    setProfesorFormSubmitted(false)
+    if (showAlumnoForm) {
+      setShowAlumnoForm(false)
+      setAlumnoFormSubmitted(false)
+    } else {
+      setShowAlumnoForm(true)
+      setShowProfesorForm(false)
+      setAlumnoFormSubmitted(false)
+      setProfesorFormSubmitted(false)
+    }
   }
+
   const confirmacionRegistro = () => {
     setShowAlumnoForm(false)
     setShowProfesorForm(false)
@@ -68,6 +79,14 @@ const Alta = () => {
     setProfesorFormSubmitted(false)
   }
 
+  const handleCancelar = () => {
+    setShowAlumnoForm(false)
+    setShowProfesorForm(false)
+    setAlumnoFormSubmitted(false)
+    setProfesorFormSubmitted(false)
+    setRegisteredUid('')
+  }
+
   return (
     <div className='w-full sm:w-3/6 mx-auto mt-4'>
       <h2 className="text-center text-3xl sm:text-5xl mb-4 text-white">Usuarios Nuevos</h2>
@@ -80,13 +99,13 @@ const Alta = () => {
         </button>
       </div>
       {showProfesorForm && !profesorFormSubmitted && (
-        <AltaUsuarioProfe setAlumnoFormSubmitted={setProfesorFormSubmitted} setUidRegistered={handleSetUidRegistered} />
+        <AltaUsuarioProfe setProfesorFormSubmitted={setProfesorFormSubmitted} setUidRegistered={handleSetUidRegistered} handleCancelar={handleCancelar} />
       )}
       {profesorFormSubmitted && (
         <AltaProfe setShowProfesorForm={cancelarProfesorForm} confirmacionRegistro={confirmacionRegistro} />
       )}
       {showAlumnoForm && !alumnoFormSubmitted && (
-        <AltaUsuarioAlumno setAlumnoFormSubmitted={setAlumnoFormSubmitted} setUidRegistered={handleSetUidRegistered} />
+        <AltaUsuarioAlumno setAlumnoFormSubmitted={setAlumnoFormSubmitted} setUidRegistered={handleSetUidRegistered} handleCancelar={handleCancelar} />
       )}
       {alumnoFormSubmitted && (
         <AltaAlumno setShowAlumnoForm={cancelarAlumnoForm} confirmacionRegistro={confirmacionRegistro} />

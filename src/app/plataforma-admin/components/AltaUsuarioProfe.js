@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { signUp } from '../../../lib/firebase-utils'
 
-const AltaUsuarioProfe = ({ setAlumnoFormSubmitted, setUidRegistered }) => {
+const AltaUsuarioProfe = ({ setProfesorFormSubmitted, setUidRegistered, handleCancelar }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [rol, setRol] = useState('')
+  const rol = 'Profesor'
   const [errors, setErrors] = useState({})
 
   const handleSubmit = async (event) => {
@@ -18,7 +18,7 @@ const AltaUsuarioProfe = ({ setAlumnoFormSubmitted, setUidRegistered }) => {
       try {
         const uid = await signUp(email.trim(), password, rol)
         setUidRegistered(uid)
-        setAlumnoFormSubmitted(true)
+        setProfesorFormSubmitted(true)
       } catch (error) {
         console.error('Error al registrarse:', error)
       }
@@ -54,23 +54,19 @@ const AltaUsuarioProfe = ({ setAlumnoFormSubmitted, setUidRegistered }) => {
           />
           {errors.password && <p>{errors.password}</p>}
         </div>
-
-        <div className='flex mb-6'>
-          <label className='mr-auto w-2/6' htmlFor="rol">Rol:</label>
-          <input
-            className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto'
-            id="rol"
-            type="text"
-            value={rol}
-            onChange={(e) => setRol(e.target.value)}
-          />
+        <div className='flex w-full mx-auto gap-x-2'>
+          <button
+            className='w-3/6 mr-auto rounded-3xl bg-[#008f39] text-white px-3 py-2'
+            type="submit">
+              Crear Cuenta
+          </button>
+          <button
+            className='w-3/6 ml-auto rounded-3xl bg-orange-600 text-white px-3 py-2'
+            onClick={handleCancelar}
+          >
+            Cancelar
+          </button>
         </div>
-
-        <button
-          className='mx-auto w-4/6 rounded-3xl ml-auto bg-orange-600 text-white px-3 py-2'
-          type="submit">
-            Crear Cuenta
-        </button>
       </form>
     </div>
   )

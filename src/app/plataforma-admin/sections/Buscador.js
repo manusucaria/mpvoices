@@ -21,6 +21,10 @@ const Buscador = () => {
     })
   }, [user, selectedAlumno, selectedProfesor])
 
+  const normalizeString = (str) => {
+    return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+  }
+
   const handleSearchTermChange = (event) => {
     setSearchTerm(event.target.value)
     clearDetails()
@@ -41,17 +45,19 @@ const Buscador = () => {
     setSelectedProfesor(null)
   }
 
+  const searchTermNormalized = normalizeString(searchTerm)
+
   const buscarAlumnos = searchTerm.trim() !== ''
     ? alumnos.filter(alumno => (
-      alumno.Nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      alumno.Apellido.toLowerCase().includes(searchTerm.toLowerCase())
+      normalizeString(alumno.Nombre).includes(searchTermNormalized) ||
+      normalizeString(alumno.Apellido).includes(searchTermNormalized)
     ))
     : []
 
   const buscarProfesores = searchTerm.trim() !== ''
     ? profesores.filter(profesor => (
-      profesor.Nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      profesor.Apellido.toLowerCase().includes(searchTerm.toLowerCase())
+      normalizeString(profesor.Nombre).includes(searchTermNormalized) ||
+      normalizeString(profesor.Apellido).includes(searchTermNormalized)
     ))
     : []
 

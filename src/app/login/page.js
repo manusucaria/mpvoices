@@ -72,8 +72,8 @@ const LoginForm = () => {
               className='p-2 mt-1 bg-transparent border-none focus:outline-none mr-2 z-20 col-start-3 col-end-4 row-start-1 row-end-2'
             >
               <img
-                src={showPassword ? '/ocultar.png' : '/mostrar.png'}
-                alt={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+                src={showPassword ? '/mostrar.png' : '/ocultar.png'}
+                alt={showPassword ? 'Mostrar contraseña' : 'Ocultar contraseña'}
                 className='w-5 h-5 ml-auto'
               />
             </button>

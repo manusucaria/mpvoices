@@ -9,7 +9,6 @@ const Agenda = () => {
   const [selectedDay, setSelectedDay] = useState('')
   const [timeSlots, setTimeSlots] = useState([])
   const [startIndex, setStartIndex] = useState(0)
-  const [nextClicked, setNextClicked] = useState(false) // Estado para controlar si se ha hecho clic en "Next"
 
   useEffect(() => {
     getAlumnos().then((data) => {
@@ -36,15 +35,90 @@ const Agenda = () => {
 
   const showAllDays = () => {
     setSelectedDay('')
+    setStartIndex(0)
   }
 
-  const filteredProfesores = selectedDay ? profesores.filter((profesor) => profesor.Dia === selectedDay) : []
+  const renderTimeSlots = () => {
+    return timeSlots.map((time, index) => (
+      <div key={time} className="grid grid-cols-[20%_40%_40%] grid-rows-auto">
+        <div className='border border-white text-center'>{time}</div>
+        {filteredProfesoresSorted.slice(startIndex, startIndex + 2).map((profesor) => {
+          const diasDisponiblesNormalized = profesor.Dia
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .split(/,\s*|\sy\s*/)
+
+          const selectedDayNormalized = selectedDay
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+
+          if (diasDisponiblesNormalized.includes(selectedDayNormalized)) {
+            const alumnoBackgroundColor = getBackgroundColor(profesor, time)
+            const alumnoData = filteredAlumnos.filter(alumno => alumno.Profesor === profesor.Nombre && alumno.Horario === time)
+            return (
+              <div
+                key={`${profesor.id}-${time}`}
+                style={{
+                  backgroundColor: alumnoBackgroundColor,
+                  border: alumnoBackgroundColor === 'green' ? 'none' : '1px solid white'
+                }}
+                className="border border-white text-center"
+              >
+                {alumnoData.map((alumno) => (
+                  <div key={`${alumno.Nombre}-${time}`} className="text-center items-center">
+                    <div>{`${alumno.Nombre} ${alumno.Apellido} ${alumno.Instrumento}`}</div>
+                  </div>
+                ))}
+              </div>
+            )
+          }
+          return null
+        })}
+      </div>
+    ))
+  }
+
+  const handleNext = () => {
+    if (startIndex + 2 < filteredProfesores.length) {
+      setStartIndex((prevIndex) => prevIndex + 2)
+    }
+  }
+
+  const handlePrev = () => {
+    setStartIndex((prevIndex) => {
+      return Math.max(prevIndex - 2, 0)
+    })
+  }
+
+  const filteredProfesores = selectedDay
+    ? profesores.filter((profesor) => {
+      const diaProfesor = profesor.Dia.toLocaleLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      const diaSeleccionado = selectedDay.toLocaleLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      return diaProfesor.includes(diaSeleccionado)
+    })
+    : []
   const filteredProfesoresSorted = filteredProfesores.slice().sort((a, b) => {
-    if (a.Nombre < b.Nombre) return -1
-    if (a.Nombre > b.Nombre) return 1
+    const nombreProfesorA = a.Nombre.toLocaleLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    const nombreProfesorB = b.Nombre.toLocaleLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    if (nombreProfesorA < nombreProfesorB) return -1
+    if (nombreProfesorA > nombreProfesorB) return 1
     return 0
   })
-  const filteredAlumnos = selectedDay ? alumnos.filter((alumno) => alumno.Dia === selectedDay) : []
+  const filteredAlumnos = selectedDay
+    ? alumnos.filter((alumno) => {
+      const diaAlumnoNormalized = alumno.Dia
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+      const selectedDayNormalized = selectedDay
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+      return diaAlumnoNormalized === selectedDayNormalized
+    })
+    : []
 
   const getBackgroundColor = (profesor, time) => {
     let backgroundColor = 'black'
@@ -75,50 +149,6 @@ const Agenda = () => {
     const endHour = Math.floor(endTotalMinutes / 60)
     const endMinute = endTotalMinutes % 60
     return `${endHour}:${endMinute < 10 ? '0' + endMinute : endMinute}`
-  }
-
-  const renderTimeSlots = () => {
-    return timeSlots.map((time, index) => (
-      <div key={time} className="grid grid-cols-[20%_40%_40%] grid-rows-auto">
-        <div className='border border-white text-center'>{time}</div>
-        {filteredProfesoresSorted.slice(startIndex, startIndex + 2).map((profesor) => {
-          const alumnoBackgroundColor = getBackgroundColor(profesor, time)
-          const alumnoData = filteredAlumnos.filter(alumno => alumno.Profesor === profesor.Nombre && alumno.Horario === time)
-          return (
-            <div
-              key={`${profesor.id}-${time}`}
-              style={{
-                backgroundColor: alumnoBackgroundColor,
-                border: alumnoBackgroundColor === 'green' ? 'none' : '1px solid white'
-              }}
-              className="border border-white text-center"
-            >
-              {alumnoData.map((alumno) => (
-                <div key={`${alumno.Nombre}-${time}`} className="text-center items-center">
-                  <div>{`${alumno.Nombre} ${alumno.Apellido}`}</div>
-                </div>
-              ))}
-            </div>
-          )
-        })}
-      </div>
-    ))
-  }
-
-  const handleNext = () => {
-    if (startIndex + 2 < filteredProfesores.length) {
-      setStartIndex((prevIndex) => prevIndex + 2)
-      setNextClicked(true)
-    }
-  }
-
-  const handlePrev = () => {
-    setStartIndex((prevIndex) => {
-      if (prevIndex === 2) {
-        setNextClicked(false)
-      }
-      return Math.max(prevIndex - 2, 0)
-    })
   }
 
   return (
@@ -155,12 +185,14 @@ const Agenda = () => {
           )}
       {selectedDay && (
         <div className="overflow-x-auto mx-auto w-full px-6 sm:px-0 sm:w-4/6">
-          <div className="flex justify-center mb-2">
-            {nextClicked && (
-              <button className='mr-auto pl-4' onClick={handlePrev}>Prev</button>
-            )}
+        <div className="flex justify-center my-4">
+          {filteredProfesores.length >= 3 && startIndex > 0 && (
+            <button className='mr-auto pl-4' onClick={handlePrev}>Prev</button>
+          )}
+          {startIndex + 2 < filteredProfesores.length && (
             <button className='ml-auto pr-4' onClick={handleNext}>Next</button>
-          </div>
+          )}
+        </div>
           <div className="grid grid-cols-[20%_40%_40%]">
             <div className="border border-white text-center">Horarios</div>
             {filteredProfesoresSorted.slice(startIndex, startIndex + 2).map((profesor) => (
