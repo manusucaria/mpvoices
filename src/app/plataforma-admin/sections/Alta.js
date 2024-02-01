@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import AltaAlumno from '../components/AltaAlumno'
 import AltaProfe from '../components/AltaProfe'
 import AltaUsuarioAlumno from '../components/AltaUsuarioAlumno'
+import AltaUsuarioProfe from '../components/AltaUsuarioProfe'
 import { deleteUserByUid } from '../../../lib/firebase-utils'
 
 const Alta = () => {
   const [showProfesorForm, setShowProfesorForm] = useState(false)
   const [showAlumnoForm, setShowAlumnoForm] = useState(false)
   const [alumnoFormSubmitted, setAlumnoFormSubmitted] = useState(false)
+  const [profesorFormSubmitted, setProfesorFormSubmitted] = useState(false)
   const [registeredUid, setRegisteredUid] = useState('')
 
   const handleSetUidRegistered = (uid) => {
@@ -18,12 +20,20 @@ const Alta = () => {
     setShowProfesorForm(true)
     setShowAlumnoForm(false)
     setAlumnoFormSubmitted(false)
+    setProfesorFormSubmitted(false)
   }
 
   const handleShowAlumnoForm = () => {
     setShowAlumnoForm(true)
     setShowProfesorForm(false)
     setAlumnoFormSubmitted(false)
+    setProfesorFormSubmitted(false)
+  }
+  const confirmacionRegistro = () => {
+    setShowAlumnoForm(false)
+    setShowProfesorForm(false)
+    setAlumnoFormSubmitted(false)
+    setProfesorFormSubmitted(false)
   }
 
   const cancelarAlumnoForm = () => {
@@ -39,6 +49,23 @@ const Alta = () => {
     setShowAlumnoForm(false)
     setShowProfesorForm(false)
     setAlumnoFormSubmitted(false)
+    setProfesorFormSubmitted(false)
+  }
+
+  const cancelarProfesorForm = () => {
+    if (registeredUid) {
+      deleteUserByUid(registeredUid)
+        .then(() => {
+          console.log(`Usuario con UID ${registeredUid} eliminado correctamente.`)
+        })
+        .catch((error) => {
+          console.error('Error al eliminar el usuario:', error)
+        })
+    }
+    setShowAlumnoForm(false)
+    setShowProfesorForm(false)
+    setAlumnoFormSubmitted(false)
+    setProfesorFormSubmitted(false)
   }
 
   return (
@@ -52,14 +79,17 @@ const Alta = () => {
           Alta Alumno
         </button>
       </div>
-      {showProfesorForm && (
-        <AltaProfe />
+      {showProfesorForm && !profesorFormSubmitted && (
+        <AltaUsuarioProfe setAlumnoFormSubmitted={setProfesorFormSubmitted} setUidRegistered={handleSetUidRegistered} />
+      )}
+      {profesorFormSubmitted && (
+        <AltaProfe setShowProfesorForm={cancelarProfesorForm} confirmacionRegistro={confirmacionRegistro} />
       )}
       {showAlumnoForm && !alumnoFormSubmitted && (
         <AltaUsuarioAlumno setAlumnoFormSubmitted={setAlumnoFormSubmitted} setUidRegistered={handleSetUidRegistered} />
       )}
       {alumnoFormSubmitted && (
-        <AltaAlumno setShowAlumnoForm={cancelarAlumnoForm} />
+        <AltaAlumno setShowAlumnoForm={cancelarAlumnoForm} confirmacionRegistro={confirmacionRegistro} />
       )}
     </div>
   )

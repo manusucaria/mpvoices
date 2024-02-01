@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { createAlumno } from '../../api/api.js'
 
-const AltaAlumno = ({ setShowAlumnoForm }) => {
+const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro }) => {
   const [alumnoData, setAlumnoData] = useState({
     Nombre: '',
     Apellido: '',
@@ -26,6 +26,12 @@ const AltaAlumno = ({ setShowAlumnoForm }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     createAlumno(alumnoData)
+      .then(() => {
+        confirmacionRegistro() // Llamar a la función después de que se crea el profesor
+      })
+      .catch((error) => {
+        console.error('Error al crear el profesor:', error)
+      })
   }
 
   const cancelarClick = () => {
