@@ -41,7 +41,7 @@ const Agenda = () => {
   const renderTimeSlots = () => {
     return timeSlots.map((time, index) => (
       <div key={time} className="grid grid-cols-[20%_40%_40%] grid-rows-auto">
-        <div className='border border-white text-center'>{time}</div>
+        <div className='border border-white text-center col-start-1 col-end-2'>{time}</div>
         {filteredProfesoresSorted.slice(startIndex, startIndex + 2).map((profesor) => {
           const diasDisponiblesNormalized = profesor.Dia
             .toLowerCase()

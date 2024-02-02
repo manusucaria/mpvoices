@@ -7,6 +7,7 @@ import { auth } from '../../lib/firebase.js'
 import Buscador from './sections/Buscador.js'
 import Agenda from './sections/Agenda.js'
 import Alta from './sections/Alta'
+import Eliminar from './sections/Eliminar'
 
 const page = () => {
   const user = useAuth()
@@ -41,6 +42,7 @@ const page = () => {
             <Agenda />
             <Buscador />
             <Alta />
+            <Eliminar />
             <div className='mx-auto bg-white text-black p-2 my-6 w-4/6 sm:w-2/6 h-auto text-center rounded-3xl hover:cursor-pointer' onClick={handleLogout}>
               <p>Cerrar Sesión</p>
             </div>

@@ -44,55 +44,51 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro }) => {
       <form className='flex flex-col mx-auto w-4/6 mt-4' onSubmit={handleSubmit}>
         <div className='flex mb-6'>
           <label className='mr-auto w-2/6'>Nombre:</label>
-          <input className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Nombre" value={alumnoData.Nombre} onChange={handleChange} />
+          <input placeholder="Nombre" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Nombre" value={alumnoData.Nombre} onChange={handleChange} />
         </div>
         <div className='flex mb-6'>
           <label className='mr-auto w-2/6'>Apellido:</label>
-          <input className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Apellido" value={alumnoData.Apellido} onChange={handleChange} />
+          <input placeholder="Apellido" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Apellido" value={alumnoData.Apellido} onChange={handleChange} />
         </div>
         <div className='flex mb-6'>
-          <label className='mr-auto w-2/6'>Fecha:</label>
-          <input className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Fecha" value={alumnoData.Fecha} onChange={handleChange} />
+          <label className='mr-auto w-2/6'>Fecha de Nacimiento:</label>
+          <input placeholder="Fecha de Nacimiento" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Fecha" value={alumnoData.Fecha} onChange={handleChange} />
         </div>
         <div className='flex mb-6'>
           <label className='mr-auto w-2/6'>Día:</label>
-          <input className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Dia" value={alumnoData.Dia} onChange={handleChange} />
+          <input placeholder="Día" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Dia" value={alumnoData.Dia} onChange={handleChange} />
         </div>
         <div className='flex mb-6'>
           <label className='mr-auto w-2/6'>Instrumento:</label>
-          <input className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Instrumento" value={alumnoData.Instrumento} onChange={handleChange} />
+          <input placeholder="Instrumento" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Instrumento" value={alumnoData.Instrumento} onChange={handleChange} />
         </div>
         <div className='flex mb-6'>
           <label className='mr-auto w-2/6'>Profesor:</label>
-          <input className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Profesor" value={alumnoData.Profesor} onChange={handleChange} />
+          <input placeholder="Profesor" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Profesor" value={alumnoData.Profesor} onChange={handleChange} />
         </div>
         <div className='flex mb-6'>
           <label className='mr-auto w-2/6'>Saldo:</label>
-          <input className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Saldo" value={alumnoData.Saldo} onChange={handleChange} />
+          <input placeholder="Saldo" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Saldo" value={alumnoData.Saldo} onChange={handleChange} />
         </div>
         <div className='flex mb-6'>
           <label className='mr-auto w-2/6'>Email:</label>
-          <input autoComplete="current-email" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="email" name="Email" value={alumnoData.Email} onChange={handleChange} />
+          <input placeholder="Email"autoComplete="current-email" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="email" name="Email" value={alumnoData.Email} onChange={handleChange} />
         </div>
         <div className='flex mb-6'>
           <label className='mr-auto w-2/6'>Contraseña:</label>
-          <input autoComplete="current-password" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Contraseña" value={alumnoData.Contraseña} onChange={handleChange} />
+          <input placeholder="Contraseña" autoComplete="current-password" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Contraseña" value={alumnoData.Contraseña} onChange={handleChange} />
         </div>
         <div className='flex mb-6'>
-          <label className='mr-auto w-2/6'>Duración:</label>
-          <input className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Duracion" value={alumnoData.Duracion} onChange={handleChange} />
-        </div>
-        <div className='flex mb-6'>
-          <label className='mr-auto w-2/6'>Rol:</label>
-          <input className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Rol" value={alumnoData.Rol} onChange={handleChange} />
+          <label className='mr-auto w-2/6'>Duración de clase:</label>
+          <input placeholder="Duración de clase" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Duracion" value={alumnoData.Duracion} onChange={handleChange} />
         </div>
         <div className='flex mb-6'>
           <label className='mr-auto w-2/6'>Horario:</label>
-          <input className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Horario" value={alumnoData.Horario} onChange={handleChange} />
+          <input placeholder="Horario" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Horario" value={alumnoData.Horario} onChange={handleChange} />
         </div>
         <div className='flex mb-6'>
           <label className='mr-auto w-2/6'>Teléfono:</label>
-          <input className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Tel" value={alumnoData.Tel} onChange={handleChange} />
+          <input placeholder="Teléfono" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Tel" value={alumnoData.Tel} onChange={handleChange} />
         </div>
         <div className='flex w-full mx-auto my-8'>
           <button className='rounded-3xl bg-white text-black px-3 py-2' type='submit'>

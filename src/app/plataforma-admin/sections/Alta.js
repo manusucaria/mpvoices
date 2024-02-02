@@ -91,10 +91,10 @@ const Alta = () => {
     <div className='w-full sm:w-3/6 mx-auto mt-4'>
       <h2 className="text-center text-3xl sm:text-5xl mb-4 text-white">Usuarios Nuevos</h2>
       <div className="flex justify-center mb-4">
-        <button className="mr-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={handleShowProfesorForm}>
+        <button className="mr-4 text-white font-bold py-2 px-4 rounded" onClick={handleShowProfesorForm}>
           Alta Profesor
         </button>
-        <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" onClick={handleShowAlumnoForm}>
+        <button className="text-white font-bold py-2 px-4 rounded" onClick={handleShowAlumnoForm}>
           Alta Alumno
         </button>
       </div>

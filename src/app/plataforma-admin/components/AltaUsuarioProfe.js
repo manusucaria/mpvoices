@@ -34,6 +34,7 @@ const AltaUsuarioProfe = ({ setProfesorFormSubmitted, setUidRegistered, handleCa
         <div className='flex mb-6'>
           <label className='mr-auto w-2/6' htmlFor="email">Email:</label>
           <input
+            placeholder="Email"
             className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto'
             id="email"
             type="email"
@@ -46,6 +47,7 @@ const AltaUsuarioProfe = ({ setProfesorFormSubmitted, setUidRegistered, handleCa
         <div className='flex mb-6'>
           <label className='mr-auto w-2/6' htmlFor="password">Password:</label>
           <input
+            placeholder="Contraseña"
             className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto'
             id="password"
             type="text"

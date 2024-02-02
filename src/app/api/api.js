@@ -6,6 +6,7 @@ import {
   getDoc,
   addDoc,
   updateDoc,
+  deleteDoc,
   where
 } from 'firebase/firestore'
 import { db } from '../../lib/firebase'
@@ -47,6 +48,46 @@ export const updateAlumno = async (id, obj) => {
 export const updateProfesor = async (id, obj) => {
   const docRef = doc(db, 'profesores', id)
   await updateDoc(docRef, obj)
+}
+
+// DELETE
+
+export const deleteAlumno = async (email, password) => {
+  const q = query(collection(db, 'alumnos'), where('Email', '==', email))
+  const querySnapshot = await getDocs(q)
+  if (querySnapshot.empty) {
+    throw new Error('Alumno no encontrado')
+  }
+  let alumnoEncontrado = false
+  querySnapshot.forEach(doc => {
+    const alumnoData = doc.data()
+    if (alumnoData.Contraseña === password) {
+      deleteDoc(doc.ref)
+      alumnoEncontrado = true
+    }
+  })
+  if (!alumnoEncontrado) {
+    throw new Error('Contraseña incorrecta')
+  }
+}
+
+export const deleteProfesor = async (email, password) => {
+  const q = query(collection(db, 'profesores'), where('Email', '==', email))
+  const querySnapshot = await getDocs(q)
+  if (querySnapshot.empty) {
+    throw new Error('Profesor no encontrado')
+  }
+  let profesorEncontrado = false
+  querySnapshot.forEach(doc => {
+    const profesorData = doc.data()
+    if (profesorData.Contraseña === password) {
+      deleteDoc(doc.ref)
+      profesorEncontrado = true
+    }
+  })
+  if (!profesorEncontrado) {
+    throw new Error('Contraseña incorrecta')
+  }
 }
 
 // READ WITH WHERE

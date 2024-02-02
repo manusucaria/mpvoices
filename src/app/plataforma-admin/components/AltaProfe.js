@@ -37,27 +37,27 @@ const AltaProfesor = ({ setShowProfesorForm, confirmacionRegistro }) => {
       <form className='flex flex-col mx-auto w-4/6 mt-4' onSubmit={handleSubmit}>
         <div className='flex mb-6'>
           <label className='mr-auto w-2/6'>Nombre:</label>
-          <input className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Nombre" value={profesorData.Nombre} onChange={handleChange} />
+          <input placeholder="Nombre" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Nombre" value={profesorData.Nombre} onChange={handleChange} />
         </div>
         <div className='flex mb-6'>
           <label className='mr-auto w-2/6'>Apellido:</label>
-          <input className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Apellido" value={profesorData.Apellido} onChange={handleChange} />
+          <input placeholder="Apellido" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Apellido" value={profesorData.Apellido} onChange={handleChange} />
         </div>
         <div className='flex mb-6'>
           <label className='mr-auto w-2/6'>Email:</label>
-          <input autoComplete="current-email" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="email" name="Email" value={profesorData.Email} onChange={handleChange} />
+          <input placeholder="Email" autoComplete="current-email" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="email" name="Email" value={profesorData.Email} onChange={handleChange} />
         </div>
         <div className='flex mb-6'>
           <label className='mr-auto w-2/6'>Contraseña:</label>
-          <input autoComplete="current-password" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Contraseña" value={profesorData.Contraseña} onChange={handleChange} />
+          <input placeholder="Contraseña" autoComplete="current-password" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Contraseña" value={profesorData.Contraseña} onChange={handleChange} />
         </div>
         <div className='flex mb-6'>
           <label className='mr-auto w-2/6'>Día:</label>
-          <input className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Dia" value={profesorData.Dia} onChange={handleChange} />
+          <input placeholder="Día" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Dia" value={profesorData.Dia} onChange={handleChange} />
         </div>
         <div className='flex mb-6'>
-          <label className='mr-auto w-2/6'>Instrumento:</label>
-          <input className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Instrumento" value={profesorData.Instrumento} onChange={handleChange} />
+          <label className='mr-auto w-2/6'>Instrumento/s:</label>
+          <input placeholder="Intrumento/s" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Instrumento" value={profesorData.Instrumento} onChange={handleChange} />
         </div>
         <div className='flex w-full mx-auto my-8'>
           <button className='rounded-3xl bg-white text-black px-3 py-2' type='submit'>
