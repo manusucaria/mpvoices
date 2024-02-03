@@ -21,7 +21,7 @@ const Agenda = () => {
 
   useEffect(() => {
     const slots = []
-    for (let hour = 12; hour <= 21; hour++) {
+    for (let hour = 12; hour <= 20; hour++) {
       for (let minute = 0; minute < 60; minute += 15) {
         slots.push(`${hour}:${minute === 0 ? '00' : minute}`)
       }
@@ -38,60 +38,6 @@ const Agenda = () => {
     setStartIndex(0)
   }
 
-  const renderTimeSlots = () => {
-    return timeSlots.map((time, index) => (
-      <div key={time} className="grid grid-cols-[20%_40%_40%] grid-rows-auto">
-        <div className='border border-white text-center col-start-1 col-end-2'>{time}</div>
-        {filteredProfesoresSorted.slice(startIndex, startIndex + 2).map((profesor) => {
-          const diasDisponiblesNormalized = profesor.Dia
-            .toLowerCase()
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '')
-            .split(/,\s*|\sy\s*/)
-
-          const selectedDayNormalized = selectedDay
-            .toLowerCase()
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '')
-
-          if (diasDisponiblesNormalized.includes(selectedDayNormalized)) {
-            const alumnoBackgroundColor = getBackgroundColor(profesor, time)
-            const alumnoData = filteredAlumnos.filter(alumno => alumno.Profesor === profesor.Nombre && alumno.Horario === time)
-            return (
-              <div
-                key={`${profesor.id}-${time}`}
-                style={{
-                  backgroundColor: alumnoBackgroundColor,
-                  border: alumnoBackgroundColor === 'green' ? 'none' : '1px solid white'
-                }}
-                className="border border-white text-center"
-              >
-                {alumnoData.map((alumno) => (
-                  <div key={`${alumno.Nombre}-${time}`} className="text-center items-center">
-                    <div>{`${alumno.Nombre} ${alumno.Apellido} ${alumno.Instrumento}`}</div>
-                  </div>
-                ))}
-              </div>
-            )
-          }
-          return null
-        })}
-      </div>
-    ))
-  }
-
-  const handleNext = () => {
-    if (startIndex + 2 < filteredProfesores.length) {
-      setStartIndex((prevIndex) => prevIndex + 2)
-    }
-  }
-
-  const handlePrev = () => {
-    setStartIndex((prevIndex) => {
-      return Math.max(prevIndex - 2, 0)
-    })
-  }
-
   const filteredProfesores = selectedDay
     ? profesores.filter((profesor) => {
       const diaProfesor = profesor.Dia.toLocaleLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -99,6 +45,7 @@ const Agenda = () => {
       return diaProfesor.includes(diaSeleccionado)
     })
     : []
+
   const filteredProfesoresSorted = filteredProfesores.slice().sort((a, b) => {
     const nombreProfesorA = a.Nombre.toLocaleLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     const nombreProfesorB = b.Nombre.toLocaleLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -106,6 +53,7 @@ const Agenda = () => {
     if (nombreProfesorA > nombreProfesorB) return 1
     return 0
   })
+
   const filteredAlumnos = selectedDay
     ? alumnos.filter((alumno) => {
       const diaAlumnoNormalized = alumno.Dia
@@ -120,35 +68,16 @@ const Agenda = () => {
     })
     : []
 
-  const getBackgroundColor = (profesor, time) => {
-    let backgroundColor = 'black'
-    filteredAlumnos.forEach((alumno) => {
-      if (alumno.Profesor === profesor.Nombre) {
-        const classStartTime = alumno.Horario
-        const classEndTime = calculateClassEndTime(classStartTime, alumno.Duracion)
-        const [classStartHour, classStartMinute] = classStartTime.split(':').map(Number)
-        const [classEndHour, classEndMinute] = classEndTime.split(':').map(Number)
-        const [currentTimeHour, currentTimeMinute] = time.split(':').map(Number)
-        const classStartTotalMinutes = classStartHour * 60 + classStartMinute
-        const classEndTotalMinutes = classEndHour * 60 + classEndMinute
-        const currentTimeTotalMinutes = currentTimeHour * 60 + currentTimeMinute
-        if (currentTimeTotalMinutes >= classStartTotalMinutes && currentTimeTotalMinutes <= classEndTotalMinutes) {
-          backgroundColor = 'green'
-        }
-      }
-    })
-    return backgroundColor
+  const handleNext = () => {
+    if (startIndex + 2 < filteredProfesores.length) {
+      setStartIndex((prevIndex) => prevIndex + 2)
+    }
   }
 
-  const calculateClassEndTime = (startTime, duration) => {
-    const [startHour, startMinute] = startTime.split(':').map(Number)
-    const durationHour = Math.floor(duration / 60)
-    const durationMinute = duration % 60
-    const startTotalMinutes = startHour * 60 + startMinute
-    const endTotalMinutes = startTotalMinutes + durationHour * 60 + durationMinute
-    const endHour = Math.floor(endTotalMinutes / 60)
-    const endMinute = endTotalMinutes % 60
-    return `${endHour}:${endMinute < 10 ? '0' + endMinute : endMinute}`
+  const handlePrev = () => {
+    setStartIndex((prevIndex) => {
+      return Math.max(prevIndex - 2, 0)
+    })
   }
 
   return (
@@ -184,24 +113,56 @@ const Agenda = () => {
         </div>
           )}
       {selectedDay && (
-        <div className="overflow-x-auto mx-auto w-full px-6 sm:px-0 sm:w-4/6">
-        <div className="flex justify-center my-4">
-          {filteredProfesores.length >= 3 && startIndex > 0 && (
-            <button className='mr-auto pl-4' onClick={handlePrev}>Prev</button>
-          )}
-          {startIndex + 2 < filteredProfesores.length && (
-            <button className='ml-auto pr-4' onClick={handleNext}>Next</button>
-          )}
-        </div>
-          <div className="grid grid-cols-[20%_40%_40%]">
-            <div className="border border-white text-center">Horarios</div>
+        <div className="flex flex-col overflow-x-auto mx-auto w-full px-6 sm:px-0 sm:w-4/6">
+          <div className="flex justify-center my-4">
+            {filteredProfesoresSorted.length >= 3 && startIndex > 0 && (
+              <button className='mr-auto pl-4' onClick={handlePrev}>Prev</button>
+            )}
+            {startIndex + 2 < filteredProfesoresSorted.length && (
+              <button className='ml-auto pr-4' onClick={handleNext}>Next</button>
+            )}
+          </div>
+          <div className="grid grid-cols-[20%_40%_40%] bg-orange-300">
+            <div className="border border-white text-center">Profe</div>
             {filteredProfesoresSorted.slice(startIndex, startIndex + 2).map((profesor) => (
               <div key={profesor.id} className="border border-white text-center">
-                {profesor.Nombre}
+                <p>{profesor.Nombre}</p>
               </div>
             ))}
           </div>
-          <div>{renderTimeSlots()}</div>
+          <div className={'bg-navy-blue grid grid-cols-[20%_40%_40%] grid-rows-36'}>
+            {timeSlots.map((time, index) => (
+              <div key={index} className='border border-white text-center col-start-1 col-end-2 bg-navy-blue'>
+                {time}
+              </div>
+            ))}
+            {timeSlots.map((time, index) => (
+              <div key={`empty_${index}`} className='border border-white text-center col-start-2 col-end-3 row-start-1 row-end-37 bg-navy-blue'>
+                <p></p>
+              </div>
+            ))}
+            {timeSlots.map((time, index) => (
+              <div key={`empty_${index}`} className='border border-white text-center col-start-3 col-end-4 row-start-1 row-end-37 bg-navy-blue'>
+                <p></p>
+              </div>
+            ))}
+            {filteredAlumnos.map((alumno) => {
+              const alumnoHorarioIndex = timeSlots.indexOf(alumno.Horario)
+              const duracionFilas = alumno.Duracion / 15
+              const gridRowStart = alumnoHorarioIndex + 1
+              const gridRowEnd = gridRowStart + duracionFilas
+              const profesorIndex = filteredProfesoresSorted.findIndex(profesor => profesor.Nombre === alumno.Profesor)
+              const gridColumn = profesorIndex + 2 + startIndex
+
+              return (
+                <div key={`${alumno.Nombre}`} className="flex flex-col h-full text-center items-center bg-orange-300 p-2 border border-white" style={{ gridColumn, gridRowStart, gridRowEnd }}>
+                  <p className='my-auto'>{alumno.Nombre} {alumno.Apellido}</p>
+                  <p className='my-auto'>{alumno.Instrumento}</p>
+                  <p className='my-auto'>Notificaiones</p>
+                </div>
+              )
+            })}
+          </div>
         </div>
       )}
     </div>

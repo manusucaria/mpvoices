@@ -69,6 +69,7 @@ const AltaUsuarioAlumno = ({ setAlumnoFormSubmitted, setUidRegistered, handleCan
             id="password"
             type="password"
             value={password}
+            autoComplete='Current password'
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
