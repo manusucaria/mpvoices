@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getAlumnos, getProfesores } from '../../api/api.js'
-import { useAuth } from '../../../lib/auth.js'
 
 const Agenda = () => {
-  const user = useAuth()
   const [alumnos, setAlumnos] = useState([])
   const [profesores, setProfesores] = useState([])
   const [selectedDay, setSelectedDay] = useState('')
@@ -17,7 +15,7 @@ const Agenda = () => {
     getProfesores().then((data) => {
       setProfesores(data)
     })
-  }, [user])
+  }, [selectedDay])
 
   useEffect(() => {
     const slots = []
@@ -80,6 +78,15 @@ const Agenda = () => {
     })
   }
 
+  const calcularNuevoHorario = (horario, duracion) => {
+    const [hora, minuto] = horario.split(':').map(Number)
+    const duracionMinutos = duracion / 15 * 15
+    const nuevoHorarioMinutos = hora * 60 + minuto + duracionMinutos
+    const nuevaHora = Math.floor(nuevoHorarioMinutos / 60)
+    const nuevoMinuto = nuevoHorarioMinutos % 60
+    return `${nuevaHora}:${nuevoMinuto < 10 ? '0' : ''}${nuevoMinuto}`
+  }
+
   return (
     <div className="flex flex-col">
       <h2 className="text-center text-3xl sm:text-5xl mb-4 text-white">Días y horarios</h2>
@@ -94,23 +101,23 @@ const Agenda = () => {
         </div>
           )
         : (
-        <div className="flex flex-col justify-center mb-4">
-          <button onClick={() => filterAlumnosByDay('Lunes')} className="bg-white text-black text-lg rounded-3xl mx-auto h-8 w-4/6 sm:w-2/6 mb-6">
-            Lunes
-          </button>
-          <button onClick={() => filterAlumnosByDay('Martes')} className="bg-white text-black text-lg rounded-3xl mx-auto h-8 w-4/6 sm:w-2/6 mb-6">
-            Martes
-          </button>
-          <button onClick={() => filterAlumnosByDay('Miércoles')} className="bg-white text-black text-lg rounded-3xl mx-auto h-8 w-4/6 sm:w-2/6 mb-6">
-            Miércoles
-          </button>
-          <button onClick={() => filterAlumnosByDay('Jueves')} className="bg-white text-black text-lg rounded-3xl mx-auto h-8 w-4/6 sm:w-2/6 mb-6">
-            Jueves
-          </button>
-          <button onClick={() => filterAlumnosByDay('Viernes')} className="bg-white text-black text-lg rounded-3xl mx-auto h-8 w-4/6 sm:w-2/6">
-            Viernes
-          </button>
-        </div>
+          <div className="flex flex-col justify-center mb-4">
+            <button onClick={() => filterAlumnosByDay('Lunes')} className="bg-white text-black text-lg rounded-3xl mx-auto h-8 w-4/6 sm:w-2/6 mb-6">
+              Lunes
+            </button>
+            <button onClick={() => filterAlumnosByDay('Martes')} className="bg-white text-black text-lg rounded-3xl mx-auto h-8 w-4/6 sm:w-2/6 mb-6">
+              Martes
+            </button>
+            <button onClick={() => filterAlumnosByDay('Miércoles')} className="bg-white text-black text-lg rounded-3xl mx-auto h-8 w-4/6 sm:w-2/6 mb-6">
+              Miércoles
+            </button>
+            <button onClick={() => filterAlumnosByDay('Jueves')} className="bg-white text-black text-lg rounded-3xl mx-auto h-8 w-4/6 sm:w-2/6 mb-6">
+              Jueves
+            </button>
+            <button onClick={() => filterAlumnosByDay('Viernes')} className="bg-white text-black text-lg rounded-3xl mx-auto h-8 w-4/6 sm:w-2/6">
+              Viernes
+            </button>
+          </div>
           )}
       {selectedDay && (
         <div className="flex flex-col overflow-x-auto mx-auto w-full px-6 sm:px-0 sm:w-4/6">
@@ -122,48 +129,40 @@ const Agenda = () => {
               <button className='ml-auto pr-4' onClick={handleNext}>Next</button>
             )}
           </div>
-          <div className="grid grid-cols-[20%_40%_40%] bg-orange-300">
-            <div className="border border-white text-center">Profe</div>
-            {filteredProfesoresSorted.slice(startIndex, startIndex + 2).map((profesor) => (
-              <div key={profesor.id} className="border border-white text-center">
-                <p>{profesor.Nombre}</p>
-              </div>
-            ))}
-          </div>
-          <div className={'bg-navy-blue grid grid-cols-[20%_40%_40%] grid-rows-36'}>
+          <div className='grid grid-cols-[20%_40%_40%] grid-rows-37'>
+            <div className=" bg-navy-blue border border-white text-center col-start-1 col-end-2 row-start-1 row-end-2 flex">
+              <p className='m-auto'>Profe</p>
+            </div>
             {timeSlots.map((time, index) => (
-              <div key={index} className='border border-white text-center col-start-1 col-end-2 bg-navy-blue'>
-                {time}
+              <div key={index} className='border border-white text-center col-start-1 col-end-2 bg-navy-blue flex h-8'>
+                <p className='m-auto'>{time}</p>
               </div>
             ))}
-            {timeSlots.map((time, index) => (
-              <div key={`empty_${index}`} className='border border-white text-center col-start-2 col-end-3 row-start-1 row-end-37 bg-navy-blue'>
-                <p></p>
-              </div>
-            ))}
-            {timeSlots.map((time, index) => (
-              <div key={`empty_${index}`} className='border border-white text-center col-start-3 col-end-4 row-start-1 row-end-37 bg-navy-blue'>
-                <p></p>
-              </div>
-            ))}
-            {filteredAlumnos.map((alumno) => {
-              const alumnoHorarioIndex = timeSlots.indexOf(alumno.Horario)
-              const duracionFilas = alumno.Duracion / 15
-              const gridRowStart = alumnoHorarioIndex + 1
-              const gridRowEnd = gridRowStart + duracionFilas
-              const profesorIndex = filteredProfesoresSorted.findIndex(profesor => profesor.Nombre === alumno.Profesor)
-              const gridColumn = profesorIndex + 2 + startIndex
-
-              return (
-                <div key={`${alumno.Nombre}`} className="flex flex-col h-full text-center items-center bg-orange-300 p-2 border border-white" style={{ gridColumn, gridRowStart, gridRowEnd }}>
-                  <p className='my-auto'>{alumno.Nombre} {alumno.Apellido}</p>
-                  <p className='my-auto'>{alumno.Instrumento}</p>
-                  <p className='my-auto'>Notificaiones</p>
+            <div className="col-start-2 col-end-4 row-start-1 row-end-38 grid grid-cols-2 bg-orange-300">
+              {filteredProfesoresSorted.slice(startIndex, startIndex + 2).map((profesor) => (
+              <div key={profesor.id} className="grid grid-cols-1 grid-rows-37 border border-white text-center">
+                <p className='row-start-1 row-end-2 bg-orange-600'>{profesor.Nombre}</p>
+                {filteredAlumnos
+                  .filter((alumno) => alumno.Profesor === profesor.Nombre)
+                  .map((alumno) => (
+                    <div
+                      key={`${alumno.Nombre}`}
+                      className="flex flex-col h-full text-center bg-navy-blue p-2 border border-white"
+                      style={{
+                        gridColumn: filteredProfesoresSorted.findIndex((p) => p.Nombre === profesor.Nombre) - startIndex,
+                        gridRowStart: timeSlots.indexOf(alumno.Horario) + 2,
+                        gridRowEnd: timeSlots.indexOf(alumno.Horario) + 2 + alumno.Duracion / 15
+                      }}
+                    >
+                      <p className='text-base mt-auto'>{alumno.Nombre} {alumno.Apellido}</p>
+                      <p className='text-base mb-auto'>{alumno.Instrumento} {alumno.Horario}-{calcularNuevoHorario(alumno.Horario, alumno.Duracion)}</p>
+                    </div>
+                  ))}
                 </div>
-              )
-            })}
+              ))}
           </div>
         </div>
+      </div>
       )}
     </div>
   )
