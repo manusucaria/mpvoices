@@ -87,7 +87,7 @@ const EditorPagos = ({ alumno }) => {
         <div className='flex flex-col w-4/6 mx-auto mt-4'>
           <p className='mb-8'>Saldo: {saldo}</p>
           <p className='mb-8'>Última Actualización: {actualizacion}</p>
-          <button className='rounded-3xl h-8 mt-8 mb-8 bg-orange-600' onClick={handleEditClick}>
+          <button className='rounded-3xl h-8 mt-8 bg-orange-600' onClick={handleEditClick}>
             Editar Perfil
           </button>
         </div>

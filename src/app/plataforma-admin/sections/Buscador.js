@@ -3,6 +3,8 @@ import { getAlumnos, getProfesores } from '../../api/api.js'
 import { useAuth } from '../../../lib/auth.js'
 import EditorAlumnos from '../components/EditorAlumnos.js'
 import EditorProfesor from '../components/EditorProfesor.js'
+import EliminarAlumno from '../components/EliminarAlumno.js'
+import EliminarProfesor from '../components/EliminarProfesor.js'
 
 const Buscador = () => {
   const user = useAuth()
@@ -89,20 +91,22 @@ const Buscador = () => {
       {selectedAlumno && (
         <div className="flex flex-col mx-auto px-3 py-2 items-center w-full sm:w-3/6">
           <EditorAlumnos alumno={selectedAlumno} />
-          <button onClick={clearDetails} className='bg-white text-black font-botones font-bold text-center text-sm rounded-3xl h-8 w-4/6'>Volver</button>
+          <EliminarAlumno selectedAlumno={selectedAlumno} setSelectedAlumno={setSelectedAlumno} />
+          <button onClick={clearDetails} className='bg-white text-black font-botones font-bold text-center text-sm rounded-3xl mt-4 h-10 w-4/6'>Volver</button>
         </div>
       )}
       {searchTerm.trim() !== '' && (
         <div className='flex flex-col mx-auto w-full'>
           {buscarProfesores.map((profesor) => (
-            <button key={profesor.id} onClick={() => handleProfesorClick(profesor)} className='mx-auto my-2 bg-[#663481] text-white rounded-3xl h-8 w-4/6 sm:w-2/6'>{profesor.Nombre} {profesor.Apellido}</button>
+            <button key={profesor.id} onClick={() => handleProfesorClick(profesor)} className='mx-auto my-2 bg-[#663481] text-white rounded-3xl h-10 w-4/6 sm:w-2/6'>{profesor.Nombre} {profesor.Apellido}</button>
           ))}
         </div>
       )}
       {selectedProfesor && (
         <div className="flex flex-col mx-auto px-3 py-2 items-center w-full sm:w-3/6">
           <EditorProfesor profesor={selectedProfesor} />
-          <button onClick={clearDetails} className='bg-white text-black font-botones font-bold text-center text-sm rounded-3xl h-8 w-4/6'>Volver</button>
+          <EliminarProfesor selectedProfesor={selectedProfesor} setSelectedProfesor={setSelectedProfesor} />
+          <button onClick={clearDetails} className='bg-white text-black font-botones font-bold text-center text-sm rounded-3xl mt-4 h-10 w-4/6'>Volver</button>
         </div>
       )}
     </div>

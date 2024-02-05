@@ -120,7 +120,7 @@ const EditorClases = ({ alumno }) => {
                 onChange={(e) => setProfesor(e.target.value)}
               />
             </div>
-            <div className='flex w-full mx-auto my-8'>
+            <div className='flex w-full mx-auto'>
               <button className='rounded-3xl bg-white text-black px-3 py-2' type='submit'>
                 Guardar cambios
               </button>
@@ -142,7 +142,7 @@ const EditorClases = ({ alumno }) => {
           <p className='mb-8'>Horario: {horario}</p>
           <p className='mb-8'>Duración: {duracion}</p>
           <p>Profesor: {profesor}</p>
-          <button className='rounded-3xl h-8 mt-8 mb-8 bg-orange-600' onClick={handleEditClick}>
+          <button className='rounded-3xl h-8 mt-8 bg-orange-600' onClick={handleEditClick}>
             Editar Perfil
           </button>
         </div>

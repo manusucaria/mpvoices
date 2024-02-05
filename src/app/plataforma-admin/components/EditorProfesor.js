@@ -139,7 +139,7 @@ const EditorDatosProfesor = ({ profesor }) => {
           <p className='mb-8'>Email: {email}</p>
           <p className='mb-8'>Día: {dia}</p>
           <p>Instrumento: {instrumento}</p>
-          <button className='rounded-3xl h-8 mt-8 mb-8 bg-orange-600' onClick={handleEditClick}>
+          <button className='rounded-3xl h-8 mt-8 bg-orange-600' onClick={handleEditClick}>
             Editar Perfil
           </button>
         </div>

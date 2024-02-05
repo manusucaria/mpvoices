@@ -142,7 +142,7 @@ const EditorDatos = ({ alumno }) => {
           <p className='mb-8'>Fecha de nacimiento: {fecha}</p>
           <p className='mb-8'>Email: {email}</p>
           <p>Teléfono: {tel}</p>
-          <button className='rounded-3xl h-8 mt-8 mb-8 bg-orange-600' onClick={handleEditClick}>
+          <button className='rounded-3xl h-8 mt-8 bg-orange-600' onClick={handleEditClick}>
             Editar Perfil
           </button>
         </div>
