@@ -47,10 +47,10 @@ const AltaUsuarioProfe = ({ setProfesorFormSubmitted, setUidRegistered, handleCa
 
   return (
     <div className='flex flex-col mx-auto w-full'>
-      <h3 className="text-center text-xl sm:text-3xl mb-4 text-white">Crear Cuenta Profesor</h3>
+      <h3 className="text-center text-xl sm:text-3xl mb-4 text-black">Crear Cuenta Profesor</h3>
       <form className='flex flex-col mx-auto w-4/6 mt-4' onSubmit={handleSubmit}>
         <div className='flex'>
-          <label className='mr-auto w-2/6' htmlFor="email">Email:</label>
+          <label className='mr-auto w-2/6 text-black' htmlFor="email">Email:</label>
           <input
             placeholder="Email"
             className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto'
@@ -62,7 +62,7 @@ const AltaUsuarioProfe = ({ setProfesorFormSubmitted, setUidRegistered, handleCa
         </div>
         {errors.email && <p className="ml-auto pr-4 mt-1 text-white text-sm">{errors.email}</p>}
         <div className='flex mt-6'>
-          <label className='mr-auto w-2/6' htmlFor="password">Password:</label>
+          <label className='mr-auto w-2/6 text-black' htmlFor="password">Password:</label>
           <input
             placeholder="Contraseña"
             className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto'
@@ -74,7 +74,7 @@ const AltaUsuarioProfe = ({ setProfesorFormSubmitted, setUidRegistered, handleCa
           />
         </div>
         {errors.password && <p className="ml-auto pr-4 mt-1 text-white text-sm">{errors.password}</p>}
-        <div className='flex w-full mx-auto gap-x-2 mt-6'>
+        <div className='flex w-full mx-auto gap-x-2 mt-8'>
           <button
             className='w-3/6 mr-auto rounded-3xl bg-[#008f39] text-white px-3 py-2'
             type="submit">

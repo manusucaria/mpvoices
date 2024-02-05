@@ -34,6 +34,8 @@ module.exports = {
         37: 'repeat(37, minmax(0, 1fr))'
       },
       gridRowEnd: {
+        16: '16',
+        37: '37',
         38: '38'
       }
     }

@@ -88,14 +88,14 @@ const Alta = () => {
   }
 
   return (
-    <div className='w-full sm:w-3/6 mx-auto mt-4'>
-      <h2 className="text-center text-3xl sm:text-5xl mb-4 text-white">Usuarios Nuevos</h2>
-      <div className="flex justify-center mb-4">
-        <button className="mr-4 text-white font-bold py-2 px-4 rounded" onClick={handleShowProfesorForm}>
-          Alta Profesor
+    <div className='w-full mx-auto py-12 bg-[#D9D9D9]'>
+      <h2 className="text-center text-xl sm:text-3xl mb-8 text-black">Nuevos usuarios</h2>
+      <div className="flex justify-center gap-x-4 sm:gap-x-12 mb-4">
+        <button className="text-white bg-[#E9500E] py-2 w-3/6 sm:w-2/6 lg:w-1/6 ml-4 h-12 rounded-3xl" onClick={handleShowAlumnoForm}>
+          Alumno
         </button>
-        <button className="text-white font-bold py-2 px-4 rounded" onClick={handleShowAlumnoForm}>
-          Alta Alumno
+        <button className="text-white bg-[#663481] py-2 w-3/6 sm:w-2/6 lg:w-1/6 mr-4 h-12 rounded-3xl" onClick={handleShowProfesorForm}>
+          Profesor
         </button>
       </div>
       {showProfesorForm && !profesorFormSubmitted && (

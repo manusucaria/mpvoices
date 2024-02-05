@@ -30,8 +30,7 @@ const EliminarProfesor = ({ setMostrarAlumno, setMostrarProfesor }) => {
   }
 
   return (
-    <div className='w-full sm:w-3/6 mx-auto mt-4'>
-      <h2 className="text-center text-3xl sm:text-5xl mb-4 text-white">Eliminar Profesor</h2>
+    <div className='w-full md:w-4/6 lg:w-3/6 mx-auto mt-4'>
       {!eliminado
         ? (
         <form onSubmit={handleSubmit} className="flex flex-col w-4/6 mx-auto">
@@ -61,13 +60,13 @@ const EliminarProfesor = ({ setMostrarAlumno, setMostrarProfesor }) => {
           {error && (
             <p className="flex mx-auto text-orange-600 text-center mb-4">{error}</p>
           )}
-          <button type="submit" className="rounded-3xl mx-auto w-3/6 bg-orange-600 text-white px-3 py-2">Eliminar Profesor</button>
+          <button type="submit" className="rounded-3xl mt-4 mx-auto w-3/6 bg-[#663481] text-white px-3 py-2">Eliminar Profesor</button>
         </form>
           )
         : (
         <div className="flex flex-col mx-auto w-4/6">
           <p className="text-white text-sm mb-4 mx-auto">Profesor correctamente eliminado</p>
-          <button onClick={handleAceptar} className="mx-auto w-3/6 rounded-3xl bg-orange-600 text-white px-3 py-2">Aceptar</button>
+          <button onClick={handleAceptar} className="mx-auto w-3/6 rounded-3xl bg-[#663481] text-white px-3 py-2">Aceptar</button>
         </div>
           )}
     </div>

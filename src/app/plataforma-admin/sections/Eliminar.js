@@ -25,14 +25,14 @@ const Eliminar = () => {
   }
 
   return (
-    <div className='w-full mx-auto mt-4'>
-      <h2 className="text-center text-3xl sm:text-5xl mb-4 text-white">Eliminar Usuario</h2>
-      <div className='flex justify-center mb-4'>
-        <button className="text-white font-bold py-2 px-4 rounded" onClick={handleMostrarAlumno}>
-          Eliminar Alumno
+    <div className='w-full mx-auto py-12 bg-[#212121]'>
+      <h2 className="text-center text-xl sm:text-3xl mb-8 text-white">Eliminar usuario</h2>
+      <div className="flex justify-center gap-x-4 sm:gap-x-12 mb-8">
+        <button className="text-white text-sm sm:text-base bg-[#E9500E] py-2 w-3/6 sm:w-2/6 lg:w-1/6 ml-4 sm:px-12 rounded-3xl" onClick={handleMostrarAlumno}>
+          Alumno
         </button>
-        <button className="text-white font-bold py-2 px-4 rounded" onClick={handleMostrarProfesor}>
-          Eliminar Profesor
+        <button className="text-white text-sm sm:text-base bg-[#663481] py-2 w-3/6 sm:w-2/6 lg:w-1/6 mr-4 sm:px-12 rounded-3xl" onClick={handleMostrarProfesor}>
+          Profesor
         </button>
       </div>
       {mostrarAlumno && <EliminarAlumno setMostrarAlumno={setMostrarAlumno} setMostrarProfesor={setMostrarProfesor} />}
