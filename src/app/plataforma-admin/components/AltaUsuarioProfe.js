@@ -67,7 +67,7 @@ const AltaUsuarioProfe = ({ setProfesorFormSubmitted, setUidRegistered, handleCa
             placeholder="Contraseña"
             className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto'
             id="password"
-            type="password"
+            type="text"
             value={password}
             autoComplete='Current password'
             onChange={(e) => setPassword(e.target.value)}

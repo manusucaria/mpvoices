@@ -130,18 +130,20 @@ const Agenda = () => {
             )}
           </div>
           <div className='grid grid-cols-[20%_40%_40%] grid-rows-37'>
-            <div className=" bg-navy-blue border border-white text-center col-start-1 col-end-2 row-start-1 row-end-2 flex">
+            <div className=" bg-navy-blue border h-10 border-white text-center col-start-1 col-end-2 row-start-1 row-end-2 flex">
               <p className='m-auto'>Profe</p>
             </div>
             {timeSlots.map((time, index) => (
-              <div key={index} className='border border-white text-center col-start-1 col-end-2 bg-navy-blue flex h-8'>
+              <div key={index} className='border border-white text-center col-start-1 col-end-2 bg-navy-blue flex h-10'>
                 <p className='m-auto'>{time}</p>
               </div>
             ))}
             <div className="col-start-2 col-end-4 row-start-1 row-end-38 grid grid-cols-2 bg-orange-300">
               {filteredProfesoresSorted.slice(startIndex, startIndex + 2).map((profesor) => (
               <div key={profesor.id} className="grid grid-cols-1 grid-rows-37 border border-white text-center">
-                <p className='row-start-1 row-end-2 bg-orange-600'>{profesor.Nombre}</p>
+                <div className='flex row-start-1 row-end-2 h-10 text-sm border border-b-white bg-orange-600'>
+                  <p className='m-auto'>{profesor.Nombre}</p>
+                </div>
                 {filteredAlumnos
                   .filter((alumno) => alumno.Profesor === profesor.Nombre)
                   .map((alumno) => (
