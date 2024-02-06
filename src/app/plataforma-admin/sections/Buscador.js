@@ -6,7 +6,7 @@ import EditorProfesor from '../components/EditorProfesor.js'
 import EliminarAlumno from '../components/EliminarAlumno.js'
 import EliminarProfesor from '../components/EliminarProfesor.js'
 
-const Buscador = () => {
+const Buscador = ({ cambios, newCambio }) => {
   const user = useAuth()
   const [alumnos, setAlumnos] = useState([])
   const [profesores, setProfesores] = useState([])
@@ -21,7 +21,7 @@ const Buscador = () => {
     getProfesores().then(data => {
       setProfesores(data)
     })
-  }, [user, selectedAlumno, selectedProfesor])
+  }, [user, selectedAlumno, selectedProfesor, cambios])
 
   const normalizeString = (str) => {
     return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -90,7 +90,7 @@ const Buscador = () => {
       )}
       {selectedAlumno && (
         <div className="flex flex-col mx-auto px-3 py-2 items-center w-full sm:w-3/6">
-          <EditorAlumnos alumno={selectedAlumno} />
+          <EditorAlumnos alumno={selectedAlumno} newCambio={newCambio} />
           <EliminarAlumno selectedAlumno={selectedAlumno} setSelectedAlumno={setSelectedAlumno} />
           <button onClick={clearDetails} className='bg-white text-black font-botones font-bold text-center text-sm rounded-3xl mt-4 h-10 w-4/6'>Volver</button>
         </div>
@@ -104,7 +104,7 @@ const Buscador = () => {
       )}
       {selectedProfesor && (
         <div className="flex flex-col mx-auto px-3 py-2 items-center w-full sm:w-3/6">
-          <EditorProfesor profesor={selectedProfesor} />
+          <EditorProfesor profesor={selectedProfesor} newCambio={newCambio} />
           <EliminarProfesor selectedProfesor={selectedProfesor} setSelectedProfesor={setSelectedProfesor} />
           <button onClick={clearDetails} className='bg-white text-black font-botones font-bold text-center text-sm rounded-3xl mt-4 h-10 w-4/6'>Volver</button>
         </div>

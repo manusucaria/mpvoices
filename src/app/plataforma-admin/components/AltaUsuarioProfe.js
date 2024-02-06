@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { signUp } from '../../../lib/firebase-utils'
 
-const AltaUsuarioProfe = ({ setProfesorFormSubmitted, setUidRegistered, handleCancelar }) => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const rol = 'Profesor'
+const AltaUsuarioProfe = ({ setProfesorFormSubmitted, handleCancelar, onFormSubmit }) => {
+  const [newUserEmail, setNewUserEmail] = useState('')
+  const [newUserPassword, setNewUserPassword] = useState('')
+  const newUserRol = 'Profesor'
   const [errors, setErrors] = useState({})
+
+  const adminEmail = 'admin@gmail.com'
+  const adminPassword = 'admin1111'
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -14,18 +17,18 @@ const AltaUsuarioProfe = ({ setProfesorFormSubmitted, setUidRegistered, handleCa
 
     const formErrors = {}
 
-    if (!email.trim()) {
+    if (!newUserEmail.trim()) {
       formErrors.email = 'El campo de correo electrónico es obligatorio'
     }
 
-    if (!password) {
+    if (!newUserPassword) {
       formErrors.password = 'El campo de contraseña es obligatorio'
     }
 
     if (Object.keys(formErrors).length === 0) {
       try {
-        const uid = await signUp(email.trim(), password, rol)
-        setUidRegistered(uid)
+        onFormSubmit(newUserEmail, newUserPassword)
+        await signUp(newUserEmail.trim(), newUserPassword, newUserRol, adminEmail, adminPassword)
         setProfesorFormSubmitted(true)
       } catch (error) {
         if (error.code === 'auth/email-already-in-use') {
@@ -46,7 +49,7 @@ const AltaUsuarioProfe = ({ setProfesorFormSubmitted, setUidRegistered, handleCa
   }
 
   return (
-    <div className='flex flex-col mx-auto w-full'>
+    <div className='flex flex-col mx-auto w-full md:w-4/6 lg:w-3/6'>
       <h3 className="text-center text-xl sm:text-3xl mb-4 text-black">Crear Cuenta Profesor</h3>
       <form className='flex flex-col mx-auto w-4/6 mt-4' onSubmit={handleSubmit}>
         <div className='flex'>
@@ -56,8 +59,8 @@ const AltaUsuarioProfe = ({ setProfesorFormSubmitted, setUidRegistered, handleCa
             className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto'
             id="email"
             type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={newUserEmail}
+            onChange={(e) => setNewUserEmail(e.target.value)}
           />
         </div>
         {errors.email && <p className="ml-auto pr-4 mt-1 text-white text-sm">{errors.email}</p>}
@@ -68,9 +71,9 @@ const AltaUsuarioProfe = ({ setProfesorFormSubmitted, setUidRegistered, handleCa
             className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto'
             id="password"
             type="text"
-            value={password}
-            autoComplete='Current password'
-            onChange={(e) => setPassword(e.target.value)}
+            value={newUserPassword}
+            autoComplete='new-password'
+            onChange={(e) => setNewUserPassword(e.target.value)}
           />
         </div>
         {errors.password && <p className="ml-auto pr-4 mt-1 text-white text-sm">{errors.password}</p>}

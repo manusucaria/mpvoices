@@ -25,7 +25,6 @@ const EditorPagos = ({ alumno }) => {
           Actualizacion: actualizacion
         }
         await updateAlumno(alumno.id, updatedAlumno)
-        console.log('¡Datos actualizados correctamente!')
         setEditMode(false)
       } catch (error) {
         console.error('Error al actualizar los datos:', error)

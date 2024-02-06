@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { createProfesor } from '../../api/api.js'
 
-const AltaProfesor = ({ setShowProfesorForm, confirmacionRegistro }) => {
+const AltaProfesor = ({ setShowProfesorForm, confirmacionRegistro, newUserEmail, newUserPassword }) => {
   const [profesorData, setProfesorData] = useState({
     Nombre: '',
     Apellido: '',
-    Email: '',
-    Contraseña: '',
+    Email: newUserEmail,
+    Contraseña: newUserPassword,
     Dia: '',
     Instrumento: ''
   })
@@ -42,14 +42,6 @@ const AltaProfesor = ({ setShowProfesorForm, confirmacionRegistro }) => {
         <div className='flex mb-6'>
           <label className='mr-auto w-2/6'>Apellido:</label>
           <input placeholder="Apellido" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Apellido" value={profesorData.Apellido} onChange={handleChange} />
-        </div>
-        <div className='flex mb-6'>
-          <label className='mr-auto w-2/6'>Email:</label>
-          <input placeholder="Email" autoComplete="current-email" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="email" name="Email" value={profesorData.Email} onChange={handleChange} />
-        </div>
-        <div className='flex mb-6'>
-          <label className='mr-auto w-2/6'>Contraseña:</label>
-          <input placeholder="Contraseña" autoComplete="current-password" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Contraseña" value={profesorData.Contraseña} onChange={handleChange} />
         </div>
         <div className='flex mb-6'>
           <label className='mr-auto w-2/6'>Día:</label>

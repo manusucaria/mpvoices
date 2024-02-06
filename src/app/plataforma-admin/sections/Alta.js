@@ -3,17 +3,18 @@ import AltaAlumno from '../components/AltaAlumno'
 import AltaProfe from '../components/AltaProfe'
 import AltaUsuarioAlumno from '../components/AltaUsuarioAlumno'
 import AltaUsuarioProfe from '../components/AltaUsuarioProfe'
-import { deleteUserByUid } from '../../../lib/firebase-utils'
 
-const Alta = () => {
+const Alta = ({ newCambio }) => {
   const [showProfesorForm, setShowProfesorForm] = useState(false)
   const [showAlumnoForm, setShowAlumnoForm] = useState(false)
   const [alumnoFormSubmitted, setAlumnoFormSubmitted] = useState(false)
   const [profesorFormSubmitted, setProfesorFormSubmitted] = useState(false)
-  const [registeredUid, setRegisteredUid] = useState('')
+  const [userEmail, setUserEmail] = useState('')
+  const [userPassword, setUserPassword] = useState('')
 
-  const handleSetUidRegistered = (uid) => {
-    setRegisteredUid(uid)
+  const handleNewFormSubmit = (newUserEmail, newUserPassword) => {
+    setUserEmail(newUserEmail)
+    setUserPassword(newUserPassword)
   }
 
   const handleShowProfesorForm = () => {
@@ -45,18 +46,10 @@ const Alta = () => {
     setShowProfesorForm(false)
     setAlumnoFormSubmitted(false)
     setProfesorFormSubmitted(false)
+    newCambio('Alta')
   }
 
   const cancelarAlumnoForm = () => {
-    if (registeredUid) {
-      deleteUserByUid(registeredUid)
-        .then(() => {
-          console.log(`Usuario con UID ${registeredUid} eliminado correctamente.`)
-        })
-        .catch((error) => {
-          console.error('Error al eliminar el usuario:', error)
-        })
-    }
     setShowAlumnoForm(false)
     setShowProfesorForm(false)
     setAlumnoFormSubmitted(false)
@@ -64,15 +57,6 @@ const Alta = () => {
   }
 
   const cancelarProfesorForm = () => {
-    if (registeredUid) {
-      deleteUserByUid(registeredUid)
-        .then(() => {
-          console.log(`Usuario con UID ${registeredUid} eliminado correctamente.`)
-        })
-        .catch((error) => {
-          console.error('Error al eliminar el usuario:', error)
-        })
-    }
     setShowAlumnoForm(false)
     setShowProfesorForm(false)
     setAlumnoFormSubmitted(false)
@@ -84,7 +68,6 @@ const Alta = () => {
     setShowProfesorForm(false)
     setAlumnoFormSubmitted(false)
     setProfesorFormSubmitted(false)
-    setRegisteredUid('')
   }
 
   return (
@@ -99,16 +82,16 @@ const Alta = () => {
         </button>
       </div>
       {showProfesorForm && !profesorFormSubmitted && (
-        <AltaUsuarioProfe setProfesorFormSubmitted={setProfesorFormSubmitted} setUidRegistered={handleSetUidRegistered} handleCancelar={handleCancelar} />
+        <AltaUsuarioProfe onFormSubmit={handleNewFormSubmit} setProfesorFormSubmitted={setProfesorFormSubmitted} handleCancelar={handleCancelar} />
       )}
       {profesorFormSubmitted && (
-        <AltaProfe setShowProfesorForm={cancelarProfesorForm} confirmacionRegistro={confirmacionRegistro} />
+        <AltaProfe setShowProfesorForm={cancelarProfesorForm} confirmacionRegistro={confirmacionRegistro} newUserEmail={userEmail} newUserPassword={userPassword} />
       )}
       {showAlumnoForm && !alumnoFormSubmitted && (
-        <AltaUsuarioAlumno setAlumnoFormSubmitted={setAlumnoFormSubmitted} setUidRegistered={handleSetUidRegistered} handleCancelar={handleCancelar} />
+        <AltaUsuarioAlumno onFormSubmit={handleNewFormSubmit} setAlumnoFormSubmitted={setAlumnoFormSubmitted} handleCancelar={handleCancelar} />
       )}
       {alumnoFormSubmitted && (
-        <AltaAlumno setShowAlumnoForm={cancelarAlumnoForm} confirmacionRegistro={confirmacionRegistro} />
+        <AltaAlumno setShowAlumnoForm={cancelarAlumnoForm} confirmacionRegistro={confirmacionRegistro} newUserEmail={userEmail} newUserPassword={userPassword} />
       )}
     </div>
   )

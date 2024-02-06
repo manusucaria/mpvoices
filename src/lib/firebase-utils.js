@@ -1,14 +1,21 @@
 import { auth } from './firebase'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, deleteUser, updateProfile } from 'firebase/auth'
 
-const signUp = async (email, password, rol) => {
-  return createUserWithEmailAndPassword(auth, email, password)
+const signUp = async (newUserEmail, newUserPassword, newUserRol, adminEmail, adminPassword) => {
+  const adminCredentials = {
+    email: adminEmail,
+    password: adminPassword
+  }
+
+  return createUserWithEmailAndPassword(auth, newUserEmail, newUserPassword)
     .then(async (userCredential) => {
       const user = userCredential.user
 
       await updateProfile(user, {
-        displayName: rol
+        displayName: newUserRol
       })
+
+      await signInWithEmailAndPassword(auth, adminCredentials.email, adminCredentials.password)
 
       return user.uid
     })

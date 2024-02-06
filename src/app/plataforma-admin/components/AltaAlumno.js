@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { createAlumno } from '../../api/api.js'
 
-const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro }) => {
+const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, newUserPassword }) => {
   const [alumnoData, setAlumnoData] = useState({
     Nombre: '',
     Apellido: '',
@@ -10,10 +10,9 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro }) => {
     Instrumento: '',
     Profesor: '',
     Saldo: '',
-    Email: '',
-    Contraseña: '',
+    Email: newUserEmail,
+    Contraseña: newUserPassword,
     Duracion: '',
-    Rol: '',
     Horario: '',
     Tel: ''
   })
@@ -27,7 +26,7 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro }) => {
     e.preventDefault()
     createAlumno(alumnoData)
       .then(() => {
-        confirmacionRegistro() // Llamar a la función después de que se crea el profesor
+        confirmacionRegistro()
       })
       .catch((error) => {
         console.error('Error al crear el profesor:', error)
@@ -69,14 +68,6 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro }) => {
         <div className='flex mb-6'>
           <label className='mr-auto w-2/6'>Saldo:</label>
           <input placeholder="Saldo" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Saldo" value={alumnoData.Saldo} onChange={handleChange} />
-        </div>
-        <div className='flex mb-6'>
-          <label className='mr-auto w-2/6'>Email:</label>
-          <input placeholder="Email"autoComplete="current-email" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="email" name="Email" value={alumnoData.Email} onChange={handleChange} />
-        </div>
-        <div className='flex mb-6'>
-          <label className='mr-auto w-2/6'>Contraseña:</label>
-          <input placeholder="Contraseña" autoComplete="current-password" className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Contraseña" value={alumnoData.Contraseña} onChange={handleChange} />
         </div>
         <div className='flex mb-6'>
           <label className='mr-auto w-2/6'>Duración de clase:</label>
