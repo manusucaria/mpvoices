@@ -71,7 +71,7 @@ const Alta = ({ newCambio }) => {
   }
 
   return (
-    <div className='w-full mx-auto py-12 bg-[#D9D9D9]'>
+    <div id='Crear' className='w-full mx-auto py-12 bg-[#D9D9D9]'>
       <h2 className="text-center text-xl sm:text-3xl mb-8 text-black">Nuevos usuarios</h2>
       <div className="flex justify-center gap-x-4 sm:gap-x-12 mb-4">
         <button className="text-white bg-[#E9500E] py-2 w-3/6 sm:w-2/6 lg:w-1/6 ml-4 h-12 rounded-3xl" onClick={handleShowAlumnoForm}>

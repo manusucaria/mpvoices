@@ -1,5 +1,5 @@
 import { auth } from './firebase'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, deleteUser, updateProfile } from 'firebase/auth'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, deleteUser, updateProfile, signOut } from 'firebase/auth'
 
 const signUp = async (newUserEmail, newUserPassword, newUserRol, adminEmail, adminPassword) => {
   const adminCredentials = {
@@ -21,6 +21,17 @@ const signUp = async (newUserEmail, newUserPassword, newUserRol, adminEmail, adm
     })
     .catch(error => {
       throw error
+    })
+}
+
+const logOut = () => {
+  return signOut(auth)
+    .then(() => {
+      console.log('Se ha cerrado la sesión correctamente.')
+    })
+    .catch((error) => {
+      console.error('Error al cerrar sesión:', error)
+      throw error // Propaga el error para que pueda ser manejado en el componente.
     })
 }
 
@@ -68,4 +79,4 @@ const deleteUserByUid = (uid) => {
     })
 }
 
-export { signUp, signIn, deleteUserByUid }
+export { signUp, signIn, deleteUserByUid, logOut }

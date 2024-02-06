@@ -40,14 +40,14 @@ const NavSmall = () => {
     }
 
     if (isNavOpen) {
-      document.addEventListener('click', handleClickOutside)
+      document.addEventListener('click', handleClickOutside, { passive: true })
     } else {
-      document.removeEventListener('click', handleClickOutside)
+      document.removeEventListener('click', handleClickOutside, { passive: true })
     }
 
     const links = document.querySelectorAll('a[href^="#"]')
     links.forEach((link) => {
-      link.addEventListener('click', handleLinkClick)
+      link.addEventListener('click', handleLinkClick, { passive: true })
     })
 
     return () => {
@@ -87,13 +87,15 @@ const NavSmall = () => {
     },
     {
       label: 'Plataforma alumnos',
-      link: rol === 'Profesor'
-        ? '/plataforma-profes'
-        : rol === 'Alumno'
-          ? '/plataforma-alumnos'
-          : rol === 'Administrador'
-            ? '/plataforma-admin'
-            : '/login'
+      link: !user
+        ? '/login'
+        : rol === 'Profesor'
+          ? '/plataforma-profes'
+          : rol === 'Alumno'
+            ? '/plataforma-alumnos'
+            : rol === 'Administrador'
+              ? '/plataforma-admin'
+              : '/login'
     }
   ]
 
@@ -115,14 +117,18 @@ const NavSmall = () => {
             </div>
             <div className="flex ml-auto my-auto pr-6">
               <div className="flex" onClick={() => scrollToTop()}>
-                <a href={rol === 'Profesor'
-                  ? '/plataforma-profes'
-                  : rol === 'Alumno'
-                    ? '/plataforma-alumnos'
-                    : rol === 'Administrador'
-                      ? '/plataforma-admin'
-                      : '/login'}
-                      className="flex my-auto"
+                <a href={
+                  !user
+                    ? '/login'
+                    : rol === 'Profesor'
+                      ? '/plataforma-profes'
+                      : rol === 'Alumno'
+                        ? '/plataforma-alumnos'
+                        : rol === 'Administrador'
+                          ? '/plataforma-admin'
+                          : '/login'
+                  }
+                  className="flex my-auto"
                 >
                   <svg
                     className="cursor-pointer"

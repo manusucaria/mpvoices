@@ -10,11 +10,12 @@ const page = () => {
   const user = useAuth()
   const [profesor, setProfesor] = useState()
   const [alumnos, setAlumnos] = useState([])
-  const [userLoaded, setUserLoaded] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
-    if (user) {
+    if (user === null) {
+      router.push('/login')
+    } if (user) {
       getAlumnos().then(data => {
         setAlumnos(data)
       })
@@ -25,20 +26,14 @@ const page = () => {
           setProfesor(profe)
         }
       })
-      setUserLoaded(true)
       if (user.displayName !== 'Profesor') {
-        setUserLoaded(false)
         router.push('/login')
       }
-    } else if (user === null && !userLoaded) {
-      setUserLoaded(false)
-      router.push('/login')
     }
-  }, [user, router, userLoaded])
+  }, [user, router])
 
   const handleLogout = () => {
     signOut(auth).then(() => {
-      setUserLoaded(false)
       router.push('/')
     })
   }

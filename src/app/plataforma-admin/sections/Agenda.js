@@ -99,7 +99,7 @@ const Agenda = ({ cambios }) => {
   }
 
   return (
-    <div className="flex flex-col mb-12">
+    <div id='Agenda' className="flex flex-col mb-12">
       {selectedDay
         ? (
         <div className="flex justify-center mb-4">

@@ -151,13 +151,15 @@ const NavFull = () => {
       </div>
       <div className="flex flex-col my-auto w-[20%]">
         <Link className='flex mr-auto min-[1024px]:ml-6' href={
-          rol === 'Profesor'
-            ? '/plataforma-profes'
-            : rol === 'Alumno'
-              ? '/plataforma-alumnos'
-              : rol === 'Administrador'
-                ? '/plataforma-admin'
-                : '/login'
+          !user
+            ? '/login'
+            : rol === 'Profesor'
+              ? '/plataforma-profes'
+              : rol === 'Alumno'
+                ? '/plataforma-alumnos'
+                : rol === 'Administrador'
+                  ? '/plataforma-admin'
+                  : '/login'
         }>
           <div className="relative group">
             <svg

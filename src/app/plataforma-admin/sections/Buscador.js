@@ -64,7 +64,7 @@ const Buscador = ({ cambios, newCambio }) => {
     : []
 
   return (
-    <div className='flex flex-col bg-[#212121] py-12'>
+    <div id='Buscar' className='flex flex-col bg-[#212121] py-12'>
       <h2 className='text-center text-2xl sm:text-3xl pb-8 text-white border-0 border-b-2 border-b-white'>Buscar usuarios</h2>
       <div className="flex text-black bg-white w-4/6 sm:w-2/6 mx-auto text-center px-3 py-2 mt-12 rounded-3xl">
         <svg width="37" height="38" viewBox="0 0 37 38" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -84,7 +84,7 @@ const Buscador = ({ cambios, newCambio }) => {
       {searchTerm.trim() !== '' && (
         <div className='flex flex-col mx-auto w-full'>
           {buscarAlumnos.map((alumno) => (
-            <button key={alumno.id} onClick={() => handleAlumnoClick(alumno)} className='mx-auto my-2 bg-[#E9500E] text-white rounded-3xl h-10 w-4/6 sm:w-2/6'>{alumno.Nombre} {alumno.Apellido}</button>
+            <button key={alumno.id} onClick={() => handleAlumnoClick(alumno)} className='mx-auto my-2 bg-[#E9500E] text-white rounded-3xl h-10 w-4/6 sm:w-2/6'>{alumno.Nombre} {alumno.Apellido} - Alumno</button>
           ))}
         </div>
       )}
@@ -98,7 +98,7 @@ const Buscador = ({ cambios, newCambio }) => {
       {searchTerm.trim() !== '' && (
         <div className='flex flex-col mx-auto w-full'>
           {buscarProfesores.map((profesor) => (
-            <button key={profesor.id} onClick={() => handleProfesorClick(profesor)} className='mx-auto my-2 bg-[#663481] text-white rounded-3xl h-10 w-4/6 sm:w-2/6'>{profesor.Nombre} {profesor.Apellido}</button>
+            <button key={profesor.id} onClick={() => handleProfesorClick(profesor)} className='mx-auto my-2 bg-[#663481] text-white rounded-3xl h-10 w-4/6 sm:w-2/6'>{profesor.Nombre} {profesor.Apellido} - Profesor</button>
           ))}
         </div>
       )}
