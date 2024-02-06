@@ -3,12 +3,14 @@ import { getAlumnos, getProfesores } from '../../api/api.js'
 import alas from '../../assets/alas.jpg'
 import Image from 'next/image'
 
-const Agenda = () => {
+const Agenda = ({ cambios }) => {
   const [alumnos, setAlumnos] = useState([])
   const [profesores, setProfesores] = useState([])
   const [selectedDay, setSelectedDay] = useState('')
   const [timeSlots, setTimeSlots] = useState([])
   const [startIndex, setStartIndex] = useState(0)
+  const [filteredAlumnos, setFilteredAlumnos] = useState([])
+  const [filteredProfesores, setFilteredProfesores] = useState([])
 
   useEffect(() => {
     getAlumnos().then((data) => {
@@ -17,7 +19,7 @@ const Agenda = () => {
     getProfesores().then((data) => {
       setProfesores(data)
     })
-  }, [selectedDay])
+  }, [selectedDay, cambios])
 
   useEffect(() => {
     const slots = []
@@ -38,13 +40,17 @@ const Agenda = () => {
     setStartIndex(0)
   }
 
-  const filteredProfesores = selectedDay
-    ? profesores.filter((profesor) => {
-      const diaProfesor = profesor.Dia.toLocaleLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-      const diaSeleccionado = selectedDay.toLocaleLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-      return diaProfesor.includes(diaSeleccionado)
-    })
-    : []
+  useEffect(() => {
+    const filtered = selectedDay
+      ? profesores.filter((profesor) => {
+        const diaProfesor = profesor.Dia.toLocaleLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        const diaSeleccionado = selectedDay.toLocaleLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        return diaProfesor.includes(diaSeleccionado)
+      })
+      : []
+
+    setFilteredProfesores(filtered)
+  }, [selectedDay, cambios, profesores])
 
   const filteredProfesoresSorted = filteredProfesores.slice().sort((a, b) => {
     const nombreProfesorA = a.Nombre.toLocaleLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -54,19 +60,22 @@ const Agenda = () => {
     return 0
   })
 
-  const filteredAlumnos = selectedDay
-    ? alumnos.filter((alumno) => {
-      const diaAlumnoNormalized = alumno.Dia
-        .toLowerCase()
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-      const selectedDayNormalized = selectedDay
-        .toLowerCase()
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-      return diaAlumnoNormalized === selectedDayNormalized
-    })
-    : []
+  useEffect(() => {
+    const filtered = selectedDay
+      ? alumnos.filter((alumno) => {
+        const diaAlumnoNormalized = alumno.Dia
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+        const selectedDayNormalized = selectedDay
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+        return diaAlumnoNormalized === selectedDayNormalized
+      })
+      : []
+    setFilteredAlumnos(filtered)
+  }, [selectedDay, cambios, alumnos])
 
   const handleNext = () => {
     if (startIndex + 2 < filteredProfesores.length) {
@@ -90,7 +99,7 @@ const Agenda = () => {
   }
 
   return (
-    <div className="flex flex-col mb-12">
+    <div id='Agenda' className="flex flex-col mb-12">
       {selectedDay
         ? (
         <div className="flex justify-center mb-4">

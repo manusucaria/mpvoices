@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { updateProfesor } from '../../api/api.js'
 
-const EditorDatosProfesor = ({ profesor }) => {
+const EditorDatosProfesor = ({ profesor, newCambio }) => {
   const [nombre, setNombre] = useState('')
   const [apellido, setApellido] = useState('')
   const [email, setEmail] = useState('')
@@ -40,7 +40,7 @@ const EditorDatosProfesor = ({ profesor }) => {
           Instrumento: instrumento
         }
         await updateProfesor(profesor.id, updatedProfesor)
-        console.log('¡Datos actualizados correctamente!')
+        newCambio('Edicion')
         setEditMode(false)
       } catch (error) {
         console.error('Error al actualizar los datos:', error)

@@ -1,7 +1,7 @@
 import React from 'react'
 import { deleteAlumno } from '../../api/api.js'
 
-const EliminarAlumno = ({ selectedAlumno, setSelectedAlumno }) => {
+const EliminarAlumno = ({ selectedAlumno, setSelectedAlumno, newCambio }) => {
   const email = selectedAlumno.Email
   const password = selectedAlumno.Contraseña
 
@@ -12,6 +12,7 @@ const EliminarAlumno = ({ selectedAlumno, setSelectedAlumno }) => {
       deleteAlumno(email, password)
         .then(() => {
           setSelectedAlumno(null)
+          newCambio('Alta')
         })
         .catch(error => {
           console.error('Error al eliminar alumno:', error.message)

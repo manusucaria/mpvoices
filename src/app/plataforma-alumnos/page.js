@@ -10,29 +10,24 @@ const page = () => {
   const user = useAuth()
   const [alumnos, setAlumnos] = useState([])
   const [userEmail, setUserEmail] = useState('')
-  const [userLoaded, setUserLoaded] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
-    if (user) {
+    if (user === null) {
+      router.push('/login')
+    } if (user) {
       setUserEmail(user.email)
       getAlumnos().then(data => {
         setAlumnos(data)
       })
-      setUserLoaded(true)
       if (user.displayName !== 'Alumno') {
-        setUserLoaded(false)
         router.push('/login')
       }
-    } else if (user === null && !userLoaded) {
-      setUserLoaded(false)
-      router.push('/login')
     }
-  }, [user, router, userLoaded])
+  }, [user, router])
 
   const handleLogout = () => {
     signOut(auth).then(() => {
-      setUserLoaded(false)
       router.push('/')
     })
   }
