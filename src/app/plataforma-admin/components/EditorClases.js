@@ -68,11 +68,11 @@ const EditorClases = ({ alumno }) => {
       {editMode
         ? (
         <div className='flex flex-col w-full'>
-          <form className='w-4/6 mx-auto mt-4' onSubmit={handleSubmit}>
+          <form className='w-full mx-auto mt-4' onSubmit={handleSubmit}>
             <div className='flex mb-6'>
-              <label className='mr-auto w-2/6'>Instrumento:</label>
+              <label className='font-bold mr-auto w-2/6'>Instrumento:</label>
               <input
-                className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+                className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
                 type='text'
                 name='instrumento'
                 value={instrumento}
@@ -80,9 +80,9 @@ const EditorClases = ({ alumno }) => {
               />
             </div>
             <div className='flex mb-6'>
-              <label className='mr-auto w-2/6'>Día:</label>
+              <label className='font-bold mr-auto w-2/6'>Día:</label>
               <input
-                className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+                className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
                 type='text'
                 name='dia'
                 value={dia}
@@ -90,9 +90,9 @@ const EditorClases = ({ alumno }) => {
               />
             </div>
             <div className='flex mb-6'>
-              <label className='mr-auto w-2/6'>Horario:</label>
+              <label className='font-bold mr-auto w-2/6'>Horario:</label>
               <input
-                className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+                className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
                 type='text'
                 name='horario'
                 value={horario}
@@ -100,9 +100,9 @@ const EditorClases = ({ alumno }) => {
               />
             </div>
             <div className='flex mb-6'>
-              <label className='mr-auto w-2/6'>Duración:</label>
+              <label className='font-bold mr-auto w-2/6'>Duración:</label>
               <input
-                className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+                className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
                 type='text'
                 name='duracion'
                 value={duracion}
@@ -110,38 +110,53 @@ const EditorClases = ({ alumno }) => {
               />
             </div>
             <div className='flex mb-6'>
-              <label className='mr-auto w-2/6'>Profesor:</label>
+              <label className='font-bold mr-auto w-2/6'>Profesor:</label>
               <input
-                className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+                className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
                 type='text'
                 name='profesor'
                 value={profesor}
                 onChange={(e) => setProfesor(e.target.value)}
               />
             </div>
-            <div className='flex w-full mx-auto'>
-              <button className='rounded-3xl bg-white text-black px-3 py-2' type='submit'>
-                Guardar cambios
+            <div className='flex w-full mx-auto mt-8 gap-x-4'>
+              <button className='font-botones font-bold rounded-3xl w-3/6 bg-[#FFFFFF] text-[#0D0D0D] px-3 h-10' type='submit'>
+                Guardar
               </button>
               <button
-                className='rounded-3xl ml-auto bg-orange-600 text-white px-3 py-2'
+                className='font-botones font-bold rounded-3xl w-3/6 ml-auto bg-orange-600 text-[#FFFFFF] px-3 h-10'
                 onClick={cancelarClick}
                 type='button'
               >
-                Cancelar cambios
+                Cancelar
               </button>
             </div>
           </form>
         </div>
           )
         : (
-        <div className='flex flex-col w-4/6 mx-auto mt-4'>
-          <p className='mb-8'>Instrumento: {instrumento}</p>
-          <p className='mb-8'>Día: {dia}</p>
-          <p className='mb-8'>Horario: {horario}</p>
-          <p className='mb-8'>Duración: {duracion}</p>
-          <p>Profesor: {profesor}</p>
-          <button className='rounded-3xl h-8 mt-8 bg-orange-600' onClick={handleEditClick}>
+        <div className='flex flex-col w-full mx-auto mt-4'>
+          <div className='mb-8 flex'>
+            <p className='mr-2 text-base font-bold'>Instrumento:</p>
+            <p className='text-base'>{instrumento}</p>
+          </div>
+          <div className='mb-8 flex'>
+            <p className='mr-2 text-base font-bold'>Día:</p>
+            <p className='text-base'>{dia}</p>
+          </div>
+          <div className='mb-8 flex'>
+            <p className='mr-2 text-base font-bold'>Horario:</p>
+            <p className='text-base'>{horario}</p>
+          </div>
+          <div className='mb-8 flex'>
+            <p className='mr-2 text-base font-bold'>Duración:</p>
+            <p className='text-base'>{duracion}</p>
+          </div>
+          <div className='flex'>
+            <p className='mr-2 text-base font-bold'>Profesor:</p>
+            <p className='text-base'>{profesor}</p>
+          </div>
+          <button className='font-botones font-bold rounded-3xl w-4/6 mx-auto h-10 mt-8 bg-[#E9500E]' onClick={handleEditClick}>
             Editar Perfil
           </button>
         </div>

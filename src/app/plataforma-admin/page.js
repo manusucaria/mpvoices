@@ -21,7 +21,7 @@ const page = () => {
         router.push('/login')
       }
     }
-  }, [user, router])
+  }, [router])
 
   const handleLogout = () => {
     logOut().then(() => {
@@ -36,20 +36,20 @@ const page = () => {
   }
 
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col xl:border-y-1 xl:border-y-[#FFFFFF]'>
       {user
         ? <div className='xl:grid xl:grid-cols-9'>
             <div className='hidden xl:flex xl:flex-col col-start-1 col-end-2'>
               <Menu handleLogOut={handleLogout} />
             </div>
-            <div className='xl:col-start-2 xl:col-end-9 flex flex-col'>
-              <h1 className='text-center text-white text-3xl sm:text-5xl mt-6 mb-12'>¡Bienvenido Administrador!</h1>
+            <div className='xl:col-start-2 xl:col-end-9 flex flex-col xl:border-l-1 xl:border-l-[#FFFFFF]'>
+              <h1 className='text-center text-[#FFFFFF] text-3xl sm:text-5xl mt-6 mb-12'>¡Bienvenido Administrador!</h1>
               <Agenda cambios={cambios} />
               <Buscador newCambio={newCambio} cambios={cambios} />
               <Alta newCambio={newCambio} cambios={cambios} />
-              <div className='mx-auto mt-12 bg-white text-black p-2 my-6 w-4/6 sm:w-2/6 h-auto text-center rounded-3xl hover:cursor-pointer' onClick={handleLogout}>
+              <button className='mx-auto mt-12 bg-[#FFFFFF] text-[#0D0D0D] font-botones font-bold p-2 my-6 lg:mb-12 w-4/6 sm:w-2/6 h-10 text-center rounded-3xl hover:cursor-pointer' onClick={handleLogout}>
                 <p>Cerrar Sesión</p>
-              </div>
+              </button>
             </div>
           </div>
         : ''}

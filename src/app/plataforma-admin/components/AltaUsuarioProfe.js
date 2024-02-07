@@ -49,26 +49,26 @@ const AltaUsuarioProfe = ({ setProfesorFormSubmitted, handleCancelar, onFormSubm
   }
 
   return (
-    <div className='flex flex-col mx-auto w-full md:w-4/6 lg:w-3/6'>
-      <h3 className="text-center text-xl sm:text-3xl mb-4 text-black">Crear Cuenta Profesor</h3>
-      <form className='flex flex-col mx-auto w-4/6 mt-4' onSubmit={handleSubmit}>
+    <div className='flex flex-col mx-auto w-full md:w-4/6'>
+      <h3 className="text-center text-xl sm:text-3xl mb-4 text-[#0D0D0D]">Crear Cuenta Profesor</h3>
+      <form className='flex flex-col mx-auto w-full md:w-4/6 mt-4 px-4' onSubmit={handleSubmit}>
         <div className='flex'>
-          <label className='mr-auto w-2/6 text-black' htmlFor="email">Email:</label>
+          <label className='font-bold mr-auto w-2/6 text-[#0D0D0D]' htmlFor="email">Email:</label>
           <input
             placeholder="Email"
-            className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+            className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
             id="email"
             type="email"
             value={newUserEmail}
             onChange={(e) => setNewUserEmail(e.target.value)}
           />
         </div>
-        {errors.email && <p className="ml-auto pr-4 mt-1 text-white text-sm">{errors.email}</p>}
+        {errors.email && <p className="ml-auto pr-4 mt-1 text-[#FFFFFF] text-sm">{errors.email}</p>}
         <div className='flex mt-6'>
-          <label className='mr-auto w-2/6 text-black' htmlFor="password">Password:</label>
+          <label className='font-bold mr-auto w-2/6 text-[#0D0D0D]' htmlFor="password">Password:</label>
           <input
             placeholder="Contraseña"
-            className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+            className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
             id="password"
             type="text"
             value={newUserPassword}
@@ -76,15 +76,15 @@ const AltaUsuarioProfe = ({ setProfesorFormSubmitted, handleCancelar, onFormSubm
             onChange={(e) => setNewUserPassword(e.target.value)}
           />
         </div>
-        {errors.password && <p className="ml-auto pr-4 mt-1 text-white text-sm">{errors.password}</p>}
-        <div className='flex w-full mx-auto gap-x-2 mt-8'>
+        {errors.password && <p className="ml-auto pr-4 mt-1 text-[#FFFFFF] text-sm">{errors.password}</p>}
+        <div className='flex w-full mx-auto gap-x-4 mt-8'>
           <button
-            className='w-3/6 mr-auto rounded-3xl bg-[#008f39] text-white px-3 py-2'
+            className='font-botones font-bold h-12 w-3/6 mr-auto rounded-3xl bg-[#663481] text-[#FFFFFF] px-3 py-2'
             type="submit">
               Crear Cuenta
           </button>
           <button
-            className='w-3/6 ml-auto rounded-3xl bg-orange-600 text-white px-3 py-2'
+            className='font-botones font-bold h-12 w-3/6 ml-auto rounded-3xl bg-[#E9500E] text-[#FFFFFF] px-3 py-2'
             onClick={handleCancel}
           >
             Cancelar

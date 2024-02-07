@@ -71,13 +71,13 @@ const Alta = ({ newCambio }) => {
   }
 
   return (
-    <div id='Crear' className='w-full mx-auto py-12 bg-[#D9D9D9]'>
-      <h2 className="text-center text-xl sm:text-3xl mb-8 text-black">Nuevos usuarios</h2>
-      <div className="flex justify-center gap-x-4 sm:gap-x-12 mb-4">
-        <button className="text-white bg-[#E9500E] py-2 w-3/6 sm:w-2/6 lg:w-1/6 ml-4 h-12 rounded-3xl" onClick={handleShowAlumnoForm}>
+    <div id='Crear' className='w-full py-12 bg-[#D9D9D9]'>
+      <h2 className="text-center text-2xl sm:text-3xl pb-8 text-[#0D0D0D]">Nuevos usuarios</h2>
+      <div className="flex justify-center sm:gap-x-4 mb-4 mx-auto w-full md:w-3/6 gap-x-4">
+        <button className="text-[#FFFFFF] font-botones font-bold bg-[#E9500E] py-2 w-3/6 ml-4 h-12 rounded-3xl" onClick={handleShowAlumnoForm}>
           Alumno
         </button>
-        <button className="text-white bg-[#663481] py-2 w-3/6 sm:w-2/6 lg:w-1/6 mr-4 h-12 rounded-3xl" onClick={handleShowProfesorForm}>
+        <button className="text-[#FFFFFF] font-botones font-bold bg-[#663481] py-2 w-3/6 mr-4 h-12 rounded-3xl" onClick={handleShowProfesorForm}>
           Profesor
         </button>
       </div>

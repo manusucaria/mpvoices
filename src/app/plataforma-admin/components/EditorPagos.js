@@ -48,9 +48,9 @@ const EditorPagos = ({ alumno }) => {
         <div className='flex flex-col w-full'>
           <form className='w-4/6 mx-auto mt-4' onSubmit={handleSubmit}>
             <div className='flex mb-6'>
-              <label className='mr-auto w-2/6'>Saldo:</label>
+              <label className='font-bold mr-auto w-2/6'>Saldo:</label>
               <input
-                className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+                className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
                 type='number'
                 name='saldo'
                 value={saldo}
@@ -58,35 +58,41 @@ const EditorPagos = ({ alumno }) => {
               />
             </div>
             <div className='flex mb-6'>
-              <label className='mr-auto w-2/6'>Última Actualización:</label>
+              <label className='font-bold mr-auto w-2/6'>Última Actualización:</label>
               <input
-                className='text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+                className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
                 type='text'
                 name='actualizacion'
                 value={actualizacion}
                 onChange={(e) => setActualizacion(e.target.value)}
               />
             </div>
-            <div className='flex w-full mx-auto my-8'>
-              <button className='rounded-3xl bg-white text-black px-3 py-2' type='submit'>
-                Guardar cambios
+            <div className='flex w-full mx-auto mt-8 gap-x-4'>
+              <button className='font-botones font-bold rounded-3xl w-3/6 bg-[#FFFFFF] text-[#0D0D0D] px-3 h-10' type='submit'>
+                Guardar
               </button>
               <button
-                className='rounded-3xl ml-auto bg-orange-600 text-white px-3 py-2'
+                className='font-botones font-bold rounded-3xl w-3/6 ml-auto bg-[#E9500E] text-[#FFFFFF] px-3 h-10'
                 onClick={cancelarClick}
                 type='button'
               >
-                Cancelar cambios
+                Cancelar
               </button>
             </div>
           </form>
         </div>
           )
         : (
-        <div className='flex flex-col w-4/6 mx-auto mt-4'>
-          <p className='mb-8'>Saldo: {saldo}</p>
-          <p className='mb-8'>Última Actualización: {actualizacion}</p>
-          <button className='rounded-3xl h-8 mt-8 bg-orange-600' onClick={handleEditClick}>
+        <div className='flex flex-col w-full mx-auto mt-4'>
+          <div className='mb-8 flex'>
+            <p className='mr-2 text-base font-bold'>Saldo:</p>
+            <p className='text-base'>{saldo}</p>
+          </div>
+          <div className='flex'>
+            <p className='mr-2 text-base font-bold'>Última Actualización:</p>
+            <p className='text-base'>{actualizacion}</p>
+          </div>
+          <button className='font-botones font-bold rounded-3xl w-4/6 mx-auto h-10 mt-8 bg-[#E9500E]' onClick={handleEditClick}>
             Editar Perfil
           </button>
         </div>

@@ -20,8 +20,8 @@ const EliminarProfesor = ({ selectedProfesor, setSelectedProfesor }) => {
   }
 
   return (
-    <div className='flex w-4/6 mx-auto mt-4'>
-      <button onClick={handleSubmit} type="submit" className="rounded-3xl w-full h-8 mt-8 mb-8 bg-orange-600">Eliminar Profesor</button>
+    <div className='flex w-4/6 mx-auto'>
+      <button onClick={handleSubmit} type="submit" className="font-botones font-bold rounded-3xl w-full h-10 mt-8 mb-4 bg-[#663481]">Eliminar Profesor</button>
     </div>
   )
 }
