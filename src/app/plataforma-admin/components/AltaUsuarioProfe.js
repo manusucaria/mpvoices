@@ -79,12 +79,12 @@ const AltaUsuarioProfe = ({ setProfesorFormSubmitted, handleCancelar, onFormSubm
         {errors.password && <p className="ml-auto pr-4 mt-1 text-[#FFFFFF] text-sm">{errors.password}</p>}
         <div className='flex w-full mx-auto gap-x-4 mt-8'>
           <button
-            className='font-botones font-bold h-12 w-3/6 mr-auto rounded-3xl bg-[#663481] text-[#FFFFFF] px-3 py-2'
+            className='font-botones font-bold h-12 w-3/6 mr-auto rounded-3xl bg-[#663481] text-[#FFFFFF] px-3'
             type="submit">
               Crear Cuenta
           </button>
           <button
-            className='font-botones font-bold h-12 w-3/6 ml-auto rounded-3xl bg-[#E9500E] text-[#FFFFFF] px-3 py-2'
+            className='font-botones font-bold h-12 w-3/6 ml-auto rounded-3xl bg-[#E9500E] text-[#FFFFFF] px-3'
             onClick={handleCancel}
           >
             Cancelar

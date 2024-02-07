@@ -63,7 +63,7 @@ const AltaUsuarioAlumno = ({ setAlumnoFormSubmitted, handleCancelar, onFormSubmi
             onChange={(e) => setNewUserEmail(e.target.value)}
           />
         </div>
-        {errors.email && <p className="ml-auto pr-4 mt-1 text-white text-sm">{errors.email}</p>}
+        {errors.email && <p className="ml-auto pr-4 mt-1 text-[#FFFFFF] text-sm">{errors.email}</p>}
         <div className='flex mt-6'>
           <label className='font-bold mr-auto w-2/6 text-[#0D0D0D]' htmlFor="password">Password:</label>
           <input
@@ -79,12 +79,12 @@ const AltaUsuarioAlumno = ({ setAlumnoFormSubmitted, handleCancelar, onFormSubmi
         {errors.password && <p className="ml-auto pr-4 mt-1 text-white text-sm">{errors.password}</p>}
         <div className='flex w-full mx-auto gap-x-4 mt-8'>
           <button
-            className='font-botones font-bold h-12 w-3/6 mr-auto rounded-3xl bg-[#008f39] text-white px-3 py-2'
+            className='font-botones font-bold h-12 w-3/6 mr-auto rounded-3xl bg-[#008f39] text-[#FFFFFF] px-3'
             type="submit">
               Crear Cuenta
           </button>
           <button
-            className='font-botones font-bold h-12 w-3/6 ml-auto rounded-3xl bg-[#E9500E] text-white px-3 py-2'
+            className='font-botones font-bold h-12 w-3/6 ml-auto rounded-3xl bg-[#E9500E] text-[#FFFFFF] px-3'
             onClick={handleCancel}
           >
             Cancelar
