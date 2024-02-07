@@ -84,7 +84,7 @@ const AltaUsuarioProfe = ({ setProfesorFormSubmitted, handleCancelar, onFormSubm
               Crear Cuenta
           </button>
           <button
-            className='font-botones font-bold h-12 w-3/6 ml-auto rounded-3xl bg-[#E9500E] text-[#FFFFFF] px-3'
+            className='font-botones font-bold h-12 w-3/6 ml-auto rounded-3xl bg-[#008f39] text-[#FFFFFF] px-3'
             onClick={handleCancel}
           >
             Cancelar

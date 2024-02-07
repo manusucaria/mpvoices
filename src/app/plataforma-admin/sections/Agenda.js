@@ -149,7 +149,7 @@ const Agenda = ({ cambios }) => {
           </div>
           )}
       {selectedDay && (
-        <div className="flex flex-col overflow-x-auto mx-auto w-full px-6 sm:px-0 sm:w-4/6 mb-12">
+        <div className="flex flex-col overflow-x-auto mx-auto w-full px-4 md:w-4/6 mb-12">
           <div className="grid grid-cols-3 mt-4 h-12 bg-[#FFFFFF] border-1 border-[#0D0D0D]">
             {filteredProfesoresSorted.length >= 3 && startIndex > 0 && (
               <button className='col-start-1 col-end-2 mr-auto pl-4' onClick={handlePrev}>

@@ -118,11 +118,11 @@ const EditorDatosProfesor = ({ profesor, newCambio }) => {
               />
             </div>
             <div className='flex w-full mx-auto mt-8 gap-x-4'>
-              <button className='font-botones font-bold rounded-3xl w-3/6 bg-[#FFFFFF] text-[#0D0D0D] px-3 h-10' type='submit'>
+            <button className='font-botones font-bold rounded-3xl w-3/6 bg-[#663481] text-[#0D0D0D] px-3 h-10' type='submit'>
                 Guardar
               </button>
               <button
-                className='font-botones font-bold rounded-3xl w-3/6 ml-auto bg-[#663481] text-[#FFFFFF] px-3 h-10'
+                className='font-botones font-bold rounded-3xl w-3/6 ml-auto bg-[#008f39] text-[#FFFFFF] px-3 h-10'
                 onClick={cancelarClick}
                 type='button'
               >
