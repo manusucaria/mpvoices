@@ -172,7 +172,7 @@ const Agenda = ({ cambios }) => {
             )}
           </div>
           <div className='grid grid-cols-[20%_40%_40%] grid-rows-37'>
-            <div className="border-1 border-[#0D0D0D] bg-[#E9500E] h-12 text-center col-start-1 col-end-2 row-start-1 row-end-2 flex">
+            <div className="border-b-1 border-b-[#0D0D0D] border-x-1 border-x-[#0D0D0D] bg-[#E9500E] h-12 text-center col-start-1 col-end-2 row-start-1 row-end-2 flex">
               <p className='m-auto text-[#FFFFFF]'>Profe</p>
             </div>
             {timeSlots.map((time, index) => (
@@ -182,7 +182,7 @@ const Agenda = ({ cambios }) => {
             ))}
             <div className="col-start-2 col-end-4 row-start-1 row-end-38 grid grid-cols-2 bg-[#FFFFFF]">
               {filteredProfesoresSorted.slice(startIndex, startIndex + 2).map((profesor) => (
-              <div key={profesor.id} className="grid grid-cols-1 grid-rows-37 text-center border-r-1 border-r-[#0D0D0D]">
+              <div key={profesor.id} className="grid grid-cols-1 grid-rows-37 text-center border-r-1 border-r-[#0D0D0D] border-b-1 border-b-[#0D0D0D]">
                 <div className='border-b-1 border-b-[#0D0D0D] flex row-start-1 row-end-2 h-12 text-sm bg-[#E9500E]'>
                   <p className='m-auto'>{profesor.Nombre} / {profesor.Instrumento}</p>
                 </div>

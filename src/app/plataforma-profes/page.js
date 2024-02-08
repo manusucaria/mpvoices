@@ -112,7 +112,7 @@ const page = () => {
                   </g>
                 </svg>
               </div>
-              <div className='flex sm:ml-8'>
+              <div className='flex sm:ml-8 mb-4'>
                 <h3 className="text-[#FFFFFF] my-auto text-xl sm:text-2xl">Días y horarios</h3>
                 <p className='my-auto mx-4 sm:mx-8'>|</p>
                 <p className='text-[#E9500E] my-auto mt-1 md:mt-2 text-lg'>{selectedDay}</p>
@@ -142,8 +142,8 @@ const page = () => {
             )}
           {selectedDay && (
             <div className="flex flex-col overflow-x-auto mx-auto w-full px-4 md:w-4/6 mb-12">
-              <div className='grid grid-cols-[20%_80%] grid-rows-37'>
-                <div className="border-1 border-[#0D0D0D] bg-[#E9500E] h-12 text-center col-start-1 col-end-2 row-start-1 row-end-2 flex">
+              <div className='grid grid-cols-[20%_80%] grid-rows-37 border-r-1 border-r-[#0D0D0D]'>
+                <div className="border-b-1 border-b-[#0D0D0D] border-x-1 border-x-[#0D0D0D] bg-[#E9500E] h-12 text-center col-start-1 col-end-2 row-start-1 row-end-2 flex">
                   <p className='m-auto text-[#FFFFFF]'>Horario</p>
                 </div>
                 {timeSlots.map((time, index) => (
@@ -163,7 +163,7 @@ const page = () => {
                           gridRowEnd: timeSlots.indexOf(alumno.Horario) + 2 + alumno.Duracion / 15
                         }}>
                           <div
-                            className={`flex flex-col m-auto h-[97.5%] w-[95%] text-center ${
+                            className={`flex flex-col m-auto h-[97.5%] w-[97.5%] text-center ${
                               alumno.Notificaciones ? 'bg-[#FFC9CB]' : 'bg-[#ACFDB2]'
                             }`}
                           >
