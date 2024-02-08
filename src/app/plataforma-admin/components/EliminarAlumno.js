@@ -22,7 +22,7 @@ const EliminarAlumno = ({ selectedAlumno, setSelectedAlumno, newCambio }) => {
 
   return (
     <div className='flex w-4/6 mx-auto'>
-      <button onClick={handleSubmit} type="submit" className="font-botones font-bold rounded-3xl w-full h-10 mb-4 mt-8 bg-[#E9500E]">Eliminar Alumno</button>
+      <button onClick={handleSubmit} type="submit" className="font-botones font-bold rounded-3xl w-full h-10 mb-4 mt-8 bg-[#FFFFFF] text-[#E9500E] md:text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#E9500E]">Eliminar Alumno</button>
     </div>
   )
 }

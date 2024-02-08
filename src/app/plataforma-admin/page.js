@@ -21,7 +21,7 @@ const page = () => {
         router.push('/login')
       }
     }
-  }, [user, router])
+  }, [router])
 
   const handleLogout = () => {
     logOut().then(() => {

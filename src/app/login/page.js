@@ -15,7 +15,7 @@ const LoginForm = () => {
     return re.test(email.trim())
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
     setErrors({})
 
@@ -28,7 +28,17 @@ const LoginForm = () => {
     }
 
     if (Object.keys(formErrors).length === 0) {
-      signIn(email.trim(), password, router, false, false, undefined)
+      try {
+        await signIn(email.trim(), password, router)
+      } catch (error) {
+        if (error.code === 'auth/wrong-password') {
+          setErrors({ password: 'Contraseña incorrecta' })
+        }
+        if (error.code === 'auth/user-not-found') {
+          console.error('Error de inicio de sesión:', error)
+          setErrors({ email: 'Email incorrecto' })
+        }
+      }
     } else {
       setErrors(formErrors)
     }
@@ -52,7 +62,7 @@ const LoginForm = () => {
             onChange={(e) => setEmail(e.target.value.trimStart())}
             autoComplete='email'
           />
-          {errors.email && <p className='text-[#E9500E] text-sm pt-2'>{errors.email}</p>}
+          {errors.email && <p className='text-[#E9500E] text-sm ml-3'>{errors.email}</p>}
         </div>
         <div className='flex flex-col'>
           <label className='text-white mr-2 ml-3' htmlFor='password'>Contraseña:</label>
@@ -79,7 +89,7 @@ const LoginForm = () => {
             </button>
           </div>
         </div>
-        {errors.password && <p className='text-[#E9500E] text-sm pt-2'>{errors.password}</p>}
+        {errors.password && <p className='text-[#E9500E] text-sm ml-3'>{errors.password}</p>}
         <button className='hover:bg-[#E9500E] hover:border-white transition-all w-full py-3 px-4 shadow-md border border-[#E9500E] text-white font-bold rounded-3xl mt-5'
           type='submit'>
             Iniciar Sesión

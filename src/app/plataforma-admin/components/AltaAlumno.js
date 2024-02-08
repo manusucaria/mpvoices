@@ -86,7 +86,7 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, new
             Guardar
           </button>
           <button
-            className='rounded-3xl w-3/6 font-botones font-bold h-12 ml-auto bg-[#008f39] text-[#FFFFFF] px-3'
+            className='rounded-3xl w-3/6 font-botones font-bold h-12 ml-auto bg-[#FFFFFF] text-[#E9500E] border-2 border-[#E9500E] px-3'
             onClick={cancelarClick}
             type='button'
           >

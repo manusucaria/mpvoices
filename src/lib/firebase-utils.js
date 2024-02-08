@@ -26,13 +26,6 @@ const signUp = async (newUserEmail, newUserPassword, newUserRol, adminEmail, adm
 
 const logOut = () => {
   return signOut(auth)
-    .then(() => {
-      console.log('Se ha cerrado la sesión correctamente.')
-    })
-    .catch((error) => {
-      console.error('Error al cerrar sesión:', error)
-      throw error // Propaga el error para que pueda ser manejado en el componente.
-    })
 }
 
 const signIn = async (email, password, router) => {

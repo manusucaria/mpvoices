@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { updateProfesor } from '../../api/api.js'
 
-const EditorDatosProfesor = ({ profesor, newCambio }) => {
+const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelectedProfesor }) => {
   const [nombre, setNombre] = useState('')
   const [apellido, setApellido] = useState('')
   const [email, setEmail] = useState('')
@@ -59,6 +59,11 @@ const EditorDatosProfesor = ({ profesor, newCambio }) => {
     setDia(originalValues.dia)
     setInstrumento(originalValues.instrumento)
     setEditMode(false)
+  }
+
+  const volver = () => {
+    setSelectedAlumno(false)
+    setSelectedProfesor(false)
   }
 
   return (
@@ -122,7 +127,7 @@ const EditorDatosProfesor = ({ profesor, newCambio }) => {
                 Guardar
               </button>
               <button
-                className='font-botones font-bold rounded-3xl w-3/6 ml-auto bg-[#008f39] text-[#FFFFFF] px-3 h-10'
+                className='font-botones font-bold rounded-3xl w-3/6 ml-auto bg-[#FFFFFF] text-[#663481] md:text-[#0D0D0D] md:hover:text-[#663481] border-2 border-[#663481] px-3 h-10'
                 onClick={cancelarClick}
                 type='button'
               >
@@ -134,6 +139,18 @@ const EditorDatosProfesor = ({ profesor, newCambio }) => {
           )
         : (
         <div className='flex flex-col w-full mx-auto mt-4'>
+          <div className='w-full flex justify-center mx-auto mb-6 gap-x-4 sm:gap-x-6'>
+            <div className="my-auto ml-auto">
+              <svg className='hover:cursor-pointer' onClick={() => volver()} width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="iconamoon:arrow-up-2-light">
+                <path id="Vector" d="M19.8333 9.22572L12.75 15.8155L19.8333 22.4053" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </g>
+              </svg>
+            </div>
+            <h3 className="text-[#FFFFFF] my-auto text-xl sm:text-2xl">Profesor</h3>
+            <p className='my-auto'>|</p>
+            <p className='text-[#663481] my-auto mt-1 md:mt-2 text-lg mr-auto'>{profesor.Nombre} {profesor.Apellido}</p>
+          </div>
           <div className='mb-8 flex'>
             <p className='mr-2 text-base font-bold'>Nombre:</p>
             <p className='text-base'>{nombre}</p>

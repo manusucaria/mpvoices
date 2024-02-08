@@ -111,9 +111,9 @@ const Agenda = ({ cambios }) => {
             </svg>
           </div>
           <div className='flex sm:ml-8'>
-            <h3 className="text-[#FFFFFF] text-xl sm:text-2xl">Días y horarios</h3>
+            <h3 className="text-[#FFFFFF] my-auto text-xl sm:text-2xl">Días y horarios</h3>
             <p className='my-auto mx-4 sm:mx-8'>|</p>
-            <p className='text-[#E9500E] mt-auto text-lg'>{selectedDay}</p>
+            <p className='text-[#E9500E] my-auto mt-1 md:mt-2 text-lg'>{selectedDay}</p>
           </div>
         </div>
           )

@@ -78,7 +78,7 @@ const Buscador = ({ cambios, newCambio }) => {
           value={searchTerm}
           onChange={handleSearchTermChange}
           onClick={clearDetails}
-          className="text-[#0D0D0D] bg-[#FFFFFF] w-full h-full mx-auto text-center rounded-3xl my-auto"
+          className="text-[#0D0D0D] bg-[#FFFFFF] w-full h-full mx-auto text-center border-none rounded-3xl my-auto"
         />
       </div>
       {searchTerm.trim() !== '' && (
@@ -90,7 +90,7 @@ const Buscador = ({ cambios, newCambio }) => {
       )}
       {selectedAlumno && (
         <div className="flex flex-col mx-auto px-4 py-2 items-center w-full md:w-3/6">
-          <EditorAlumnos alumno={selectedAlumno} newCambio={newCambio} />
+          <EditorAlumnos alumno={selectedAlumno} newCambio={newCambio} setSelectedAlumno={setSelectedAlumno} setSelectedProfesor={setSelectedProfesor} />
           <EliminarAlumno selectedAlumno={selectedAlumno} setSelectedAlumno={setSelectedAlumno} />
           <button onClick={clearDetails} className='bg-[#FFFFFF] text-[#0D0D0D] font-botones font-bold text-center rounded-3xl mt-4 h-10 w-4/6'>Volver</button>
         </div>
@@ -104,7 +104,7 @@ const Buscador = ({ cambios, newCambio }) => {
       )}
       {selectedProfesor && (
         <div className="flex flex-col mx-auto px-4 py-2 items-center w-full md:w-3/6">
-          <EditorProfesor profesor={selectedProfesor} newCambio={newCambio} />
+          <EditorProfesor profesor={selectedProfesor} newCambio={newCambio} setSelectedAlumno={setSelectedAlumno} setSelectedProfesor={setSelectedProfesor} />
           <EliminarProfesor selectedProfesor={selectedProfesor} setSelectedProfesor={setSelectedProfesor} />
           <button onClick={clearDetails} className='bg-[#FFFFFF] text-[#0D0D0D] font-botones font-bold text-center rounded-3xl mt-4 h-10 w-4/6'>Volver</button>
         </div>
