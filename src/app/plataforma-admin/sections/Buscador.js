@@ -92,7 +92,6 @@ const Buscador = ({ cambios, newCambio }) => {
         <div className="flex flex-col mx-auto px-4 py-2 items-center w-full md:w-3/6">
           <EditorAlumnos alumno={selectedAlumno} newCambio={newCambio} setSelectedAlumno={setSelectedAlumno} setSelectedProfesor={setSelectedProfesor} />
           <EliminarAlumno selectedAlumno={selectedAlumno} setSelectedAlumno={setSelectedAlumno} />
-          <button onClick={clearDetails} className='bg-[#FFFFFF] text-[#0D0D0D] font-botones font-bold text-center rounded-3xl mt-4 h-10 w-4/6'>Volver</button>
         </div>
       )}
       {searchTerm.trim() !== '' && (
@@ -106,7 +105,6 @@ const Buscador = ({ cambios, newCambio }) => {
         <div className="flex flex-col mx-auto px-4 py-2 items-center w-full md:w-3/6">
           <EditorProfesor profesor={selectedProfesor} newCambio={newCambio} setSelectedAlumno={setSelectedAlumno} setSelectedProfesor={setSelectedProfesor} />
           <EliminarProfesor selectedProfesor={selectedProfesor} setSelectedProfesor={setSelectedProfesor} />
-          <button onClick={clearDetails} className='bg-[#FFFFFF] text-[#0D0D0D] font-botones font-bold text-center rounded-3xl mt-4 h-10 w-4/6'>Volver</button>
         </div>
       )}
     </div>

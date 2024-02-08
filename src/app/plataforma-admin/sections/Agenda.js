@@ -195,7 +195,7 @@ const Agenda = ({ cambios }) => {
                       gridRowEnd: timeSlots.indexOf(alumno.Horario) + 2 + alumno.Duracion / 15
                     }}>
                       <div
-                        className={`flex flex-col m-auto h-[95%] w-[95%] text-center ${
+                        className={`flex flex-col m-auto h-[97.5%] w-[95%] text-center ${
                           alumno.Notificaciones ? 'bg-[#FFC9CB]' : 'bg-[#ACFDB2]'
                         }`}
                       >

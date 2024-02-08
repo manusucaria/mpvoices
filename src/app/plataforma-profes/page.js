@@ -101,7 +101,7 @@ const page = () => {
     <div id='Agenda' className="flex flex-col">
       {profesor && Object.keys(profesor).length > 0
         ? <div className="flex flex-col">
-        <h1 className='text-center text-[#FFFFFF] text-3xl sm:text-5xl mt-6 mb-12'>¡Bienvenido {profesor.Nombre} {profesor.Apelido}!</h1>
+        <h1 className='text-center text-[#FFFFFF] text-3xl sm:text-5xl mt-6 mb-12'>¡Bienvenido/a {profesor.Nombre} {profesor.Apelido}!</h1>
         {selectedDay
           ? (
             <div className="flex justify-center mb-4">
@@ -163,7 +163,7 @@ const page = () => {
                           gridRowEnd: timeSlots.indexOf(alumno.Horario) + 2 + alumno.Duracion / 15
                         }}>
                           <div
-                            className={`flex flex-col m-auto h-[95%] w-[95%] text-center ${
+                            className={`flex flex-col m-auto h-[97.5%] w-[95%] text-center ${
                               alumno.Notificaciones ? 'bg-[#FFC9CB]' : 'bg-[#ACFDB2]'
                             }`}
                           >
