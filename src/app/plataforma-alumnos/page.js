@@ -4,13 +4,14 @@ import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { signOut } from 'firebase/auth'
 
-import { openSans600, playfair600 } from '@/utils/fonts/fonts.js'
+import { playfair600 } from '@/utils/fonts/fonts.js'
 import { getAlumnoByEmail } from '../api/api.js'
 import { useAuth } from '../../lib/auth'
 import { auth } from '../../lib/firebase.js'
 import Loader from '../components/loader/Loader.jsx'
 import Button from '../components/button/Button.jsx'
 import Wrapper from '../components/wrapper/Wrapper.jsx'
+import Modal from '../components/modal/Modal.jsx'
 
 const page = () => {
   const user = useAuth()
@@ -94,7 +95,12 @@ const page = () => {
                   Cerrar sesión
                 </button>
 
-                <ModalLogOut isOpen={isModalOpen} onClose={() => setModalOpen(false)} handleLogout={handleLogout} />
+                <Modal
+                  leggend="¿Estás segur@ que deseas cerrar tu sesión?"
+                  isOpen={isModalOpen}
+                  onClose={() => setModalOpen(false)}
+                  callback={handleLogout}
+                />
               </div>
             )}
           </>
@@ -105,23 +111,3 @@ const page = () => {
 }
 
 export default page
-
-const ModalLogOut = ({ isOpen, onClose, handleLogout }) => {
-  return (
-    <>
-      {isOpen && (
-        <div className="bg-black bg-opacity-50 w-screen h-screen fixed top-0 left-0 flex items-center justify-center">
-          <div className="w-2/3 sm:w-1/2 md:w-1/3 h-auto p-5 rounded-md bg-white text-black">
-            <p className={`text-center pb-5 ${openSans600.className}`}>
-              ¿Estás segur@ que deseas cerrar tu sesión?
-            </p>
-            <div className="flex justify-end mt-4">
-              <Button hasACallback mode="light" onClick={onClose} text="Cancelar" />
-              <Button hasACallback mode="dark" onClick={handleLogout} text="Cerrar Sesión" />
-            </div>
-          </div>
-        </div>
-      )}
-    </>
-  )
-}
