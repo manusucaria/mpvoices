@@ -2,7 +2,7 @@ import React from 'react'
 
 const Page = () => {
   return (
-    <div>Notificaciones</div>
+    <div>Reprogramar clases</div>
   )
 }
 export default Page
