@@ -47,7 +47,7 @@ const page = () => {
               <Agenda cambios={cambios} />
               <Buscador newCambio={newCambio} cambios={cambios} />
               <Alta newCambio={newCambio} cambios={cambios} />
-              <button className='mx-auto mt-12 bg-[#FFFFFF] text-[#0D0D0D] font-botones font-bold p-2 my-6 lg:mb-12 w-4/6 sm:w-2/6 h-10 text-center rounded-3xl hover:cursor-pointer' onClick={handleLogout}>
+              <button className='bg-[#FFFFFF] text-[#E9500E] md:text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#E9500E] mx-auto mt-12 font-botones font-bold p-2 my-6 lg:mb-12 w-4/6 sm:w-2/6 h-10 text-center rounded-3xl hover:cursor-pointer' onClick={handleLogout}>
                 <p>Cerrar Sesión</p>
               </button>
             </div>

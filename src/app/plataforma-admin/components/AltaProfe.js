@@ -52,11 +52,11 @@ const AltaProfesor = ({ setShowProfesorForm, confirmacionRegistro, newUserEmail,
           <input placeholder="Intrumento/s" className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Instrumento" value={profesorData.Instrumento} onChange={handleChange} />
         </div>
         <div className='flex w-full mx-auto my-8 gap-x-4'>
-          <button className='rounded-3xl w-3/6 font-botones font-bold h-12 bg-[#663481] text-[#FFFFFF] px-3' type='submit'>
+          <button className='rounded-3xl w-3/6 font-botones font-bold h-12 bg-[#663481] text-[#FFFFFF] px-3 md:hover:bg-[#9B70BE]' type='submit'>
             Guardar
           </button>
           <button
-            className='rounded-3xl w-3/6 font-botones font-bold h-12 ml-auto bg-[#FFFFFF] text-[#663481] md:text-[#0D0D0D] md:hover:text-[#663481] border-2 border-[#663481] px-3'
+            className='rounded-3xl w-3/6 font-botones font-bold h-12 ml-auto bg-[#FFFFFF] text-[#0D0D0D] md:hover:text-[#663481] border-2 border-[#663481] px-3'
             onClick={cancelarClick}
             type='button'
           >

@@ -38,7 +38,7 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, new
   }
 
   return (
-    <div className='flex flex-col mx-auto w-full md:w-4/6 lg:w-3/6'>
+    <div className='flex flex-col mx-auto w-full'>
       <h2 className="text-center text-xl sm:text-3xl mb-4 text-[#0D0D0D] mt-4">Datos nuevo alumno</h2>
       <form className='flex flex-col mx-auto mt-4 w-full px-4 md:w-3/6' onSubmit={handleSubmit}>
         <div className='flex mb-6'>
@@ -82,11 +82,11 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, new
           <input placeholder="Teléfono" className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Tel" value={alumnoData.Tel} onChange={handleChange} />
         </div>
         <div className='flex w-full mx-auto my-8 gap-x-4'>
-          <button className='rounded-3xl w-3/6 font-botones font-bold h-12 bg-[#E9500E] text-[#FFFFFF] px-3' type='submit'>
+          <button className='rounded-3xl w-3/6 font-botones font-bold h-12 bg-[#E9500E] text-[#FFFFFF] px-3 md:hover:bg-[#DB9B6D]' type='submit'>
             Guardar
           </button>
           <button
-            className='rounded-3xl w-3/6 font-botones font-bold h-12 ml-auto bg-[#FFFFFF] text-[#E9500E] md:text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#E9500E] px-3'
+            className='rounded-3xl w-3/6 font-botones font-bold h-12 ml-auto bg-[#FFFFFF] text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#E9500E] px-3'
             onClick={cancelarClick}
             type='button'
           >

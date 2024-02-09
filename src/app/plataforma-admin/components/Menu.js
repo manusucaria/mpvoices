@@ -15,17 +15,17 @@ const Menu = ({ handleLogOut }) => {
 
   return (
     <div className='flex flex-col gap-y-24 mt-32'>
-      <a className='mx-auto text-[#FFFFFF] text-base' href='/plataforma-admin/#Agenda' onClick={(e) => handleClick(e, 'Agenda')}>
+      <a className='mx-auto text-[#FFFFFF] text-base md:hover:text-[#E9500E]' href='/plataforma-admin/#Agenda' onClick={(e) => handleClick(e, 'Agenda')}>
         Dias y horarios
       </a>
-      <a className='mx-auto text-[#FFFFFF] text-base' href='/plataforma-admin/#Buscar' onClick={(e) => handleClick(e, 'Buscar')}>
+      <a className='mx-auto text-[#FFFFFF] text-base md:hover:text-[#E9500E]' href='/plataforma-admin/#Buscar' onClick={(e) => handleClick(e, 'Buscar')}>
         Buscar usuarios
       </a>
-      <a className='mx-auto text-[#FFFFFF] text-base' href='/plataforma-admin/#Crear' onClick={(e) => handleClick(e, 'Crear')}>
+      <a className='mx-auto text-[#FFFFFF] text-base md:hover:text-[#E9500E]' href='/plataforma-admin/#Crear' onClick={(e) => handleClick(e, 'Crear')}>
         Nuevos usuarios
       </a>
       <div className='mx-auto'>
-        <p onClick={handleLogOut} className='cursor-pointer text-[#FFFFFF] text-base'>Cerrar sesión</p>
+        <p onClick={handleLogOut} className='cursor-pointer text-base text-[#FFFFFF] md:hover:text-[#E9500E]'>Cerrar sesión</p>
       </div>
     </div>
   )

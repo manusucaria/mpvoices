@@ -49,9 +49,9 @@ const AltaUsuarioAlumno = ({ setAlumnoFormSubmitted, handleCancelar, onFormSubmi
   }
 
   return (
-    <div className='flex flex-col mx-auto w-full md:w-4/6'>
+    <div className='flex flex-col mx-auto w-full'>
       <h3 className="text-center text-xl sm:text-3xl mb-4 text-[#0D0D0D]">Crear Cuenta Alumno</h3>
-      <form className='flex flex-col mx-auto w-full md:w-4/6 mt-4 px-4' onSubmit={handleSubmit}>
+      <form className='flex flex-col mx-auto w-full md:w-3/6 mt-4 px-4' onSubmit={handleSubmit}>
         <div className='flex'>
           <label className='font-bold mr-auto w-2/6 text-[#0D0D0D]' htmlFor="email">Email:</label>
           <input
@@ -79,7 +79,7 @@ const AltaUsuarioAlumno = ({ setAlumnoFormSubmitted, handleCancelar, onFormSubmi
         {errors.password && <p className="ml-auto pr-4 mt-1 text-white text-sm">{errors.password}</p>}
         <div className='flex w-full mx-auto gap-x-4 mt-8'>
           <button
-            className='font-botones font-bold h-12 w-3/6 mr-auto rounded-3xl bg-[#E9500E] text-[#FFFFFF] px-3'
+            className='font-botones font-bold h-12 w-3/6 mr-auto rounded-3xl bg-[#E9500E] text-[#FFFFFF] px-3 md:hover:bg-[#DB9B6D]'
             type="submit">
               Crear Cuenta
           </button>

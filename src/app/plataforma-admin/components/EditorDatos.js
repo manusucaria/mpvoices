@@ -120,7 +120,7 @@ const EditorDatos = ({ alumno }) => {
               />
             </div>
             <div className='flex w-full mx-auto mt-8 gap-x-4'>
-            <button className='font-botones font-bold rounded-3xl w-3/6 bg-[#E9500E] text-[#FFFFFF] px-3 h-10' type='submit'>
+            <button className='font-botones font-bold rounded-3xl w-3/6 bg-[#E9500E] text-[#FFFFFF] px-3 h-10 md:hover:bg-[#DB9B6D]' type='submit'>
                 Guardar
               </button>
               <button
@@ -156,7 +156,7 @@ const EditorDatos = ({ alumno }) => {
             <p className='mr-2 text-base font-bold'>Teléfono:</p>
             <p className='text-base'>{tel}</p>
           </div>
-          <button className='rounded-3xl font-botones font-bold w-4/6 mx-auto h-10 mt-8 bg-[#E9500E]' onClick={handleEditClick}>
+          <button className='rounded-3xl font-botones font-bold w-4/6 mx-auto h-10 mt-8 bg-[#E9500E] md:hover:bg-[#DB9B6D]' onClick={handleEditClick}>
             Editar Perfil
           </button>
         </div>
