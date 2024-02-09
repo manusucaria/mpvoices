@@ -38,7 +38,8 @@ const page = () => {
           setAlumno(dataAlumno)
         }
       } catch (error) {
-        console.log(error)
+        await signOut(auth)
+        router.push('/login')
       } finally {
         setLoading(false)
       }
