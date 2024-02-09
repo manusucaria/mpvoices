@@ -4,7 +4,15 @@ import './Button.scss'
 import Link from 'next/link'
 import { openSans700 } from '@/utils/fonts/fonts'
 
-function Button ({ target, text, mode, alterColor, path, hasACallback, ...props }) {
+function Button ({
+  target,
+  text,
+  mode,
+  alterColor,
+  path,
+  hasACallback,
+  ...props
+}) {
   return (
     <>
       {hasACallback
