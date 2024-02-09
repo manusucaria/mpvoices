@@ -7,7 +7,7 @@ import { signOut } from 'firebase/auth'
 import { auth } from '../../lib/firebase.js'
 import AgendaProfe from './components/AgendaProfe.js'
 
-const page = () => {
+const Page = () => {
   const user = useAuth()
   const [profesor, setProfesor] = useState([])
   const [availableDays, setAvailableDays] = useState([])
@@ -16,9 +16,11 @@ const page = () => {
   useEffect(() => {
     if (user === null) {
       router.push('/login')
-    } if (user) {
-      getProfesores().then(data => {
-        const profesoresFiltrados = data.filter(profesor => profesor.Email === user.email)
+    } else if (user) {
+      getProfesores().then((data) => {
+        const profesoresFiltrados = data.filter(
+          (profesor) => profesor.Email === user.email
+        )
         if (profesoresFiltrados.length > 0) {
           const profe = profesoresFiltrados[0]
           setProfesor(profe)
@@ -34,24 +36,36 @@ const page = () => {
   }, [user, router])
 
   const handleLogout = () => {
-    signOut(auth).then(() => {
-      router.push('/')
-    })
+    const confirmation = window.confirm('¿Estás seguro/a de que quieres cerrar sesión?')
+    if (confirmation) {
+      signOut(auth).then(() => {
+        router.push('/')
+      })
+    }
   }
 
   return (
-    <div id='Agenda' className="flex flex-col">
+    <div id="Agenda" className="flex flex-col">
       {profesor && Object.keys(profesor).length > 0
-        ? <div className='flex flex-col'>
-          <h1 className='text-center text-[#FFFFFF] text-3xl sm:text-5xl mt-6 mb-12'>¡Bienvenido/a {profesor.Nombre} {profesor.Apelido}!</h1>
-          <AgendaProfe availableDays={availableDays} profesor={profesor}/>
-          <button className='bg-[#FFFFFF] text-[#E9500E] md:text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#E9500E] mx-auto mt-12 font-botones font-bold p-2 my-6 lg:mb-12 w-4/6 sm:w-2/6 h-10 text-center rounded-3xl hover:cursor-pointer' onClick={handleLogout}>
+        ? (
+        <div className="flex flex-col">
+          <h1 className="text-center text-[#FFFFFF] text-3xl sm:text-5xl mt-6 mb-12">
+            ¡Bienvenido/a {profesor.Nombre} {profesor.Apelido}!
+          </h1>
+          <AgendaProfe availableDays={availableDays} profesor={profesor} />
+          <button
+            className="bg-[#FFFFFF] text-[#E9500E] md:text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#E9500E] mx-auto mt-12 font-botones font-bold p-2 my-6 lg:mb-12 w-4/6 sm:w-2/6 h-10 text-center rounded-3xl hover:cursor-pointer"
+            onClick={handleLogout}
+          >
             <p>Cerrar Sesión</p>
           </button>
         </div>
-        : ''}
-      </div>
+          )
+        : (
+            ''
+          )}
+    </div>
   )
 }
 
-export default page
+export default Page

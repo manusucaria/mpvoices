@@ -2,11 +2,12 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '../../lib/auth'
-import { logOut } from '../../lib/firebase-utils'
 import Buscador from './sections/Buscador.js'
 import Agenda from './sections/Agenda.js'
 import Alta from './sections/Alta'
 import Menu from './components/Menu'
+import { signOut } from 'firebase/auth'
+import { auth } from '../../lib/firebase.js'
 
 const page = () => {
   const user = useAuth()
@@ -24,11 +25,12 @@ const page = () => {
   }, [router])
 
   const handleLogout = () => {
-    logOut().then(() => {
-      router.push('/')
-    }).catch((error) => {
-      console.error('Error al cerrar sesión:', error)
-    })
+    const confirmation = window.confirm('¿Estás seguro/a de que quieres cerrar sesión?')
+    if (confirmation) {
+      signOut(auth).then(() => {
+        router.push('/')
+      })
+    }
   }
 
   const newCambio = (cambio) => {
