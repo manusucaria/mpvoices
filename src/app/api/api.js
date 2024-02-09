@@ -103,6 +103,36 @@ export const getAlumnosByProfesor = async (idProfesor) => {
   return result.data()
 }
 
+/**
+ * Obtiene la información de un alumno por su dirección de correo electrónico, excluyendo la contraseña.
+ *
+ * @param {Object} options - Opciones de búsqueda.
+ * @param {string} options.email - Dirección de correo electrónico del alumno a buscar.
+ * @returns {Promise<Object>} - Un objeto que representa la información del alumno sin la contraseña.
+ * @throws {Error} - Se lanza un error si el alumno no es encontrado.
+ */
+export const getAlumnoByEmail = async ({ email }) => {
+  // Crea una consulta para buscar al alumno por su dirección de correo electrónico
+  const q = query(collection(db, 'alumnos'), where('Email', '==', email))
+
+  // Obtiene el resultado de la consulta
+  const querySnapshot = await getDocs(q)
+
+  // Verifica si el resultado de la consulta está vacío
+  if (querySnapshot.empty) {
+    throw new Error('Alumno no encontrado')
+  }
+
+  // Extrae los datos del primer documento encontrado
+  const alumnoData = querySnapshot.docs[0].data()
+
+  // Excluye el campo 'Contraseña' antes de devolver los datos
+  const { Contraseña, ...alumnoWithoutPassword } = alumnoData
+
+  // Retorna la información del alumno sin la contraseña
+  return alumnoWithoutPassword
+}
+
 const getArrayFromCollection = (collection) => {
   return collection.docs.map((doc) => {
     return { ...doc.data(), id: doc.id }
