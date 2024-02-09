@@ -73,18 +73,18 @@ const page = () => {
                 <div className="w-2/3 grid place-items-center gap-8">
                   <Button
                     mode="light"
-                    path="/plataforma-alumnos/clases"
-                    text="Clases"
+                    path="/plataforma-alumnos/clases/info"
+                    text="Información clases"
                   />
                   <Button
                     mode="light"
-                    path="/plataforma-alumnos/pagos"
-                    text="Pagos"
+                    path="/plataforma-alumnos/clases/cancelar"
+                    text="Cancelar clases"
                   />
                   <Button
                     mode="light"
-                    path="/plataforma-alumnos/notificaciones"
-                    text="Notificaciones"
+                    path="/plataforma-alumnos/clases/reprogramar"
+                    text="Reprogramar clases"
                   />
                 </div>
 
