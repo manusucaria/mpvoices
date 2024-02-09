@@ -28,7 +28,7 @@ function SectionNovedades () {
             <p className={`Novedades-p ${openSans600.className}`}>Te acompañamos con clases online donde estés, en cualquier parte del mundo</p>
           </div>
 
-          <Button text="Enterate en Instagram" path='https://www.instagram.com/voicesworld/' />
+          <Button text="Enterate en Instagram" target path='https://www.instagram.com/voicesworld/' />
         </Wrapper>
       </section>
     </>
