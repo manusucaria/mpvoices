@@ -24,7 +24,7 @@ const page = () => {
       try {
         setLoading(true)
         window.scrollTo(0, 0)
-        if (user === null && user.displayName !== 'Alumno') {
+        if (user === null && user?.displayName !== 'Alumno') {
           router.push('/login')
           return
         }
@@ -45,10 +45,11 @@ const page = () => {
     fetchAlumnoData()
   }, [user, router])
 
-  const handleLogout = () => {
-    signOut(auth).then(() => {
-      router.push('/')
-    })
+  const handleLogout = async () => {
+    setLoading(true)
+    await signOut(auth)
+    router.push('/login')
+    setLoading(false)
   }
 
   return (
