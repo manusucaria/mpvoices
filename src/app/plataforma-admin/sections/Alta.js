@@ -72,15 +72,19 @@ const Alta = ({ newCambio }) => {
 
   return (
     <div id='Crear' className='w-full py-12 bg-[#D9D9D9]'>
-      <h2 className="text-center text-2xl sm:text-3xl pb-8 text-[#0D0D0D]">Nuevos usuarios</h2>
-      <div className="flex justify-center sm:gap-x-4 mb-4 mx-auto w-full md:w-3/6 gap-x-4">
-        <button className="text-[#FFFFFF] font-botones font-bold bg-[#E9500E] w-3/6 ml-4 h-12 rounded-3xl md:hover:bg-[#DB9B6D]" onClick={handleShowAlumnoForm}>
-          Alumno
-        </button>
-        <button className="text-[#FFFFFF] font-botones font-bold bg-[#663481] w-3/6 mr-4 h-12 rounded-3xl md:hover:bg-[#9B70BE]" onClick={handleShowProfesorForm}>
-          Profesor
-        </button>
-      </div>
+      {!showProfesorForm && !showAlumnoForm && (
+        <h2 className="text-center text-2xl sm:text-3xl pb-8 text-[#0D0D0D]">Nuevos usuarios</h2>
+      )}
+      {!showProfesorForm && !showAlumnoForm && (
+        <div className="flex justify-center sm:gap-x-4 mb-4 mx-auto w-full md:w-4/6 lg:w-3/6 gap-x-4">
+          <button className="text-[#FFFFFF] font-botones font-bold bg-[#E9500E] w-3/6 ml-4 h-14 rounded-3xl md:hover:bg-[#DB9B6D]" onClick={handleShowAlumnoForm}>
+            Alumno
+          </button>
+          <button className="text-[#FFFFFF] font-botones font-bold bg-[#663481] w-3/6 mr-4 h-14 rounded-3xl md:hover:bg-[#9B70BE]" onClick={handleShowProfesorForm}>
+            Profesor
+          </button>
+        </div>
+      )}
       {showProfesorForm && !profesorFormSubmitted && (
         <AltaUsuarioProfe onFormSubmit={handleNewFormSubmit} setProfesorFormSubmitted={setProfesorFormSubmitted} handleCancelar={handleCancelar} />
       )}

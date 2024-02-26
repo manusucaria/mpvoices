@@ -65,7 +65,7 @@ const Buscador = ({ cambios, newCambio }) => {
 
   return (
     <div id='Buscar' className='flex flex-col bg-[#212121] py-12'>
-      <h2 className='text-center text-2xl sm:text-3xl pb-8 text-[#FFFFFF] border-b-2 border-b-[#FFFFFF]'>Buscar usuarios</h2>
+      <h2 className='text-center text-2xl sm:text-3xl text-[#FFFFFF]'>Buscar usuarios</h2>
       <div className="flex text-[#0D0D0D] bg-[#FFFFFF] w-5/6 mb-4 sm:w-4/6 md:w-3/6 mx-auto text-center py-2 mt-12 rounded-3xl px-4">
         <svg width="37" height="38" viewBox="0 0 37 38" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g id="magnifyingglass">
@@ -89,7 +89,7 @@ const Buscador = ({ cambios, newCambio }) => {
         </div>
       )}
       {selectedAlumno && (
-        <div className="flex flex-col mx-auto px-4 py-2 items-center w-full md:w-3/6">
+        <div className="flex flex-col mx-auto px-4 py-2 items-center w-full md:w-4/6 lg:w-3/6">
           <EditorAlumnos alumno={selectedAlumno} newCambio={newCambio} setSelectedAlumno={setSelectedAlumno} setSelectedProfesor={setSelectedProfesor} />
           <EliminarAlumno selectedAlumno={selectedAlumno} setSelectedAlumno={setSelectedAlumno} />
         </div>
@@ -102,7 +102,7 @@ const Buscador = ({ cambios, newCambio }) => {
         </div>
       )}
       {selectedProfesor && (
-        <div className="flex flex-col mx-auto px-4 py-2 items-center w-full md:w-3/6">
+        <div className="flex flex-col mx-auto px-4 py-2 items-center w-full md:w-4/6 lg:w-3/6">
           <EditorProfesor profesor={selectedProfesor} newCambio={newCambio} setSelectedAlumno={setSelectedAlumno} setSelectedProfesor={setSelectedProfesor} />
           <EliminarProfesor selectedProfesor={selectedProfesor} setSelectedProfesor={setSelectedProfesor} />
         </div>
