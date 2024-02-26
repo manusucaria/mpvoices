@@ -203,7 +203,7 @@ const Agenda = ({ cambios }) => {
                         }`}
                       >
                         <p className='text-sm sm:text-sm md:text-base mt-auto font-bold pt-2 text-[#0D0D0D]'>{alumno.Nombre} {alumno.Apellido}</p>
-                        <p className='text-sm sm:text-sm md:text-base mb-auto text-[#0D0D0D]'>{alumno.Instrumento} {alumno.Horario}-{calcularNuevoHorario(alumno.Horario, alumno.Duracion)}</p>
+                        <p className='text-sm sm:text-sm md:text-base mb-auto text-[#0D0D0D]'>{alumno.Instrumento} {alumno.Horario}-{calcularNuevoHorario(alumno.Horario, alumno.Duracion)}hs</p>
                         <div className='ms-auto pb-1 pe-2 sm:pe-4'>
                           {alumno.Notificaciones
                             ? <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">

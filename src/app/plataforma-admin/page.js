@@ -48,7 +48,7 @@ const page = () => {
       {user
         ? <div className='xl:grid xl:grid-cols-9'>
             <div className='hidden xl:flex xl:flex-col col-start-1 col-end-2'>
-              <Menu handleLogOut={handleLogout} />
+              <Menu handleLogOut={handleSubmit} />
             </div>
             <div className='xl:col-start-2 xl:col-end-9 flex flex-col xl:border-l-1 xl:border-l-[#FFFFFF]'>
               <h1 className='text-center text-[#FFFFFF] text-3xl sm:text-5xl mt-6 mb-12'>¡Hola Administrador/a!</h1>
