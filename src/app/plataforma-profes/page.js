@@ -12,6 +12,7 @@ const Page = () => {
   const [profesor, setProfesor] = useState([])
   const [availableDays, setAvailableDays] = useState([])
   const router = useRouter()
+  const [showConfirmation, setShowConfirmation] = useState(false)
 
   useEffect(() => {
     if (user === null) {
@@ -35,6 +36,10 @@ const Page = () => {
     }
   }, [user, router])
 
+  const handleSubmit = () => {
+    setShowConfirmation(true)
+  }
+
   const handleLogout = () => {
     const confirmation = window.confirm('¿Estás seguro/a de que quieres cerrar sesión?')
     if (confirmation) {
@@ -44,26 +49,53 @@ const Page = () => {
     }
   }
 
+  const handleCloseConfirmation = () => {
+    setShowConfirmation(false)
+  }
+
   return (
     <div id="Agenda" className="flex flex-col">
       {profesor && Object.keys(profesor).length > 0
         ? (
         <div className="flex flex-col">
           <h1 className="text-center text-[#FFFFFF] text-3xl sm:text-5xl mt-6 mb-12">
-            ¡Bienvenido/a {profesor.Nombre} {profesor.Apelido}!
+            ¡Hola {profesor.Nombre} {profesor.Apelido}!
           </h1>
           <AgendaProfe availableDays={availableDays} profesor={profesor} />
           <button
             className="bg-[#FFFFFF] text-[#E9500E] md:text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#E9500E] mx-auto mt-12 font-botones font-bold p-2 my-6 lg:mb-12 w-4/6 sm:w-2/6 h-10 text-center rounded-3xl hover:cursor-pointer"
-            onClick={handleLogout}
+            onClick={handleSubmit}
           >
-            <p>Cerrar Sesión</p>
+            <p>Cerrar sesión</p>
           </button>
         </div>
           )
         : (
             ''
           )}
+        {showConfirmation && (
+          <div className='fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-50 z-50'>
+            <div className='bg-[#FFFFFF] p-12 rounded-lg text-center flex flex-col'>
+              <p className='text-[#0D0D0D] text-xl mb-4'>
+                ¿Está seguro de que desea cerrar sesión?
+              </p>
+              <div className='flex mx-auto gap-x-16'>
+                <button
+                  className='text-[#E9500E] md:hover:text-[#DB9B6D]'
+                  onClick={handleLogout}
+                >
+                  Si
+                </button>
+                <button
+                  className='text-[#E9500E] md:hover:text-[#DB9B6D]'
+                  onClick={handleCloseConfirmation}
+                >
+                  No
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
     </div>
   )
 }

@@ -9,6 +9,7 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
   const [instrumento, setInstrumento] = useState('')
   const [editMode, setEditMode] = useState(false)
   const [originalValues, setOriginalValues] = useState(null)
+  const [showConfirmation, setShowConfirmation] = useState(false)
 
   useEffect(() => {
     if (profesor) {
@@ -29,22 +30,20 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    const confirmation = window.confirm('¿Estás seguro de que deseas guardar los cambios?')
-    if (confirmation) {
-      try {
-        const updatedProfesor = {
-          Nombre: nombre,
-          Apellido: apellido,
-          Email: email,
-          Dia: dia,
-          Instrumento: instrumento
-        }
-        await updateProfesor(profesor.id, updatedProfesor)
-        newCambio('Edicion')
-        setEditMode(false)
-      } catch (error) {
-        console.error('Error al actualizar los datos:', error)
+    try {
+      const updatedProfesor = {
+        Nombre: nombre,
+        Apellido: apellido,
+        Email: email,
+        Dia: dia,
+        Instrumento: instrumento
       }
+      await updateProfesor(profesor.id, updatedProfesor)
+      newCambio('Edicion')
+      setEditMode(false)
+      setShowConfirmation(true)
+    } catch (error) {
+      console.error('Error al actualizar los datos:', error)
     }
   }
 
@@ -66,11 +65,20 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
     setSelectedProfesor(false)
   }
 
+  const handleCloseConfirmation = () => {
+    setShowConfirmation(false)
+  }
+
   return (
     <div className='w-full'>
       {editMode
         ? (
-        <div className='flex flex-col w-full'>
+        <div className='flex flex-col w-full bg-[#0D0D0D] p-8'>
+          <div className='flex border-b-[0.5px] sm:border-b-1 border-b-[#FFFFFF] pb-8 mb-8'>
+            <h4 className='text-[#FFFFFF] my-auto text-xl sm:text-2xl'>Datos</h4>
+            <p className='text-[#FFFFFF] my-auto mx-4'>|</p>
+            <p className='text-[#9B70BE] my-auto text-xl sm:text-2xl'>Editar</p>
+          </div>
           <form className='w-full mx-auto mt-4' onSubmit={handleSubmit}>
             <div className='flex mb-6'>
               <label className='font-bold mr-auto w-2/6'>Nombre:</label>
@@ -93,7 +101,7 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
               />
             </div>
             <div className='flex mb-6'>
-              <label className='font-bold mr-auto w-2/6'>Email:</label>
+              <label className='font-bold mr-auto w-2/6'>E-Mail:</label>
               <input
                 className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
                 type='text'
@@ -112,7 +120,7 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
                 onChange={(e) => setDia(e.target.value)}
               />
             </div>
-            <div className='flex mb-6'>
+            <div className='flex'>
               <label className='font-bold mr-auto w-2/6'>Instrumento:</label>
               <input
                 className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
@@ -139,7 +147,7 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
           )
         : (
         <div className='flex flex-col w-full mx-auto mt-4'>
-          <div className='w-full flex justify-center mx-auto mb-6 gap-x-4 sm:gap-x-6'>
+          <div className='w-full flex justify-center mx-auto mb-8 gap-x-4 sm:gap-x-6'>
             <div className="my-auto ml-auto pt-[0.5px] xl:pt-1">
               <svg className='hover:cursor-pointer stroke-[#FFFFFF] md:hover:stroke-[#663481]' onClick={() => volver()} width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="iconamoon:arrow-up-2-light">
@@ -149,33 +157,51 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
             </div>
             <h3 className="text-[#FFFFFF] my-auto text-xl sm:text-2xl">Profesor</h3>
             <p className='my-auto'>|</p>
-            <p className='text-[#663481] my-auto mt-1 md:mt-2 text-lg mr-auto'>{profesor.Nombre} {profesor.Apellido}</p>
+            <p className='text-[#9B70BE] my-auto mt-1 md:mt-1 text-xl sm:text-2xl mr-auto'>{profesor.Nombre} {profesor.Apellido}</p>
           </div>
-          <div className='mb-8 flex'>
-            <p className='mr-2 text-base font-bold'>Nombre:</p>
-            <p className='text-base'>{nombre}</p>
+          <div className='bg-[#0D0D0D] p-8 flex flex-col mx-auto w-full'>
+            <h4 className='text-[#FFFFFF] my-auto text-xl sm:text-2xl border-b-[0.5px] sm:border-b-1 border-b-[#FFFFFF] pb-8 mb-8'>Datos</h4>
+            <div className='mb-8 flex'>
+              <p className='mr-2 text-base font-bold'>Nombre:</p>
+              <p className='text-base'>{nombre}</p>
+            </div>
+            <div className='mb-8 flex'>
+              <p className='mr-2 text-base font-bold'>Apellido:</p>
+              <p className='text-base'>{apellido}</p>
+            </div>
+            <div className='mb-8 flex'>
+              <p className='mr-2 text-base font-bold'>E-Mail:</p>
+              <p className='text-base'>{email}</p>
+            </div>
+            <div className='mb-8 flex'>
+              <p className='mr-2 text-base font-bold'>Día:</p>
+              <p className='text-base'>{dia.toLowerCase()}</p>
+            </div>
+            <div className='flex'>
+              <p className='mr-2 text-base font-bold'>Instrumento:</p>
+              <p className='text-base'>{instrumento}</p>
+            </div>
           </div>
-          <div className='mb-8 flex'>
-            <p className='mr-2 text-base font-bold'>Apellido:</p>
-            <p className='text-base'>{apellido}</p>
+          <div className='bg-[#0D0D0D] flex flex-col mx-auto w-full'>
+            <button className='font-botones font-bold rounded-3xl w-4/6 sm:w-3/6 mx-auto h-10 mb-8 bg-[#663481] md:hover:bg-[#9B70BE]' onClick={handleEditClick}>
+                Editar perfil
+            </button>
           </div>
-          <div className='mb-8 flex'>
-            <p className='mr-2 text-base font-bold'>Email:</p>
-            <p className='text-base'>{email}</p>
-          </div>
-          <div className='mb-8 flex'>
-            <p className='mr-2 text-base font-bold'>Día:</p>
-            <p className='text-base'>{dia}</p>
-          </div>
-          <div className='flex'>
-            <p className='mr-2 text-base font-bold'>Instrumento:</p>
-            <p className='text-base'>{instrumento}</p>
-          </div>
-          <button className='font-botones font-bold rounded-3xl w-4/6 mx-auto h-10 mt-8 bg-[#663481] md:hover:bg-[#9B70BE]' onClick={handleEditClick}>
-            Editar Perfil
-          </button>
         </div>
           )}
+        {showConfirmation && (
+          <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-50 z-50">
+            <div className="bg-[#FFFFFF] p-12 rounded-lg text-center flex flex-col">
+              <p className="text-[#0D0D0D] text-xl mb-4">Los cambios se guardaron correctamente</p>
+              <button
+                className="text-[#663481] md:hover:text-[#9B70BE] ml-auto"
+                onClick={handleCloseConfirmation}
+              >
+                Entendido
+              </button>
+            </div>
+          </div>
+        )}
     </div>
   )
 }
