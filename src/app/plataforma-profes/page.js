@@ -9,8 +9,8 @@ import AgendaProfe from './components/AgendaProfe.js'
 
 const Page = () => {
   const user = useAuth()
-  const [profesor, setProfesor] = useState([])
-  const [availableDays, setAvailableDays] = useState([])
+  const [profesor, setProfesor] = useState({})
+  const [availableDays, setAvailableDays] = useState()
   const router = useRouter()
   const [showConfirmation, setShowConfirmation] = useState(false)
 
@@ -26,7 +26,7 @@ const Page = () => {
           const profe = profesoresFiltrados[0]
           setProfesor(profe)
           const daysString = profe.Dia
-          const daysArray = daysString.split(/[,\s]*y\s*/)
+          const daysArray = daysString.split(/[,\s]*[,y]\s*/)
           setAvailableDays(daysArray)
         }
       })
@@ -41,12 +41,9 @@ const Page = () => {
   }
 
   const handleLogout = () => {
-    const confirmation = window.confirm('¿Estás seguro/a de que quieres cerrar sesión?')
-    if (confirmation) {
-      signOut(auth).then(() => {
-        router.push('/')
-      })
-    }
+    signOut(auth).then(() => {
+      router.push('/')
+    })
   }
 
   const handleCloseConfirmation = () => {

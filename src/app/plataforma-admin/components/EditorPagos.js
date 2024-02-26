@@ -90,7 +90,7 @@ const EditorPagos = ({ alumno }) => {
           <div className='px-8 pb-8 w-full pt-4'>
             <div className='mb-8 flex'>
               <p className='mr-2 text-base font-bold'>Saldo:</p>
-              <p className='text-base'>{saldo}</p>
+              <p className='text-base'>${saldo}</p>
             </div>
             <div className='flex'>
               <p className='mr-2 text-base font-bold'>Actualización:</p>

@@ -82,7 +82,7 @@ const AgendaProfe = ({ availableDays, profesor }) => {
               <div className='my-auto flex ml-4 sm:ml-8 mb-4'>
                 <h3 className="text-[#FFFFFF] my-auto text-xl sm:text-2xl">Días y horarios</h3>
                 <p className='my-auto mx-4 sm:mx-8'>|</p>
-                <p className='text-[#E9500E] my-auto pt-2 text-lg'>{selectedDay}</p>
+                <p className='text-[#E9500E] my-auto pt-1 text-xl sm:text-2xl'>{selectedDay.toLowerCase()}</p>
               </div>
             </div>
             )
@@ -101,7 +101,7 @@ const AgendaProfe = ({ availableDays, profesor }) => {
                   <h2 className="text-center text-3xl lg:text-5xl m-auto text-[#FFFFFF] mb-8 sm:mb-6 lg:mb-8 xl:mb-10">Días y horarios</h2>
                   {availableDays.map((day, index) => (
                     <button key={index} onClick={() => filterAlumnosByDay(day)} className="bg-[#FFFFFF] md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-10 sm:h-8 md:h-8 lg:h-10 w-4/6 sm:w-3/6 md:w-2/6 mb-6 md:mb-4 xl:mb-6">
-                      {day}
+                      {day.toLowerCase()}
                     </button>
                   ))}
                 </div>
@@ -138,7 +138,7 @@ const AgendaProfe = ({ availableDays, profesor }) => {
                             }`}
                           >
                             <p className='text-sm sm:text-sm md:text-base mt-auto font-bold pt-2 text-[#0D0D0D]'>{alumno.Nombre} {alumno.Apellido}</p>
-                            <p className='text-sm sm:text-sm md:text-base mb-auto text-[#0D0D0D]'>{alumno.Instrumento} {alumno.Horario}-{calcularNuevoHorario(alumno.Horario, alumno.Duracion)}</p>
+                            <p className='text-sm sm:text-sm md:text-base mb-auto text-[#0D0D0D]'>{alumno.Instrumento} {alumno.Horario}-{calcularNuevoHorario(alumno.Horario, alumno.Duracion)}hs</p>
                             <div className='ms-auto p-1 pe-2 sm:pe-4'>
                               {alumno.Notificaciones
                                 ? <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none">

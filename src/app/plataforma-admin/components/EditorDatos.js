@@ -93,7 +93,7 @@ const EditorDatos = ({ alumno }) => {
               />
             </div>
             <div className='flex mb-6'>
-              <label className='font-bold mr-auto w-2/6'>Fecha de nacimiento:</label>
+              <label className='font-bold mr-auto w-2/6'>Fecha de nac.:</label>
               <input
                 className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
                 type='text'
@@ -149,7 +149,7 @@ const EditorDatos = ({ alumno }) => {
               <p className='text-base'>{apellido}</p>
             </div>
             <div className='mb-8 flex'>
-              <p className='mr-2 text-base font-bold'>Fecha de nacimiento:</p>
+              <p className='mr-2 text-base font-bold'>Fecha de nac.:</p>
               <p className='text-base'>{fecha}</p>
             </div>
             <div className='mb-8 flex'>

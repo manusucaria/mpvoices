@@ -55,9 +55,9 @@ const AltaProfesor = ({ setShowProfesorForm, confirmacionRegistro, newUserEmail,
       </div>
       <form className='flex flex-col mx-auto w-full md:w-4/6 lg:w-3/6 bg-[#0D0D0D] p-8' onSubmit={handleSubmit}>
         <div className='flex border-b-[0.5px] sm:border-b-1 border-b-[#FFFFFF] pb-8 mb-8'>
-          <h4 className='text-[#FFFFFF] my-auto text-xl sm:text-2xl'>Alta profesor</h4>
+          <h4 className='text-[#FFFFFF] my-auto text-lg sm:text-xl'>Alta profesor</h4>
           <p className='text-[#FFFFFF] my-auto mx-4'>|</p>
-          <p className='text-[#663481] my-auto text-xl sm:text-2xl'>completar datos</p>
+          <p className='text-[#663481] my-auto text-lg sm:text-xl'>completar datos</p>
         </div>
         <div className='flex mb-6'>
           <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Nombre:</label>

@@ -150,11 +150,11 @@ const EditorClases = ({ alumno }) => {
             </div>
             <div className='mb-8 flex'>
               <p className='mr-2 text-base font-bold'>Horario:</p>
-              <p className='text-base'>{horario}</p>
+              <p className='text-base'>{horario}hs</p>
             </div>
             <div className='mb-8 flex'>
               <p className='mr-2 text-base font-bold'>Duración:</p>
-              <p className='text-base'>{duracion}</p>
+              <p className='text-base'>{duracion} min</p>
             </div>
             <div className='flex'>
               <p className='mr-2 text-base font-bold'>Profesor:</p>
