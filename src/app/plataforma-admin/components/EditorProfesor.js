@@ -131,11 +131,11 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
               />
             </div>
             <div className='flex w-full mx-auto mt-8 gap-x-4'>
-            <button className='font-botones font-bold rounded-3xl w-3/6 bg-[#663481] text-[#FFFFFF] px-3 h-10 md:hover:bg-[#9B70BE]' type='submit'>
+            <button className='font-botones font-bold rounded-3xl w-3/6 bg-[#663481] text-[#FFFFFF] px-3 h-12 sm:h-10 md:hover:bg-[#9B70BE]' type='submit'>
                 Guardar
               </button>
               <button
-                className='font-botones font-bold rounded-3xl w-3/6 ml-auto bg-[#FFFFFF] text-[#663481] md:text-[#0D0D0D] md:hover:text-[#663481] border-2 border-[#663481] px-3 h-10'
+                className='font-botones font-bold rounded-3xl w-3/6 ml-auto bg-[#FFFFFF] text-[#663481] md:text-[#0D0D0D] md:hover:text-[#663481] border-2 border-[#663481] px-3 h-12 sm:h-10'
                 onClick={cancelarClick}
                 type='button'
               >
@@ -183,7 +183,7 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
             </div>
           </div>
           <div className='bg-[#0D0D0D] flex flex-col mx-auto w-full'>
-            <button className='font-botones font-bold rounded-3xl w-4/6 sm:w-3/6 mx-auto h-10 mb-8 bg-[#663481] md:hover:bg-[#9B70BE]' onClick={handleEditClick}>
+            <button className='font-botones font-bold rounded-3xl w-4/6 sm:w-3/6 mx-auto h-12 sm:h-10 mb-8 bg-[#663481] md:hover:bg-[#9B70BE]' onClick={handleEditClick}>
                 Editar perfil
             </button>
           </div>

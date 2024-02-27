@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import AltaAlumno from '../components/AltaAlumno'
 import AltaProfe from '../components/AltaProfe'
 import AltaUsuarioAlumno from '../components/AltaUsuarioAlumno'
@@ -11,6 +11,15 @@ const Alta = ({ newCambio }) => {
   const [profesorFormSubmitted, setProfesorFormSubmitted] = useState(false)
   const [userEmail, setUserEmail] = useState('')
   const [userPassword, setUserPassword] = useState('')
+  const [backgroundClass, setBackgroundClass] = useState('bg-[#D9D9D9]')
+
+  useEffect(() => {
+    if (showAlumnoForm || showProfesorForm) {
+      setBackgroundClass('bg-[#212121] pb-8')
+    } else {
+      setBackgroundClass('bg-[#D9D9D9] py-12')
+    }
+  }, [showAlumnoForm, showProfesorForm])
 
   const handleNewFormSubmit = (newUserEmail, newUserPassword) => {
     setUserEmail(newUserEmail)
@@ -71,17 +80,17 @@ const Alta = ({ newCambio }) => {
   }
 
   return (
-    <div id='Crear' className='w-full py-12 bg-[#D9D9D9]'>
+    <div id='Crear' className={`w-full ${backgroundClass}`}>
       {!showProfesorForm && !showAlumnoForm && (
         <h2 className="text-center text-2xl sm:text-3xl pb-8 text-[#0D0D0D]">Nuevos usuarios</h2>
       )}
       {!showProfesorForm && !showAlumnoForm && (
-        <div className="flex justify-center sm:gap-x-4 mb-4 mx-auto w-full md:w-4/6 lg:w-3/6 gap-x-4">
-          <button className="text-[#FFFFFF] font-botones font-bold bg-[#E9500E] w-3/6 ml-4 h-14 rounded-3xl md:hover:bg-[#DB9B6D]" onClick={handleShowAlumnoForm}>
-            Alumno
+        <div className="flex flex-col sm:flex-row justify-center gap-y-8 sm:gap-y-0 mb-4 mx-auto w-full sm:w-4/6 md:w-4/6 lg:w-3/6 gap-x-4">
+          <button className="text-[#FFFFFF] font-botones font-bold bg-[#E9500E] w-4/6 mx-auto sm:my-0 sm:ml-4 h-14 sm:h-12 rounded-3xl md:hover:bg-[#DB9B6D]" onClick={handleShowAlumnoForm}>
+            Alta alumno
           </button>
-          <button className="text-[#FFFFFF] font-botones font-bold bg-[#663481] w-3/6 mr-4 h-14 rounded-3xl md:hover:bg-[#9B70BE]" onClick={handleShowProfesorForm}>
-            Profesor
+          <button className="text-[#FFFFFF] font-botones font-bold bg-[#663481] w-4/6 mx-auto sm:my-0 sm:mr-4 h-14 sm:h-12 rounded-3xl md:hover:bg-[#9B70BE]" onClick={handleShowProfesorForm}>
+            Alta profesor
           </button>
         </div>
       )}

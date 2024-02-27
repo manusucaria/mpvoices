@@ -65,7 +65,7 @@ const AltaUsuarioProfe = ({ setProfesorFormSubmitted, handleCancelar, onFormSubm
           </svg>
         </div>
         <div className='my-auto flex ml-4'>
-          <h3 className="text-[#0D0D0D] my-auto text-xl sm:text-2xl">Nuevos usuarios</h3>
+          <h3 className="text-[#FFFFFF] my-auto text-xl sm:text-2xl">Nuevos usuarios</h3>
           <p className='text-[#0D0D0D] my-auto mx-2'>|</p>
           <p className='text-[#663481] my-auto mt-2 lg:mt-1 text-xl sm:text-2xl'>alta profesor</p>
         </div>
@@ -103,12 +103,12 @@ const AltaUsuarioProfe = ({ setProfesorFormSubmitted, handleCancelar, onFormSubm
         {errors.password && <p className="ml-auto pr-4 mt-1 text-[#FFFFFF] text-sm">{errors.password}</p>}
         <div className='flex w-full mx-auto gap-x-4 mt-8 mb-2'>
           <button
-            className='font-botones font-bold h-10 w-3/6 mr-auto rounded-3xl bg-[#663481] text-[#FFFFFF] px-3 md:hover:bg-[#9B70BE]'
+            className='font-botones font-bold h-12 sm:h-10 w-3/6 mr-auto rounded-3xl bg-[#663481] text-[#FFFFFF] px-3 md:hover:bg-[#9B70BE]'
             type="submit">
               Crear cuenta
           </button>
           <button
-            className='font-botones font-bold h-10 w-3/6 ml-auto rounded-3xl bg-[#FFFFFF] text-[#663481] md:text-[#0D0D0D] md:hover:text-[#663481] border-2 border-[#663481] px-3'
+            className='font-botones font-bold h-12 sm:h-10 w-3/6 ml-auto rounded-3xl bg-[#FFFFFF] text-[#663481] md:text-[#0D0D0D] md:hover:text-[#663481] border-2 border-[#663481] px-3'
             onClick={handleCancel}
           >
             Cancelar

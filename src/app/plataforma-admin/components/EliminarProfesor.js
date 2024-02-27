@@ -33,7 +33,7 @@ const EliminarProfesor = ({ selectedProfesor, setSelectedProfesor }) => {
 
   return (
     <div className='flex w-full mx-auto bg-[#0D0D0D]'>
-      <button onClick={handleSubmit} type="submit" className="font-botones font-bold mx-auto rounded-3xl w-4/6 sm:w-3/6 h-10 mb-8 bg-[#FFFFFF] text-[#663481] md:text-[#0D0D0D] md:hover:text-[#663481] border-2 border-[#663481]">Eliminar profesor</button>
+      <button onClick={handleSubmit} type="submit" className="font-botones font-bold mx-auto rounded-3xl w-4/6 sm:w-3/6 h-12 sm:h-10 mb-8 bg-[#FFFFFF] text-[#663481] md:text-[#0D0D0D] md:hover:text-[#663481] border-2 border-[#663481]">Eliminar profesor</button>
       {showConfirmation && (
           <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-50 z-50">
             <div className="bg-[#FFFFFF] p-12 rounded-lg text-center flex flex-col">
