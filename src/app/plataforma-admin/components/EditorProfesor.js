@@ -73,7 +73,7 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
     <div className='w-full'>
       {editMode
         ? (
-        <div className='flex flex-col w-full bg-[#0D0D0D] p-8'>
+        <div className='flex flex-col w-full bg-[#0D0D0D] px-4 sm:px-8 py-8'>
           <div className='flex border-b-[0.5px] sm:border-b-1 border-b-[#FFFFFF] pb-8 mb-8'>
             <h4 className='text-[#FFFFFF] my-auto text-xl sm:text-2xl'>Datos</h4>
             <p className='text-[#FFFFFF] my-auto mx-4'>|</p>
@@ -111,12 +111,12 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
               />
             </div>
             <div className='flex mb-6'>
-              <label className='font-bold mr-auto w-2/6'>Día:</label>
+              <label className='font-bold mr-auto w-2/6'>Días:</label>
               <input
                 className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
                 type='text'
                 name='dia'
-                value={dia}
+                value={dia.toLowerCase()}
                 onChange={(e) => setDia(e.target.value)}
               />
             </div>
@@ -159,7 +159,7 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
             <p className='my-auto'>|</p>
             <p className='text-[#9B70BE] my-auto mt-1 md:mt-1 text-xl sm:text-2xl mr-auto'>{profesor.Nombre} {profesor.Apellido}</p>
           </div>
-          <div className='bg-[#0D0D0D] p-8 flex flex-col mx-auto w-full'>
+          <div className='bg-[#0D0D0D] px-4 sm:px-8 py-8 flex flex-col mx-auto w-full'>
             <h4 className='text-[#FFFFFF] my-auto text-xl sm:text-2xl border-b-[0.5px] sm:border-b-1 border-b-[#FFFFFF] pb-8 mb-8'>Datos</h4>
             <div className='mb-8 flex'>
               <p className='mr-2 text-base font-bold'>Nombre:</p>
@@ -174,7 +174,7 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
               <p className='text-base'>{email}</p>
             </div>
             <div className='mb-8 flex'>
-              <p className='mr-2 text-base font-bold'>Día:</p>
+              <p className='mr-2 text-base font-bold'>Días:</p>
               <p className='text-base'>{dia.toLowerCase()}</p>
             </div>
             <div className='flex'>

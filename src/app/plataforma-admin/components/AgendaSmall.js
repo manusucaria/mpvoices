@@ -11,6 +11,7 @@ const AgendaSmall = ({ cambios }) => {
   const [startIndex, setStartIndex] = useState(0)
   const [filteredAlumnos, setFilteredAlumnos] = useState([])
   const [filteredProfesores, setFilteredProfesores] = useState([])
+  const [backgroundColorAlpha, setBackgroundColorAlpha] = useState(1)
 
   useEffect(() => {
     getAlumnos().then((data) => {
@@ -57,6 +58,7 @@ const AgendaSmall = ({ cambios }) => {
     const nombreProfesorB = b.Nombre.toLocaleLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     if (nombreProfesorA < nombreProfesorB) return -1
     if (nombreProfesorA > nombreProfesorB) return 1
+    console.log(filteredProfesoresSorted)
     return 0
   })
 
@@ -79,11 +81,15 @@ const AgendaSmall = ({ cambios }) => {
 
   const handleNext = () => {
     if (startIndex + 1 < filteredProfesores.length) {
-      setStartIndex((prevIndex) => prevIndex + 1)
+      setStartIndex((prevIndex) => {
+        setBackgroundColorAlpha(backgroundColorAlpha - 0.05)
+        return prevIndex + 1
+      })
     }
   }
 
   const handlePrev = () => {
+    setBackgroundColorAlpha(backgroundColorAlpha + 0.05)
     setStartIndex((prevIndex) => {
       return Math.max(prevIndex - 1, 0)
     })
@@ -118,31 +124,31 @@ const AgendaSmall = ({ cambios }) => {
         </div>
           )
         : (
-          <div className='grid grid-cols-1 grid-rows-1 h-screen md:h-auto'>
-            <div className='bg-[#0D0D0D] col-start-1 col-end-1 row-start-1 row-end-1 z-40 border-2 lg:border-4 border-[#FFFFFF] opacity-30 h-[90%] w-[90%] m-auto'></div>
+          <div className='grid grid-cols-1 grid-rows-1 h-auto'>
+            <div className='bg-[#010101] col-start-1 col-end-1 row-start-1 row-end-1 z-40 border-2 lg:border-4 border-[#FFFFFF] opacity-30 h-[94%] w-[94%] sm:h-[90%] sm:w-[90%] m-auto'></div>
             <Image
               width={500}
               height={500}
-              className='col-start-1 col-end-1 row-start-1 row-end-1 object-contain min-[400px]:hidden flex'
+              className='col-start-1 col-end-1 row-start-1 row-end-1 object-cover w-full flex'
               src={alasSmall}
               alt="Separador Alas"
               priority
             />
-            <div className="col-start-1 col-end-1 row-start-1 row-end-1 w-full m-auto z-40 flex flex-col">
-              <h2 className="text-center text-3xl lg:text-5xl m-auto text-[#FFFFFF] mb-8 sm:mb-6 lg:mb-8 xl:mb-10">Días y horarios</h2>
-              <button onClick={() => filterAlumnosByDay('lunes')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-12 sm:h-8 md:h-8 lg:h-10 w-4/6 sm:w-3/6 md:w-2/6 mb-8 md:mb-4 xl:mb-6 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
+            <div className="col-start-1 col-end-1 row-start-1 row-end-1 w-full h-auto m-auto z-40 flex flex-col">
+              <h2 className="text-center text-2xl sm:text-3xl m-auto text-[#FFFFFF] mb-4 min-[400px]:mb-8 md-mb-12">Días y horarios</h2>
+              <button onClick={() => filterAlumnosByDay('lunes')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-12 w-4/6 sm:w-3/6 md:w-2/6 mb-6 min-[400px]:mb-8 md:mb-8 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
                 lunes
               </button>
-              <button onClick={() => filterAlumnosByDay('martes')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-12 sm:h-8 md:h-8 lg:h-10 w-4/6 sm:w-3/6 md:w-2/6 mb-8 md:mb-4 xl:mb-6 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
+              <button onClick={() => filterAlumnosByDay('martes')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-12 w-4/6 sm:w-3/6 md:w-2/6 mb-6 min-[400px]:mb-8 md:mb-8 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
                 martes
               </button>
-              <button onClick={() => filterAlumnosByDay('miércoles')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-12 sm:h-8 md:h-8 lg:h-10 w-4/6 sm:w-3/6 md:w-2/6 mb-8 md:mb-4 xl:mb-6 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
+              <button onClick={() => filterAlumnosByDay('miércoles')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-12 w-4/6 sm:w-3/6 md:w-2/6 mb-6 min-[400px]:mb-8 md:mb-8 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
                 miércoles
               </button>
-              <button onClick={() => filterAlumnosByDay('jueves')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-12 sm:h-8 md:h-8 lg:h-10 w-4/6 sm:w-3/6 md:w-2/6 mb-8 md:mb-4 xl:mb-6 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
+              <button onClick={() => filterAlumnosByDay('jueves')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-12 w-4/6 sm:w-3/6 md:w-2/6 mb-6 min-[400px]:mb-8 md:mb-8 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
                 jueves
               </button>
-              <button onClick={() => filterAlumnosByDay('viernes')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-12 sm:h-8 md:h-8 lg:h-10 w-4/6 sm:w-3/6 md:w-2/6 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
+              <button onClick={() => filterAlumnosByDay('viernes')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-12 w-4/6 sm:w-3/6 md:w-2/6 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
                 viernes
               </button>
             </div>
@@ -151,7 +157,7 @@ const AgendaSmall = ({ cambios }) => {
       {selectedDay && (
         <div className="flex flex-col px-4 overflow-x-auto mx-auto w-full md:w-4/6">
           <div className="grid grid-cols-3 mt-4 h-12 bg-[#FFFFFF] rounded-t-2xl">
-            {filteredProfesoresSorted.length >= 3 && startIndex > 0 && (
+            {filteredProfesoresSorted.length >= 2 && startIndex > 0 && (
               <div className='flex col-start-1 col-end-2 mr-auto ml-4'>
                 <svg onClick={handlePrev} className='stroke-[#0D0D0D] md:hover:stroke-[#E9500E] m-auto md:hover:cursor-pointer' width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g id="iconamoon:arrow-up-2-light">
@@ -161,7 +167,7 @@ const AgendaSmall = ({ cambios }) => {
               </div>
             )}
             <h3 className='text-[#0D0D0D] col-start-2 col-end-3 mx-auto my-auto font-bold text-lg'>{selectedDay}</h3>
-            {startIndex + 2 < filteredProfesoresSorted.length && (
+            {startIndex + 1 < filteredProfesoresSorted.length && (
               <div className='flex col-start-3 col-end-4 ml-auto mr-4'>
                 <svg onClick={handleNext} className='stroke-[#0D0D0D] md:hover:stroke-[#E9500E] m-auto md:hover:cursor-pointer' width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g id="iconamoon:arrow-up-2-light">
@@ -172,7 +178,7 @@ const AgendaSmall = ({ cambios }) => {
             )}
           </div>
           <div className='grid grid-cols-[20%_80%] grid-rows-37 border-y-[0.5px] sm:border-y-1 border-y-[#0D0D0D]'>
-            <div className="bg-[#663481] h-9 sm:h-12 text-center col-start-1 col-end-2 row-start-1 row-end-2 flex border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D]">
+            <div className="bg-[#E9500E] h-9 sm:h-12 text-center col-start-1 col-end-2 row-start-1 row-end-2 flex border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D]">
               <p className='text-md sm:text-md md:text-base m-auto text-[#FFFFFF]'>Profe</p>
             </div>
             {timeSlots.map((time, index) => (
@@ -184,9 +190,9 @@ const AgendaSmall = ({ cambios }) => {
               </div>
             ))}
             <div className="col-start-2 col-end-3 row-start-1 row-end-38 grid grid-cols-1 bg-[#FFFFFF] rounded-br-2xl">
-              {filteredProfesoresSorted.slice(startIndex, startIndex + 1).map((profesor, index, array) => (
+              {filteredProfesoresSorted.slice(startIndex, startIndex + 1).map((profesor) => (
               <div key={profesor.id} className='grid grid-cols-1 grid-rows-37 border-l-[0.5px] sm:border-l-1 border-l-[#0D0D0D] text-center'>
-                <div className='flex row-start-1 row-end-2 h-9 sm:h-12 text-sm bg-[#663481] border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D]'>
+                <div style={{ backgroundColor: `rgba(233, 80, 14, ${backgroundColorAlpha})` }} className='flex row-start-1 row-end-2 h-9 sm:h-12 text-sm border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D]'>
                   <p className='text-md sm:text-md md:text-base m-auto'>{profesor.Nombre} / {profesor.Instrumento}</p>
                 </div>
                 {filteredAlumnos

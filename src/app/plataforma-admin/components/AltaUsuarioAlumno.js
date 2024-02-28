@@ -66,7 +66,7 @@ const AltaUsuarioAlumno = ({ setAlumnoFormSubmitted, handleCancelar, onFormSubmi
         </div>
         <div className='my-auto flex ml-4'>
           <h3 className="text-[#FFFFFF] my-auto text-xl sm:text-2xl">Nuevos usuarios</h3>
-          <p className='text-[#0D0D0D] my-auto mx-2'>|</p>
+          <p className='text-[#FFFFFF] my-auto mx-2'>|</p>
           <p className='text-[#E9500E] my-auto mt-2 lg:mt-1 text-xl sm:text-2xl'>alta alumno</p>
         </div>
       </div>
@@ -108,7 +108,7 @@ const AltaUsuarioAlumno = ({ setAlumnoFormSubmitted, handleCancelar, onFormSubmi
               Crear cuenta
           </button>
           <button
-            className='font-botones font-bold h-12 sm:h-10 w-3/6 ml-auto rounded-3xl bg-[#FFFFFF] text-[#E9500E] md:text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#E9500E] px-3'
+            className='font-botones font-bold h-12 sm:h-10 w-3/6 ml-auto rounded-3xl bg-[#FFFFFF] text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#E9500E] px-3'
             onClick={handleCancel}
           >
             Cancelar

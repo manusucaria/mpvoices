@@ -3,6 +3,7 @@ import { createAlumno } from '../../api/api.js'
 
 const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, newUserPassword }) => {
   const [showConfirmation, setShowConfirmation] = useState(false)
+  const [warningMessage, setWarningMessage] = useState('')
   const [alumnoData, setAlumnoData] = useState({
     Nombre: '',
     Apellido: '',
@@ -25,6 +26,13 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, new
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    const requiredFields = ['Nombre', 'Apellido', 'Fecha', 'Dia', 'Instrumento', 'Profesor', 'Saldo', 'Duracion', 'Horario', 'Tel']
+    const incompleteFields = requiredFields.filter(field => !alumnoData[field])
+
+    if (incompleteFields.length > 0) {
+      setWarningMessage('*Faltan completar datos')
+      return
+    }
     createAlumno(alumnoData)
       .then(() => {
         setShowConfirmation(true)
@@ -54,9 +62,9 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, new
           </svg>
         </div>
         <div className='my-auto flex ml-4'>
-          <h3 className="text-[#0D0D0D] my-auto text-xl sm:text-2xl">Nuevos usuarios</h3>
-          <p className='text-[#0D0D0D] my-auto mx-2'>|</p>
-          <p className='text-[#E9500E] my-auto mt-2 lg:mt-1 text-xl sm:text-2xl'>alta alumno</p>
+          <h3 className="text-[#FFFFFF] my-auto text-xl sm:text-2xl">Nuevos usuarios</h3>
+          <p className='text-[#FFFFFF] my-auto mx-2'>|</p>
+          <p className='text-[#E9500E] my-auto mt-1 lg:mt-1 text-xl sm:text-2xl'>alta alumno</p>
         </div>
       </div>
       <form className='flex flex-col mx-auto w-full md:w-4/6 lg:w-3/6 bg-[#0D0D0D] p-8' onSubmit={handleSubmit}>
@@ -105,6 +113,9 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, new
           <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Teléfono:</label>
           <input placeholder="Teléfono" className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Tel" value={alumnoData.Tel} onChange={handleChange} />
         </div>
+        {warningMessage && (
+          <div className="ml-auto text-sm text-[#FFFFFF]">{warningMessage}</div>
+        )}
         <div className='flex w-full mx-auto my-8 gap-x-4'>
           <button className='rounded-3xl w-3/6 font-botones font-bold h-12 sm:h-10 bg-[#E9500E] text-[#FFFFFF] px-3 md:hover:bg-[#DB9B6D]' type='submit'>
             Guardar

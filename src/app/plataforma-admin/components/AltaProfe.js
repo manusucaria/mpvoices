@@ -3,6 +3,7 @@ import { createProfesor } from '../../api/api.js'
 
 const AltaProfesor = ({ setShowProfesorForm, confirmacionRegistro, newUserEmail, newUserPassword }) => {
   const [showConfirmation, setShowConfirmation] = useState(false)
+  const [warningMessage, setWarningMessage] = useState('')
   const [profesorData, setProfesorData] = useState({
     Nombre: '',
     Apellido: '',
@@ -19,6 +20,13 @@ const AltaProfesor = ({ setShowProfesorForm, confirmacionRegistro, newUserEmail,
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    const requiredFields = ['Nombre', 'Apellido', 'Dia', 'Instrumento']
+    const incompleteFields = requiredFields.filter(field => !profesorData[field])
+
+    if (incompleteFields.length > 0) {
+      setWarningMessage('*Faltan completar datos')
+      return
+    }
     createProfesor(profesorData)
       .then(() => {
         setShowConfirmation(true)
@@ -48,16 +56,16 @@ const AltaProfesor = ({ setShowProfesorForm, confirmacionRegistro, newUserEmail,
           </svg>
         </div>
         <div className='my-auto flex ml-4'>
-          <h3 className="text-[#0D0D0D] my-auto text-xl sm:text-2xl">Nuevos usuarios</h3>
-          <p className='text-[#0D0D0D] my-auto mx-2'>|</p>
-          <p className='text-[#663481] my-auto mt-2 lg:mt-1 text-xl sm:text-2xl'>alta profesor</p>
+          <h3 className="text-[#FFFFFF] my-auto text-xl sm:text-2xl">Nuevos usuarios</h3>
+          <p className='text-[#FFFFFF] my-auto mx-2'>|</p>
+          <p className='text-[#9B70BE] my-auto mt-1 lg:mt-1 text-xl sm:text-2xl'>alta profesor</p>
         </div>
       </div>
       <form className='flex flex-col mx-auto w-full md:w-4/6 lg:w-3/6 bg-[#0D0D0D] p-8' onSubmit={handleSubmit}>
         <div className='flex border-b-[0.5px] sm:border-b-1 border-b-[#FFFFFF] pb-8 mb-8'>
           <h4 className='text-[#FFFFFF] my-auto text-lg sm:text-xl'>Alta profesor</h4>
           <p className='text-[#FFFFFF] my-auto mx-4'>|</p>
-          <p className='text-[#663481] my-auto text-lg sm:text-xl'>completar datos</p>
+          <p className='text-[#9B70BE] my-auto text-lg sm:text-xl'>completar datos</p>
         </div>
         <div className='flex mb-6'>
           <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Nombre:</label>
@@ -75,6 +83,9 @@ const AltaProfesor = ({ setShowProfesorForm, confirmacionRegistro, newUserEmail,
           <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Instrumento/s:</label>
           <input placeholder="Intrumento/s" className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Instrumento" value={profesorData.Instrumento} onChange={handleChange} />
         </div>
+        {warningMessage && (
+          <div className="ml-auto text-sm text-[#FFFFFF]">{warningMessage}</div>
+        )}
         <div className='flex w-full mx-auto my-8 gap-x-4'>
           <button className='rounded-3xl w-3/6 font-botones font-bold h-12 sm:h-10 bg-[#663481] text-[#FFFFFF] px-3 md:hover:bg-[#9B70BE]' type='submit'>
             Guardar

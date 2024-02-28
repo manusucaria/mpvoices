@@ -70,7 +70,7 @@ const EditorDatos = ({ alumno }) => {
     <div className='w-full'>
       {editMode
         ? (
-        <div className='flex flex-col w-full bg-[#0D0D0D] px-8 pb-8 pt-4'>
+        <div className='flex flex-col w-full bg-[#0D0D0D] px-4 sm:px-8 pb-8 pt-4'>
           <form className='w-full mx-auto' onSubmit={handleSubmit}>
             <div className='flex mb-6'>
               <label className='font-bold mr-auto w-2/6'>Nombre:</label>
@@ -93,7 +93,7 @@ const EditorDatos = ({ alumno }) => {
               />
             </div>
             <div className='flex mb-6'>
-              <label className='font-bold mr-auto w-2/6'>Fecha de nac.:</label>
+              <label className='font-bold mr-auto w-2/6'>Fecha nac.:</label>
               <input
                 className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
                 type='text'
@@ -139,7 +139,7 @@ const EditorDatos = ({ alumno }) => {
           )
         : (
         <div className='flex flex-col w-full mx-auto bg-[#0D0D0D]'>
-          <div className='px-8 pb-8 w-full pt-4'>
+          <div className='px-4 sm:px-8 pb-8 w-full pt-4'>
             <div className='mb-8 flex'>
               <p className='mr-2 text-base font-bold'>Nombre:</p>
               <p className='text-base'>{nombre}</p>
@@ -149,7 +149,7 @@ const EditorDatos = ({ alumno }) => {
               <p className='text-base'>{apellido}</p>
             </div>
             <div className='mb-8 flex'>
-              <p className='mr-2 text-base font-bold'>Fecha de nac.:</p>
+              <p className='mr-2 text-base font-bold'>Fecha nac.:</p>
               <p className='text-base'>{fecha}</p>
             </div>
             <div className='mb-8 flex'>
