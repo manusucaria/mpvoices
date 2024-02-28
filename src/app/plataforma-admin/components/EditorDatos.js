@@ -127,7 +127,7 @@ const EditorDatos = ({ alumno }) => {
                 Guardar
               </button>
               <button
-                className='font-botones font-bold rounded-3xl w-3/6 ml-auto bg-[#FFFFFF] text-[#E9500E] md:text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#E9500E] px-3 h-12 sm:h-10'
+                className='font-botones font-bold rounded-3xl w-3/6 ml-auto bg-[#FFFFFF] text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#E9500E] px-3 h-12 sm:h-10'
                 onClick={cancelarClick}
                 type='button'
               >
@@ -162,7 +162,7 @@ const EditorDatos = ({ alumno }) => {
             </div>
           </div>
           <div className='bg-[#0D0D0D] flex flex-col mx-auto w-full'>
-            <button className='font-botones font-bold rounded-3xl w-4/6 sm:w-3/6 mx-auto h-10 mb-8 bg-[#E9500E] md:hover:bg-[#DB9B6D]' onClick={handleEditClick}>
+            <button className='font-botones font-bold rounded-3xl w-4/6 sm:w-3/6 mx-auto h-12 sm:h-10 mb-8 bg-[#E9500E] md:hover:bg-[#DB9B6D]' onClick={handleEditClick}>
                 Editar datos
             </button>
           </div>

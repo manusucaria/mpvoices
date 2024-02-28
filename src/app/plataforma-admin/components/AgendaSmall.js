@@ -136,16 +136,16 @@ const AgendaSmall = ({ cambios }) => {
             />
             <div className="col-start-1 col-end-1 row-start-1 row-end-1 w-full h-auto m-auto z-40 flex flex-col">
               <h2 className="text-center text-2xl sm:text-3xl m-auto text-[#FFFFFF] mb-4 min-[400px]:mb-8 md-mb-12">Días y horarios</h2>
-              <button onClick={() => filterAlumnosByDay('lunes')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-12 w-4/6 sm:w-3/6 md:w-2/6 mb-6 min-[400px]:mb-8 md:mb-8 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
+              <button onClick={() => filterAlumnosByDay('lunes')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-12 w-4/6 sm:w-3/6 md:w-2/6 mb-4 min-[400px]:mb-8 md:mb-8 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
                 lunes
               </button>
-              <button onClick={() => filterAlumnosByDay('martes')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-12 w-4/6 sm:w-3/6 md:w-2/6 mb-6 min-[400px]:mb-8 md:mb-8 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
+              <button onClick={() => filterAlumnosByDay('martes')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-12 w-4/6 sm:w-3/6 md:w-2/6 mb-4 min-[400px]:mb-8 md:mb-8 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
                 martes
               </button>
-              <button onClick={() => filterAlumnosByDay('miércoles')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-12 w-4/6 sm:w-3/6 md:w-2/6 mb-6 min-[400px]:mb-8 md:mb-8 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
+              <button onClick={() => filterAlumnosByDay('miércoles')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-12 w-4/6 sm:w-3/6 md:w-2/6 mb-4 min-[400px]:mb-8 md:mb-8 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
                 miércoles
               </button>
-              <button onClick={() => filterAlumnosByDay('jueves')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-12 w-4/6 sm:w-3/6 md:w-2/6 mb-6 min-[400px]:mb-8 md:mb-8 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
+              <button onClick={() => filterAlumnosByDay('jueves')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-12 w-4/6 sm:w-3/6 md:w-2/6 mb-4 min-[400px]:mb-8 md:mb-8 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
                 jueves
               </button>
               <button onClick={() => filterAlumnosByDay('viernes')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-12 w-4/6 sm:w-3/6 md:w-2/6 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
@@ -178,7 +178,7 @@ const AgendaSmall = ({ cambios }) => {
             )}
           </div>
           <div className='grid grid-cols-[20%_80%] grid-rows-37 border-y-[0.5px] sm:border-y-1 border-y-[#0D0D0D]'>
-            <div className="bg-[#E9500E] h-9 sm:h-12 text-center col-start-1 col-end-2 row-start-1 row-end-2 flex border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D]">
+            <div className="bg-[#663481] h-9 sm:h-12 text-center col-start-1 col-end-2 row-start-1 row-end-2 flex border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D]">
               <p className='text-md sm:text-md md:text-base m-auto text-[#FFFFFF]'>Profe</p>
             </div>
             {timeSlots.map((time, index) => (

@@ -75,7 +75,7 @@ const EditorPagos = ({ alumno }) => {
                 Guardar
               </button>
               <button
-                className='font-botones font-bold rounded-3xl w-3/6 ml-auto bg-[#FFFFFF] text-[#E9500E] md:text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#E9500E] px-3 h-12 sm:h-10'
+                className='font-botones font-bold rounded-3xl w-3/6 ml-auto bg-[#FFFFFF]text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#E9500E] px-3 h-12 sm:h-10'
                 onClick={cancelarClick}
                 type='button'
               >

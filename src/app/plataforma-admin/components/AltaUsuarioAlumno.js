@@ -56,7 +56,7 @@ const AltaUsuarioAlumno = ({ setAlumnoFormSubmitted, handleCancelar, onFormSubmi
 
   return (
     <div className='flex flex-col mx-auto w-full'>
-      <div className="mx-auto flex justify-center w-full md:w-4/6 lg:w-3/6 mt-4 mb-8">
+      <div className="mx-auto flex justify-center w-full md:w-4/6 lg:w-3/6 my-8">
         <div className="flex my-auto pt-1">
           <svg className='my-auto md:hover:cursor-pointer stroke-[#E9500E] md:hover:stroke-[#DB9B6D]' onClick={handleCancel} width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="iconamoon:arrow-up-2-light">
@@ -67,7 +67,7 @@ const AltaUsuarioAlumno = ({ setAlumnoFormSubmitted, handleCancelar, onFormSubmi
         <div className='my-auto flex ml-4'>
           <h3 className="text-[#FFFFFF] my-auto text-xl sm:text-2xl">Nuevos usuarios</h3>
           <p className='text-[#FFFFFF] my-auto mx-2'>|</p>
-          <p className='text-[#E9500E] my-auto mt-2 lg:mt-1 text-xl sm:text-2xl'>alta alumno</p>
+          <p className='text-[#E9500E] my-auto mt-1 lg:mt-1 text-xl sm:text-2xl'>alta alumno</p>
         </div>
       </div>
       <form className='flex flex-col mx-auto w-full md:w-4/6 lg:w-3/6 bg-[#0D0D0D] p-8' onSubmit={handleSubmit}>

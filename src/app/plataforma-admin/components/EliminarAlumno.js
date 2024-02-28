@@ -36,7 +36,7 @@ const EliminarAlumno = ({ selectedAlumno, setSelectedAlumno }) => {
       <button
         onClick={handleSubmit}
         type='submit'
-        className='font-botones font-bold mx-auto rounded-3xl w-4/6 sm:w-3/6 h-12 sm:h-10 mb-8 bg-[#FFFFFF] text-[#E9500E] md:text-[#0D0D0D] md:hover:text-[#DB9B6D] border-2 border-[#DB9B6D]'
+        className='font-botones font-bold mx-auto rounded-3xl w-4/6 sm:w-3/6 h-12 sm:h-10 mb-8 bg-[#FFFFFF] text-[#0D0D0D] md:hover:text-[#DB9B6D] border-2 border-[#DB9B6D]'
       >
         Eliminar alumno
       </button>
