@@ -40,7 +40,7 @@ const EliminarProfesor = ({ selectedProfesor, setSelectedProfesor }) => {
               <p className="text-[#0D0D0D] text-xl mb-4">¿Está seguro de que desea eliminar al profesor?</p>
               <div className='flex mx-auto gap-x-16'>
                 <button
-                  className="text-[#663481] md:hover:text-[#9B70BE]"
+                  className="text-[#E9500E] md:hover:text-[#DB9B6D]"
                   onClick={handleConfirmDelete}
                 >
                   Si

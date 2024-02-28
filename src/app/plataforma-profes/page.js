@@ -83,7 +83,7 @@ const Page = () => {
                   Si
                 </button>
                 <button
-                  className='text-[#E9500E] md:hover:text-[#DB9B6D]'
+                  className='text-[#0D0D0D]'
                   onClick={handleCloseConfirmation}
                 >
                   No

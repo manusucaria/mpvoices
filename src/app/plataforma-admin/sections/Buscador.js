@@ -84,7 +84,7 @@ const Buscador = ({ cambios, newCambio }) => {
       {searchTerm.trim() !== '' && (
         <div className='flex flex-col mx-auto w-full'>
           {buscarAlumnos.map((alumno) => (
-            <button key={alumno.id} onClick={() => handleAlumnoClick(alumno)} className='mx-auto mb-8 sm:my-4 md:my-2 bg-[#E9500E] font-botones text-[#FFFFFF] rounded-3xl h-12 sm:h-10 w-4/6 sm:w-3/6 md:hover:bg-[#DB9B6D]'>{alumno.Nombre} {alumno.Apellido} - Alumno</button>
+            <button key={alumno.id} onClick={() => handleAlumnoClick(alumno)} className='mx-auto mb-8 px-2 sm:my-4 md:my-2 bg-[#E9500E] font-botones text-[#FFFFFF] rounded-3xl h-12 sm:h-10 w-4/6 sm:w-3/6 md:hover:bg-[#DB9B6D]'>{alumno.Nombre} {alumno.Apellido} - Alumno</button>
           ))}
         </div>
       )}
@@ -97,7 +97,7 @@ const Buscador = ({ cambios, newCambio }) => {
       {searchTerm.trim() !== '' && (
         <div className='flex flex-col mx-auto w-full'>
           {buscarProfesores.map((profesor) => (
-            <button key={profesor.id} onClick={() => handleProfesorClick(profesor)} className='mx-auto mb-8 sm:my-4 md:my-2 bg-[#663481] text-[#FFFFFF] font-botones rounded-3xl h-12 sm:h-10 w-4/6 sm:w-3/6 md:hover:bg-[#9B70BE]'>{profesor.Nombre} {profesor.Apellido} - Profesor</button>
+            <button key={profesor.id} onClick={() => handleProfesorClick(profesor)} className='mx-auto mb-8 px-2 sm:my-4 md:my-2 bg-[#663481] text-[#FFFFFF] font-botones rounded-3xl h-12 sm:h-10 w-4/6 sm:w-3/6 md:hover:bg-[#9B70BE]'>{profesor.Nombre} {profesor.Apellido} - Profesor</button>
           ))}
         </div>
       )}

@@ -73,13 +73,25 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
     <div className='w-full'>
       {editMode
         ? (
-        <div className='flex flex-col w-full bg-[#0D0D0D] px-4 sm:px-8 py-8'>
-          <div className='flex border-b-[0.5px] sm:border-b-1 border-b-[#FFFFFF] pb-8 mb-8'>
-            <h4 className='text-[#FFFFFF] my-auto text-xl sm:text-2xl'>Datos</h4>
-            <p className='text-[#FFFFFF] my-auto mx-4'>|</p>
-            <p className='text-[#9B70BE] my-auto text-xl sm:text-2xl'>Editar</p>
+        <div className='flex flex-col w-full pb-8 bg-[#0D0D0D]'>
+          <div className='w-full flex justify-center mx-auto pb-8 gap-x-4 sm:gap-x-6 lg:pt-4 bg-[#212121]'>
+            <div className="my-auto ml-auto pt-[0.5px] xl:pt-1">
+              <svg className='hover:cursor-pointer stroke-[#9B70BE] md:hover:stroke-[#663481]' onClick={() => volver()} width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="iconamoon:arrow-up-2-light">
+                <path id="Vector" d="M19.8333 9.22572L12.75 15.8155L19.8333 22.4053" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </g>
+              </svg>
+            </div>
+            <h3 className="text-[#FFFFFF] my-auto text-xl sm:text-2xl">Profesor</h3>
+            <p className='my-auto'>|</p>
+            <p className='text-[#9B70BE] my-auto md:mt-1 text-xl sm:text-2xl mr-auto'>{profesor.Nombre} {profesor.Apellido}</p>
           </div>
-          <form className='w-full mx-auto mt-4' onSubmit={handleSubmit}>
+          <form className='px-4 sm:px-8 pt-4 w-full mx-auto mt-4 bg-[#0D0D0D]' onSubmit={handleSubmit}>
+            <div className='flex border-b-[0.5px] sm:border-b-1 border-b-[#FFFFFF] pb-8 mb-8'>
+              <h4 className='text-[#FFFFFF] my-auto text-xl sm:text-2xl'>Datos</h4>
+              <p className='text-[#FFFFFF] my-auto mx-4'>|</p>
+              <p className='text-[#9B70BE] my-auto text-xl sm:text-2xl'>Editar</p>
+            </div>
             <div className='flex mb-6'>
               <label className='font-bold mr-auto w-2/6'>Nombre:</label>
               <input
@@ -149,7 +161,7 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
         <div className='flex flex-col w-full mx-auto mt-4'>
           <div className='w-full flex justify-center mx-auto mb-8 gap-x-4 sm:gap-x-6 lg:mt-4'>
             <div className="my-auto ml-auto pt-[0.5px] xl:pt-1">
-              <svg className='hover:cursor-pointer stroke-[#FFFFFF] md:hover:stroke-[#663481]' onClick={() => volver()} width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg className='hover:cursor-pointer stroke-[#9B70BE] md:hover:stroke-[#663481]' onClick={() => volver()} width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="iconamoon:arrow-up-2-light">
                 <path id="Vector" d="M19.8333 9.22572L12.75 15.8155L19.8333 22.4053" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </g>
