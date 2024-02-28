@@ -104,7 +104,7 @@ const AltaProfesor = ({ setShowProfesorForm, confirmacionRegistro, newUserEmail,
           <div className="bg-[#FFFFFF] p-12 rounded-lg text-center flex flex-col">
             <p className="text-[#0D0D0D] text-xl mb-4">Los datos se guardaron correctamente</p>
             <button
-              className="text-[#663481] md:hover:text-[#663481] ml-auto"
+              className="text-[#E9500E] md:hover:text-[#DB9B6D] ml-auto"
               onClick={handleCloseConfirmation}
             >
               Ir a la página principal

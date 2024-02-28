@@ -33,7 +33,7 @@ const AltaUsuarioAlumno = ({ setAlumnoFormSubmitted, handleCancelar, onFormSubmi
         setShowConfirmation(true)
       } catch (error) {
         if (error.code === 'auth/email-already-in-use') {
-          formErrors.email = 'Email no disponible'
+          formErrors.email = 'E-Mail no disponible'
         } else if (error.code === 'auth/weak-password') {
           formErrors.password = 'Contraseña débil'
         } else {

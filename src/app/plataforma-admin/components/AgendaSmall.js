@@ -208,7 +208,7 @@ const AgendaSmall = ({ cambios }) => {
                           alumno.Notificaciones ? 'bg-[#FFC9CB]' : 'bg-[#ACFDB2]'
                         }`}
                       >
-                        <p className='text-sm sm:text-sm md:text-base mt-auto font-bold pt-2 text-[#0D0D0D]'>{alumno.Nombre} {alumno.Apellido}</p>
+                        <p className='text-sm sm:text-sm md:text-base mt-auto font-bold pt-2 text-[#0D0D0D]'>Alumno: {alumno.Nombre} {alumno.Apellido}</p>
                         <p className='text-sm sm:text-sm md:text-base mb-auto text-[#0D0D0D]'>{alumno.Instrumento} {alumno.Horario}-{calcularNuevoHorario(alumno.Horario, alumno.Duracion)}hs</p>
                         <div className='ms-auto pb-1 pe-2 sm:pe-4'>
                           {alumno.Notificaciones

@@ -70,7 +70,7 @@ const EliminarAlumno = ({ selectedAlumno, setSelectedAlumno }) => {
               Alumno eliminado correctamente
             </p>
             <button
-              className='text-[#663481] md:hover:text-[#9B70BE] ml-auto'
+              className='text-[#E9500E] md:hover:text-[#DB9B6D] ml-auto'
               onClick={handleCloseDone}
             >
               Entendido

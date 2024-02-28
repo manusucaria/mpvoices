@@ -33,7 +33,7 @@ const AltaUsuarioProfe = ({ setProfesorFormSubmitted, handleCancelar, onFormSubm
         setShowConfirmation(true)
       } catch (error) {
         if (error.code === 'auth/email-already-in-use') {
-          formErrors.email = 'Email no disponible'
+          formErrors.email = 'E-Mail no disponible'
         } else if (error.code === 'auth/weak-password') {
           formErrors.password = 'Contraseña débil'
         } else {
@@ -123,7 +123,7 @@ const AltaUsuarioProfe = ({ setProfesorFormSubmitted, handleCancelar, onFormSubm
             </svg>
             <p className="text-[#0D0D0D] text-xl my-4">¡La cuenta se creó con éxito!</p>
             <button
-              className="text-[#663481] md:hover:text-[#9B70BE] ml-auto"
+              className="text-[#E9500E] md:hover:text-[#DB9B6D] ml-auto"
               onClick={handleCloseConfirmation}
             >
               Entendido
