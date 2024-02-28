@@ -48,7 +48,7 @@ const EditorPagos = ({ alumno }) => {
     <div className='w-full'>
       {editMode
         ? (
-        <div className='flex flex-col w-full bg-[#0D0D0D] px-4 sm:px-8 pb-8 pt-4'>
+        <div className='flex flex-col w-full bg-[#0D0D0D] px-4 sm:px-8 p-8 pt-4'>
           <form className='w-full mx-auto' onSubmit={handleSubmit}>
             <div className='flex mb-6'>
               <label className='font-bold mr-auto w-2/6'>Saldo:</label>

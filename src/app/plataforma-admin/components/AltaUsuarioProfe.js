@@ -70,7 +70,7 @@ const AltaUsuarioProfe = ({ setProfesorFormSubmitted, handleCancelar, onFormSubm
           <p className='text-[#9B70BE] my-auto lg:mt-1 text-xl sm:text-2xl'>alta profesor</p>
         </div>
       </div>
-      <form className='flex flex-col mx-auto w-full md:w-4/6 lg:w-3/6 bg-[#0D0D0D] p-8' onSubmit={handleSubmit}>
+      <form className='flex flex-col mx-auto w-full md:w-4/6 lg:w-3/6 bg-[#0D0D0D] px-4 sm:px-8 py-8' onSubmit={handleSubmit}>
         <div className='flex border-b-[0.5px] sm:border-b-1 border-b-[#FFFFFF] pb-8 mb-8'>
           <h4 className='text-[#FFFFFF] my-auto text-lg sm:text-xl'>Alta profesor</h4>
           <p className='text-[#FFFFFF] my-auto mx-4'>|</p>

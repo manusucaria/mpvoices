@@ -30,7 +30,7 @@ const EditorAlumnos = ({ alumno, setSelectedAlumno, setSelectedProfesor }) => {
           <p className='my-auto'>|</p>
           <p className='text-[#E9500E] my-auto md:mt-1 text-xl sm:text-2xl mr-auto'>{alumno.Nombre} {alumno.Apellido}</p>
         </div>
-        <div className='flex justify-between w-full mx-auto bg-[#0D0D0D] px-4 sm:px-8 pb-8'>
+        <div className='flex justify-between w-full mx-auto bg-[#0D0D0D] px-4 sm:px-8 py-8'>
           <div className={`w-2/6 border-b-1 ${tab === 'datos' ? 'border-b-[#E9500E]' : 'border-b-[#FFFFFF]'}`}>
             <button
               className={`font-botones font-bold py-2 mr-4 ${tab === 'datos' ? '' : 'hover:text-[#DB9B6D]'} rounded-t-lg ${tab === 'datos' ? 'text-[#E9500E]' : 'text-[#FFFFFF]'}`}
