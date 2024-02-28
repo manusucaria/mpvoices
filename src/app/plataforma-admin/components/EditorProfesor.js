@@ -147,7 +147,7 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
           )
         : (
         <div className='flex flex-col w-full mx-auto mt-4'>
-          <div className='w-full flex justify-center mx-auto mb-8 gap-x-4 sm:gap-x-6'>
+          <div className='w-full flex justify-center mx-auto mb-8 gap-x-4 sm:gap-x-6 lg:mt-4'>
             <div className="my-auto ml-auto pt-[0.5px] xl:pt-1">
               <svg className='hover:cursor-pointer stroke-[#FFFFFF] md:hover:stroke-[#663481]' onClick={() => volver()} width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="iconamoon:arrow-up-2-light">
