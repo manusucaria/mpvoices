@@ -178,13 +178,13 @@ const AgendaSmall = ({ cambios }) => {
             )}
           </div>
           <div className='grid grid-cols-[20%_80%] grid-rows-37 border-y-[0.5px] sm:border-y-1 border-y-[#0D0D0D]'>
-            <div className="bg-[#663481] h-9 sm:h-12 text-center col-start-1 col-end-2 row-start-1 row-end-2 flex border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D]">
-              <p className='text-md sm:text-md md:text-base m-auto text-[#FFFFFF]'>Profe</p>
+            <div className="bg-[#E9500E] h-12 text-center col-start-1 col-end-2 row-start-1 row-end-2 flex border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D]">
+              <p className='text-md sm:text-md md:text-base m-auto text-[#FFFFFF]'>Horarios</p>
             </div>
             {timeSlots.map((time, index) => (
               <div
                 key={index}
-                className={`text-center col-start-1 col-end-2 bg-[#FFFFFF] flex h-9 sm:h-12 ${index === timeSlots.length - 1 ? 'border-b-none rounded-bl-2xl' : 'border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D]'}`}
+                className={`text-center col-start-1 col-end-2 bg-[#FFFFFF] flex h-12 ${index === timeSlots.length - 1 ? 'border-b-none rounded-bl-2xl' : 'border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D]'}`}
               >
                 <p className='text-md sm:text-md md:text-base m-auto text-[#0D0D0D]'>{time}</p>
               </div>
@@ -192,7 +192,7 @@ const AgendaSmall = ({ cambios }) => {
             <div className="col-start-2 col-end-3 row-start-1 row-end-38 grid grid-cols-1 bg-[#FFFFFF] rounded-br-2xl">
               {filteredProfesoresSorted.slice(startIndex, startIndex + 1).map((profesor) => (
               <div key={profesor.id} className='grid grid-cols-1 grid-rows-37 border-l-[0.5px] sm:border-l-1 border-l-[#0D0D0D] text-center'>
-                <div style={{ backgroundColor: `rgba(233, 80, 14, ${backgroundColorAlpha})` }} className='flex row-start-1 row-end-2 h-9 sm:h-12 text-sm border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D]'>
+                <div style={{ backgroundColor: `rgba(102, 52, 129, ${backgroundColorAlpha})` }} className='flex row-start-1 row-end-2 h-12 text-sm border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D]'>
                   <p className='text-md sm:text-md md:text-base m-auto'>{profesor.Nombre} / {profesor.Instrumento}</p>
                 </div>
                 {filteredAlumnos

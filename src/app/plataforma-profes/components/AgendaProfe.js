@@ -119,13 +119,13 @@ const AgendaProfe = ({ availableDays, profesor }) => {
           {selectedDay && (
             <div className="flex flex-col overflow-x-auto mx-auto w-full px-4 md:w-4/6 mb-12">
               <div className='grid grid-cols-[20%_80%] grid-rows-37'>
-                <div className="rounded-tl-2xl border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D] border-r-[0.5px] sm:border-r-1 border-r-[#0D0D0D] bg-[#E9500E] h-9 sm:h-12 text-center col-start-1 col-end-2 row-start-1 row-end-2 flex">
+                <div className="rounded-tl-2xl border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D] border-r-[0.5px] sm:border-r-1 border-r-[#0D0D0D] bg-[#E9500E] h-12 text-center col-start-1 col-end-2 row-start-1 row-end-2 flex">
                   <p className='text-md sm:text-md md:text-base m-auto text-[#FFFFFF]'>Horario</p>
                 </div>
                 {timeSlots.map((time, index) => (
                   <div
                     key={index}
-                    className={`text-center border-r-[0.5px] sm:border-r-1 border-r-[#0D0D0D] col-start-1 col-end-2 bg-[#FFFFFF] flex h-9 sm:h-12 ${index === timeSlots.length - 1 ? 'border-b-none rounded-bl-2xl' : 'border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D]'}`}
+                    className={`text-center border-r-[0.5px] sm:border-r-1 border-r-[#0D0D0D] col-start-1 col-end-2 bg-[#FFFFFF] flex h-12 ${index === timeSlots.length - 1 ? 'border-b-none rounded-bl-2xl' : 'border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D]'}`}
                   >
                     <p className='text-md sm:text-md md:text-base m-auto text-[#0D0D0D]'>{time}</p>
                   </div>
@@ -133,7 +133,7 @@ const AgendaProfe = ({ availableDays, profesor }) => {
                 <div className="col-start-2 col-end-3 row-start-1 row-end-38 grid grid-cols-1 bg-[#FFFFFF] rounded-br-2xl">
                   <div className="grid grid-cols-1 grid-rows-37 text-center">
                     <div className='bg-[#0D0D0D] row-start-1 row-end-2'>
-                      <div className='rounded-tr-2xl border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D] flex h-9 sm:h-12 text-sm bg-[#E9500E]'>
+                      <div className='rounded-tr-2xl border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D] flex h-12 text-sm bg-[#E9500E]'>
                         <p className='text-md sm:text-md md:text-base m-auto'>{profesor.Nombre} / {profesor.Instrumento}</p>
                       </div>
                     </div>
