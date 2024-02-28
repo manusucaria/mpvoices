@@ -28,7 +28,7 @@ const EditorAlumnos = ({ alumno, setSelectedAlumno, setSelectedProfesor }) => {
           </div>
           <h3 className="text-[#FFFFFF] my-auto text-xl sm:text-2xl">Alumno</h3>
           <p className='my-auto'>|</p>
-          <p className='text-[#E9500E] my-auto mt-1 md:mt-2 text-xl sm:text-2xl mr-auto'>{alumno.Nombre} {alumno.Apellido}</p>
+          <p className='text-[#E9500E] my-auto md:mt-1 text-xl sm:text-2xl mr-auto'>{alumno.Nombre} {alumno.Apellido}</p>
         </div>
         <div className='flex justify-between w-full mx-auto bg-[#0D0D0D] px-4 sm:px-8 py-8'>
           <div className={`w-2/6 border-b-1 ${tab === 'datos' ? 'border-b-[#E9500E]' : 'border-b-[#FFFFFF]'}`}>

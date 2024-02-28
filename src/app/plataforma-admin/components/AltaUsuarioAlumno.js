@@ -67,7 +67,7 @@ const AltaUsuarioAlumno = ({ setAlumnoFormSubmitted, handleCancelar, onFormSubmi
         <div className='my-auto flex ml-4'>
           <h3 className="text-[#FFFFFF] my-auto text-xl sm:text-2xl">Nuevos usuarios</h3>
           <p className='text-[#FFFFFF] my-auto mx-2'>|</p>
-          <p className='text-[#E9500E] my-auto mt-1 lg:mt-1 text-xl sm:text-2xl'>alta alumno</p>
+          <p className='text-[#E9500E] my-auto lg:mt-1 text-xl sm:text-2xl'>alta alumno</p>
         </div>
       </div>
       <form className='flex flex-col mx-auto w-full md:w-4/6 lg:w-3/6 bg-[#0D0D0D] p-8' onSubmit={handleSubmit}>

@@ -179,7 +179,7 @@ const AgendaSmall = ({ cambios }) => {
           </div>
           <div className='grid grid-cols-[20%_80%] grid-rows-37 border-y-[0.5px] sm:border-y-1 border-y-[#0D0D0D]'>
             <div className="bg-[#E9500E] h-12 text-center col-start-1 col-end-2 row-start-1 row-end-2 flex border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D]">
-              <p className='text-md sm:text-md md:text-base m-auto text-[#FFFFFF]'>Horarios</p>
+              <p className='text-md sm:text-md md:text-base m-auto text-[#FFFFFF]'>Hora</p>
             </div>
             {timeSlots.map((time, index) => (
               <div

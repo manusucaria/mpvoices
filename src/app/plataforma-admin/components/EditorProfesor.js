@@ -157,7 +157,7 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
             </div>
             <h3 className="text-[#FFFFFF] my-auto text-xl sm:text-2xl">Profesor</h3>
             <p className='my-auto'>|</p>
-            <p className='text-[#9B70BE] my-auto mt-1 md:mt-1 text-xl sm:text-2xl mr-auto'>{profesor.Nombre} {profesor.Apellido}</p>
+            <p className='text-[#9B70BE] my-auto md:mt-1 text-xl sm:text-2xl mr-auto'>{profesor.Nombre} {profesor.Apellido}</p>
           </div>
           <div className='bg-[#0D0D0D] px-4 sm:px-8 py-8 flex flex-col mx-auto w-full'>
             <h4 className='text-[#FFFFFF] my-auto text-xl sm:text-2xl border-b-[0.5px] sm:border-b-1 border-b-[#FFFFFF] pb-8 mb-8'>Datos</h4>

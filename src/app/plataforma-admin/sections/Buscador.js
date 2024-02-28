@@ -65,7 +65,7 @@ const Buscador = ({ cambios, newCambio }) => {
 
   return (
     <div id='Buscar' className={`flex flex-col bg-[#212121] pt-12 sm:py-12 ${(!selectedAlumno && !selectedProfesor) && 'pb-8'}`}>
-      <h2 className='text-center text-2xl sm:text-3xl text-[#FFFFFF]'>Buscar usuarios</h2>
+      <h2 className='text-center text-2xl sm:text-3xl text-[#FFFFFF] lg:mb-6'>Buscar usuarios</h2>
       <div className="flex text-[#0D0D0D] bg-[#FFFFFF] w-5/6 mb-8 sm:mb-4 md:my-2 sm:w-4/6 md:w-3/6 mx-auto text-center py-2 mt-12 rounded-3xl px-4">
         <svg width="37" height="38" viewBox="0 0 37 38" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g id="magnifyingglass">
