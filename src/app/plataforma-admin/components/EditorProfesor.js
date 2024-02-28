@@ -135,7 +135,7 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
                 Guardar
               </button>
               <button
-                className='font-botones font-bold rounded-3xl w-3/6 ml-auto bg-[#FFFFFF] text-[#663481] md:text-[#0D0D0D] md:hover:text-[#663481] border-2 border-[#663481] px-3 h-12 sm:h-10'
+                className='font-botones font-bold rounded-3xl w-3/6 ml-auto bg-[#FFFFFF] text-[#0D0D0D] md:hover:text-[#663481] border-2 border-[#663481] px-3 h-12 sm:h-10'
                 onClick={cancelarClick}
                 type='button'
               >

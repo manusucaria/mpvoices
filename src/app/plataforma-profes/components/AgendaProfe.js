@@ -134,7 +134,7 @@ const AgendaProfe = ({ availableDays, profesor }) => {
                   <div className="grid grid-cols-1 grid-rows-37 text-center">
                     <div className='bg-[#0D0D0D] row-start-1 row-end-2'>
                       <div className='rounded-tr-2xl border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D] flex h-12 text-sm bg-[#663481]'>
-                        <p className='text-md sm:text-md md:text-base m-auto'>{profesor.Nombre} / {profesor.Instrumento}</p>
+                        <p className='text-md sm:text-md md:text-base m-auto'>Profesor: {profesor.Nombre} / {profesor.Instrumento}</p>
                       </div>
                     </div>
                     {filteredAlumnos
