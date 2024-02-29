@@ -43,18 +43,18 @@ const EliminarAlumno = ({ selectedAlumno, setSelectedAlumno }) => {
       {showConfirmation && (
         <div className='fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-50 z-50'>
           <div className='bg-[#FFFFFF] p-12 rounded-lg text-center flex flex-col'>
-            <p className='text-[#0D0D0D] text-xl mb-4'>
+            <p className='text-[#0D0D0D] text-xl mb-4 font-bold'>
               ¿Está seguro de que desea eliminar al alumno?
             </p>
             <div className='flex mx-auto gap-x-16'>
               <button
-                className='text-[#E9500E] md:hover:text-[#DB9B6D]'
+                className='text-[#E9500E] md:hover:text-[#DB9B6D] font-bold'
                 onClick={handleConfirmDelete}
               >
                 Si
               </button>
               <button
-                className='text-[#E9500E] md:hover:text-[#DB9B6D]'
+                className='text-[#E9500E] md:hover:text-[#DB9B6D] font-bold'
                 onClick={handleCloseConfirmation}
               >
                 No
@@ -66,11 +66,11 @@ const EliminarAlumno = ({ selectedAlumno, setSelectedAlumno }) => {
       {showDone && (
         <div className='fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-50 z-50'>
           <div className='bg-[#FFFFFF] p-12 rounded-lg text-center flex flex-col'>
-            <p className='text-[#0D0D0D] text-xl mb-4'>
+            <p className='text-[#0D0D0D] text-xl mb-4 font-bold'>
               Alumno eliminado correctamente.
             </p>
             <button
-              className='text-[#E9500E] md:hover:text-[#DB9B6D] ml-auto'
+              className='text-[#E9500E] md:hover:text-[#DB9B6D] ml-auto font-bold'
               onClick={handleCloseDone}
             >
               Volver al inicio

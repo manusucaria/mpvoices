@@ -93,7 +93,7 @@ const EditorDatos = ({ alumno }) => {
               />
             </div>
             <div className='flex mb-6'>
-              <label className='font-bold mr-auto w-2/6'>Fecha nac.:</label>
+              <label className='font-bold mr-auto w-2/6'>Fecha de nac.:</label>
               <input
                 className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
                 type='text'
@@ -149,7 +149,7 @@ const EditorDatos = ({ alumno }) => {
               <p className='text-base'>{apellido}</p>
             </div>
             <div className='mb-8 flex'>
-              <p className='mr-2 text-base font-bold'>Fecha nac.:</p>
+              <p className='mr-2 text-base font-bold'>Fecha de nac.:</p>
               <p className='text-base'>{fecha}</p>
             </div>
             <div className='mb-8 flex'>
@@ -171,9 +171,9 @@ const EditorDatos = ({ alumno }) => {
         {showConfirmation && (
           <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-50 z-50">
             <div className="bg-[#FFFFFF] p-12 rounded-lg text-center flex flex-col">
-              <p className="text-[#0D0D0D] text-xl mb-4">Los cambios se guardaron correctamente.</p>
+              <p className="text-[#0D0D0D] text-xl mb-4 font-bold">Los cambios se guardaron correctamente.</p>
               <button
-                className="text-[#E9500E] md:hover:text-[#DB9B6D] ml-auto"
+                className="text-[#E9500E] md:hover:text-[#DB9B6D] ml-auto font-bold"
                 onClick={handleCloseConfirmation}
               >
                 Entendido

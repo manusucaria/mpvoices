@@ -82,8 +82,8 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, new
           <input placeholder="Apellido" className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Apellido" value={alumnoData.Apellido} onChange={handleChange} />
         </div>
         <div className='flex mb-6'>
-          <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Fecha de Nacimiento:</label>
-          <input placeholder="Fecha de Nacimiento" className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Fecha" value={alumnoData.Fecha} onChange={handleChange} />
+          <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Fecha de nac.:</label>
+          <input placeholder="Fecha de nac." className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Fecha" value={alumnoData.Fecha} onChange={handleChange} />
         </div>
         <div className='flex mb-6'>
           <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Día:</label>
@@ -102,8 +102,8 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, new
           <input placeholder="Saldo" className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Saldo" value={alumnoData.Saldo} onChange={handleChange} />
         </div>
         <div className='flex mb-6'>
-          <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Duración de clase:</label>
-          <input placeholder="Duración de clase" className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Duracion" value={alumnoData.Duracion} onChange={handleChange} />
+          <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Duración:</label>
+          <input placeholder="Duración" className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Duracion" value={alumnoData.Duracion} onChange={handleChange} />
         </div>
         <div className='flex mb-6'>
           <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Horario:</label>
@@ -132,9 +132,9 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, new
       {showConfirmation && (
         <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-50 z-50">
           <div className="bg-[#FFFFFF] p-12 rounded-lg text-center flex flex-col">
-            <p className="text-[#0D0D0D] text-xl mb-4">Los datos se guardaron correctamente</p>
+            <p className="text-[#0D0D0D] font-bold text-xl mb-4">Los datos se guardaron correctamente</p>
             <button
-              className="text-[#E9500E] md:hover:text-[#DB9B6D] ml-auto"
+              className="text-[#E9500E] md:hover:text-[#DB9B6D] font-bold ml-auto"
               onClick={handleCloseConfirmation}
             >
               Ir a la página principal
