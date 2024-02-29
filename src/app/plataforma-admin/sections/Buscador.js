@@ -64,9 +64,9 @@ const Buscador = ({ cambios, newCambio }) => {
     : []
 
   return (
-    <div id='Buscar' className={`flex flex-col bg-[#212121] pt-12 sm:py-12 ${(!selectedAlumno && !selectedProfesor) && 'pb-8'}`}>
-      <h2 className='text-center text-2xl sm:text-3xl text-[#FFFFFF] lg:mb-6'>Buscar usuarios</h2>
-      <div className="flex text-[#0D0D0D] bg-[#FFFFFF] w-5/6 mb-8 sm:mb-4 md:my-2 sm:w-4/6 md:w-3/6 mx-auto text-center py-2 mt-12 rounded-3xl px-4">
+    <div id='Buscar' className={`flex flex-col bg-[#212121] pt-20 sm:py-20 ${(!selectedAlumno && !selectedProfesor) && 'pb-20'}`}>
+      <h2 className='text-center text-2xl sm:text-3xl text-[#FFFFFF] lg:mb-4'>Buscar usuarios</h2>
+      <div className="flex text-[#0D0D0D] bg-[#FFFFFF] w-5/6 sm:w-4/6 md:w-3/6 mx-auto text-center py-2 mb-6 mt-12 rounded-3xl px-4">
         <svg width="37" height="38" viewBox="0 0 37 38" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g id="magnifyingglass">
           <path id="magnifyingglass_2" d="M16.5602 25.8307C18.4069 25.8307 20.1374 25.2582 21.5775 24.2801L26.6645 29.5165C27.0013 29.8505 27.431 30.0175 27.8956 30.0175C28.8596 30.0175 29.568 29.2421 29.568 28.264C29.568 27.8108 29.4171 27.3694 29.0919 27.0355L24.0397 21.8229C25.085 20.2961 25.7005 18.4473 25.7005 16.4434C25.7005 11.2785 21.5891 7.05603 16.5602 7.05603C11.5429 7.05603 7.41992 11.2785 7.41992 16.4434C7.41992 21.6082 11.5313 25.8307 16.5602 25.8307ZM16.5602 23.3258C12.8786 23.3258 9.85889 20.2246 9.85889 16.4434C9.85889 12.6622 12.8786 9.56091 16.5602 9.56091C20.2419 9.56091 23.2616 12.6622 23.2616 16.4434C23.2616 20.2246 20.2419 23.3258 16.5602 23.3258Z" fill="#1C1C1E"/>

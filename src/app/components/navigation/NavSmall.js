@@ -100,7 +100,7 @@ const NavSmall = () => {
   ]
 
   return (
-    <nav className="bg-black border-b border-white flex lg:hidden flex-col fixed top-0 left-0 right-0 h-[3rem]">
+    <nav className="bg-black flex lg:hidden flex-col fixed top-0 left-0 right-0 h-[3rem] border-b-1 border-b-[#FFFFFF]">
       <div className="flex items-center">
         {isNavOpen === false
           ? (

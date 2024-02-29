@@ -73,8 +73,8 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
     <div className='w-full'>
       {editMode
         ? (
-        <div className='flex flex-col w-full pb-8 bg-[#0D0D0D]'>
-          <div className='w-full flex justify-center mx-auto pb-8 gap-x-4 sm:gap-x-6 lg:pt-4 bg-[#212121]'>
+        <div className='flex flex-col w-full bg-[#0D0D0D]'>
+          <div className='w-full flex justify-center mx-auto gap-x-4 sm:gap-x-6 pb-6 sm:pb-8 bg-[#212121]'>
             <div className="my-auto ml-auto pt-[0.5px] xl:pt-1">
               <svg className='hover:cursor-pointer stroke-[#9B70BE] md:hover:stroke-[#663481]' onClick={() => volver()} width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="iconamoon:arrow-up-2-light">
@@ -86,14 +86,14 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
             <p className='my-auto'>|</p>
             <p className='text-[#9B70BE] my-auto md:mt-1 text-xl sm:text-2xl mr-auto'>{profesor.Nombre} {profesor.Apellido}</p>
           </div>
-          <form className='px-4 sm:px-8 pt-4 w-full mx-auto mt-4 bg-[#0D0D0D]' onSubmit={handleSubmit}>
+          <form className='px-4 sm:px-8 pt-8 w-full mx-auto bg-[#0D0D0D]' onSubmit={handleSubmit}>
             <div className='flex border-b-[0.5px] sm:border-b-1 border-b-[#FFFFFF] pb-8 mb-8'>
               <h4 className='text-[#FFFFFF] my-auto text-xl sm:text-2xl'>Datos</h4>
               <p className='text-[#FFFFFF] my-auto mx-4'>|</p>
               <p className='text-[#9B70BE] my-auto text-xl sm:text-2xl'>Editar</p>
             </div>
             <div className='flex mb-6'>
-              <label className='font-bold mr-auto w-2/6'>Nombre:</label>
+              <label className='text-base font-bold mr-auto w-2/6'>Nombre:</label>
               <input
                 className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
                 type='text'
@@ -103,7 +103,7 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
               />
             </div>
             <div className='flex mb-6'>
-              <label className='font-bold mr-auto w-2/6'>Apellido:</label>
+              <label className='text-base font-bold mr-auto w-2/6'>Apellido:</label>
               <input
                 className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
                 type='text'
@@ -113,7 +113,7 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
               />
             </div>
             <div className='flex mb-6'>
-              <label className='font-bold mr-auto w-2/6'>E-Mail:</label>
+              <label className='text-base font-bold mr-auto w-2/6'>E-Mail:</label>
               <input
                 className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
                 type='text'
@@ -123,7 +123,7 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
               />
             </div>
             <div className='flex mb-6'>
-              <label className='font-bold mr-auto w-2/6'>Días:</label>
+              <label className='text-base font-bold mr-auto w-2/6'>Días:</label>
               <input
                 className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
                 type='text'
@@ -133,7 +133,7 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
               />
             </div>
             <div className='flex'>
-              <label className='font-bold mr-auto w-2/6'>Instrumento:</label>
+              <label className='text-base font-bold mr-auto w-2/6'>Instrumento:</label>
               <input
                 className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
                 type='text'
@@ -142,8 +142,8 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
                 onChange={(e) => setInstrumento(e.target.value)}
               />
             </div>
-            <div className='flex w-full mx-auto mt-8 gap-x-4'>
-            <button className='font-botones font-bold rounded-3xl w-3/6 bg-[#663481] text-[#FFFFFF] px-3 h-12 sm:h-10 md:hover:bg-[#9B70BE]' type='submit'>
+            <div className='flex w-full mx-auto my-8 gap-x-4'>
+              <button className='font-botones font-bold rounded-3xl w-3/6 bg-[#663481] text-[#FFFFFF] px-3 h-12 sm:h-10 md:hover:bg-[#9B70BE]' type='submit'>
                 Guardar
               </button>
               <button
@@ -158,8 +158,8 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
         </div>
           )
         : (
-        <div className='flex flex-col w-full mx-auto mt-4'>
-          <div className='w-full flex justify-center mx-auto mb-8 gap-x-4 sm:gap-x-6 lg:mt-4'>
+        <div className='flex flex-col w-full mx-auto'>
+          <div className='w-full flex justify-center mx-auto gap-x-4 sm:gap-x-6 mb-6 sm:mb-8'>
             <div className="my-auto ml-auto pt-[0.5px] xl:pt-1">
               <svg className='hover:cursor-pointer stroke-[#9B70BE] md:hover:stroke-[#663481]' onClick={() => volver()} width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="iconamoon:arrow-up-2-light">

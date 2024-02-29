@@ -46,7 +46,7 @@ const EliminarProfesor = ({ selectedProfesor, setSelectedProfesor }) => {
                   Si
                 </button>
                 <button
-                  className="text-[#0D0D0D]"
+                  className="text-[#E9500E] md:hover:text-[#DB9B6D]"
                   onClick={handleCloseConfirmation}
                 >
                   No
