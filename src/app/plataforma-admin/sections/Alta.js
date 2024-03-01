@@ -15,9 +15,9 @@ const Alta = ({ newCambio }) => {
 
   useEffect(() => {
     if (showAlumnoForm || showProfesorForm) {
-      setBackgroundClass('bg-[#212121] pb-12 pt-0')
+      setBackgroundClass('bg-[#212121] pb-16 pt-0 border-y-1 border-y-[#FFFFFF]')
     } else {
-      setBackgroundClass('bg-[#D9D9D9] py-16')
+      setBackgroundClass('bg-[#D9D9D9] py-20')
     }
   }, [showAlumnoForm, showProfesorForm])
 
