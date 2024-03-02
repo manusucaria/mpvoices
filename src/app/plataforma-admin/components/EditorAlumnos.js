@@ -58,9 +58,9 @@ const EditorAlumnos = ({ alumno, setSelectedAlumno, setSelectedProfesor }) => {
         </div>
       </div>
       <div className=''>
-        {tab === 'datos' && <EditorDatos alumno={alumno} />}
-        {tab === 'clases' && <EditorClases alumno={alumno} />}
-        {tab === 'pagos' && <EditorPagos alumno={alumno} />}
+        {tab === 'datos' && <EditorDatos alumno={alumno} setSelectedAlumno={setSelectedAlumno} />}
+        {tab === 'clases' && <EditorClases alumno={alumno} setSelectedAlumno={setSelectedAlumno} />}
+        {tab === 'pagos' && <EditorPagos alumno={alumno} setSelectedAlumno={setSelectedAlumno} />}
       </div>
     </div>
   )

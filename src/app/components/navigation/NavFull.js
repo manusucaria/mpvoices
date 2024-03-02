@@ -177,7 +177,7 @@ const NavFull = () => {
                 fill="currentColor"
               />
             </svg>
-            <span className="tooltip text-xs text-black absolute top-10 w-36 text-center ml-6 min-[1024px]:ml-0 p-2 bg-white rounded opacity-0 group-hover:opacity-100">Plataforma alumnos</span>
+            <span className="tooltip text-xs text-black absolute top-10 w-36 text-center ml-6 min-[1024px]:ml-0 p-2 bg-white rounded opacity-0 group-hover:opacity-100">Plataforma Voices</span>
           </div>
         </Link>
       </div>

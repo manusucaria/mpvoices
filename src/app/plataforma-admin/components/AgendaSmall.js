@@ -117,7 +117,7 @@ const AgendaSmall = ({ cambios }) => {
   }
 
   return (
-    <div id='Agenda' className="flex flex-col md:hidden">
+    <div id='Agenda' className={`flex flex-col md:hidden ${selectedDay ? 'mb-6' : ''}`}>
       {selectedDay
         ? (
         <div className="flex justify-center mb-4">

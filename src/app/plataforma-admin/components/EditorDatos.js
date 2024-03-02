@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { updateAlumno } from '../../api/api.js'
+import { updateAlumno, fetchAlumno } from '../../api/api.js'
 
-const EditorDatos = ({ alumno }) => {
+const EditorDatos = ({ alumno, setSelectedAlumno }) => {
   const [nombre, setNombre] = useState('')
   const [apellido, setApellido] = useState('')
   const [fecha, setFecha] = useState('')
@@ -40,6 +40,8 @@ const EditorDatos = ({ alumno }) => {
         Tel: tel
       }
       await updateAlumno(alumno.id, updatedAlumno)
+      const updatedAlumnoData = await fetchAlumno(alumno.id)
+      setSelectedAlumno(updatedAlumnoData)
       setEditMode(false)
       setShowConfirmation(true)
     } catch (error) {
