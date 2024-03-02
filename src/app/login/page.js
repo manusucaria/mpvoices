@@ -36,7 +36,7 @@ const LoginForm = () => {
         }
         if (error.code === 'auth/user-not-found') {
           console.error('Error de inicio de sesión:', error)
-          setErrors({ email: 'Email incorrecto' })
+          setErrors({ email: 'E-Mail incorrecto' })
         }
       }
     } else {
@@ -62,7 +62,7 @@ const LoginForm = () => {
             onChange={(e) => setEmail(e.target.value.trimStart())}
             autoComplete='email'
           />
-          {errors.email && <p className='text-[#E9500E] text-sm ml-3'>{errors.email}</p>}
+          {errors.email && <p className='text-[#FFFFFF] text-sm ml-3'>{errors.email}</p>}
         </div>
         <div className='flex flex-col'>
           <label className='text-white mr-2 ml-3' htmlFor='password'>Contraseña:</label>
@@ -89,10 +89,10 @@ const LoginForm = () => {
             </button>
           </div>
         </div>
-        {errors.password && <p className='text-[#E9500E] text-sm ml-3'>{errors.password}</p>}
+        {errors.password && <p className='text-[#FFFFFF] text-sm ml-3'>{errors.password}</p>}
         <button className='hover:bg-[#E9500E] hover:border-white transition-all w-full py-3 px-4 shadow-md border border-[#E9500E] text-white font-bold rounded-3xl mt-5'
           type='submit'>
-            Iniciar Sesión
+            Iniciar sesión
         </button>
       </form>
     </div>

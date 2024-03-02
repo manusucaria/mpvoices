@@ -50,8 +50,24 @@ export const updateProfesor = async (id, obj) => {
   await updateDoc(docRef, obj)
 }
 
-// DELETE
+// FETCH
+export const fetchAlumno = async (alumnoId) => {
+  try {
+    const docRef = doc(db, 'alumnos', alumnoId)
+    const docSnap = await getDoc(docRef)
 
+    if (docSnap.exists()) {
+      return { id: docSnap.id, ...docSnap.data() }
+    } else {
+      throw new Error('No existe el alumno con el ID proporcionado')
+    }
+  } catch (error) {
+    console.error('Error al obtener los datos del alumno:', error)
+    throw error
+  }
+}
+
+// DELETE
 export const deleteAlumno = async (email, password) => {
   const q = query(collection(db, 'alumnos'), where('Email', '==', email))
   const querySnapshot = await getDocs(q)
@@ -70,7 +86,6 @@ export const deleteAlumno = async (email, password) => {
     throw new Error('Contraseña incorrecta')
   }
 }
-
 export const deleteProfesor = async (email, password) => {
   const q = query(collection(db, 'profesores'), where('Email', '==', email))
   const querySnapshot = await getDocs(q)
@@ -104,32 +119,19 @@ export const getAlumnosByProfesor = async (idProfesor) => {
 }
 
 /**
- * Obtiene la información de un alumno por su dirección de correo electrónico, excluyendo la contraseña.
- *
  * @param {Object} options - Opciones de búsqueda.
  * @param {string} options.email - Dirección de correo electrónico del alumno a buscar.
  * @returns {Promise<Object>} - Un objeto que representa la información del alumno sin la contraseña.
  * @throws {Error} - Se lanza un error si el alumno no es encontrado.
  */
 export const getAlumnoByEmail = async ({ email }) => {
-  // Crea una consulta para buscar al alumno por su dirección de correo electrónico
   const q = query(collection(db, 'alumnos'), where('Email', '==', email))
-
-  // Obtiene el resultado de la consulta
   const querySnapshot = await getDocs(q)
-
-  // Verifica si el resultado de la consulta está vacío
   if (querySnapshot.empty) {
     throw new Error('Alumno no encontrado')
   }
-
-  // Extrae los datos del primer documento encontrado
   const alumnoData = querySnapshot.docs[0].data()
-
-  // Excluye el campo 'Contraseña' antes de devolver los datos
   const { Contraseña, ...alumnoWithoutPassword } = alumnoData
-
-  // Retorna la información del alumno sin la contraseña
   return alumnoWithoutPassword
 }
 
