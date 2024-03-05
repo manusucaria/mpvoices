@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { updateAlumno, fetchAlumno } from '../../api/api.js'
 
-const EditorClases = ({ alumno, setSelectedAlumno }) => {
+const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
   const [instrumento, setInstrumento] = useState('')
   const [dia, setDia] = useState('')
   const [horario, setHorario] = useState('')
@@ -68,6 +68,58 @@ const EditorClases = ({ alumno, setSelectedAlumno }) => {
     setShowConfirmation(false)
   }
 
+  const generateHorarios = () => {
+    const horarios = []
+    let hora = 12
+    let minutos = 0
+
+    while (!(hora === 20 && minutos === 30)) {
+      const horaStr = hora.toString().padStart(2, '0')
+      const minStr = minutos.toString().padStart(2, '0')
+      horarios.push(`${horaStr}:${minStr}`)
+      minutos += 15
+      if (minutos === 60) {
+        minutos = 0
+        hora += 1
+      }
+    }
+
+    return horarios
+  }
+
+  const duracionOptions = [30, 45, 60, 75, 90]
+
+  const renderDuracionOptions = () => {
+    return duracionOptions.map((duracionOption, index) => (
+    <option key={index} value={duracionOption}>
+      {duracionOption} minutos
+    </option>
+    ))
+  }
+
+  const instrumentos = [
+    'Violin', 'Viola', 'Cello', 'Contrabajo', 'Bajo', 'Piano', 'Guitarra',
+    'Batería', 'Ukelele', 'Canto', 'Iniciación Musical', 'Ensamble Vocal', 'Ensamble',
+    'Dúo de Canto', 'Trío de Canto', 'Cuarteto de Canto', 'Bandoneón', 'Saxo',
+    'Trompeta', 'Composición', 'Producción', 'Profesorado de Canto', 'Arpa'
+  ]
+
+  instrumentos.sort()
+
+  const renderInstrumentoOptions = () => {
+    return instrumentos.map((instrumento, index) => (
+      <option key={index} value={instrumento.toLowerCase().replace(/\s/g, '_')}>
+        {instrumento}
+      </option>
+    ))
+  }
+
+  const formatInstrumento = (instrumento) => {
+    if (!instrumento) return ''
+    const instrumentoFormateado = instrumento.charAt(0).toUpperCase() + instrumento.slice(1)
+    return instrumentoFormateado.replace(/_/g, ' ')
+  }
+
   return (
     <div className='w-full'>
       {editMode
@@ -76,53 +128,68 @@ const EditorClases = ({ alumno, setSelectedAlumno }) => {
           <form className='w-full mx-auto' onSubmit={handleSubmit}>
             <div className='flex mb-6'>
               <label className='font-bold mr-auto w-2/6'>Instrumento:</label>
-              <input
+              <select
                 className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
-                type='text'
-                name='instrumento'
                 value={instrumento}
                 onChange={(e) => setInstrumento(e.target.value)}
-              />
+              >
+                {renderInstrumentoOptions()}
+              </select>
             </div>
             <div className='flex mb-6'>
               <label className='font-bold mr-auto w-2/6'>Días:</label>
-              <input
+              <select
                 className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
-                type='text'
-                name='dia'
-                value={dia.toLowerCase()}
+                value={dia}
                 onChange={(e) => setDia(e.target.value)}
-              />
+              >
+                <option value="lunes">lunes</option>
+                <option value="martes">martes</option>
+                <option value="miércoles">miércoles</option>
+                <option value="jueves">jueves</option>
+                <option value="viernes">viernes</option>
+              </select>
             </div>
             <div className='flex mb-6'>
               <label className='font-bold mr-auto w-2/6'>Horario:</label>
-              <input
+              <select
                 className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
-                type='text'
-                name='horario'
                 value={horario}
                 onChange={(e) => setHorario(e.target.value)}
-              />
+              >
+                {generateHorarios().map((hora, index) => (
+                  <option key={index} value={hora}>
+                    {hora}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className='flex mb-6'>
               <label className='font-bold mr-auto w-2/6'>Duración:</label>
-              <input
+              <select
                 className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
-                type='text'
-                name='duracion'
                 value={duracion}
                 onChange={(e) => setDuracion(e.target.value)}
-              />
+              >
+                {renderDuracionOptions()}
+              </select>
             </div>
             <div className='flex mb-6'>
               <label className='font-bold mr-auto w-2/6'>Profesor:</label>
-              <input
+              <select
                 className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
-                type='text'
-                name='profesor'
                 value={profesor}
                 onChange={(e) => setProfesor(e.target.value)}
-              />
+              >
+              {profesores
+                .sort((a, b) => a.Nombre.localeCompare(b.Nombre))
+                .map((profesor, index) => (
+                  <option key={index} value={profesor.Nombre}>
+                    {profesor.Nombre}
+                  </option>
+                ))
+              }
+              </select>
             </div>
             <div className='flex w-full mx-auto mt-8 gap-x-4'>
               <button className='font-botones font-bold rounded-3xl w-3/6 bg-[#E9500E] text-[#FFFFFF] px-3 h-12 sm:h-10 md:hover:bg-[#DB9B6D]' type='submit'>
@@ -144,7 +211,7 @@ const EditorClases = ({ alumno, setSelectedAlumno }) => {
           <div className='px-4 sm:px-8 pb-8 w-full pt-4'>
             <div className='mb-8 flex'>
               <p className='mr-2 text-base font-bold'>Instrumento:</p>
-              <p className='text-base'>{instrumento}</p>
+              <p className='text-base'>{formatInstrumento(instrumento)}</p>
             </div>
             <div className='mb-8 flex'>
               <p className='mr-2 text-base font-bold'>Días:</p>

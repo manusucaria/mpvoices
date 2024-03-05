@@ -90,7 +90,7 @@ const Buscador = ({ cambios, newCambio }) => {
       )}
       {selectedAlumno && (
         <div className="flex flex-col mx-auto sm:px-4 sm:py-2 items-center w-full md:w-4/6 lg:w-3/6">
-          <EditorAlumnos alumno={selectedAlumno} newCambio={newCambio} setSelectedAlumno={setSelectedAlumno} setSelectedProfesor={setSelectedProfesor} />
+          <EditorAlumnos profesores={profesores} alumno={selectedAlumno} newCambio={newCambio} setSelectedAlumno={setSelectedAlumno} setSelectedProfesor={setSelectedProfesor} />
           <EliminarAlumno selectedAlumno={selectedAlumno} setSelectedAlumno={setSelectedAlumno} />
         </div>
       )}

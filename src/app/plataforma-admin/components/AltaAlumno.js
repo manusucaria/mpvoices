@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { createAlumno } from '../../api/api.js'
 
-const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, newUserPassword }) => {
+const AltaAlumno = ({ setShowAlumnoForm, profesores, confirmacionRegistro, newUserEmail, newUserPassword }) => {
   const [showConfirmation, setShowConfirmation] = useState(false)
   const [warningMessage, setWarningMessage] = useState('')
   const [alumnoData, setAlumnoData] = useState({
@@ -26,6 +26,7 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, new
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    console.log(alumnoData)
     const requiredFields = ['Nombre', 'Apellido', 'Fecha', 'Dia', 'Instrumento', 'Profesor', 'Saldo', 'Duracion', 'Horario', 'Tel']
     const incompleteFields = requiredFields.filter(field => !alumnoData[field])
 
@@ -50,6 +51,37 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, new
     setShowConfirmation(false)
     confirmacionRegistro()
   }
+
+  const instrumentos = [
+    'Violin', 'Viola', 'Cello', 'Contrabajo', 'Bajo', 'Piano', 'Guitarra',
+    'Batería', 'Ukelele', 'Canto', 'Iniciación Musical', 'Ensamble Vocal', 'Ensamble',
+    'Dúo de Canto', 'Trío de Canto', 'Cuarteto de Canto', 'Bandoneón', 'Saxo',
+    'Trompeta', 'Composición', 'Producción', 'Profesorado de Canto', 'Arpa'
+  ]
+
+  instrumentos.sort()
+
+  const generateHorarios = () => {
+    const horarios = []
+    let hora = 12
+    let minutos = 0
+
+    while (hora < 21 || (hora === 21 && minutos === 0)) {
+      const horaString = hora.toString().padStart(2, '0')
+      const minutosString = minutos.toString().padStart(2, '0')
+      horarios.push(`${horaString}:${minutosString}`)
+
+      minutos += 15
+      if (minutos === 60) {
+        minutos = 0
+        hora += 1
+      }
+    }
+
+    return horarios
+  }
+
+  const duraciones = [30, 45, 60, 75, 90]
 
   return (
     <div className='flex flex-col mx-auto w-full'>
@@ -87,15 +119,51 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, new
         </div>
         <div className='flex mb-6'>
           <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Día:</label>
-          <input placeholder="Día" className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Dia" value={alumnoData.Dia} onChange={handleChange} />
+          <select
+            className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+            name="Dia"
+            value={alumnoData.Dia}
+            onChange={handleChange}
+          >
+            <option value="">Seleccione un día</option>
+            <option value="lunes">lunes</option>
+            <option value="martes">martes</option>
+            <option value="miércoles">miércoles</option>
+            <option value="jueves">jueves</option>
+            <option value="viernes">viernes</option>
+          </select>
         </div>
         <div className='flex mb-6'>
           <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Instr.:</label>
-          <input placeholder="Instrumento" className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Instrumento" value={alumnoData.Instrumento} onChange={handleChange} />
+          <select
+            className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+            name="Instrumento"
+            value={alumnoData.Instrumento}
+            onChange={handleChange}
+          >
+            <option value="">Seleccione un instrumento</option>
+            {instrumentos.map((instrumento, index) => (
+              <option key={index} value={instrumento}>
+                {instrumento}
+              </option>
+            ))}
+          </select>
         </div>
         <div className='flex mb-6'>
           <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Profesor:</label>
-          <input placeholder="Profesor" className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Profesor" value={alumnoData.Profesor} onChange={handleChange} />
+          <select
+            className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+            name="Profesor"
+            value={alumnoData.Profesor}
+            onChange={handleChange}
+          >
+            <option value="">Seleccione un profesor</option>
+            {profesores.map((profesor, index) => (
+              <option key={index} value={profesor.Nombre}>
+                {profesor.Nombre}
+              </option>
+            ))}
+          </select>
         </div>
         <div className='flex mb-6'>
           <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Saldo:</label>
@@ -103,11 +171,33 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, new
         </div>
         <div className='flex mb-6'>
           <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Duración:</label>
-          <input placeholder="Duración" className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Duracion" value={alumnoData.Duracion} onChange={handleChange} />
+          <select
+            className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+            name="Duracion"
+            value={alumnoData.Duracion}
+            onChange={handleChange}
+          >
+            <option value="">Seleccione una duración</option>
+            {duraciones.map((duracion, index) => (
+              <option key={index} value={duracion}>{duracion} minutos</option>
+            ))}
+          </select>
         </div>
         <div className='flex mb-6'>
           <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Horario:</label>
-          <input placeholder="Horario" className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Horario" value={alumnoData.Horario} onChange={handleChange} />
+          <select
+            className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+            name="Horario"
+            value={alumnoData.Horario}
+            onChange={handleChange}
+          >
+            <option value="">Seleccione un horario</option>
+            {generateHorarios().map((horario, index) => (
+              <option key={index} value={horario}>
+                {horario}
+              </option>
+            ))}
+          </select>
         </div>
         <div className='flex mb-6'>
           <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Teléfono:</label>
