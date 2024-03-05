@@ -73,7 +73,7 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
     let hora = 12
     let minutos = 0
 
-    while (!(hora === 20 && minutos === 30)) {
+    while (!(hora === 21 && minutos === 0)) {
       const horaStr = hora.toString().padStart(2, '0')
       const minStr = minutos.toString().padStart(2, '0')
       horarios.push(`${horaStr}:${minStr}`)
