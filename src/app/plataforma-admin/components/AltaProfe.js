@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { createProfesor } from '../../api/api.js'
+import { instrumentos, diasSemana } from '../../api/data.js'
 
 const AltaProfesor = ({ setShowProfesorForm, confirmacionRegistro, newUserEmail, newUserPassword }) => {
   const [showConfirmation, setShowConfirmation] = useState(false)
@@ -94,17 +95,6 @@ const AltaProfesor = ({ setShowProfesorForm, confirmacionRegistro, newUserEmail,
     setSelectedDays(updatedSelectedDays)
   }
 
-  const diasSemana = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes']
-
-  const instrumentos = [
-    'Violin', 'Viola', 'Cello', 'Contrabajo', 'Bajo', 'Piano', 'Guitarra',
-    'Batería', 'Ukelele', 'Canto', 'Iniciación musical', 'Ensamble vocal', 'Ensamble',
-    'Dúo de canto', 'Trío de canto', 'Cuarteto de canto', 'Bandoneón', 'Saxo',
-    'Trompeta', 'Composición', 'Producción', 'Profesorado de canto', 'Arpa'
-  ]
-
-  instrumentos.sort()
-
   return (
     <div className='flex flex-col mx-auto w-full'>
       <div className="mx-auto flex justify-center w-full md:w-4/6 lg:w-3/6 my-8">
@@ -172,7 +162,7 @@ const AltaProfesor = ({ setShowProfesorForm, confirmacionRegistro, newUserEmail,
           <select
             className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
             name="Instrumento"
-            value={formatInstrumento(profesorData.Instrumento)} // Aquí se utiliza la función
+            value={formatInstrumento(profesorData.Instrumento)}
             onChange={handleChange}
           >
             <option value="">Seleccione un instrumento</option>

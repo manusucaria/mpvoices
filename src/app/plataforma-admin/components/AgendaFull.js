@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { getAlumnos, getProfesores } from '../../api/api.js'
+import { diasSemana, horarios } from '../../api/data.js'
 import alas from '../../assets/alas.jpg'
 import Image from 'next/image'
 
-const AgendaFull = ({ cambios }) => {
+const AgendaFull = () => {
   const [alumnos, setAlumnos] = useState([])
   const [profesores, setProfesores] = useState([])
   const [selectedDay, setSelectedDay] = useState('')
-  const [timeSlots, setTimeSlots] = useState([])
   const [startIndex, setStartIndex] = useState(0)
   const [filteredAlumnos, setFilteredAlumnos] = useState([])
   const [filteredProfesores, setFilteredProfesores] = useState([])
@@ -22,17 +22,7 @@ const AgendaFull = ({ cambios }) => {
     getProfesores().then((data) => {
       setProfesores(data)
     })
-  }, [selectedDay, cambios])
-
-  useEffect(() => {
-    const slots = []
-    for (let hour = 10; hour <= 20; hour++) {
-      for (let minute = 0; minute < 60; minute += 15) {
-        slots.push(`${hour}:${minute === 0 ? '00' : minute}`)
-      }
-    }
-    setTimeSlots(slots)
-  }, [])
+  }, [selectedDay])
 
   const filterAlumnosByDay = (day) => {
     setSelectedDay(day)
@@ -53,7 +43,7 @@ const AgendaFull = ({ cambios }) => {
       : []
 
     setFilteredProfesores(filtered)
-  }, [selectedDay, cambios, profesores])
+  }, [selectedDay, profesores])
 
   const filteredProfesoresSorted = filteredProfesores.slice().sort((a, b) => {
     const nombreProfesorA = a.Nombre.toLocaleLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -78,7 +68,7 @@ const AgendaFull = ({ cambios }) => {
       })
       : []
     setFilteredAlumnos(filtered)
-  }, [selectedDay, cambios, alumnos])
+  }, [selectedDay, alumnos])
 
   const handleNext = () => {
     if (startIndex + 1 < filteredProfesores.length) {
@@ -147,21 +137,15 @@ const AgendaFull = ({ cambios }) => {
             />
             <div className="col-start-1 col-end-1 row-start-1 row-end-1 w-full m-auto z-40 flex flex-col">
               <h2 className="text-center text-3xl m-auto text-[#FFFFFF] mb-8 sm:mb-6 lg:mb-8 xl:mb-10">Días y horarios</h2>
-              <button onClick={() => filterAlumnosByDay('lunes')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-10 sm:h-8 md:h-8 lg:h-10 w-4/6 sm:w-3/6 md:w-2/6 mb-6 md:mb-4 xl:mb-6 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
-                lunes
-              </button>
-              <button onClick={() => filterAlumnosByDay('martes')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-10 sm:h-8 md:h-8 lg:h-10 w-4/6 sm:w-3/6 md:w-2/6 mb-6 md:mb-4 xl:mb-6 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
-                martes
-              </button>
-              <button onClick={() => filterAlumnosByDay('miércoles')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-10 sm:h-8 md:h-8 lg:h-10 w-4/6 sm:w-3/6 md:w-2/6 mb-6 md:mb-4 xl:mb-6 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
-                miércoles
-              </button>
-              <button onClick={() => filterAlumnosByDay('jueves')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-10 sm:h-8 md:h-8 lg:h-10 w-4/6 sm:w-3/6 md:w-2/6 mb-6 md:mb-4 xl:mb-6 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
-                jueves
-              </button>
-              <button onClick={() => filterAlumnosByDay('viernes')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-10 sm:h-8 md:h-8 lg:h-10 w-4/6 sm:w-3/6 md:w-2/6 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
-                viernes
-              </button>
+              {diasSemana.map((dia, index) => (
+                <button
+                  key={index}
+                  onClick={() => filterAlumnosByDay(dia)}
+                  className={`bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-10 sm:h-8 md:h-8 lg:h-10 w-4/6 sm:w-3/6 md:w-2/6 ${index === diasSemana.length - 1 ? '' : 'mb-6 md:mb-4 xl:mb-6'} md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]`}
+                >
+                  {dia}
+                </button>
+              ))}
             </div>
           </div>
           )}
@@ -192,10 +176,10 @@ const AgendaFull = ({ cambios }) => {
             <div className="bg-[#E9500E] h-9 sm:h-12 text-center col-start-1 col-end-2 row-start-1 row-end-2 flex border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D]">
               <p className='text-md sm:text-md md:text-base m-auto text-[#FFFFFF]'>Hora</p>
             </div>
-            {timeSlots.map((time, index) => (
+            {horarios.map((time, index) => (
               <div
                 key={index}
-                className={`text-center col-start-1 col-end-2 bg-[#FFFFFF] flex h-9 sm:h-12 ${index === timeSlots.length - 1 ? 'border-b-none rounded-bl-2xl' : 'border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D]'}`}
+                className={`text-center col-start-1 col-end-2 bg-[#FFFFFF] flex h-9 sm:h-12 ${index === horarios.length - 1 ? 'border-b-none rounded-bl-2xl' : 'border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D]'}`}
               >
                 <p className='text-md sm:text-md md:text-base m-auto text-[#0D0D0D]'>{time}</p>
               </div>
@@ -211,8 +195,8 @@ const AgendaFull = ({ cambios }) => {
                   .map((alumno) => (
                     <div key={`${alumno.Nombre}`} className='flex flex-col h-full w-full text-center border-none' style={{
                       gridColumn: filteredProfesoresSorted.findIndex((p) => p.Nombre === profesor.Nombre) - startIndex,
-                      gridRowStart: timeSlots.indexOf(alumno.Horario) + 2,
-                      gridRowEnd: timeSlots.indexOf(alumno.Horario) + 2 + alumno.Duracion / 15
+                      gridRowStart: horarios.indexOf(alumno.Horario) + 2,
+                      gridRowEnd: horarios.indexOf(alumno.Horario) + 2 + alumno.Duracion / 15
                     }}>
                       <div
                         className={`flex flex-col m-auto h-[97.5%] w-[95%] text-center ${
@@ -236,19 +220,19 @@ const AgendaFull = ({ cambios }) => {
                   ))}
                 </div>
               ))}
-{showNotification && notification.length > 0 && (
-  <div className='fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-50 z-[100]'>
-    <div className='p-12 rounded-lg text-center flex flex-col gap-y-8 bg-[#E9500E] border-1 border-[#0D0D0D]'>
-      <p className='text-[#FFFFFF] font-bold text-xl mx-auto'>Notificaciones:</p>
-      <div className='flex flex-col mx-auto'>
-        {notification.map((item, index) => (
-          <div key={index} className='text-[#FFFFFF] mr-auto'>- {item}</div>
-        ))}
-      </div>
-      <button className='text-[#FFFFFF] font-bold md:hover:text-[#DB9B6D]' onClick={closeNotification}>Cerrar</button>
-    </div>
-  </div>
-)}
+              {showNotification && notification.length > 0 && (
+                <div className='fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-50 z-[100]'>
+                  <div className='p-12 rounded-lg text-center flex flex-col gap-y-8 bg-[#E9500E] border-1 border-[#0D0D0D]'>
+                    <p className='text-[#FFFFFF] font-bold text-xl mx-auto'>Notificaciones:</p>
+                    <div className='flex flex-col mx-auto'>
+                      {notification.map((item, index) => (
+                        <div key={index} className='text-[#FFFFFF] mr-auto'>- {item}</div>
+                      ))}
+                    </div>
+                    <button className='text-[#FFFFFF] font-bold md:hover:text-[#DB9B6D]' onClick={closeNotification}>Cerrar</button>
+                  </div>
+                </div>
+              )}
           </div>
         </div>
       </div>

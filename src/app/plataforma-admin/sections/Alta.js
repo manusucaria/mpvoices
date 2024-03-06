@@ -5,7 +5,7 @@ import AltaUsuarioAlumno from '../components/AltaUsuarioAlumno'
 import AltaUsuarioProfe from '../components/AltaUsuarioProfe'
 import { getProfesores } from '../../api/api.js'
 
-const Alta = ({ newCambio }) => {
+const Alta = () => {
   const [showProfesorForm, setShowProfesorForm] = useState(false)
   const [showAlumnoForm, setShowAlumnoForm] = useState(false)
   const [alumnoFormSubmitted, setAlumnoFormSubmitted] = useState(false)
@@ -63,7 +63,6 @@ const Alta = ({ newCambio }) => {
     setShowProfesorForm(false)
     setAlumnoFormSubmitted(false)
     setProfesorFormSubmitted(false)
-    newCambio('Alta')
   }
 
   const cancelarAlumnoForm = () => {

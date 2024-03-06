@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useAuth } from '../../lib/auth'
 import { signOut } from 'firebase/auth'
 import { auth } from '../../lib/firebase.js'
-import AgendaProfe from './components/AgendaProfe.js'
+import Agenda from './components/Agenda.js'
 
 const Page = () => {
   const user = useAuth()
@@ -56,9 +56,9 @@ const Page = () => {
         ? (
         <div className="flex flex-col">
           <h1 className="text-center text-[#FFFFFF] text-3xl sm:text-5xl mt-8 mb-12">
-            ¡Hola {profesor.Nombre} {profesor.Apelido}!
+            ¡Hola {profesor.Nombre}!
           </h1>
-          <AgendaProfe availableDays={availableDays} profesor={profesor} />
+          <Agenda availableDays={availableDays} profesor={profesor} />
           <div className='bg-[#212121] flex w-full py-16'>
             <button className='bg-[#FFFFFF] mx-auto text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#E9500E] font-botones font-bold p-2 my-12 lg:mb-12 w-4/6 sm:w-2/6 h-12 sm:h-10 text-center rounded-3xl hover:cursor-pointer' onClick={handleSubmit}>
               <p>Cerrar sesión</p>

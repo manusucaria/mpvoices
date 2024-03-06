@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { updateProfesor } from '../../api/api.js'
+import { updateProfesor, fetchProfesor } from '../../api/api.js'
+import { instrumentos, diasSemana } from '../../api/data.js'
 
-const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelectedProfesor }) => {
+const EditorDatosProfesor = ({ profesor, setSelectedAlumno, setSelectedProfesor }) => {
   const [nombre, setNombre] = useState('')
   const [apellido, setApellido] = useState('')
   const [email, setEmail] = useState('')
@@ -47,7 +48,8 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
       }
 
       await updateProfesor(profesor.id, updatedProfesor)
-      newCambio('Edicion')
+      const updatedProfesorData = await fetchProfesor(profesor.id)
+      setSelectedProfesor(updatedProfesorData)
       setEditMode(false)
       setShowConfirmation(true)
     } catch (error) {
@@ -77,18 +79,9 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
     setShowConfirmation(false)
   }
 
-  const instrumentos = [
-    'Violin', 'Viola', 'Cello', 'Contrabajo', 'Bajo', 'Piano', 'Guitarra',
-    'Batería', 'Ukelele', 'Canto', 'Iniciación musical', 'Ensamble vocal', 'Ensamble',
-    'Dúo de canto', 'Trío de canto', 'Cuarteto de canto', 'Bandoneón', 'Saxo',
-    'Trompeta', 'Composición', 'Producción', 'Profesorado de canto', 'Arpa'
-  ]
-
-  instrumentos.sort()
-
   const renderInstrumentoOptions = () => {
     return instrumentos.map((instrumento, index) => (
-      <option key={index} value={instrumento.toLowerCase().replace(/\s/g, '_')}>
+      <option key={index} value={instrumento.replace(/\s/g, '_')}>
         {instrumento}
       </option>
     ))
@@ -96,7 +89,7 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
 
   const formatInstrumento = (instrumento) => {
     if (!instrumento) return ''
-    const instrumentoFormateado = instrumento.charAt(0).toUpperCase() + instrumento.slice(1)
+    const instrumentoFormateado = instrumento.charAt(0).toUpperCase() + instrumento.slice(1).toLowerCase().replace(/_/g, ' ')
     return instrumentoFormateado.replace(/_/g, ' ')
   }
 
@@ -182,14 +175,14 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
             {showDiasCheckbox && (
               <div className="flex flex-col mb-6">
                 <div className='w-4/6 ml-auto'>
-                  {['lunes', 'martes', 'miércoles', 'jueves', 'viernes'].map((dia) => (
+                  {diasSemana.map((dia) => (
                     <div key={dia} className="flex items-center">
                       <input
+                        className='mr-2'
                         type="checkbox"
                         value={dia}
                         checked={diasSeleccionados.includes(dia)}
                         onChange={() => handleDiaSelection(dia)}
-                        className="mr-2"
                       />
                       <label>{dia}</label>
                     </div>
@@ -200,10 +193,11 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
             <div className='flex mb-6'>
               <label className='font-bold mr-auto w-2/6'>Instrumento:</label>
               <select
-                className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+                className='text-[#0D0D0D] rounded-3xl h-8 px-1 w-4/6 ml-auto'
                 value={instrumento}
                 onChange={(e) => setInstrumento(e.target.value)}
               >
+                <option value={instrumento.charAt(0).toUpperCase() + instrumento.slice(1).toLowerCase().replace(/_/g, ' ')}>{instrumento}</option>
                 {renderInstrumentoOptions()}
               </select>
             </div>

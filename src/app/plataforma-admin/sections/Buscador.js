@@ -6,7 +6,7 @@ import EditorProfesor from '../components/EditorProfesor.js'
 import EliminarAlumno from '../components/EliminarAlumno.js'
 import EliminarProfesor from '../components/EliminarProfesor.js'
 
-const Buscador = ({ cambios, newCambio }) => {
+const Buscador = () => {
   const user = useAuth()
   const [alumnos, setAlumnos] = useState([])
   const [profesores, setProfesores] = useState([])
@@ -21,7 +21,7 @@ const Buscador = ({ cambios, newCambio }) => {
     getProfesores().then(data => {
       setProfesores(data)
     })
-  }, [user, selectedAlumno, selectedProfesor, cambios])
+  }, [user, selectedAlumno, selectedProfesor])
 
   const normalizeString = (str) => {
     return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -90,7 +90,7 @@ const Buscador = ({ cambios, newCambio }) => {
       )}
       {selectedAlumno && (
         <div className="flex flex-col mx-auto sm:px-4 sm:py-2 items-center w-full md:w-4/6 lg:w-3/6">
-          <EditorAlumnos profesores={profesores} alumno={selectedAlumno} newCambio={newCambio} setSelectedAlumno={setSelectedAlumno} setSelectedProfesor={setSelectedProfesor} />
+          <EditorAlumnos profesores={profesores} alumno={selectedAlumno} setSelectedAlumno={setSelectedAlumno} setSelectedProfesor={setSelectedProfesor} />
           <EliminarAlumno selectedAlumno={selectedAlumno} setSelectedAlumno={setSelectedAlumno} />
         </div>
       )}
@@ -103,7 +103,7 @@ const Buscador = ({ cambios, newCambio }) => {
       )}
       {selectedProfesor && (
         <div className="flex flex-col mx-auto sm:px-4 sm:py-2 items-center w-full md:w-4/6 lg:w-3/6">
-          <EditorProfesor profesor={selectedProfesor} newCambio={newCambio} setSelectedAlumno={setSelectedAlumno} setSelectedProfesor={setSelectedProfesor} />
+          <EditorProfesor profesor={selectedProfesor} setSelectedAlumno={setSelectedAlumno} setSelectedProfesor={setSelectedProfesor} />
           <EliminarProfesor selectedProfesor={selectedProfesor} setSelectedProfesor={setSelectedProfesor} />
         </div>
       )}

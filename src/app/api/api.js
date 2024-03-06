@@ -66,7 +66,21 @@ export const fetchAlumno = async (alumnoId) => {
     throw error
   }
 }
+export const fetchProfesor = async (profesorId) => {
+  try {
+    const docRef = doc(db, 'profesores', profesorId)
+    const docSnap = await getDoc(docRef)
 
+    if (docSnap.exists()) {
+      return { id: docSnap.id, ...docSnap.data() }
+    } else {
+      throw new Error('No existe el profesor con el ID proporcionado')
+    }
+  } catch (error) {
+    console.error('Error al obtener los datos del aprofesor:', error)
+    throw error
+  }
+}
 // DELETE
 export const deleteAlumno = async (email, password) => {
   const q = query(collection(db, 'alumnos'), where('Email', '==', email))

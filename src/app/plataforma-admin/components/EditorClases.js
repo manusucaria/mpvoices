@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { updateAlumno, fetchAlumno } from '../../api/api.js'
+import { horarios, duracionOptions, instrumentos, diasSemana } from '../../api/data.js'
 
 const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
-  const [instrumento, setInstrumento] = useState('')
+  const [instrumento, setInstrumento] = useState(alumno ? alumno.instrumento : '')
+  const [horario, setHorario] = useState(alumno ? alumno.horario : '')
+  const [duracion, setDuracion] = useState(alumno ? alumno.Duracion : '')
   const [dia, setDia] = useState('')
-  const [horario, setHorario] = useState('')
-  const [duracion, setDuracion] = useState('')
   const [profesor, setProfesor] = useState('')
   const [originalData, setOriginalData] = useState(null)
   const [editMode, setEditMode] = useState(false)
@@ -71,44 +72,6 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
     setShowConfirmation(false)
   }
 
-  const generateHorarios = () => {
-    const horarios = []
-    let hora = 10
-    let minutos = 0
-
-    while (!(hora === 21 && minutos === 0)) {
-      const horaStr = hora.toString().padStart(2, '0')
-      const minStr = minutos.toString().padStart(2, '0')
-      horarios.push(`${horaStr}:${minStr}`)
-      minutos += 15
-      if (minutos === 60) {
-        minutos = 0
-        hora += 1
-      }
-    }
-
-    return horarios
-  }
-
-  const duracionOptions = [30, 45, 60, 75, 90]
-
-  const renderDuracionOptions = () => {
-    return duracionOptions.map((duracionOption, index) => (
-    <option key={index} value={duracionOption}>
-      {duracionOption} minutos
-    </option>
-    ))
-  }
-
-  const instrumentos = [
-    'Violin', 'Viola', 'Cello', 'Contrabajo', 'Bajo', 'Piano', 'Guitarra',
-    'Batería', 'Ukelele', 'Canto', 'Iniciación musical', 'Ensamble vocal', 'Ensamble',
-    'Dúo de canto', 'Trío de canto', 'Cuarteto de canto', 'Bandoneón', 'Saxo',
-    'Trompeta', 'Composición', 'Producción', 'Profesorado de canto', 'Arpa'
-  ]
-
-  instrumentos.sort()
-
   const renderInstrumentoOptions = () => {
     return instrumentos.map((instrumento, index) => {
       const formattedInstrumento = instrumento.charAt(0).toUpperCase() + instrumento.slice(1).toLowerCase().replace(/_/g, ' ')
@@ -139,6 +102,7 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
                 value={instrumento}
                 onChange={(e) => setInstrumento(e.target.value)}
               >
+                <option value={instrumento.charAt(0).toUpperCase() + instrumento.slice(1).toLowerCase().replace(/_/g, ' ')}>{instrumento}</option>
                 {renderInstrumentoOptions()}
               </select>
             </div>
@@ -149,11 +113,11 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
                 value={dia}
                 onChange={(e) => setDia(e.target.value)}
               >
-                <option value="lunes">lunes</option>
-                <option value="martes">martes</option>
-                <option value="miércoles">miércoles</option>
-                <option value="jueves">jueves</option>
-                <option value="viernes">viernes</option>
+                {diasSemana.map((dia, index) => (
+                  <option value={dia} key={index}>
+                    {dia}
+                  </option>
+                ))}
               </select>
             </div>
             <div className='flex mb-6'>
@@ -163,7 +127,7 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
                 value={horario}
                 onChange={(e) => setHorario(e.target.value)}
               >
-                {generateHorarios().map((hora, index) => (
+                {horarios.map((hora, index) => (
                   <option key={index} value={hora}>
                     {hora}
                   </option>
@@ -177,7 +141,11 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
                 value={duracion}
                 onChange={(e) => setDuracion(e.target.value)}
               >
-                {renderDuracionOptions()}
+                {duracionOptions.map((duracionOption, index) => (
+                  <option key={index} value={duracionOption}>
+                    {duracionOption} min
+                  </option>
+                ))}
               </select>
             </div>
             <div className='flex mb-6'>

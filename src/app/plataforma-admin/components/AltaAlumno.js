@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { createAlumno } from '../../api/api.js'
+import { instrumentos, horarios, duracionOptions, diasSemana } from '../../api/data.js'
 
 const AltaAlumno = ({ setShowAlumnoForm, profesores, confirmacionRegistro, newUserEmail, newUserPassword }) => {
   const [showConfirmation, setShowConfirmation] = useState(false)
@@ -89,37 +90,6 @@ const AltaAlumno = ({ setShowAlumnoForm, profesores, confirmacionRegistro, newUs
     confirmacionRegistro()
   }
 
-  const instrumentos = [
-    'Violin', 'Viola', 'Cello', 'Contrabajo', 'Bajo', 'Piano', 'Guitarra',
-    'Batería', 'Ukelele', 'Canto', 'Iniciación musical', 'Ensamble vocal', 'Ensamble',
-    'Dúo de canto', 'Trío de canto', 'Cuarteto de canto', 'Bandoneón', 'Saxo',
-    'Trompeta', 'Composición', 'Producción', 'Profesorado de canto', 'Arpa'
-  ]
-
-  instrumentos.sort()
-
-  const generateHorarios = () => {
-    const horarios = []
-    let hora = 10
-    let minutos = 0
-
-    while (hora < 21 || (hora === 21 && minutos === 0)) {
-      const horaString = hora.toString().padStart(2, '0')
-      const minutosString = minutos.toString().padStart(2, '0')
-      horarios.push(`${horaString}:${minutosString}`)
-
-      minutos += 15
-      if (minutos === 60) {
-        minutos = 0
-        hora += 1
-      }
-    }
-
-    return horarios
-  }
-
-  const duraciones = [30, 45, 60, 75, 90]
-
   return (
     <div className='flex flex-col mx-auto w-full'>
       <div className="mx-auto flex justify-center w-full md:w-4/6 lg:w-3/6 my-8">
@@ -148,11 +118,11 @@ const AltaAlumno = ({ setShowAlumnoForm, profesores, confirmacionRegistro, newUs
         </div>
         <div className='flex mb-6'>
           <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Apellido:</label>
-          <input placeholder="Apellido" className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Apellido" value={alumnoData.Apellido} onChange={handleChange} />
+          <input placeholder="Apellido" className='text-[#0D0D0D] rounded-3xl h-8 px-2 w-4/6 ml-auto' type="text" name="Apellido" value={alumnoData.Apellido} onChange={handleChange} />
         </div>
         <div className='flex mb-6'>
           <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Fecha de nac.:</label>
-          <input placeholder="Fecha de nac." className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Fecha" value={alumnoData.Fecha} onChange={handleChange} />
+          <input placeholder="Fecha de nac." className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="date" name="Fecha" value={alumnoData.Fecha} onChange={handleChange} />
         </div>
         <div className='flex mb-6'>
           <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Día:</label>
@@ -163,11 +133,11 @@ const AltaAlumno = ({ setShowAlumnoForm, profesores, confirmacionRegistro, newUs
             onChange={handleChange}
           >
             <option value="">Seleccione un día</option>
-            <option value="lunes">lunes</option>
-            <option value="martes">martes</option>
-            <option value="miércoles">miércoles</option>
-            <option value="jueves">jueves</option>
-            <option value="viernes">viernes</option>
+            {diasSemana.map((dia, index) => (
+              <option key={index} value={dia}>
+                {dia}
+              </option>
+            ))}
           </select>
         </div>
         <div className='flex mb-6'>
@@ -215,7 +185,7 @@ const AltaAlumno = ({ setShowAlumnoForm, profesores, confirmacionRegistro, newUs
             onChange={handleChange}
           >
             <option value="">Seleccione una duración</option>
-            {duraciones.map((duracion, index) => (
+            {duracionOptions.map((duracion, index) => (
               <option key={index} value={duracion}>{duracion} minutos</option>
             ))}
           </select>
@@ -229,7 +199,7 @@ const AltaAlumno = ({ setShowAlumnoForm, profesores, confirmacionRegistro, newUs
             onChange={handleChange}
           >
             <option value="">Seleccione un horario</option>
-            {generateHorarios().map((horario, index) => (
+            {horarios.map((horario, index) => (
               <option key={index} value={horario}>
                 {horario}
               </option>

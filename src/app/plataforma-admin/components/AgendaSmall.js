@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { getAlumnos, getProfesores } from '../../api/api.js'
+import { diasSemana, horarios } from '../../api/data.js'
 import alasSmall from '../../assets/alasSmall.jpg'
 import Image from 'next/image'
 
-const AgendaSmall = ({ cambios }) => {
+const AgendaSmall = () => {
   const [alumnos, setAlumnos] = useState([])
   const [profesores, setProfesores] = useState([])
   const [selectedDay, setSelectedDay] = useState('')
-  const [timeSlots, setTimeSlots] = useState([])
   const [startIndex, setStartIndex] = useState(0)
   const [filteredAlumnos, setFilteredAlumnos] = useState([])
   const [filteredProfesores, setFilteredProfesores] = useState([])
@@ -22,17 +22,7 @@ const AgendaSmall = ({ cambios }) => {
     getProfesores().then((data) => {
       setProfesores(data)
     })
-  }, [selectedDay, cambios])
-
-  useEffect(() => {
-    const slots = []
-    for (let hour = 10; hour <= 20; hour++) {
-      for (let minute = 0; minute < 60; minute += 15) {
-        slots.push(`${hour}:${minute === 0 ? '00' : minute}`)
-      }
-    }
-    setTimeSlots(slots)
-  }, [])
+  }, [selectedDay])
 
   const filterAlumnosByDay = (day) => {
     setSelectedDay(day)
@@ -53,7 +43,7 @@ const AgendaSmall = ({ cambios }) => {
       : []
 
     setFilteredProfesores(filtered)
-  }, [selectedDay, cambios, profesores])
+  }, [selectedDay, profesores])
 
   const filteredProfesoresSorted = filteredProfesores.slice().sort((a, b) => {
     const nombreProfesorA = a.Nombre.toLocaleLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -79,7 +69,7 @@ const AgendaSmall = ({ cambios }) => {
       })
       : []
     setFilteredAlumnos(filtered)
-  }, [selectedDay, cambios, alumnos])
+  }, [selectedDay, alumnos])
 
   const handleNext = () => {
     if (startIndex + 1 < filteredProfesores.length) {
@@ -146,24 +136,18 @@ const AgendaSmall = ({ cambios }) => {
               alt="Separador Alas"
               priority
             />
-            <div className="col-start-1 col-end-1 row-start-1 row-end-1 w-full h-auto m-auto z-40 flex flex-col">
-              <h2 className="text-center text-2xl sm:text-3xl m-auto text-[#FFFFFF] mb-4 min-[400px]:mb-8 md-mb-12">Días y horarios</h2>
-              <button onClick={() => filterAlumnosByDay('lunes')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-12 w-4/6 sm:w-3/6 md:w-2/6 mb-4 min-[400px]:mb-8 md:mb-8 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
-                lunes
-              </button>
-              <button onClick={() => filterAlumnosByDay('martes')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-12 w-4/6 sm:w-3/6 md:w-2/6 mb-4 min-[400px]:mb-8 md:mb-8 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
-                martes
-              </button>
-              <button onClick={() => filterAlumnosByDay('miércoles')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-12 w-4/6 sm:w-3/6 md:w-2/6 mb-4 min-[400px]:mb-8 md:mb-8 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
-                miércoles
-              </button>
-              <button onClick={() => filterAlumnosByDay('jueves')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-12 w-4/6 sm:w-3/6 md:w-2/6 mb-4 min-[400px]:mb-8 md:mb-8 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
-                jueves
-              </button>
-              <button onClick={() => filterAlumnosByDay('viernes')} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-12 w-4/6 sm:w-3/6 md:w-2/6 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
-                viernes
-              </button>
-            </div>
+              <div className="col-start-1 col-end-1 row-start-1 row-end-1 w-full m-auto z-40 flex flex-col">
+                <h2 className="text-center text-3xl m-auto text-[#FFFFFF] mb-8 sm:mb-6 lg:mb-8 xl:mb-10">Días y horarios</h2>
+                {diasSemana.map((dia, index) => (
+                  <button
+                    key={index}
+                    onClick={() => filterAlumnosByDay(dia)}
+                    className={`bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-10 sm:h-8 md:h-8 lg:h-10 w-4/6 sm:w-3/6 md:w-2/6 mb-${index === diasSemana.length - 1 ? '0' : '6'} md:mb-4 xl:mb-6 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]`}
+                  >
+                    {dia}
+                  </button>
+                ))}
+              </div>
           </div>
           )}
       {selectedDay && (
@@ -193,10 +177,10 @@ const AgendaSmall = ({ cambios }) => {
             <div className="bg-[#E9500E] h-12 border-r-[0.5px] sm:border-r-1 border-r-[#0D0D0D] text-center col-start-1 col-end-2 row-start-1 row-end-2 flex border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D]">
               <p className='text-md sm:text-md md:text-base m-auto text-[#FFFFFF]'>Hora</p>
             </div>
-            {timeSlots.map((time, index) => (
+            {horarios.map((time, index) => (
               <div
                 key={index}
-                className={`text-center col-start-1 col-end-2 bg-[#FFFFFF] border-r-[0.5px] sm:border-r-1 border-r-[#0D0D0D] flex h-12 ${index === timeSlots.length - 1 ? 'border-b-none rounded-bl-2xl' : 'border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D]'}`}
+                className={`text-center col-start-1 col-end-2 bg-[#FFFFFF] border-r-[0.5px] sm:border-r-1 border-r-[#0D0D0D] flex h-12 ${index === horarios.length - 1 ? 'border-b-none rounded-bl-2xl' : 'border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D]'}`}
               >
                 <p className='text-md sm:text-md md:text-base m-auto text-[#0D0D0D]'>{time}</p>
               </div>
@@ -212,8 +196,8 @@ const AgendaSmall = ({ cambios }) => {
                   .map((alumno) => (
                     <div key={`${alumno.Nombre}`} className='flex flex-col h-full w-full text-center border-none' style={{
                       gridColumn: filteredProfesoresSorted.findIndex((p) => p.Nombre === profesor.Nombre) - startIndex,
-                      gridRowStart: timeSlots.indexOf(alumno.Horario) + 2,
-                      gridRowEnd: timeSlots.indexOf(alumno.Horario) + 2 + alumno.Duracion / 15
+                      gridRowStart: horarios.indexOf(alumno.Horario) + 2,
+                      gridRowEnd: horarios.indexOf(alumno.Horario) + 2 + alumno.Duracion / 15
                     }}>
                       <div
                         className={`flex flex-col m-auto h-[97.5%] w-[95%] text-center ${
