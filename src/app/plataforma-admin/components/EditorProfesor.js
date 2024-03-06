@@ -32,13 +32,20 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
+      const formattedInstrumento = instrumento
+        .toLowerCase()
+        .split('_')
+        .map((word, index) => (index === 0 ? word.charAt(0).toUpperCase() + word.slice(1) : word))
+        .join(' ')
+
       const updatedProfesor = {
         Nombre: nombre,
         Apellido: apellido,
         Email: email,
         Dia: diasSeleccionados.join(', '),
-        Instrumento: instrumento
+        Instrumento: formattedInstrumento
       }
+
       await updateProfesor(profesor.id, updatedProfesor)
       newCambio('Edicion')
       setEditMode(false)
@@ -72,9 +79,9 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
 
   const instrumentos = [
     'Violin', 'Viola', 'Cello', 'Contrabajo', 'Bajo', 'Piano', 'Guitarra',
-    'Batería', 'Ukelele', 'Canto', 'Iniciación Musical', 'Ensamble Vocal', 'Ensamble',
-    'Dúo de Canto', 'Trío de Canto', 'Cuarteto de Canto', 'Bandoneón', 'Saxo',
-    'Trompeta', 'Composición', 'Producción', 'Profesorado de Canto', 'Arpa'
+    'Batería', 'Ukelele', 'Canto', 'Iniciación musical', 'Ensamble vocal', 'Ensamble',
+    'Dúo de canto', 'Trío de canto', 'Cuarteto de canto', 'Bandoneón', 'Saxo',
+    'Trompeta', 'Composición', 'Producción', 'Profesorado de canto', 'Arpa'
   ]
 
   instrumentos.sort()

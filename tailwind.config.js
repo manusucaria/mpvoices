@@ -43,11 +43,13 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
       },
       gridTemplateRows: {
-        37: 'repeat(37, minmax(0, 1fr))'
+        37: 'repeat(37, minmax(0, 1fr))',
+        45: 'repeat(45, minmax(0, 1fr))'
       },
       gridRowEnd: {
         16: '16',
         37: '37',
+        46: '46',
         38: '38'
       }
     }

@@ -26,7 +26,7 @@ const AgendaFull = ({ cambios }) => {
 
   useEffect(() => {
     const slots = []
-    for (let hour = 12; hour <= 20; hour++) {
+    for (let hour = 10; hour <= 20; hour++) {
       for (let minute = 0; minute < 60; minute += 15) {
         slots.push(`${hour}:${minute === 0 ? '00' : minute}`)
       }
@@ -188,7 +188,7 @@ const AgendaFull = ({ cambios }) => {
               </div>
             )}
           </div>
-          <div className='grid grid-cols-[20%_40%_40%] grid-rows-37 border-y-[0.5px] sm:border-y-1 border-y-[#0D0D0D] border-l-[0.5px] sm:border-l-1 border-l-[#0D0D0D]'>
+          <div className='grid grid-cols-[20%_40%_40%] grid-rows-45 border-y-[0.5px] sm:border-y-1 border-y-[#0D0D0D] border-l-[0.5px] sm:border-l-1 border-l-[#0D0D0D]'>
             <div className="bg-[#E9500E] h-9 sm:h-12 text-center col-start-1 col-end-2 row-start-1 row-end-2 flex border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D]">
               <p className='text-md sm:text-md md:text-base m-auto text-[#FFFFFF]'>Hora</p>
             </div>
@@ -200,9 +200,9 @@ const AgendaFull = ({ cambios }) => {
                 <p className='text-md sm:text-md md:text-base m-auto text-[#0D0D0D]'>{time}</p>
               </div>
             ))}
-            <div className="col-start-2 col-end-4 row-start-1 row-end-38 grid grid-cols-2 bg-[#FFFFFF] border-r-[0.5px] sm:border-r-1 border-r-[#0D0D0D] rounded-br-2xl">
+            <div className="col-start-2 col-end-4 row-start-1 row-end-46 grid grid-cols-2 bg-[#FFFFFF] border-r-[0.5px] sm:border-r-1 border-r-[#0D0D0D] rounded-br-2xl">
               {filteredProfesoresSorted.slice(startIndex, startIndex + 2).map((profesor, index, array) => (
-              <div key={profesor.id} className={`grid grid-cols-1 grid-rows-37 border-l-[0.5px] sm:border-l-1 border-l-[#0D0D0D] text-center ${index === array.length - 1 ? 'border-r-[0.5px] sm:border-r-1 border-r-[#0D0D0D]' : 'border-r-none'}`}>
+              <div key={profesor.id} className={`grid grid-cols-1 grid-rows-45 border-l-[0.5px] sm:border-l-1 border-l-[#0D0D0D] text-center ${index === array.length - 1 ? 'border-r-[0.5px] sm:border-r-1 border-r-[#0D0D0D]' : 'border-r-none'}`}>
                 <div style={{ backgroundColor: `rgba(102, 52, 129, ${backgroundColorAlpha})` }} className='flex row-start-1 row-end-2 h-9 sm:h-12 text-sm border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D]'>
                   <p className='text-md sm:text-md md:text-base m-auto'>Profesor: {profesor.Nombre} / {profesor.Instrumento}</p>
                 </div>

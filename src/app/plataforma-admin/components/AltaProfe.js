@@ -50,6 +50,21 @@ const AltaProfesor = ({ setShowProfesorForm, confirmacionRegistro, newUserEmail,
       })
   }
 
+  const formatInstrumento = (instrumento) => {
+    if (!instrumento) return ''
+
+    const words = instrumento.split(' ')
+    const formattedWords = words.map((word, index) => {
+      if (index === 0) {
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+      } else {
+        return word.toLowerCase()
+      }
+    })
+
+    return formattedWords.join(' ')
+  }
+
   const cancelarClick = () => {
     setShowProfesorForm()
   }
@@ -83,9 +98,9 @@ const AltaProfesor = ({ setShowProfesorForm, confirmacionRegistro, newUserEmail,
 
   const instrumentos = [
     'Violin', 'Viola', 'Cello', 'Contrabajo', 'Bajo', 'Piano', 'Guitarra',
-    'Batería', 'Ukelele', 'Canto', 'Iniciación Musical', 'Ensamble Vocal', 'Ensamble',
-    'Dúo de Canto', 'Trío de Canto', 'Cuarteto de Canto', 'Bandoneón', 'Saxo',
-    'Trompeta', 'Composición', 'Producción', 'Profesorado de Canto', 'Arpa'
+    'Batería', 'Ukelele', 'Canto', 'Iniciación musical', 'Ensamble vocal', 'Ensamble',
+    'Dúo de canto', 'Trío de canto', 'Cuarteto de canto', 'Bandoneón', 'Saxo',
+    'Trompeta', 'Composición', 'Producción', 'Profesorado de canto', 'Arpa'
   ]
 
   instrumentos.sort()
@@ -157,7 +172,7 @@ const AltaProfesor = ({ setShowProfesorForm, confirmacionRegistro, newUserEmail,
           <select
             className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
             name="Instrumento"
-            value={profesorData.Instrumento}
+            value={formatInstrumento(profesorData.Instrumento)} // Aquí se utiliza la función
             onChange={handleChange}
           >
             <option value="">Seleccione un instrumento</option>

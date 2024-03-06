@@ -32,13 +32,16 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
+      const formattedInstrumento = instrumento.charAt(0).toUpperCase() + instrumento.slice(1).toLowerCase().replace(/_/g, ' ')
+
       const updatedAlumno = {
-        Instrumento: instrumento,
+        Instrumento: formattedInstrumento,
         Dia: dia,
         Horario: horario,
         Duracion: duracion,
         Profesor: profesor
       }
+
       await updateAlumno(alumno.id, updatedAlumno)
       const updatedAlumnoData = await fetchAlumno(alumno.id)
       setSelectedAlumno(updatedAlumnoData)
@@ -70,7 +73,7 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
 
   const generateHorarios = () => {
     const horarios = []
-    let hora = 12
+    let hora = 10
     let minutos = 0
 
     while (!(hora === 21 && minutos === 0)) {
@@ -99,19 +102,22 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
 
   const instrumentos = [
     'Violin', 'Viola', 'Cello', 'Contrabajo', 'Bajo', 'Piano', 'Guitarra',
-    'Batería', 'Ukelele', 'Canto', 'Iniciación Musical', 'Ensamble Vocal', 'Ensamble',
-    'Dúo de Canto', 'Trío de Canto', 'Cuarteto de Canto', 'Bandoneón', 'Saxo',
-    'Trompeta', 'Composición', 'Producción', 'Profesorado de Canto', 'Arpa'
+    'Batería', 'Ukelele', 'Canto', 'Iniciación musical', 'Ensamble vocal', 'Ensamble',
+    'Dúo de canto', 'Trío de canto', 'Cuarteto de canto', 'Bandoneón', 'Saxo',
+    'Trompeta', 'Composición', 'Producción', 'Profesorado de canto', 'Arpa'
   ]
 
   instrumentos.sort()
 
   const renderInstrumentoOptions = () => {
-    return instrumentos.map((instrumento, index) => (
-      <option key={index} value={instrumento.toLowerCase().replace(/\s/g, '_')}>
-        {instrumento}
-      </option>
-    ))
+    return instrumentos.map((instrumento, index) => {
+      const formattedInstrumento = instrumento.charAt(0).toUpperCase() + instrumento.slice(1).toLowerCase().replace(/_/g, ' ')
+      return (
+        <option key={index} value={instrumento.toLowerCase().replace(/\s/g, '_')}>
+          {formattedInstrumento}
+        </option>
+      )
+    })
   }
 
   const formatInstrumento = (instrumento) => {

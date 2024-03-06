@@ -19,6 +19,21 @@ const AltaAlumno = ({ setShowAlumnoForm, profesores, confirmacionRegistro, newUs
     Tel: ''
   })
 
+  const formatInstrumento = (instrumento) => {
+    if (!instrumento) return ''
+
+    const words = instrumento.split(' ')
+    const formattedWords = words.map((word, index) => {
+      if (index === 0) {
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+      } else {
+        return word.toLowerCase()
+      }
+    })
+
+    return formattedWords.join(' ')
+  }
+
   const handleChange = (e) => {
     const { name, value } = e.target
     setAlumnoData({ ...alumnoData, [name]: value })
@@ -26,20 +41,42 @@ const AltaAlumno = ({ setShowAlumnoForm, profesores, confirmacionRegistro, newUs
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(alumnoData)
-    const requiredFields = ['Nombre', 'Apellido', 'Fecha', 'Dia', 'Instrumento', 'Profesor', 'Saldo', 'Duracion', 'Horario', 'Tel']
-    const incompleteFields = requiredFields.filter(field => !alumnoData[field])
+
+    const requiredFields = [
+      'Nombre',
+      'Apellido',
+      'Fecha',
+      'Dia',
+      'Instrumento',
+      'Profesor',
+      'Saldo',
+      'Duracion',
+      'Horario',
+      'Tel'
+    ]
+
+    const incompleteFields = requiredFields.filter(
+      (field) => !alumnoData[field]
+    )
 
     if (incompleteFields.length > 0) {
       setWarningMessage('*Faltan completar datos')
       return
     }
-    createAlumno(alumnoData)
+
+    const formattedInstrumento = formatInstrumento(alumnoData.Instrumento)
+
+    const updatedAlumnoData = {
+      ...alumnoData,
+      Instrumento: formattedInstrumento
+    }
+
+    createAlumno(updatedAlumnoData)
       .then(() => {
         setShowConfirmation(true)
       })
       .catch((error) => {
-        console.error('Error al crear el profesor:', error)
+        console.error('Error al crear el alumno:', error)
       })
   }
 
@@ -54,16 +91,16 @@ const AltaAlumno = ({ setShowAlumnoForm, profesores, confirmacionRegistro, newUs
 
   const instrumentos = [
     'Violin', 'Viola', 'Cello', 'Contrabajo', 'Bajo', 'Piano', 'Guitarra',
-    'Batería', 'Ukelele', 'Canto', 'Iniciación Musical', 'Ensamble Vocal', 'Ensamble',
-    'Dúo de Canto', 'Trío de Canto', 'Cuarteto de Canto', 'Bandoneón', 'Saxo',
-    'Trompeta', 'Composición', 'Producción', 'Profesorado de Canto', 'Arpa'
+    'Batería', 'Ukelele', 'Canto', 'Iniciación musical', 'Ensamble vocal', 'Ensamble',
+    'Dúo de canto', 'Trío de canto', 'Cuarteto de canto', 'Bandoneón', 'Saxo',
+    'Trompeta', 'Composición', 'Producción', 'Profesorado de canto', 'Arpa'
   ]
 
   instrumentos.sort()
 
   const generateHorarios = () => {
     const horarios = []
-    let hora = 12
+    let hora = 10
     let minutos = 0
 
     while (hora < 21 || (hora === 21 && minutos === 0)) {
