@@ -17,7 +17,7 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
       setNombre(profesor.Nombre || '')
       setApellido(profesor.Apellido || '')
       setEmail(profesor.Email || '')
-      setDiasSeleccionados(profesor.Dia ? [profesor.Dia] : [])
+      setDiasSeleccionados(profesor.Dia ? profesor.Dia.split(',').map(dia => dia.trim()) : [])
       setInstrumento(profesor.Instrumento || '')
       setOriginalValues({
         nombre: profesor.Nombre || '',
