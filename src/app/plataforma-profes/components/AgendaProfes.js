@@ -3,16 +3,25 @@ import React, { useState, useEffect } from 'react'
 import alasSmall from '../../assets/alasSmall.jpg'
 import Image from 'next/image'
 import alas from '../../assets/alas.jpg'
-import { horarios } from '../../api/data.js'
+import { horarios, diasSemana } from '../../api/data.js'
 import { getAlumnos } from '../../api/api.js'
 
-const Agenda = ({ availableDays, profesor }) => {
+const AgendaProfes = ({ profesor }) => {
   const [alumnos, setAlumnos] = useState([])
   const [alumnosProfesor, setalumnosProfesor] = useState([])
   const [selectedDay, setSelectedDay] = useState('')
   const [filteredAlumnos, setFilteredAlumnos] = useState([])
   const [showNotification, setShowNotification] = useState(false)
+  const [availableDays, setAvailableDays] = useState()
   const [notification, setNotification] = useState([])
+
+  useEffect(() => {
+    if (profesor && profesor.Dia) {
+      const daysString = profesor.Dia
+      const daysArray = daysString.split(/[,\s]*[,y]\s*/)
+      setAvailableDays(daysArray)
+    }
+  }, [profesor])
 
   const filterAlumnosByDay = (day) => {
     setSelectedDay(day)
@@ -108,12 +117,16 @@ const Agenda = ({ availableDays, profesor }) => {
               priority
             />
             <div className="col-start-1 col-end-1 row-start-1 row-end-1 w-full m-auto z-40 flex flex-col">
-              <h2 className="text-center text-2xl sm:text-3xl m-auto text-[#FFFFFF] mb-8 sm:mb-6 lg:mb-8 xl:mb-10">Días y horarios</h2>
-              {availableDays.map((day, index) => (
-                <button key={index} onClick={() => filterAlumnosByDay(day)} className="bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-12 w-4/6 sm:w-3/6 md:w-2/6 mb-6 min-[400px]:mb-8 md:mb-8 md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]">
-                  {day.toLowerCase()}
-                </button>
-              ))}
+              <h2 className="text-center text-3xl m-auto text-[#FFFFFF] mb-8 sm:mb-6 lg:mb-8 xl:mb-10">Días y horarios</h2>
+              {availableDays
+                ? (
+                    availableDays.map((day, index) => (
+                    <button key={index} onClick={() => filterAlumnosByDay(day)} className={`bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-10 sm:h-8 md:h-8 lg:h-10 w-4/6 sm:w-3/6 md:w-2/6 ${index === diasSemana.length - 1 ? '' : 'mb-6 md:mb-4 xl:mb-6'} md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]`}>
+                      {day.toLowerCase()}
+                    </button>
+                    ))
+                  )
+                : null}
             </div>
           </div>
           )}
@@ -186,4 +199,4 @@ const Agenda = ({ availableDays, profesor }) => {
   )
 }
 
-export default Agenda
+export default AgendaProfes
