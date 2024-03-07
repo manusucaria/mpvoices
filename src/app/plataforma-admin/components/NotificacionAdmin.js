@@ -4,8 +4,8 @@ import { updateAlumno, fetchAlumno } from '../../api/api.js'
 const NotificacionAdmin = ({ alumno, notification, setSelectedAlumno, setNotification, setShowNotification }) => {
   const [editingNotes, setEditingNotes] = useState(false)
   const [newNote, setNewNote] = useState('')
-  const [localNotas, setLocalNotas] = useState(alumno.Notas || []) // Almacena las notas localmente antes de la actualización
-  const [previousNotas, setPreviousNotas] = useState([]) // Almacena las notas antes de editar
+  const [localNotas, setLocalNotas] = useState(alumno.Notas || [])
+  const [previousNotas, setPreviousNotas] = useState([])
 
   const closeNotification = () => {
     setNotification([])

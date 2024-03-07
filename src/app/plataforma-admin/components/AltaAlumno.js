@@ -69,6 +69,8 @@ const AltaAlumno = ({ setShowAlumnoForm, profesores, confirmacionRegistro, newUs
 
     const updatedAlumnoData = {
       ...alumnoData,
+      Notas: [],
+      Notificaciones: [],
       Instrumento: formattedInstrumento
     }
 

@@ -201,23 +201,23 @@ const AgendaSmall = () => {
                     }}>
                       <div
                         className={`flex flex-col m-auto h-[97.5%] w-[95%] text-center ${
-                          alumno.Notificaciones ? 'bg-[#FFC9CB]' : 'bg-[#ACFDB2]'
+                          alumno && alumno.Notificaciones && alumno.Notificaciones.length > 0 ? 'bg-[#FFC9CB]' : 'bg-[#ACFDB2]'
                         }`}
                       >
                         <p className='text-sm sm:text-sm md:text-base mt-auto font-bold pt-2 text-[#0D0D0D]'>Alumno: {alumno.Nombre} {alumno.Apellido}</p>
                         <p className='text-sm sm:text-sm md:text-base mb-auto text-[#0D0D0D]'>{alumno.Instrumento} {alumno.Horario}-{calcularNuevoHorario(alumno.Horario, alumno.Duracion)}hs</p>
                         <div className='ms-auto pb-2 pe-2 sm:pe-4'>
-                          {alumno.Notificaciones
+                          {alumno && alumno.Notificaciones && (alumno.Notificaciones.length > 0 || (alumno.Notas && alumno.Notas.length > 0))
                             ? <svg onClick={() => handleAlumnoClick(alumno)} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M5.55 2.08L4.12 0.65C1.72 2.48 0.14 5.3 0 8.5H2C2.15 5.85 3.51 3.53 5.55 2.08ZM17.94 8.5H19.94C19.79 5.3 18.21 2.48 15.82 0.65L14.4 2.08C16.42 3.53 17.79 5.85 17.94 8.5ZM15.97 9C15.97 5.93 14.33 3.36 11.47 2.68V2C11.47 1.17 10.8 0.5 9.97 0.5C9.14 0.5 8.47 1.17 8.47 2V2.68C5.6 3.36 3.97 5.92 3.97 9V14L1.97 16V17H17.97V16L15.97 14V9ZM9.97 20C10.11 20 10.24 19.99 10.37 19.96C11.02 19.82 11.55 19.38 11.81 18.78C11.91 18.54 11.96 18.28 11.96 18H7.96C7.97 19.1 8.86 20 9.97 20Z" fill="#D0242A"/>
                               </svg>
-                            : <svg width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            : <svg onClick={() => handleAlumnoClick(alumno)} width="16" height="19" viewBox="0 0 16 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M15.3333 14.7401V15.6071H0V14.7401L1.7037 13.006V7.80357C1.7037 5.11567 3.43296 2.74859 5.96296 1.98558V1.73413C5.96296 1.27421 6.14246 0.833126 6.46197 0.507914C6.78147 0.182702 7.21482 0 7.66667 0C8.11852 0 8.55186 0.182702 8.87137 0.507914C9.19087 0.833126 9.37037 1.27421 9.37037 1.73413V1.98558C11.9004 2.74859 13.6296 5.11567 13.6296 7.80357V13.006L15.3333 14.7401ZM9.37037 16.4742C9.37037 16.9341 9.19087 17.3752 8.87137 17.7004C8.55186 18.0256 8.11852 18.2083 7.66667 18.2083C7.21482 18.2083 6.78147 18.0256 6.46197 17.7004C6.14246 17.3752 5.96296 16.9341 5.96296 16.4742" fill="#036240"/>
                               </svg>
                           }
                         </div>
                       </div>
-                      {showNotification && notification.length > 0 && (
+                      {showNotification && notification && (
                         <NotificacionAdmin alumno={selectedAlumno} setSelectedAlumno={setSelectedAlumno} notification={notification} notas={notas} setNotification={setNotification} setShowNotification={setShowNotification} />
                       )}
                     </div>
