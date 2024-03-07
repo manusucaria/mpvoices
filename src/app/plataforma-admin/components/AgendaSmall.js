@@ -3,6 +3,7 @@ import { getAlumnos, getProfesores } from '../../api/api.js'
 import { diasSemana, horarios } from '../../api/data.js'
 import alasSmall from '../../assets/alasSmall.jpg'
 import Image from 'next/image'
+import NotificacionAdmin from './NotificacionAdmin.js'
 
 const AgendaSmall = () => {
   const [alumnos, setAlumnos] = useState([])
@@ -13,7 +14,9 @@ const AgendaSmall = () => {
   const [filteredProfesores, setFilteredProfesores] = useState([])
   const [backgroundColorAlpha, setBackgroundColorAlpha] = useState(1)
   const [showNotification, setShowNotification] = useState(false)
+  const [selectedAlumno, setSelectedAlumno] = useState()
   const [notification, setNotification] = useState([])
+  const [notas, setNotas] = useState([])
 
   useEffect(() => {
     getAlumnos().then((data) => {
@@ -97,13 +100,10 @@ const AgendaSmall = () => {
   }
 
   const handleAlumnoClick = (alumno) => {
+    setSelectedAlumno(alumno)
     setNotification(alumno.Notificaciones)
+    setNotas(alumno.Notas)
     setShowNotification(true)
-  }
-
-  const closeNotification = () => {
-    setNotification([])
-    setShowNotification(false)
   }
 
   return (
@@ -217,21 +217,11 @@ const AgendaSmall = () => {
                           }
                         </div>
                       </div>
+                      {showNotification && notification.length > 0 && (
+                        <NotificacionAdmin alumno={selectedAlumno} setSelectedAlumno={setSelectedAlumno} notification={notification} notas={notas} setNotification={setNotification} setShowNotification={setShowNotification} />
+                      )}
                     </div>
                   ))}
-                  {showNotification && notification.length > 0 && (
-                    <div className='fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-50 z-[100]'>
-                      <div className='bg-[#FFFFFF] p-12 rounded-lg text-center flex flex-col gap-y-8 border-1 border-[#0D0D0D]'>
-                        <p className='text-[#0D0D0D] font-bold text-xl mx-auto'>Notificaciones:</p>
-                        <div className='flex flex-col mx-auto'>
-                          {notification.map((item, index) => (
-                              <div key={index} className='text-[#0D0D0D] mr-auto'>- {item}</div>
-                          ))}
-                        </div>
-                        <button className='text-[#E9500E] font-bold md:hover:text-[#DB9B6D]' onClick={closeNotification}>Cerrar</button>
-                      </div>
-                    </div>
-                  )}
                 </div>
               ))}
           </div>
