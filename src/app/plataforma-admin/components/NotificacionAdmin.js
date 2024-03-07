@@ -41,7 +41,7 @@ const NotificacionAdmin = ({ alumno, notification, setSelectedAlumno, setNotific
   }
 
   const updateNotes = async () => {
-    await updateAlumno(alumno.id, { ...alumno, Notas: localNotas }) // Actualiza las notas en el servidor
+    await updateAlumno(alumno.id, { ...alumno, Notas: localNotas })
     const updatedAlumnoData = await fetchAlumno(alumno.id)
     setSelectedAlumno(updatedAlumnoData)
     setEditingNotes(false)
