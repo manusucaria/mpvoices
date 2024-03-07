@@ -22,7 +22,7 @@ const NotificacionProfe = ({ alumno, notification, setNotification, setShowNotif
           <p className='text-[#0D0D0D] font-bold text-xl mx-auto my-6'>Notas</p>
           <div className='flex flex-col mx-auto w-full mb-6'>
             {alumno.Notas.map((item, index) => (
-              <div key={index} className='flex mx-auto'>
+              <div key={index} className='flex mx-auto mb-2'>
                 <div className='text-[#0D0D0D] text-base my-auto'>- {item}</div>
               </div>
             ))}
