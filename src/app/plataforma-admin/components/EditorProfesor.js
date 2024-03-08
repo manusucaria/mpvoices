@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from 'react'
-import { updateProfesor } from '../../api/api.js'
+import { updateProfesor, fetchProfesor } from '../../api/api.js'
+import { instrumentos, diasSemana } from '../../api/data.js'
 
-const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelectedProfesor }) => {
+const EditorDatosProfesor = ({ profesor, setSelectedAlumno, setSelectedProfesor }) => {
   const [nombre, setNombre] = useState('')
   const [apellido, setApellido] = useState('')
   const [email, setEmail] = useState('')
-  const [dia, setDia] = useState('')
+  const [diasSeleccionados, setDiasSeleccionados] = useState([])
   const [instrumento, setInstrumento] = useState('')
   const [editMode, setEditMode] = useState(false)
   const [originalValues, setOriginalValues] = useState(null)
   const [showConfirmation, setShowConfirmation] = useState(false)
+  const [showDiasCheckbox, setShowDiasCheckbox] = useState(false)
 
   useEffect(() => {
     if (profesor) {
       setNombre(profesor.Nombre || '')
       setApellido(profesor.Apellido || '')
       setEmail(profesor.Email || '')
-      setDia(profesor.Dia || '')
+      setDiasSeleccionados(profesor.Dia ? profesor.Dia.split(',').map(dia => dia.trim()) : [])
       setInstrumento(profesor.Instrumento || '')
       setOriginalValues({
         nombre: profesor.Nombre || '',
@@ -31,15 +33,23 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
+      const formattedInstrumento = instrumento
+        .toLowerCase()
+        .split('_')
+        .map((word, index) => (index === 0 ? word.charAt(0).toUpperCase() + word.slice(1) : word))
+        .join(' ')
+
       const updatedProfesor = {
         Nombre: nombre,
         Apellido: apellido,
         Email: email,
-        Dia: dia,
-        Instrumento: instrumento
+        Dia: diasSeleccionados.join(', '),
+        Instrumento: formattedInstrumento
       }
+
       await updateProfesor(profesor.id, updatedProfesor)
-      newCambio('Edicion')
+      const updatedProfesorData = await fetchProfesor(profesor.id)
+      setSelectedProfesor(updatedProfesorData)
       setEditMode(false)
       setShowConfirmation(true)
     } catch (error) {
@@ -55,7 +65,7 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
     setNombre(originalValues.nombre)
     setApellido(originalValues.apellido)
     setEmail(originalValues.email)
-    setDia(originalValues.dia)
+    setDiasSeleccionados(originalValues.dia ? [originalValues.dia] : [])
     setInstrumento(originalValues.instrumento)
     setEditMode(false)
   }
@@ -67,6 +77,30 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
 
   const handleCloseConfirmation = () => {
     setShowConfirmation(false)
+  }
+
+  const renderInstrumentoOptions = () => {
+    return instrumentos.map((instrumento, index) => (
+      <option key={index} value={instrumento.replace(/\s/g, '_')}>
+        {instrumento}
+      </option>
+    ))
+  }
+
+  const formatInstrumento = (instrumento) => {
+    if (!instrumento) return ''
+    const instrumentoFormateado = instrumento.charAt(0).toUpperCase() + instrumento.slice(1).toLowerCase().replace(/_/g, ' ')
+    return instrumentoFormateado.replace(/_/g, ' ')
+  }
+
+  const handleDiaSelection = (selectedDia) => {
+    setDiasSeleccionados(prevDiasSeleccionados => {
+      if (prevDiasSeleccionados.includes(selectedDia)) {
+        return prevDiasSeleccionados.filter((dia) => dia !== selectedDia)
+      } else {
+        return [...prevDiasSeleccionados, selectedDia]
+      }
+    })
   }
 
   return (
@@ -127,20 +161,45 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
               <input
                 className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
                 type='text'
-                name='dia'
-                value={dia.toLowerCase()}
-                onChange={(e) => setDia(e.target.value)}
+                onFocus={() => setShowDiasCheckbox(true)}
+                value={diasSeleccionados
+                  .sort((a, b) => {
+                    const dias = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes']
+                    return dias.indexOf(a) - dias.indexOf(b)
+                  })
+                  .join(', ')
+                }
+                readOnly
               />
             </div>
-            <div className='flex'>
-              <label className='text-base font-bold mr-auto w-2/6'>Instrumento:</label>
-              <input
-                className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
-                type='text'
-                name='instrumento'
+            {showDiasCheckbox && (
+              <div className="flex flex-col mb-6">
+                <div className='w-4/6 ml-auto'>
+                  {diasSemana.map((dia) => (
+                    <div key={dia} className="flex items-center">
+                      <input
+                        className='mr-2'
+                        type="checkbox"
+                        value={dia}
+                        checked={diasSeleccionados.includes(dia)}
+                        onChange={() => handleDiaSelection(dia)}
+                      />
+                      <label>{dia}</label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            <div className='flex mb-6'>
+              <label className='font-bold mr-auto w-2/6'>Instrumento:</label>
+              <select
+                className='text-[#0D0D0D] rounded-3xl h-8 px-1 w-4/6 ml-auto'
                 value={instrumento}
                 onChange={(e) => setInstrumento(e.target.value)}
-              />
+              >
+                <option value={instrumento.charAt(0).toUpperCase() + instrumento.slice(1).toLowerCase().replace(/_/g, ' ')}>{instrumento}</option>
+                {renderInstrumentoOptions()}
+              </select>
             </div>
             <div className='flex w-full mx-auto my-8 gap-x-4'>
               <button className='font-botones font-bold rounded-3xl w-3/6 bg-[#663481] text-[#FFFFFF] px-3 h-12 sm:h-10 md:hover:bg-[#9B70BE]' type='submit'>
@@ -187,11 +246,15 @@ const EditorDatosProfesor = ({ profesor, newCambio, setSelectedAlumno, setSelect
             </div>
             <div className='mb-8 flex'>
               <p className='mr-2 text-base font-bold'>Días:</p>
-              <p className='text-base'>{dia.toLowerCase()}</p>
+              <p className='text-base'>{diasSeleccionados.sort((a, b) => {
+                const dias = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes']
+                return dias.indexOf(a) - dias.indexOf(b)
+              })
+                .join(', ')}</p>
             </div>
-            <div className='flex'>
+            <div className='mb-8 flex'>
               <p className='mr-2 text-base font-bold'>Instrumento:</p>
-              <p className='text-base'>{instrumento}</p>
+              <p className='text-base'>{formatInstrumento(instrumento)}</p>
             </div>
           </div>
           <div className='bg-[#0D0D0D] flex flex-col mx-auto w-full'>

@@ -68,6 +68,15 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
     setShowConfirmation(false)
   }
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString)
+    const utcDate = new Date(date.toUTCString())
+    const day = utcDate.getUTCDate().toString().padStart(2, '0')
+    const month = (utcDate.getUTCMonth() + 1).toString().padStart(2, '0')
+    const year = utcDate.getUTCFullYear()
+    return `${day}-${month}-${year}`
+  }
+
   return (
     <div className='w-full'>
       {editMode
@@ -97,8 +106,8 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
             <div className='flex mb-6'>
               <label className='font-bold mr-auto w-2/6'>Fecha de nac.:</label>
               <input
-                className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
-                type='text'
+                className='text-[#0D0D0D] rounded-3xl h-8 px-2 w-4/6 ml-auto'
+                type='date'
                 name='fecha'
                 value={fecha}
                 onChange={(e) => setFecha(e.target.value)}
@@ -152,7 +161,7 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
             </div>
             <div className='mb-8 flex'>
               <p className='mr-2 text-base font-bold'>Fecha de nac.:</p>
-              <p className='text-base'>{fecha}</p>
+              <p className='text-base'>{formatDate(fecha)}</p>
             </div>
             <div className='mb-8 flex'>
               <p className='mr-2 text-base font-bold'>E-Mail:</p>

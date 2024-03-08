@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { updateAlumno, fetchAlumno } from '../../api/api.js'
+import { horarios, duracionOptions, instrumentos, diasSemana } from '../../api/data.js'
 
-const EditorClases = ({ alumno, setSelectedAlumno }) => {
-  const [instrumento, setInstrumento] = useState('')
+const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
+  const [instrumento, setInstrumento] = useState(alumno ? alumno.instrumento : '')
+  const [horario, setHorario] = useState(alumno ? alumno.horario : '')
+  const [duracion, setDuracion] = useState(alumno ? alumno.Duracion : '')
   const [dia, setDia] = useState('')
-  const [horario, setHorario] = useState('')
-  const [duracion, setDuracion] = useState('')
   const [profesor, setProfesor] = useState('')
   const [originalData, setOriginalData] = useState(null)
   const [editMode, setEditMode] = useState(false)
@@ -32,13 +33,16 @@ const EditorClases = ({ alumno, setSelectedAlumno }) => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
+      const formattedInstrumento = instrumento.charAt(0).toUpperCase() + instrumento.slice(1).toLowerCase().replace(/_/g, ' ')
+
       const updatedAlumno = {
-        Instrumento: instrumento,
+        Instrumento: formattedInstrumento,
         Dia: dia,
         Horario: horario,
         Duracion: duracion,
         Profesor: profesor
       }
+
       await updateAlumno(alumno.id, updatedAlumno)
       const updatedAlumnoData = await fetchAlumno(alumno.id)
       setSelectedAlumno(updatedAlumnoData)
@@ -68,6 +72,23 @@ const EditorClases = ({ alumno, setSelectedAlumno }) => {
     setShowConfirmation(false)
   }
 
+  const renderInstrumentoOptions = () => {
+    return instrumentos.map((instrumento, index) => {
+      const formattedInstrumento = instrumento.charAt(0).toUpperCase() + instrumento.slice(1).toLowerCase().replace(/_/g, ' ')
+      return (
+        <option key={index} value={instrumento.toLowerCase().replace(/\s/g, '_')}>
+          {formattedInstrumento}
+        </option>
+      )
+    })
+  }
+
+  const formatInstrumento = (instrumento) => {
+    if (!instrumento) return ''
+    const instrumentoFormateado = instrumento.charAt(0).toUpperCase() + instrumento.slice(1)
+    return instrumentoFormateado.replace(/_/g, ' ')
+  }
+
   return (
     <div className='w-full'>
       {editMode
@@ -76,53 +97,73 @@ const EditorClases = ({ alumno, setSelectedAlumno }) => {
           <form className='w-full mx-auto' onSubmit={handleSubmit}>
             <div className='flex mb-6'>
               <label className='font-bold mr-auto w-2/6'>Instrumento:</label>
-              <input
+              <select
                 className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
-                type='text'
-                name='instrumento'
                 value={instrumento}
                 onChange={(e) => setInstrumento(e.target.value)}
-              />
+              >
+                <option value={instrumento.charAt(0).toUpperCase() + instrumento.slice(1).toLowerCase().replace(/_/g, ' ')}>{instrumento}</option>
+                {renderInstrumentoOptions()}
+              </select>
             </div>
             <div className='flex mb-6'>
               <label className='font-bold mr-auto w-2/6'>Días:</label>
-              <input
+              <select
                 className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
-                type='text'
-                name='dia'
-                value={dia.toLowerCase()}
+                value={dia}
                 onChange={(e) => setDia(e.target.value)}
-              />
+              >
+                {diasSemana.map((dia, index) => (
+                  <option value={dia} key={index}>
+                    {dia}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className='flex mb-6'>
               <label className='font-bold mr-auto w-2/6'>Horario:</label>
-              <input
+              <select
                 className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
-                type='text'
-                name='horario'
                 value={horario}
                 onChange={(e) => setHorario(e.target.value)}
-              />
+              >
+                {horarios.map((hora, index) => (
+                  <option key={index} value={hora}>
+                    {hora}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className='flex mb-6'>
               <label className='font-bold mr-auto w-2/6'>Duración:</label>
-              <input
+              <select
                 className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
-                type='text'
-                name='duracion'
                 value={duracion}
                 onChange={(e) => setDuracion(e.target.value)}
-              />
+              >
+                {duracionOptions.map((duracionOption, index) => (
+                  <option key={index} value={duracionOption}>
+                    {duracionOption} min
+                  </option>
+                ))}
+              </select>
             </div>
             <div className='flex mb-6'>
               <label className='font-bold mr-auto w-2/6'>Profesor:</label>
-              <input
+              <select
                 className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
-                type='text'
-                name='profesor'
                 value={profesor}
                 onChange={(e) => setProfesor(e.target.value)}
-              />
+              >
+              {profesores
+                .sort((a, b) => a.Nombre.localeCompare(b.Nombre))
+                .map((profesor, index) => (
+                  <option key={index} value={profesor.Nombre}>
+                    {profesor.Nombre}
+                  </option>
+                ))
+              }
+              </select>
             </div>
             <div className='flex w-full mx-auto mt-8 gap-x-4'>
               <button className='font-botones font-bold rounded-3xl w-3/6 bg-[#E9500E] text-[#FFFFFF] px-3 h-12 sm:h-10 md:hover:bg-[#DB9B6D]' type='submit'>
@@ -144,7 +185,7 @@ const EditorClases = ({ alumno, setSelectedAlumno }) => {
           <div className='px-4 sm:px-8 pb-8 w-full pt-4'>
             <div className='mb-8 flex'>
               <p className='mr-2 text-base font-bold'>Instrumento:</p>
-              <p className='text-base'>{instrumento}</p>
+              <p className='text-base'>{formatInstrumento(instrumento)}</p>
             </div>
             <div className='mb-8 flex'>
               <p className='mr-2 text-base font-bold'>Días:</p>

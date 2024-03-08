@@ -3,8 +3,9 @@ import AltaAlumno from '../components/AltaAlumno'
 import AltaProfe from '../components/AltaProfe'
 import AltaUsuarioAlumno from '../components/AltaUsuarioAlumno'
 import AltaUsuarioProfe from '../components/AltaUsuarioProfe'
+import { getProfesores } from '../../api/api.js'
 
-const Alta = ({ newCambio }) => {
+const Alta = () => {
   const [showProfesorForm, setShowProfesorForm] = useState(false)
   const [showAlumnoForm, setShowAlumnoForm] = useState(false)
   const [alumnoFormSubmitted, setAlumnoFormSubmitted] = useState(false)
@@ -12,6 +13,13 @@ const Alta = ({ newCambio }) => {
   const [userEmail, setUserEmail] = useState('')
   const [userPassword, setUserPassword] = useState('')
   const [backgroundClass, setBackgroundClass] = useState('bg-[#D9D9D9]')
+  const [profesores, setProfesores] = useState([])
+
+  useEffect(() => {
+    getProfesores().then(data => {
+      setProfesores(data)
+    })
+  }, [])
 
   useEffect(() => {
     if (showAlumnoForm || showProfesorForm) {
@@ -55,7 +63,6 @@ const Alta = ({ newCambio }) => {
     setShowProfesorForm(false)
     setAlumnoFormSubmitted(false)
     setProfesorFormSubmitted(false)
-    newCambio('Alta')
   }
 
   const cancelarAlumnoForm = () => {
@@ -104,7 +111,7 @@ const Alta = ({ newCambio }) => {
         <AltaUsuarioAlumno onFormSubmit={handleNewFormSubmit} setAlumnoFormSubmitted={setAlumnoFormSubmitted} handleCancelar={handleCancelar} />
       )}
       {alumnoFormSubmitted && (
-        <AltaAlumno setShowAlumnoForm={cancelarAlumnoForm} confirmacionRegistro={confirmacionRegistro} newUserEmail={userEmail} newUserPassword={userPassword} />
+        <AltaAlumno profesores={profesores} setShowAlumnoForm={cancelarAlumnoForm} confirmacionRegistro={confirmacionRegistro} newUserEmail={userEmail} newUserPassword={userPassword} />
       )}
     </div>
   )

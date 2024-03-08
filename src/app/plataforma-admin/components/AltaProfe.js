@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { createProfesor } from '../../api/api.js'
+import { instrumentos, diasSemana } from '../../api/data.js'
 
 const AltaProfesor = ({ setShowProfesorForm, confirmacionRegistro, newUserEmail, newUserPassword }) => {
   const [showConfirmation, setShowConfirmation] = useState(false)
   const [warningMessage, setWarningMessage] = useState('')
+  const [showDaysOptions, setShowDaysOptions] = useState(false)
+  const [selectedDays, setSelectedDays] = useState([])
   const [profesorData, setProfesorData] = useState({
     Nombre: '',
     Apellido: '',
@@ -20,20 +23,47 @@ const AltaProfesor = ({ setShowProfesorForm, confirmacionRegistro, newUserEmail,
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const requiredFields = ['Nombre', 'Apellido', 'Dia', 'Instrumento']
+    const requiredFields = ['Nombre', 'Apellido', 'Instrumento']
+
+    if (selectedDays.length === 0) {
+      setWarningMessage('*Seleccione al menos un día')
+      return
+    }
+
     const incompleteFields = requiredFields.filter(field => !profesorData[field])
 
     if (incompleteFields.length > 0) {
       setWarningMessage('*Faltan completar datos')
       return
     }
-    createProfesor(profesorData)
+
+    const dataToSubmit = {
+      ...profesorData,
+      Dia: selectedDays.join(', ')
+    }
+
+    createProfesor(dataToSubmit)
       .then(() => {
         setShowConfirmation(true)
       })
       .catch((error) => {
         console.error('Error al crear el profesor:', error)
       })
+  }
+
+  const formatInstrumento = (instrumento) => {
+    if (!instrumento) return ''
+
+    const words = instrumento.split(' ')
+    const formattedWords = words.map((word, index) => {
+      if (index === 0) {
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+      } else {
+        return word.toLowerCase()
+      }
+    })
+
+    return formattedWords.join(' ')
   }
 
   const cancelarClick = () => {
@@ -43,6 +73,26 @@ const AltaProfesor = ({ setShowProfesorForm, confirmacionRegistro, newUserEmail,
   const handleCloseConfirmation = () => {
     setShowConfirmation(false)
     confirmacionRegistro()
+  }
+
+  const handleDayClick = () => {
+    setShowDaysOptions(!showDaysOptions)
+  }
+
+  const handleDayCheckboxChange = (e) => {
+    const { name, checked } = e.target
+    let updatedSelectedDays = [...selectedDays]
+
+    if (checked) {
+      updatedSelectedDays.push(name)
+    } else {
+      updatedSelectedDays = updatedSelectedDays.filter(day => day !== name)
+    }
+    updatedSelectedDays.sort((a, b) => {
+      return diasSemana.indexOf(a) - diasSemana.indexOf(b)
+    })
+
+    setSelectedDays(updatedSelectedDays)
   }
 
   return (
@@ -77,11 +127,51 @@ const AltaProfesor = ({ setShowProfesorForm, confirmacionRegistro, newUserEmail,
         </div>
         <div className='flex mb-6'>
           <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Día:</label>
-          <input placeholder="Día" className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Dia" value={profesorData.Dia} onChange={handleChange} />
+          <div className="relative w-4/6 ml-auto">
+          <input
+            className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-full'
+            type="text"
+            name="Dia"
+            placeholder="Seleccione un día"
+            value={selectedDays.join(', ')}
+            onClick={handleDayClick}
+            readOnly
+          />
+          </div>
         </div>
+        {showDaysOptions && (
+          <div className="flex flex-col mb-6">
+            <div className='w-4/6 ml-auto'>
+              {diasSemana.map((dia, index) => (
+                <div key={index} className="flex items-center">
+                  <input
+                    type="checkbox"
+                    name={dia}
+                    checked={selectedDays.includes(dia)}
+                    onChange={handleDayCheckboxChange}
+                    className="mr-2"
+                  />
+                  <label>{dia}</label>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
         <div className='flex mb-6'>
           <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Instr.:</label>
-          <input placeholder="Intrumento/s" className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Instrumento" value={profesorData.Instrumento} onChange={handleChange} />
+          <select
+            className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+            name="Instrumento"
+            value={formatInstrumento(profesorData.Instrumento)}
+            onChange={handleChange}
+          >
+            <option value="">Seleccione un instrumento</option>
+            {instrumentos.map((instrumento, index) => (
+              <option key={index} value={instrumento}>
+                {instrumento}
+              </option>
+            ))}
+          </select>
         </div>
         {warningMessage && (
           <div className="ml-auto text-sm text-[#FFFFFF]">{warningMessage}</div>

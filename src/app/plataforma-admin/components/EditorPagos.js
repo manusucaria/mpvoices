@@ -46,6 +46,15 @@ const EditorPagos = ({ alumno, setSelectedAlumno }) => {
     setShowConfirmation(false)
   }
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString)
+    const utcDate = new Date(date.toUTCString())
+    const day = utcDate.getUTCDate().toString().padStart(2, '0')
+    const month = (utcDate.getUTCMonth() + 1).toString().padStart(2, '0')
+    const year = utcDate.getUTCFullYear()
+    return `${day}-${month}-${year}`
+  }
+
   return (
     <div className='w-full'>
       {editMode
@@ -65,8 +74,8 @@ const EditorPagos = ({ alumno, setSelectedAlumno }) => {
             <div className='flex mb-6'>
               <label className='font-bold mr-auto w-2/6'>Actualización:</label>
               <input
-                className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
-                type='text'
+                className='text-[#0D0D0D] rounded-3xl h-8 px-2 w-4/6 ml-auto'
+                type='date'
                 name='actualizacion'
                 value={actualizacion}
                 onChange={(e) => setActualizacion(e.target.value)}
@@ -96,7 +105,7 @@ const EditorPagos = ({ alumno, setSelectedAlumno }) => {
             </div>
             <div className='flex'>
               <p className='mr-2 text-base font-bold'>Actualización:</p>
-              <p className='text-base'>{actualizacion}</p>
+              <p className='text-base'>{formatDate(actualizacion)}</p>
             </div>
           </div>
           <div className='bg-[#0D0D0D] flex flex-col mx-auto w-full'>
