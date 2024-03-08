@@ -4,20 +4,19 @@ import {
   signOut as signOutFirebase,
   signInWithEmailAndPassword
 } from 'firebase/auth'
-
 import { doc, setDoc } from 'firebase/firestore'
 
 import { auth, db } from './firebase'
-import { AlumnoConverter, ProfesorConverter, UsuarioConverter } from './schemas.converters'
+import {
+  AlumnoConverter,
+  ProfesorConverter,
+  UsuarioConverter
+} from './schemas.converters'
 import { Alumno, Profesor, Usuario } from './schemas'
 
-export const signIn = async (user) => {
+export const signIn = async ({ email, password }) => {
   try {
-    const userSigned = await signInWithEmailAndPassword(
-      auth,
-      user.email,
-      user.password
-    )
+    const userSigned = await signInWithEmailAndPassword(auth, email, password)
     const idToken = await userSigned.user.getIdToken()
 
     await fetch('api/auth/session', {
@@ -29,7 +28,7 @@ export const signIn = async (user) => {
       }
     })
   } catch (error) {
-    throw new Error(error)
+    throw error
   }
 }
 
@@ -105,7 +104,7 @@ export const signUp = async ({
 
     sendEmail && (await sendEmailVerification(firebaseUser))
   } catch (error) {
-    throw new Error(error)
+    throw error
   }
 }
 
@@ -120,7 +119,7 @@ export const signOut = async () => {
       }
     })
   } catch (error) {
-    throw new Error(error)
+    throw error
   }
 }
 
@@ -129,6 +128,6 @@ export const verifyEmailAccount = async () => {
     await sendEmailVerification(auth.currentUser)
     await signOut(auth)
   } catch (error) {
-    throw new Error(error)
+    throw error
   }
 }
