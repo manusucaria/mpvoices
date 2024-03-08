@@ -1,7 +1,8 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { useAuth } from '../../../lib/auth'
+
+import { useAuth } from '@/lib/firebase/useAuth'
 
 const routes = [
   {

@@ -1,6 +1,7 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react'
-import { useAuth } from '../../../lib/auth'
+
+import { useAuth } from '@/lib/firebase/useAuth'
 
 const NavSmall = () => {
   const user = useAuth()
