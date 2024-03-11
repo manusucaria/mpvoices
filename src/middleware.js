@@ -1,0 +1,68 @@
+import { NextResponse } from 'next/server'
+
+import firebaseConfig from './config/firebase.config'
+import { cookies } from 'next/headers'
+
+export const middleware = async (req) => {
+  const { pathname, origin } = req.nextUrl
+  try {
+    const cookieStore = cookies()
+    const cookieSession = cookieStore.get(firebaseConfig.COOKIE_SESSION_NAME)?.value
+
+    if (
+      pathname.startsWith('/login') &&
+      !cookieSession
+    ) {
+      return NextResponse.next()
+    } else if (
+      pathname.startsWith('/login') &&
+      cookieSession
+    ) {
+      return NextResponse.redirect(new URL('/', req.url))
+    }
+
+    const data = await (
+      await fetch(`${origin}/api/auth/verify-session`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Cookie: `${firebaseConfig.COOKIE_SESSION_NAME}=${cookieSession}`
+        }
+      })
+    ).json()
+
+    if ((data?.error && data?.code === 'auth/user-not-found') || (!data.isLogged)) {
+      return NextResponse.redirect(new URL('/login', req.url), {
+        headers: {
+          'Set-Cookie': `${firebaseConfig.COOKIE_SESSION_NAME}=; Path=/; Max-Age=0`,
+          'Cache-Control': 'no-store'
+        }
+      })
+    }
+
+    if (pathname.startsWith('/plataforma') && !pathname.includes('/admin') && data.rol === 'admin') {
+      return NextResponse.redirect(new URL('/plataforma/admin', req.url))
+    } else if (pathname.startsWith('/plataforma') && !pathname.includes('/profesor') && data.rol === 'profesor') {
+      return NextResponse.redirect(new URL('/plataforma/profesor', req.url))
+    } else if (pathname.startsWith('/plataforma') && !pathname.includes('/alumno') && data.rol === 'alumno') {
+      return NextResponse.redirect(new URL('/plataforma/alumno', req.url))
+    } else if (pathname.startsWith('/plataforma') && !data.rol) {
+      return NextResponse.redirect(new URL('/plataforma', req.url))
+    }
+
+    return NextResponse.next()
+  } catch (error) {
+    return NextResponse.redirect(new URL('/login', req.url), {
+      headers: {
+        'Set-Cookie': `${firebaseConfig.COOKIE_SESSION_NAME}=; Path=/; Max-Age=0`,
+        'Cache-Control': 'no-store'
+      }
+    })
+  }
+}
+
+export const config = {
+  matcher: [
+    '/login',
+    '/plataforma/:path*'
+  ]
+}
