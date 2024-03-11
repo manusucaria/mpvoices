@@ -25,7 +25,7 @@ const AgendaFull = () => {
     getProfesores().then((data) => {
       setProfesores(data)
     })
-  }, [selectedDay, selectedAlumno])
+  }, [selectedDay])
 
   const filterAlumnosByDay = (day) => {
     setSelectedDay(day)

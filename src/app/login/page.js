@@ -76,17 +76,16 @@ const LoginForm = () => {
               onChange={(e) => setPassword(e.target.value)}
               autoComplete='current-password'
             />
-            <button
-              type='button'
-              onClick={() => setShowPassword(!showPassword)}
+            <div
               className='p-2 mt-1 bg-transparent border-none focus:outline-none mr-2 z-20 col-start-3 col-end-4 row-start-1 row-end-2'
             >
               <img
+                onClick={() => setShowPassword(!showPassword)}
                 src={showPassword ? '/mostrar.png' : '/ocultar.png'}
                 alt={showPassword ? 'Mostrar contraseña' : 'Ocultar contraseña'}
-                className='w-5 h-5 ml-auto'
+                className='w-5 h-5 ml-auto md:cursor-pointer'
               />
-            </button>
+            </div>
           </div>
         </div>
         {errors.password && <p className='text-[#FFFFFF] text-sm ml-3'>{errors.password}</p>}

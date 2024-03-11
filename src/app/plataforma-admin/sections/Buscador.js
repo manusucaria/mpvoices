@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { getAlumnos, getProfesores } from '../../api/api.js'
-import { useAuth } from '../../../lib/auth.js'
 import EditorAlumnos from '../components/EditorAlumnos.js'
 import EditorProfesor from '../components/EditorProfesor.js'
 import EliminarAlumno from '../components/EliminarAlumno.js'
 import EliminarProfesor from '../components/EliminarProfesor.js'
 
 const Buscador = () => {
-  const user = useAuth()
   const [alumnos, setAlumnos] = useState([])
   const [profesores, setProfesores] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
@@ -21,7 +19,7 @@ const Buscador = () => {
     getProfesores().then(data => {
       setProfesores(data)
     })
-  }, [user, selectedAlumno, selectedProfesor])
+  }, [selectedAlumno, selectedProfesor])
 
   const normalizeString = (str) => {
     return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')

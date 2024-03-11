@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
-import { createAlumno } from '../../api/api.js'
+import React, { useState, useEffect } from 'react'
+import { createAlumno, getProfesores } from '../../api/api.js'
 import { instrumentos, horarios, duracionOptions, diasSemana } from '../../api/data.js'
 
-const AltaAlumno = ({ setShowAlumnoForm, profesores, confirmacionRegistro, newUserEmail, newUserPassword }) => {
+const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, newUserPassword }) => {
   const [showConfirmation, setShowConfirmation] = useState(false)
   const [warningMessage, setWarningMessage] = useState('')
+  const [profesores, setProfesores] = useState([])
   const [alumnoData, setAlumnoData] = useState({
     Nombre: '',
     Apellido: '',
@@ -19,6 +20,12 @@ const AltaAlumno = ({ setShowAlumnoForm, profesores, confirmacionRegistro, newUs
     Horario: '',
     Tel: ''
   })
+
+  useEffect(() => {
+    getProfesores().then(data => {
+      setProfesores(data)
+    })
+  }, [])
 
   const formatInstrumento = (instrumento) => {
     if (!instrumento) return ''

@@ -17,27 +17,28 @@ const Page = () => {
   useEffect(() => {
     if (user === null) {
       router.push('/login')
+      return
     } if (user) {
       if (user.displayName !== 'Profesor') {
         router.push('/login')
+        return
       }
     }
-  }, [router])
-
-  useEffect(() => {
-    getProfesores().then((data) => {
-      const profesoresFiltrados = data.filter(
-        (profesor) => profesor.Email === user.email
-      )
-      if (profesoresFiltrados.length > 0) {
-        const profe = profesoresFiltrados[0]
-        setProfesor(profe)
-        const daysString = profe.Dia
-        const daysArray = daysString.split(/[,\s]*[,y]\s*/)
-        setAvailableDays(daysArray)
-      }
-    })
-  }, [user])
+    if (user && user.email) {
+      getProfesores().then((data) => {
+        const profesoresFiltrados = data.filter(
+          (profesor) => profesor.Email === user.email
+        )
+        if (profesoresFiltrados.length > 0) {
+          const profe = profesoresFiltrados[0]
+          setProfesor(profe)
+          const daysString = profe.Dia
+          const daysArray = daysString.split(/[,\s]*[,y]\s*/)
+          setAvailableDays(daysArray)
+        }
+      })
+    }
+  }, [router, user])
 
   const handleSubmit = () => {
     setShowConfirmation(true)
@@ -55,7 +56,7 @@ const Page = () => {
 
   return (
     <div id="Agenda" className="flex flex-col">
-      {user
+      {profesor && Object.keys(profesor).length > 0
         ? (
         <div className="flex flex-col">
           <h1 className="text-center text-[#FFFFFF] text-3xl sm:text-5xl mt-8 mb-12">
