@@ -2,16 +2,15 @@
 
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { signOut } from 'firebase/auth'
 
-import { playfair600 } from '@/utils/fonts/fonts.js'
-import { getAlumnoByEmail } from '../api/api.js'
-import { useAuth } from '../../lib/auth'
-import { auth } from '../../lib/firebase.js'
-import Loader from '../components/loader/Loader.jsx'
-import Button from '../components/button/Button.jsx'
-import Wrapper from '../components/wrapper/Wrapper.jsx'
-import Modal from '../components/modal/Modal.jsx'
+import { playfair600 } from '@/utils/fonts/fonts'
+import { getAlumnoByEmail } from '@/app/api/api'
+import { useAuth } from '@/lib/firebase/useAuth.js'
+import { signOut } from '@/lib/firebase/auth.js'
+import Wrapper from '@/app/components/wrapper/Wrapper.jsx'
+import Loader from '@/app/components/loader/Loader'
+import Button from '@/app/components/button/Button'
+import Modal from '@/app/components/modal/Modal'
 
 const page = () => {
   const user = useAuth()
@@ -25,21 +24,17 @@ const page = () => {
       try {
         setLoading(true)
         window.scrollTo(0, 0)
-        if (user === null && user?.displayName !== 'Alumno') {
-          router.push('/login')
-          return
-        }
         if (user) {
           const dataAlumno = await getAlumnoByEmail({ email: user.email })
-          if (dataAlumno === null) {
-            router.push('/login')
-            return
+          if (!dataAlumno) {
+            await signOut()
+            window.location.reload()
           }
           setAlumno(dataAlumno)
         }
       } catch (error) {
-        await signOut(auth)
-        router.push('/login')
+        await signOut()
+        window.location.reload()
       } finally {
         setLoading(false)
       }
@@ -49,8 +44,8 @@ const page = () => {
 
   const handleLogout = async () => {
     setLoading(true)
-    await signOut(auth)
-    router.push('/login')
+    await signOut()
+    window.location.reload()
     setLoading(false)
   }
 
