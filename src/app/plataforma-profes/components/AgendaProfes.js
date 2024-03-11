@@ -133,7 +133,7 @@ const AgendaProfes = ({ profesor }) => {
       {selectedDay && (
         <div className="flex flex-col overflow-x-auto mx-auto w-full px-4 md:w-4/6 mb-12">
           <div className='grid grid-cols-[20%_80%] grid-rows-45'>
-            <div className="rounded-tl-2xl border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D] border-r-[0.5px] sm:border-r-1 border-r-[#0D0D0D] bg-[#E9500E] h-12 text-center col-start-1 col-end-2 row-start-1 row-end-2 flex">
+            <div className="rounded-tl-2xl border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D] border-r-[0.5px] sm:border-r-1 border-r-[#0D0D0D] bg-[#A33100] h-12 text-center col-start-1 col-end-2 row-start-1 row-end-2 flex">
               <p className='text-md sm:text-md md:text-base m-auto text-[#FFFFFF]'>Hora</p>
             </div>
             {horarios.map((time, index) => (

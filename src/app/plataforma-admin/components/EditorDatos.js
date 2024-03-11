@@ -134,11 +134,11 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
               />
             </div>
             <div className='flex w-full mx-auto mt-8 gap-x-4'>
-            <button className='font-botones font-bold rounded-3xl w-3/6 bg-[#A33100] text-[#FFFFFF] px-3 h-12 sm:h-10 md:hover:bg-[#DB9B6D]' type='submit'>
+            <button className='font-botones font-bold rounded-3xl w-3/6 bg-[#A33100] text-[#FFFFFF] px-3 h-12 sm:h-10 md:hover:bg-[#F57B48]' type='submit'>
                 Guardar
               </button>
               <button
-                className='font-botones font-bold rounded-3xl w-3/6 ml-auto bg-[#FFFFFF] text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#E9500E] px-3 h-12 sm:h-10'
+                className='font-botones font-bold rounded-3xl w-3/6 ml-auto bg-[#FFFFFF] text-[#0D0D0D] md:hover:text-[#A33100] border-2 border-[#A33100] px-3 h-12 sm:h-10'
                 onClick={cancelarClick}
                 type='button'
               >
@@ -173,7 +173,7 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
             </div>
           </div>
           <div className='bg-[#0D0D0D] flex flex-col mx-auto w-full'>
-            <button className='font-botones font-bold rounded-3xl w-4/6 sm:w-3/6 mx-auto h-12 sm:h-10 mb-8 bg-[#A33100] md:hover:bg-[#DB9B6D]' onClick={handleEditClick}>
+            <button className='font-botones font-bold rounded-3xl w-4/6 sm:w-3/6 mx-auto h-12 sm:h-10 mb-8 bg-[#A33100] md:hover:bg-[#F57B48]' onClick={handleEditClick}>
                 Editar datos
             </button>
           </div>
@@ -184,7 +184,7 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
             <div className="bg-[#FFFFFF] p-12 rounded-lg text-center flex flex-col">
               <p className="text-[#0D0D0D] text-xl mb-4 font-bold">Los cambios se guardaron correctamente.</p>
               <button
-                className="text-[#E9500E] md:hover:text-[#DB9B6D] ml-auto font-bold"
+                className="text-[#A33100] md:hover:text-[#F57B48] ml-auto font-bold"
                 onClick={handleCloseConfirmation}
               >
                 Entendido

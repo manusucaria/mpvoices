@@ -223,11 +223,11 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, new
           <div className="ml-auto text-sm text-[#FFFFFF]">{warningMessage}</div>
         )}
         <div className='flex w-full mx-auto my-8 gap-x-4'>
-          <button className='rounded-3xl w-3/6 font-botones font-bold h-12 sm:h-10 bg-[#A33100] text-[#FFFFFF] px-3 md:hover:bg-[#DB9B6D]' type='submit'>
+          <button className='rounded-3xl w-3/6 font-botones font-bold h-12 sm:h-10 bg-[#A33100] text-[#FFFFFF] px-3 md:hover:bg-[#F57B48]' type='submit'>
             Guardar
           </button>
           <button
-            className='rounded-3xl w-3/6 font-botones font-bold h-12 sm:h-10 ml-auto bg-[#FFFFFF] text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#E9500E] px-3'
+            className='rounded-3xl w-3/6 font-botones font-bold h-12 sm:h-10 ml-auto bg-[#FFFFFF] text-[#0D0D0D] md:hover:text-[#A33100] border-2 border-[#A33100] px-3'
             onClick={cancelarClick}
             type='button'
           >
@@ -240,7 +240,7 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, new
           <div className="bg-[#FFFFFF] p-12 rounded-lg text-center flex flex-col">
             <p className="text-[#0D0D0D] font-bold text-xl mb-4">Los datos se guardaron correctamente</p>
             <button
-              className="text-[#E9500E] md:hover:text-[#DB9B6D] font-bold ml-auto"
+              className="text-[#A33100] md:hover:text-[#F57B48] font-bold ml-auto"
               onClick={handleCloseConfirmation}
             >
               Ir a la página principal

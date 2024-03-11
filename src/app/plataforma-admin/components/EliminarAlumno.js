@@ -36,7 +36,7 @@ const EliminarAlumno = ({ selectedAlumno, setSelectedAlumno }) => {
       <button
         onClick={handleSubmit}
         type='submit'
-        className='font-botones font-bold mx-auto rounded-3xl w-4/6 sm:w-3/6 h-12 sm:h-10 mb-8 bg-[#FFFFFF] text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#A33100]'
+        className='font-botones font-bold mx-auto rounded-3xl w-4/6 sm:w-3/6 h-12 sm:h-10 mb-8 bg-[#FFFFFF] text-[#0D0D0D] md:hover:text-[#A33100] border-2 border-[#A33100]'
       >
         Eliminar alumno
       </button>
@@ -48,13 +48,13 @@ const EliminarAlumno = ({ selectedAlumno, setSelectedAlumno }) => {
             </p>
             <div className='flex mx-auto gap-x-16'>
               <button
-                className='text-[#E9500E] md:hover:text-[#DB9B6D] font-bold'
+                className='text-[#A33100] md:hover:text-[#F57B48] font-bold'
                 onClick={handleConfirmDelete}
               >
                 Si
               </button>
               <button
-                className='text-[#E9500E] md:hover:text-[#DB9B6D] font-bold'
+                className='text-[#A33100] md:hover:text-[#F57B48] font-bold'
                 onClick={handleCloseConfirmation}
               >
                 No

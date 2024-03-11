@@ -103,12 +103,12 @@ const AltaUsuarioAlumno = ({ setAlumnoFormSubmitted, handleCancelar, onFormSubmi
         {errors.password && <p className="ml-auto pr-4 mt-1 text-white text-sm">{errors.password}</p>}
         <div className='flex w-full mx-auto gap-x-4 mt-8 mb-2'>
           <button
-            className='font-botones font-bold h-12 sm:h-10 w-3/6 mr-auto rounded-3xl bg-[#A33100] text-[#FFFFFF] px-3 md:hover:bg-[#DB9B6D]'
+            className='font-botones font-bold h-12 sm:h-10 w-3/6 mr-auto rounded-3xl bg-[#A33100] text-[#FFFFFF] px-3 md:hover:bg-[#F57B48]'
             type="submit">
               Crear cuenta
           </button>
           <button
-            className='font-botones font-bold h-12 sm:h-10 w-3/6 ml-auto rounded-3xl bg-[#FFFFFF] text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#E9500E] px-3'
+            className='font-botones font-bold h-12 sm:h-10 w-3/6 ml-auto rounded-3xl bg-[#FFFFFF] text-[#0D0D0D] md:hover:text-[#A33100] border-2 border-[#A33100] px-3'
             onClick={handleCancel}
           >
             Cancelar
@@ -123,7 +123,7 @@ const AltaUsuarioAlumno = ({ setAlumnoFormSubmitted, handleCancelar, onFormSubmi
             </svg>
             <p className="text-[#0D0D0D] text-xl my-4 font-bold">¡La cuenta se creó con éxito!</p>
             <button
-              className="text-[#E9500E] md:hover:text-[#DB9B6D] ml-auto font-bold"
+              className="text-[#A33100] md:hover:text-[#F57B48] ml-auto font-bold"
               onClick={handleCloseConfirmation}
             >
               Entendido
