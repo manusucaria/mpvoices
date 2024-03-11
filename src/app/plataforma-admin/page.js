@@ -56,7 +56,7 @@ const page = () => {
               <Buscador newCambio={newCambio} cambios={cambios} />
               <Alta newCambio={newCambio} cambios={cambios} />
               <div className='bg-[#212121] flex w-full py-16'>
-                <button className='bg-[#FFFFFF] mx-auto text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#E9500E] font-botones font-bold p-2 my-12 lg:mb-12 w-4/6 sm:w-2/6 h-12 sm:h-10 text-center rounded-3xl hover:cursor-pointer' onClick={handleSubmit}>
+                <button className='bg-[#FFFFFF] mx-auto text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#A33100] font-botones font-bold p-2 my-12 lg:mb-12 w-4/6 sm:w-2/6 h-12 sm:h-10 text-center rounded-3xl hover:cursor-pointer' onClick={handleSubmit}>
                   <p>Cerrar sesión</p>
                 </button>
               </div>
