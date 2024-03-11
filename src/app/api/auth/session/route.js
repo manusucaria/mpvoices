@@ -8,31 +8,6 @@ import { runAdminApp } from '@/lib/firebase/firebase-admin'
 
 runAdminApp()
 
-// Obtener una sesión
-export const GET = async () => {
-  try {
-    const cookieSession = cookies().get(
-      firebaseConfig.COOKIE_SESSION_NAME
-    )?.value
-    const sessionCookie = await auth().verifySessionCookie(cookieSession)
-    await auth().getUser(sessionCookie.uid)
-
-    return NextResponse.json(
-      {
-        isLogged: true,
-        rol: sessionCookie.rol,
-        email_verified: sessionCookie.email_verified
-      },
-      { status: 200 }
-    )
-  } catch (error) {
-    return NextResponse.json(
-      { isLogged: false, error: error.message, code: error.code },
-      { status: 500 }
-    )
-  }
-}
-
 // Crear una sesión
 export const POST = async () => {
   try {
@@ -58,7 +33,7 @@ export const POST = async () => {
       sameSite: 'strict'
     })
 
-    return NextResponse.json({ isLogged: true }, { status: 200 })
+    return NextResponse.json({ isLogged: true })
   } catch (error) {
     return NextResponse.json(
       { isLogged: false, error: error.message },
@@ -71,7 +46,7 @@ export const POST = async () => {
 export const DELETE = async () => {
   try {
     cookies().delete(firebaseConfig.COOKIE_SESSION_NAME)
-    return NextResponse.json({ isLogged: false }, { status: 200 })
+    return NextResponse.json({ isLogged: false })
   } catch (error) {
     return NextResponse.json(
       { isLogged: false, error: error.message },
