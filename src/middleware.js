@@ -7,17 +7,13 @@ export const middleware = async (req) => {
   const { pathname, origin } = req.nextUrl
   try {
     const cookieStore = cookies()
-    const cookieSession = cookieStore.get(firebaseConfig.COOKIE_SESSION_NAME)?.value
+    const cookieSession = cookieStore.get(
+      firebaseConfig.COOKIE_SESSION_NAME
+    )?.value
 
-    if (
-      pathname.startsWith('/login') &&
-      !cookieSession
-    ) {
+    if (pathname.startsWith('/login') && !cookieSession) {
       return NextResponse.next()
-    } else if (
-      pathname.startsWith('/login') &&
-      cookieSession
-    ) {
+    } else if (pathname.startsWith('/login') && cookieSession) {
       return NextResponse.redirect(new URL('/', req.url))
     }
 
@@ -30,7 +26,10 @@ export const middleware = async (req) => {
       })
     ).json()
 
-    if ((data?.error && data?.code === 'auth/user-not-found') || (!data.isLogged)) {
+    if (
+      (data?.error && data?.code === 'auth/user-not-found') ||
+      !data.isLogged
+    ) {
       return NextResponse.redirect(new URL('/login', req.url), {
         headers: {
           'Set-Cookie': `${firebaseConfig.COOKIE_SESSION_NAME}=; Path=/; Max-Age=0`,
@@ -39,14 +38,38 @@ export const middleware = async (req) => {
       })
     }
 
-    if (pathname.startsWith('/plataforma') && !pathname.includes('/admin') && data.rol === 'admin') {
+    if (
+      pathname.startsWith('/plataforma') &&
+      (!data.rol ||
+        !data.rol.includes('admin') ||
+        !data.rol.includes('profesor') ||
+        !data.rol.includes('alumno'))
+    ) {
+      return NextResponse.rewrite(new URL('/no-autorizado', req.url))
+    }
+
+    if (
+      pathname.startsWith('/plataforma') &&
+      !pathname.includes('/admin') &&
+      data.rol === 'admin'
+    ) {
       return NextResponse.redirect(new URL('/plataforma/admin', req.url))
-    } else if (pathname.startsWith('/plataforma') && !pathname.includes('/profesor') && data.rol === 'profesor') {
-      return NextResponse.redirect(new URL('/plataforma/profesor', req.url))
-    } else if (pathname.startsWith('/plataforma') && !pathname.includes('/alumno') && data.rol === 'alumno') {
-      return NextResponse.redirect(new URL('/plataforma/alumno', req.url))
-    } else if (pathname.startsWith('/plataforma') && !data.rol) {
-      return NextResponse.redirect(new URL('/plataforma', req.url))
+    }
+
+    if (
+      pathname.startsWith('/plataforma') &&
+      !pathname.includes('/profes') &&
+      data.rol === 'profesor'
+    ) {
+      return NextResponse.redirect(new URL('/plataforma/profes', req.url))
+    }
+
+    if (
+      pathname.startsWith('/plataforma') &&
+      !pathname.includes('/alumnos') &&
+      data.rol === 'alumno'
+    ) {
+      return NextResponse.redirect(new URL('/plataforma/alumnos', req.url))
     }
 
     return NextResponse.next()
@@ -61,8 +84,5 @@ export const middleware = async (req) => {
 }
 
 export const config = {
-  matcher: [
-    '/login',
-    '/plataforma/:path*'
-  ]
+  matcher: ['/login', '/plataforma/:path*']
 }
