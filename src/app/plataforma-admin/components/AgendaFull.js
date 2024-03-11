@@ -136,7 +136,7 @@ const AgendaFull = () => {
               priority
             />
             <div className="col-start-1 col-end-1 row-start-1 row-end-1 w-full m-auto z-40 flex flex-col">
-              <h2 className="text-center text-3xl m-auto text-[#FFFFFF] mb-8 sm:mb-6 lg:mb-8 xl:mb-10">Días y horarios</h2>
+              <h2 className="text-center text-2xl sm:text-3xl m-auto text-[#FFFFFF] mb-8 sm:mb-6 lg:mb-8 xl:mb-10">Días y horarios</h2>
               {diasSemana.map((dia, index) => (
                 <button
                   key={index}
