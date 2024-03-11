@@ -120,7 +120,7 @@ const AgendaFull = () => {
           <div className='my-auto flex ml-4 sm:ml-8'>
             <h3 className="text-[#FFFFFF] my-auto text-xl sm:text-2xl">Días y horarios</h3>
             <p className='my-auto mx-4 sm:mx-8'>|</p>
-            <p className='text-[#E9500E] my-auto lg:mt-1 text-xl sm:text-2xl'>{selectedDay}</p>
+            <p className='text-[#F57B48] my-auto lg:mt-1 text-xl sm:text-2xl'>{selectedDay}</p>
           </div>
         </div>
           )
@@ -141,7 +141,7 @@ const AgendaFull = () => {
                 <button
                   key={index}
                   onClick={() => filterAlumnosByDay(dia)}
-                  className={`bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-10 sm:h-8 md:h-8 lg:h-10 w-4/6 sm:w-3/6 md:w-2/6 ${index === diasSemana.length - 1 ? '' : 'mb-6 md:mb-4 xl:mb-6'} md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]`}
+                  className={`bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-10 sm:h-8 md:h-8 lg:h-10 w-4/6 sm:w-3/6 md:w-2/6 ${index === diasSemana.length - 1 ? '' : 'mb-6 md:mb-4 xl:mb-6'} md:hover:bg-[#A33100] md:hover:text-[#FFFFFF]`}
                 >
                   {dia}
                 </button>

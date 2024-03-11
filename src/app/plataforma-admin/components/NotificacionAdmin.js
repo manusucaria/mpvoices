@@ -129,7 +129,7 @@ const NotificacionAdmin = ({ alumno, notification, setSelectedAlumno, setNotific
                   <button className='text-[#E9500E] font-bold md:hover:text-[#DB9B6D]' onClick={updateNotes}>
                     Guardar
                   </button>
-                  <button className='text-[#E9500E] font-bold md:hover:text-[#DB9B6D]' onClick={toggleEditing}>
+                  <button className='text-[#E9500E] md:hover:text-[#DB9B6D] font-bold' onClick={toggleEditing}>
                     Cancelar
                   </button>
                 </>

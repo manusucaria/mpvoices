@@ -84,7 +84,7 @@ const AgendaProfes = ({ profesor }) => {
         ? (
         <div className="flex justify-center items-center mb-4">
           <div className="flex my-auto pb-3">
-            <svg className='my-auto md:hover:cursor-pointer stroke-[#FFFFFF] md:hover:stroke-[#E9500E]' onClick={() => showAllDays()} width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg className='my-auto md:hover:cursor-pointer stroke-[#FFFFFF] md:hover:stroke-[#F57B48]' onClick={() => showAllDays()} width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g id="iconamoon:arrow-up-2-light">
               <path id="Vector" d="M19.8333 9.22572L12.75 15.8155L19.8333 22.4053" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </g>
@@ -93,7 +93,7 @@ const AgendaProfes = ({ profesor }) => {
           <div className='my-auto flex ml-4 sm:ml-8 mb-4'>
             <h3 className="text-[#FFFFFF] my-auto text-xl sm:text-2xl">Días y horarios</h3>
             <p className='my-auto mx-4 sm:mx-8'>|</p>
-            <p className='text-[#E9500E] my-auto pt-1 text-xl sm:text-2xl'>{selectedDay.toLowerCase()}</p>
+            <p className='text-[#F57B48] my-auto pt-1 text-xl sm:text-2xl'>{selectedDay.toLowerCase()}</p>
           </div>
         </div>
           )
@@ -121,7 +121,7 @@ const AgendaProfes = ({ profesor }) => {
               {availableDays
                 ? (
                     availableDays.map((day, index) => (
-                    <button key={index} onClick={() => filterAlumnosByDay(day)} className={`bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-10 sm:h-8 md:h-8 lg:h-10 w-4/6 sm:w-3/6 md:w-2/6 ${index === diasSemana.length - 1 ? '' : 'mb-6 md:mb-4 xl:mb-6'} md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]`}>
+                    <button key={index} onClick={() => filterAlumnosByDay(day)} className={`bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-10 sm:h-8 md:h-8 lg:h-10 w-4/6 sm:w-3/6 md:w-2/6 ${index === diasSemana.length - 1 ? '' : 'mb-6 md:mb-4 xl:mb-6'} md:hover:bg-[#A33100] md:hover:text-[#FFFFFF]`}>
                       {day.toLowerCase()}
                     </button>
                     ))

@@ -121,7 +121,7 @@ const AgendaSmall = () => {
           <div className='my-auto flex ml-4 sm:ml-8'>
             <h3 className="text-[#FFFFFF] my-auto text-xl sm:text-2xl">Días y horarios</h3>
             <p className='my-auto mx-4 sm:mx-8'>|</p>
-            <p className='text-[#E9500E] my-auto mt-1 lg:mt-1 text-xl sm:text-2xl'>{selectedDay}</p>
+            <p className='text-[#F57B48] my-auto mt-1 lg:mt-1 text-xl sm:text-2xl'>{selectedDay}</p>
           </div>
         </div>
           )
