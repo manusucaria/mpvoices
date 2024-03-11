@@ -31,6 +31,10 @@ const LoginForm = () => {
     if (Object.keys(formErrors).length === 0) {
       try {
         await signIn({ email: email.trim(), password })
+        setEmail('')
+        setPassword('')
+        setErrors({})
+        window.location.href = '/plataforma'
       } catch (error) {
         if (error.code === 'auth/wrong-password') {
           setErrors({ password: 'Contraseña incorrecta' })
