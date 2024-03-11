@@ -52,7 +52,7 @@ const MariaPeñaFull = () => {
             <span className="w-1 h-1 bg-black rounded-full"></span>
             Creadora de su disco{' '}
             <a
-              className="text-base font-semibold bg-[#ffffff] text-[#E9500E]"
+              className="text-base font-semibold bg-[#ffffff] text-[#A33100]"
               href="https://open.spotify.com/intl-es/album/3VyyDvIRBzhZnJDSu3up08"
               target="_blank"
               rel="noreferrer"

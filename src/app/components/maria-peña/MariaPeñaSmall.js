@@ -49,7 +49,7 @@ const MariaPeñaSmall = () => {
           <span className="w-1 h-1 bg-black rounded-full"></span>
           <p className='text-base font-semibold bg-[#ffffff] text-[#0D0D0D] mb-2'>Creadora de su disco{' '}</p>
           <a
-            className="text-base font-semibold bg-[#ffffff] text-[#E9500E]"
+            className="text-base font-semibold bg-[#ffffff] text-[#A33100]"
             href="https://open.spotify.com/intl-es/album/3VyyDvIRBzhZnJDSu3up08"
             target="_blank"
             rel="noreferrer"
