@@ -111,12 +111,8 @@ export const signUp = async ({
 export const signOut = async () => {
   try {
     await signOutFirebase(auth)
-    await fetch('api/auth/session', {
-      method: 'DELETE',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      }
+    await fetch('/api/auth/session', {
+      method: 'DELETE'
     })
   } catch (error) {
     throw error
