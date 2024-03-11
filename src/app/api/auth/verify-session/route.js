@@ -16,13 +16,11 @@ export const GET = async () => {
     const sessionCookie = await auth().verifySessionCookie(cookieSession)
     await auth().getUser(sessionCookie.uid)
 
-    return NextResponse.json(
-      {
-        isLogged: true,
-        rol: sessionCookie.rol,
-        email_verified: sessionCookie.email_verified
-      }
-    )
+    return NextResponse.json({
+      isLogged: true,
+      rol: sessionCookie.rol,
+      email_verified: sessionCookie.email_verified
+    })
   } catch (error) {
     return NextResponse.json(
       { isLogged: false, error: error.message, code: error.code },
