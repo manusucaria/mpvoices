@@ -164,7 +164,7 @@ const AgendaFull = () => {
             <h3 className='text-[#0D0D0D] col-start-2 col-end-3 mx-auto my-auto font-bold text-lg'>{selectedDay}</h3>
             {startIndex + 2 < filteredProfesoresSorted.length && (
               <div className='flex col-start-3 col-end-4 ml-auto mr-4'>
-                <svg onClick={handleNext} className='stroke-[#0D0D0D] md:hover:stroke-[#E9500E] m-auto md:hover:cursor-pointer' width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg onClick={handleNext} className='stroke-[#0D0D0D] md:hover:stroke-[#F57B48] m-auto md:hover:cursor-pointer' width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <g id="iconamoon:arrow-up-2-light">
                   <path id="Vector" d="M16.6667 23.0188L25 16.2486L16.6667 9.47833" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </g>
