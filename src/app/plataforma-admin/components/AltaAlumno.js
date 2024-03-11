@@ -103,7 +103,7 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, new
     <div className='flex flex-col mx-auto w-full'>
       <div className="mx-auto flex justify-center w-full md:w-4/6 lg:w-3/6 my-8">
         <div className="flex my-auto pt-1">
-          <svg className='my-auto md:hover:cursor-pointer stroke-[#E9500E] md:hover:stroke-[#DB9B6D]' onClick={cancelarClick} width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg className='my-auto md:hover:cursor-pointer stroke-[#FFFFFF] md:hover:stroke-[#F57B48]' onClick={cancelarClick} width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="iconamoon:arrow-up-2-light">
             <path id="Vector" d="M19.8333 9.22572L12.75 15.8155L19.8333 22.4053" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </g>
@@ -223,7 +223,7 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, new
           <div className="ml-auto text-sm text-[#FFFFFF]">{warningMessage}</div>
         )}
         <div className='flex w-full mx-auto my-8 gap-x-4'>
-          <button className='rounded-3xl w-3/6 font-botones font-bold h-12 sm:h-10 bg-[#E9500E] text-[#FFFFFF] px-3 md:hover:bg-[#DB9B6D]' type='submit'>
+          <button className='rounded-3xl w-3/6 font-botones font-bold h-12 sm:h-10 bg-[#A33100] text-[#FFFFFF] px-3 md:hover:bg-[#DB9B6D]' type='submit'>
             Guardar
           </button>
           <button

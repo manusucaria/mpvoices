@@ -67,7 +67,7 @@ const NotificacionAdmin = ({ alumno, notification, setSelectedAlumno, setNotific
             </div>
             <div className='flex justify-center gap-x-8 mt-8'>
               <button className='text-[#E9500E] font-bold md:hover:text-[#DB9B6D]' onClick={toggleView}>
-                Ver Notas
+                Ver notas
               </button>
               <button className='text-[#E9500E] font-bold md:hover:text-[#DB9B6D]' onClick={closeNotification}>
                 Salir
@@ -137,7 +137,7 @@ const NotificacionAdmin = ({ alumno, notification, setSelectedAlumno, setNotific
                 : (
                 <>
                   <button className='text-[#E9500E] font-bold md:hover:text-[#DB9B6D]' onClick={toggleEditing}>
-                    Editar Notas
+                    Editar notas
                   </button>
                   <button className='text-[#E9500E] font-bold md:hover:text-[#DB9B6D]' onClick={toggleView}>
                     Volver

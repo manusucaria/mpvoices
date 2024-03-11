@@ -110,7 +110,7 @@ const EditorDatosProfesor = ({ profesor, setSelectedAlumno, setSelectedProfesor 
         <div className='flex flex-col w-full bg-[#0D0D0D]'>
           <div className='w-full flex justify-center mx-auto gap-x-4 sm:gap-x-6 pb-6 sm:pb-8 bg-[#212121]'>
             <div className="my-auto ml-auto pt-[0.5px] xl:pt-1">
-              <svg className='hover:cursor-pointer stroke-[#9B70BE] md:hover:stroke-[#663481]' onClick={() => volver()} width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg className='hover:cursor-pointer stroke-[#FFFFFF] md:hover:stroke-[#9B70BE]' onClick={() => volver()} width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="iconamoon:arrow-up-2-light">
                 <path id="Vector" d="M19.8333 9.22572L12.75 15.8155L19.8333 22.4053" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </g>
@@ -220,7 +220,7 @@ const EditorDatosProfesor = ({ profesor, setSelectedAlumno, setSelectedProfesor 
         <div className='flex flex-col w-full mx-auto'>
           <div className='w-full flex justify-center mx-auto gap-x-4 sm:gap-x-6 mb-6 sm:mb-8'>
             <div className="my-auto ml-auto pt-[0.5px] xl:pt-1">
-              <svg className='hover:cursor-pointer stroke-[#9B70BE] md:hover:stroke-[#663481]' onClick={() => volver()} width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg className='hover:cursor-pointer stroke-[#FFFFFF] md:hover:stroke-[#BDA0D4]' onClick={() => volver()} width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="iconamoon:arrow-up-2-light">
                 <path id="Vector" d="M19.8333 9.22572L12.75 15.8155L19.8333 22.4053" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </g>

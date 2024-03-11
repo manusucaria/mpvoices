@@ -99,7 +99,7 @@ const AltaProfesor = ({ setShowProfesorForm, confirmacionRegistro, newUserEmail,
     <div className='flex flex-col mx-auto w-full'>
       <div className="mx-auto flex justify-center w-full md:w-4/6 lg:w-3/6 my-8">
         <div className="flex my-auto pt-1">
-          <svg className='my-auto md:hover:cursor-pointer stroke-[#663481] md:hover:stroke-[#9B70BE]' onClick={cancelarClick} width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg className='my-auto md:hover:cursor-pointer stroke-[#FFFFFF] md:hover:stroke-[#BDA0D4]' onClick={cancelarClick} width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="iconamoon:arrow-up-2-light">
             <path id="Vector" d="M19.8333 9.22572L12.75 15.8155L19.8333 22.4053" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </g>

@@ -112,7 +112,7 @@ const AgendaSmall = () => {
         ? (
         <div className="flex justify-center mb-4">
           <div className="flex my-auto pt-1">
-            <svg className='my-auto md:hover:cursor-pointer stroke-[#FFFFFF] md:hover:stroke-[#E9500E]' onClick={() => showAllDays()} width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg className='my-auto md:hover:cursor-pointer stroke-[#FFFFFF] md:hover:stroke-[#F57B48]' onClick={() => showAllDays()} width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g id="iconamoon:arrow-up-2-light">
               <path id="Vector" d="M19.8333 9.22572L12.75 15.8155L19.8333 22.4053" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </g>

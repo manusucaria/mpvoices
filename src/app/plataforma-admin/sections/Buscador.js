@@ -82,7 +82,7 @@ const Buscador = () => {
       {searchTerm.trim() !== '' && (
         <div className='flex flex-col mx-auto w-full'>
           {buscarAlumnos.map((alumno) => (
-            <button key={alumno.id} onClick={() => handleAlumnoClick(alumno)} className='mx-auto mb-8 px-2 sm:mb-6 md:mb-4 bg-[#E9500E] font-botones text-[#FFFFFF] rounded-3xl h-12 sm:h-10 w-4/6 sm:w-3/6 md:hover:bg-[#DB9B6D]'>{alumno.Nombre} {alumno.Apellido} - Alumno</button>
+            <button key={alumno.id} onClick={() => handleAlumnoClick(alumno)} className='mx-auto mb-8 px-2 sm:mb-6 md:mb-4 bg-[#A33100] font-botones text-[#FFFFFF] rounded-3xl h-12 sm:h-10 w-4/6 sm:w-3/6 md:hover:bg-[#DB9B6D]'>{alumno.Nombre} {alumno.Apellido} - Alumno</button>
           ))}
         </div>
       )}

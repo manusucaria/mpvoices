@@ -134,7 +134,7 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
               />
             </div>
             <div className='flex w-full mx-auto mt-8 gap-x-4'>
-            <button className='font-botones font-bold rounded-3xl w-3/6 bg-[#E9500E] text-[#FFFFFF] px-3 h-12 sm:h-10 md:hover:bg-[#DB9B6D]' type='submit'>
+            <button className='font-botones font-bold rounded-3xl w-3/6 bg-[#A33100] text-[#FFFFFF] px-3 h-12 sm:h-10 md:hover:bg-[#DB9B6D]' type='submit'>
                 Guardar
               </button>
               <button
@@ -173,7 +173,7 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
             </div>
           </div>
           <div className='bg-[#0D0D0D] flex flex-col mx-auto w-full'>
-            <button className='font-botones font-bold rounded-3xl w-4/6 sm:w-3/6 mx-auto h-12 sm:h-10 mb-8 bg-[#E9500E] md:hover:bg-[#DB9B6D]' onClick={handleEditClick}>
+            <button className='font-botones font-bold rounded-3xl w-4/6 sm:w-3/6 mx-auto h-12 sm:h-10 mb-8 bg-[#A33100] md:hover:bg-[#DB9B6D]' onClick={handleEditClick}>
                 Editar datos
             </button>
           </div>
