@@ -38,12 +38,17 @@ export const middleware = async (req) => {
       })
     }
 
+    if (!data.rol) {
+      return NextResponse.rewrite(new URL('/no-autorizado', req.url))
+    }
+
     if (
       pathname.startsWith('/plataforma') &&
-      (!data.rol ||
-        !data.rol.includes('admin') ||
-        !data.rol.includes('profesor') ||
-        !data.rol.includes('alumno'))
+      !(
+        data.rol.includes('admin') ||
+        data.rol.includes('profesor') ||
+        data.rol.includes('alumno')
+      )
     ) {
       return NextResponse.rewrite(new URL('/no-autorizado', req.url))
     }
@@ -74,6 +79,7 @@ export const middleware = async (req) => {
 
     return NextResponse.next()
   } catch (error) {
+    console.log(error)
     return NextResponse.redirect(new URL('/login', req.url), {
       headers: {
         'Set-Cookie': `${firebaseConfig.COOKIE_SESSION_NAME}=; Path=/; Max-Age=0`,
