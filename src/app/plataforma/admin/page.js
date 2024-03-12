@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import Buscador from './sections/Buscador.js'
 import Agenda from './sections/Agenda.js'
@@ -9,11 +9,23 @@ import Menu from './components/Menu'
 
 import { useAuth } from '@/lib/firebase/useAuth.js'
 import { signOut } from '@/lib/firebase/auth.js'
+import Loader from '@/app/components/loader/Loader.jsx'
 
 const page = () => {
   const user = useAuth()
+
+  const [loading, setLoading] = useState(true)
   const [cambios, setCambios] = useState()
   const [showConfirmation, setShowConfirmation] = useState(false)
+
+  useEffect(() => {
+    if (user) {
+      setLoading(false)
+    }
+    return () => {
+      setLoading(false)
+    }
+  }, [user])
 
   const handleSubmit = () => {
     setShowConfirmation(true)
@@ -32,10 +44,10 @@ const page = () => {
     setShowConfirmation(false)
   }
 
+  if (loading) return <Loader />
+
   return (
     <div className="flex flex-col xl:border-b-1 xl:border-b-white">
-      {user
-        ? (
         <div className="xl:grid xl:grid-cols-9">
           <div className="hidden xl:flex xl:flex-col col-start-1 col-end-2">
             <Menu handleLogOut={handleSubmit} />
@@ -57,10 +69,6 @@ const page = () => {
             </div>
           </div>
         </div>
-          )
-        : (
-            ''
-          )}
       {showConfirmation && (
         <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-50 z-50">
           <div className="bg-[#FFFFFF] p-12 rounded-lg text-center flex flex-col">
