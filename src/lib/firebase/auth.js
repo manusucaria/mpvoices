@@ -75,7 +75,8 @@ export const signUp = async ({
       case 'profesor': {
         const setProfesor = new Profesor({
           instrumento: rest.instrumento,
-          usuarioUid: firebaseUser.uid
+          usuarioUid: firebaseUser.uid,
+          dias: rest.dias
         })
         const profesorRef = doc(
           db,
