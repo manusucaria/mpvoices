@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react'
 
 import { signUp } from '@/lib/firebase/auth'
 import { getRolByName } from '@/lib/firebase/crud/read'
-import { instrumentos } from '@/app/api/data'
+import { diasSemana, instrumentos } from '@/app/api/data'
 
 const AltaUsuarioProfe = ({
   setProfesorFormSubmitted,
   handleCancelar,
   onFormSubmit
 }) => {
+  const [showDaysOptions, setShowDaysOptions] = useState(false)
+  const [selectedDays, setSelectedDays] = useState([])
   const [newUserEmail, setNewUserEmail] = useState('')
   const [newUserPassword, setNewUserPassword] = useState('')
   const [newUserRol, setNewUserRol] = useState()
@@ -26,6 +28,26 @@ const AltaUsuarioProfe = ({
       setNewUserRol(rol)
     })()
   }, [])
+
+  const handleDayClick = () => {
+    setShowDaysOptions(!showDaysOptions)
+  }
+
+  const handleDayCheckboxChange = (e) => {
+    const { name, checked } = e.target
+    let updatedSelectedDays = [...selectedDays]
+
+    if (checked) {
+      updatedSelectedDays.push(name)
+    } else {
+      updatedSelectedDays = updatedSelectedDays.filter(day => day !== name)
+    }
+    updatedSelectedDays.sort((a, b) => {
+      return diasSemana.indexOf(a) - diasSemana.indexOf(b)
+    })
+
+    setSelectedDays(updatedSelectedDays)
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -195,6 +217,38 @@ const AltaUsuarioProfe = ({
             onChange={(e) => setNewUserApellido(e.target.value)}
           />
         </div>
+        <div className='flex mt-6'>
+          <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Día:</label>
+          <div className="relative w-4/6 ml-auto">
+          <input
+            className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-full'
+            type="text"
+            name="Dia"
+            placeholder="Seleccione un día"
+            value={selectedDays.join(', ')}
+            onClick={handleDayClick}
+            readOnly
+          />
+          </div>
+        </div>
+        {showDaysOptions && (
+          <div className="flex flex-col mt-6">
+            <div className='w-4/6 ml-auto'>
+              {diasSemana.map((dia, index) => (
+                <div key={index} className="flex items-center">
+                  <input
+                    type="checkbox"
+                    name={dia}
+                    checked={selectedDays.includes(dia)}
+                    onChange={handleDayCheckboxChange}
+                    className="mr-2"
+                  />
+                  <label>{dia}</label>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
             Instr.:
