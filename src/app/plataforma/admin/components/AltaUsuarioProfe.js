@@ -18,6 +18,8 @@ const AltaUsuarioProfe = ({
   const [errors, setErrors] = useState({})
   const [showConfirmation, setShowConfirmation] = useState(false)
 
+  const [sendingData, setSendingData] = useState(false)
+
   useEffect(() => {
     (async () => {
       const rol = await getRolByName({ nombre: 'profesor' })
@@ -27,6 +29,7 @@ const AltaUsuarioProfe = ({
 
   const handleSubmit = async (event) => {
     event.preventDefault()
+    setSendingData(true)
 
     setErrors({})
 
@@ -63,6 +66,7 @@ const AltaUsuarioProfe = ({
       }
     }
 
+    setSendingData(false)
     setErrors(formErrors)
   }
 
