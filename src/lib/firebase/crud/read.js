@@ -1,12 +1,21 @@
-import { doc, getDoc } from 'firebase/firestore'
+import { collection, where, query, getDocs } from 'firebase/firestore'
 import { db } from '../firebase'
+import { RolConverter } from '../schemas.converters'
 
 export const getRolByName = async ({ nombre }) => {
   try {
-    const docRef = doc(db, 'roles', nombre)
-    const docSnap = await getDoc(docRef)
-    if (docSnap.exists()) return { id: docSnap.id, ...docSnap.data() }
-    else throw new Error('Rol no encontrado')
+    const rolesRef = collection(db, 'roles')
+    const q = query(rolesRef, where('nombre', '==', nombre)).withConverter(
+      RolConverter
+    )
+    const querySnapshot = await getDocs(q)
+    const rol = querySnapshot.docs[0]
+
+    if (rol.exists()) {
+      return { ...rol.data(), id: rol.id }
+    } else {
+      throw new Error('Rol no encontrado')
+    }
   } catch (error) {
     return null
   }
