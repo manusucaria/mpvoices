@@ -265,7 +265,7 @@ const EditorDatosProfesor = ({ profesor, setSelectedAlumno, setSelectedProfesor 
         </div>
           )}
         {showConfirmation && (
-          <div className="fixed top-0 left-0 w-full h-full flex justify-center px-3 items-center z-50">
+          <div className="fixed top-0 left-0 w-full h-full flex justify-center px-3 bg-[#0D0D0D] bg-opacity-30 items-center z-50">
             <div className="bg-[#FFFFFF] p-12 rounded-lg text-center flex flex-col">
               <p className="text-[#0D0D0D] text-xl mb-4 font-bold">Los cambios se guardaron correctamente.</p>
               <button
