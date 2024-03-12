@@ -74,7 +74,8 @@ const AltaUsuarioProfe = ({
           rolAsignado: newUserRol,
           nombre: newUserNombre,
           apellido: newUserApellido,
-          instrumento: newUserInstrumento
+          instrumento: newUserInstrumento,
+          dias: selectedDays.join(', ')
         })
         setShowConfirmation(true)
       } catch (error) {
