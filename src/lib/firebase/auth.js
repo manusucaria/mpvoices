@@ -35,7 +35,6 @@ export const signIn = async ({ email, password }) => {
 export const signUp = async ({
   email,
   password,
-  sendEmail,
   rolAsignado,
   ...rest
 }) => {
@@ -48,7 +47,7 @@ export const signUp = async ({
 
     const firebaseUser = createdUser.user
 
-    await fetch('api/auth/custom-rol', {
+    await fetch('/api/auth/custom-rol', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -75,8 +74,8 @@ export const signUp = async ({
     switch (rolAsignado.nombre) {
       case 'profesor': {
         const setProfesor = new Profesor({
-          instrumentos: rest.instrumentosId,
-          usuario: firebaseUser.uid
+          instrumento: rest.instrumento,
+          usuarioUid: firebaseUser.uid
         })
         const profesorRef = doc(
           db,
@@ -90,7 +89,7 @@ export const signUp = async ({
         const setAlumno = new Alumno({
           usuarioUid: firebaseUser.uid,
           profesorId: rest.profesorId,
-          instrumentosId: rest.instrumentosId
+          instrumento: rest.instrumento
         })
         const alumnoRef = doc(db, 'alumnos', firebaseUser.uid).withConverter(
           AlumnoConverter
@@ -102,7 +101,7 @@ export const signUp = async ({
         return
     }
 
-    sendEmail && (await sendEmailVerification(firebaseUser))
+    await sendEmailVerification(firebaseUser)
   } catch (error) {
     throw error
   }
