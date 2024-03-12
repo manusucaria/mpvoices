@@ -79,7 +79,6 @@ export const middleware = async (req) => {
 
     return NextResponse.next()
   } catch (error) {
-    console.log(error)
     return NextResponse.redirect(new URL('/login', req.url), {
       headers: {
         'Set-Cookie': `${firebaseConfig.COOKIE_SESSION_NAME}=; Path=/; Max-Age=0`,
