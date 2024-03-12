@@ -4,11 +4,9 @@ import { useRouter } from 'next/navigation'
 
 // import { getProfesores } from '@/app/api/api'
 import { useAuth } from '@/lib/firebase/useAuth.js'
-import { auth } from '@/lib/firebase/firebase.js'
+import { signOut } from '@/lib/firebase/auth'
 
 // import AgendaProfes from './components/AgendaProfes.js'
-
-import { signOut } from 'firebase/auth'
 
 const Page = () => {
   const user = useAuth()
@@ -47,10 +45,9 @@ const Page = () => {
     setShowConfirmation(true)
   }
 
-  const handleLogout = () => {
-    signOut(auth).then(() => {
-      router.push('/')
-    })
+  const handleLogout = async () => {
+    await signOut()
+    window.location.reload()
   }
 
   const handleCloseConfirmation = () => {
