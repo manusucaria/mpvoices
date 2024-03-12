@@ -42,14 +42,16 @@ export const ProfesorConverter = {
   toFirestore: (profesor) => {
     return {
       usuarioUid: profesor.usuarioUid,
-      instrumento: profesor.instrumento
+      instrumento: profesor.instrumento,
+      dias: profesor.dias
     }
   },
   fromFirestore: (snapshot, options) => {
     const data = snapshot.data(options)
     return new Profesor({
       usuarioUid: data.usuarioUid,
-      instrumento: data.instrumento
+      instrumento: data.instrumento,
+      dias: data.dias
     })
   }
 }

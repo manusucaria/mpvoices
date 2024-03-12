@@ -39,9 +39,10 @@ export class Usuario {
 }
 
 export class Profesor {
-  constructor ({ usuarioUid, instrumento }) {
+  constructor ({ usuarioUid, instrumento, dias }) {
     this.usuarioUid = this.parseUsuarioRef({ usuarioUid })
     this.instrumento = instrumento
+    this.dias = dias
   }
 
   parseUsuarioRef ({ usuarioUid }) {
