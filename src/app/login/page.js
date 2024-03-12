@@ -47,12 +47,12 @@ const LoginForm = () => {
   return (
     <div className='w-auto h-auto mt-8 lg:mt-2 lg:h-screen flex flex-col justify-center items-center md:justify-start'>
       <div className='md:mt-14 lg:mb-4'>
-        <h2 className='text-3xl text-white'>Ingresar</h2>
+        <h2 className='text-3xl text-[#FFFFFF]'>Ingresar</h2>
       </div>
 
       <form className='border-2 border-white-200 rounded-md m-4 flex flex-col gap-4 py-6 px-4' onSubmit={handleSubmit}>
         <div>
-          <label className='text-white mr-2 ml-3' htmlFor='email'>Usuario:</label>
+          <label className='text-[#FFFFFF] mr-2 ml-3' htmlFor='email'>Usuario:</label>
           <input
             placeholder='Nombre de Usuario'
             className='text-black border-2 border-slate-200 rounded-3xl p-2 mt-2 w-full'
@@ -65,7 +65,7 @@ const LoginForm = () => {
           {errors.email && <p className='text-[#FFFFFF] text-sm ml-3'>{errors.email}</p>}
         </div>
         <div className='flex flex-col'>
-          <label className='text-white mr-2 ml-3' htmlFor='password'>Contraseña:</label>
+          <label className='text-[#FFFFFF] mr-2 ml-3' htmlFor='password'>Contraseña:</label>
           <div className='grid grid-cols-3 grid-rows-1 w-full mt-2'>
             <input
               placeholder='Contraseña'
@@ -89,7 +89,7 @@ const LoginForm = () => {
           </div>
         </div>
         {errors.password && <p className='text-[#FFFFFF] text-sm ml-3'>{errors.password}</p>}
-        <button className='hover:bg-[#E9500E] hover:border-white transition-all w-full py-3 px-4 shadow-md border border-[#E9500E] text-white font-bold rounded-3xl mt-5'
+        <button className='hover:bg-[#A33100] hover:border-[#FFFFFF] transition-all w-full py-3 px-4 shadow-md border border-[#A33100E] text-[#FFFFFF] font-bold rounded-3xl mt-5'
           type='submit'>
             Iniciar sesión
         </button>
