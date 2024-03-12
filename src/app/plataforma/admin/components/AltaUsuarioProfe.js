@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react'
 
 import { signUp } from '@/lib/firebase/auth'
 import { getRolByName } from '@/lib/firebase/crud/read'
+import { instrumentos } from '@/app/api/data'
 
 const AltaUsuarioProfe = ({ setProfesorFormSubmitted, handleCancelar, onFormSubmit }) => {
   const [newUserEmail, setNewUserEmail] = useState('')
   const [newUserPassword, setNewUserPassword] = useState('')
   const [newUserRol, setNewUserRol] = useState()
+  const [newUserNombre, setNewUserNombre] = useState()
+  const [newUserApellido, setNewUserApellido] = useState()
+  const [newUserInstrumento, setNewUserInstrumento] = useState()
   const [errors, setErrors] = useState({})
   const [showConfirmation, setShowConfirmation] = useState(false)
 
@@ -35,7 +39,7 @@ const AltaUsuarioProfe = ({ setProfesorFormSubmitted, handleCancelar, onFormSubm
     if (Object.keys(formErrors).length === 0) {
       try {
         onFormSubmit(newUserEmail, newUserPassword)
-        await signUp({ email: newUserEmail, password: newUserPassword, rolAsignado: newUserRol, sendEmail: true })
+        await signUp({ email: newUserEmail, password: newUserPassword, rolAsignado: newUserRol, nombre: newUserNombre, apellido: newUserApellido, instrumento: newUserInstrumento })
         setShowConfirmation(true)
       } catch (error) {
         if (error.code === 'auth/email-already-in-use') {
@@ -107,6 +111,30 @@ const AltaUsuarioProfe = ({ setProfesorFormSubmitted, handleCancelar, onFormSubm
           />
         </div>
         {errors.password && <p className="ml-auto pr-4 mt-1 text-[#FFFFFF] text-sm">{errors.password}</p>}
+        <div className='flex mb-6'>
+          <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Nombre:</label>
+          <input placeholder="Nombre" className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Nombre" value={newUserNombre} onChange={(e) => setNewUserNombre(e.target.value)} />
+        </div>
+        <div className='flex mb-6'>
+          <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Apellido:</label>
+          <input placeholder="Apellido" className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Apellido" value={newUserApellido} onChange={(e) => setNewUserApellido(e.target.value)} />
+        </div>
+        <div className='flex mb-6'>
+          <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Instr.:</label>
+          <select
+            className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+            name="Instrumento"
+            value={newUserInstrumento}
+            onChange={(e) => setNewUserInstrumento(e.target.value)}
+          >
+            <option value="">Seleccione un instrumento</option>
+            {instrumentos.map((instrumento, index) => (
+              <option key={index} value={instrumento}>
+                {instrumento}
+              </option>
+            ))}
+          </select>
+        </div>
         <div className='flex w-full mx-auto gap-x-4 mt-8 mb-2'>
           <button
             className='font-botones font-bold h-12 sm:h-10 w-3/6 mr-auto rounded-3xl bg-[#663481] text-[#FFFFFF] px-3 md:hover:bg-[#9B70BE]'
