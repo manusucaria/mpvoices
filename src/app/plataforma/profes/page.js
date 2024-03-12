@@ -4,14 +4,23 @@ import React, { useState, useEffect } from 'react'
 import { useAuth } from '@/lib/firebase/useAuth.js'
 import { signOut } from '@/lib/firebase/auth'
 import { getProfesores } from '@/app/api/api'
+import Loader from '@/app/components/loader/Loader'
 
 // import AgendaProfes from './components/AgendaProfes.js'
 
 const Page = () => {
   const user = useAuth()
+
+  const [loading, setLoading] = useState(true)
   const [profesor, setProfesor] = useState({})
   // const [availableDays, setAvailableDays] = useState()
   const [showConfirmation, setShowConfirmation] = useState(false)
+
+  useEffect(() => {
+    if (user) setLoading(false)
+
+    return () => setLoading(false)
+  }, [user])
 
   // useEffect(() => {
   //   getProfesores().then((data) => {
@@ -31,7 +40,7 @@ const Page = () => {
   useEffect(() => {
     (async () => {
       const profesores = await getProfesores()
-      const profe = profesores.find((profe) => profe.id === user.uid)
+      const profe = profesores.find((profe) => profe.id === user?.uid)
       setProfesor(profe)
     })()
   }, [user])
@@ -48,6 +57,8 @@ const Page = () => {
   const handleCloseConfirmation = () => {
     setShowConfirmation(false)
   }
+
+  if (loading) return <Loader />
 
   return (
     <div id="Agenda" className="flex flex-col">
