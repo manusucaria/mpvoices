@@ -1,10 +1,13 @@
 'use client'
 import React, { useState, useEffect } from 'react'
-import alasSmall from '../../assets/alasSmall.jpg'
 import Image from 'next/image'
+
+import alasSmall from '@/app/assets/alas.jpg'
 import alas from '../../assets/alas.jpg'
+
 import { horarios, diasSemana } from '../../api/data.js'
 import { getAlumnos } from '../../api/api.js'
+
 import NotificacionProfe from '../../plataforma-admin/components/NotificacionProfe.js'
 
 const AgendaProfes = ({ profesor }) => {
