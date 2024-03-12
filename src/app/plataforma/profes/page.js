@@ -1,6 +1,5 @@
 'use client'
 import React, { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
 
 // import { getProfesores } from '@/app/api/api'
 import { useAuth } from '@/lib/firebase/useAuth.js'
@@ -12,19 +11,7 @@ const Page = () => {
   const user = useAuth()
   // const [profesor, setProfesor] = useState({})
   // const [availableDays, setAvailableDays] = useState()
-  const router = useRouter()
   const [showConfirmation, setShowConfirmation] = useState(false)
-
-  useEffect(() => {
-    // if (user === null) {
-    //   router.push('/login')
-    // }
-    // if (user) {
-    //   if (user.displayName !== 'Profesor') {
-    //     router.push('/login')
-    //   }
-    // }
-  }, [router])
 
   // useEffect(() => {
   //   getProfesores().then((data) => {
