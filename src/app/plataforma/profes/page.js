@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
-import { getProfesores } from '../api/api.js'
-import { useAuth } from '../../lib/auth'
-import { auth } from '../../lib/firebase.js'
+import { getProfesores } from '@/app/api/api'
+import { useAuth } from '@/lib/firebase/useAuth.js'
+import { auth } from '@/lib/firebase/firebase.js'
 
 import AgendaProfes from './components/AgendaProfes.js'
 
