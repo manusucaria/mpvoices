@@ -1,15 +1,15 @@
 'use client'
 import React, { useState, useEffect } from 'react'
 
-// import { getProfesores } from '@/app/api/api'
 import { useAuth } from '@/lib/firebase/useAuth.js'
 import { signOut } from '@/lib/firebase/auth'
+import { getProfesores } from '@/app/api/api'
 
 // import AgendaProfes from './components/AgendaProfes.js'
 
 const Page = () => {
   const user = useAuth()
-  // const [profesor, setProfesor] = useState({})
+  const [profesor, setProfesor] = useState({})
   // const [availableDays, setAvailableDays] = useState()
   const [showConfirmation, setShowConfirmation] = useState(false)
 
@@ -27,6 +27,14 @@ const Page = () => {
   //     }
   //   })
   // }, [user])
+
+  useEffect(() => {
+    (async () => {
+      const profesores = await getProfesores()
+      const profe = profesores.find((profe) => profe.id === user.uid)
+      setProfesor(profe)
+    })()
+  }, [user])
 
   const handleSubmit = () => {
     setShowConfirmation(true)
