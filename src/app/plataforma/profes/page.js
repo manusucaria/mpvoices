@@ -6,14 +6,14 @@ import { signOut } from '@/lib/firebase/auth'
 import { getProfesores } from '@/app/api/api'
 import Loader from '@/app/components/loader/Loader'
 
-// import AgendaProfes from './components/AgendaProfes.js'
+import AgendaProfes from './components/AgendaProfes'
 
 const Page = () => {
   const user = useAuth()
 
   const [loading, setLoading] = useState(true)
   const [profesor, setProfesor] = useState({})
-  // const [availableDays, setAvailableDays] = useState()
+  const [availableDays, setAvailableDays] = useState()
   const [showConfirmation, setShowConfirmation] = useState(false)
 
   useEffect(() => {
@@ -22,26 +22,14 @@ const Page = () => {
     return () => setLoading(false)
   }, [user])
 
-  // useEffect(() => {
-  //   getProfesores().then((data) => {
-  //     const profesoresFiltrados = data.filter(
-  //       (profesor) => profesor.Email === user.email
-  //     )
-  //     if (profesoresFiltrados.length > 0) {
-  //       const profe = profesoresFiltrados[0]
-  //       setProfesor(profe)
-  //       const daysString = profe.Dia
-  //       const daysArray = daysString.split(/[,\s]*[,y]\s*/)
-  //       setAvailableDays(daysArray)
-  //     }
-  //   })
-  // }, [user])
-
   useEffect(() => {
     (async () => {
       const profesores = await getProfesores()
       const profe = profesores.find((profe) => profe.id === user?.uid)
       setProfesor(profe)
+      const daysString = profe?.dias
+      const daysArray = daysString?.split(/[, \s]*[, y]\s*/)
+      setAvailableDays(daysArray)
     })()
   }, [user])
 
@@ -69,7 +57,7 @@ const Page = () => {
             {/* ¡Hola {profesor.Nombre}! */}
             ¡Hola!
           </h1>
-          {/* <AgendaProfes availableDays={availableDays} profesor={profesor} /> */}
+          <AgendaProfes availableDays={availableDays} profesor={profesor} />
           <div className="bg-[#212121] flex w-full py-16">
             <button
               className="bg-[#FFFFFF] mx-auto text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#E9500E] font-botones font-bold p-2 my-12 lg:mb-12 w-4/6 sm:w-2/6 h-12 sm:h-10 text-center rounded-3xl hover:cursor-pointer"
