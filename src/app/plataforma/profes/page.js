@@ -2,46 +2,46 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
-import { getProfesores } from '@/app/api/api'
+// import { getProfesores } from '@/app/api/api'
 import { useAuth } from '@/lib/firebase/useAuth.js'
 import { auth } from '@/lib/firebase/firebase.js'
 
-import AgendaProfes from './components/AgendaProfes.js'
+// import AgendaProfes from './components/AgendaProfes.js'
 
 import { signOut } from 'firebase/auth'
 
 const Page = () => {
   const user = useAuth()
-  const [profesor, setProfesor] = useState({})
-  const [availableDays, setAvailableDays] = useState()
+  // const [profesor, setProfesor] = useState({})
+  // const [availableDays, setAvailableDays] = useState()
   const router = useRouter()
   const [showConfirmation, setShowConfirmation] = useState(false)
 
   useEffect(() => {
-    if (user === null) {
-      router.push('/login')
-    }
-    if (user) {
-      if (user.displayName !== 'Profesor') {
-        router.push('/login')
-      }
-    }
+    // if (user === null) {
+    //   router.push('/login')
+    // }
+    // if (user) {
+    //   if (user.displayName !== 'Profesor') {
+    //     router.push('/login')
+    //   }
+    // }
   }, [router])
 
-  useEffect(() => {
-    getProfesores().then((data) => {
-      const profesoresFiltrados = data.filter(
-        (profesor) => profesor.Email === user.email
-      )
-      if (profesoresFiltrados.length > 0) {
-        const profe = profesoresFiltrados[0]
-        setProfesor(profe)
-        const daysString = profe.Dia
-        const daysArray = daysString.split(/[,\s]*[,y]\s*/)
-        setAvailableDays(daysArray)
-      }
-    })
-  }, [user])
+  // useEffect(() => {
+  //   getProfesores().then((data) => {
+  //     const profesoresFiltrados = data.filter(
+  //       (profesor) => profesor.Email === user.email
+  //     )
+  //     if (profesoresFiltrados.length > 0) {
+  //       const profe = profesoresFiltrados[0]
+  //       setProfesor(profe)
+  //       const daysString = profe.Dia
+  //       const daysArray = daysString.split(/[,\s]*[,y]\s*/)
+  //       setAvailableDays(daysArray)
+  //     }
+  //   })
+  // }, [user])
 
   const handleSubmit = () => {
     setShowConfirmation(true)
@@ -63,9 +63,10 @@ const Page = () => {
         ? (
         <div className="flex flex-col">
           <h1 className="text-center text-[#FFFFFF] text-3xl sm:text-5xl mt-8 mb-12">
-            ¡Hola {profesor.Nombre}!
+            {/* ¡Hola {profesor.Nombre}! */}
+            ¡Hola!
           </h1>
-          <AgendaProfes availableDays={availableDays} profesor={profesor} />
+          {/* <AgendaProfes availableDays={availableDays} profesor={profesor} /> */}
           <div className="bg-[#212121] flex w-full py-16">
             <button
               className="bg-[#FFFFFF] mx-auto text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#E9500E] font-botones font-bold p-2 my-12 lg:mb-12 w-4/6 sm:w-2/6 h-12 sm:h-10 text-center rounded-3xl hover:cursor-pointer"
