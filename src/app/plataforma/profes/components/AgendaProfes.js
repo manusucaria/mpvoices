@@ -22,8 +22,8 @@ const AgendaProfes = ({ profesor }) => {
   const [notas, setNotas] = useState([])
 
   useEffect(() => {
-    if (profesor && profesor.Dia) {
-      const daysString = profesor.Dia
+    if (profesor && profesor?.dias) {
+      const daysString = profesor?.dias
       const daysArray = daysString.split(/[,\s]*[,y]\s*/)
       setAvailableDays(daysArray)
     }
