@@ -2,13 +2,13 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 
-import alasSmall from '@/app/assets/alas.jpg'
-import alas from '../../assets/alas.jpg'
+import alasSmall from '@/app/assets/alasSmall.jpg'
+import alas from '@/app/assets/alas.jpg'
 
-import { horarios, diasSemana } from '../../api/data.js'
-import { getAlumnos } from '../../api/api.js'
+import { horarios, diasSemana } from '@/app/api/data'
+import { getAlumnos } from '@/app/api/api'
 
-import NotificacionProfe from '../../plataforma-admin/components/NotificacionProfe.js'
+import NotificacionProfe from '../../admin/components/NotificacionProfe'
 
 const AgendaProfes = ({ profesor }) => {
   const [alumnos, setAlumnos] = useState([])
