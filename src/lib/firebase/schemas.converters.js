@@ -41,15 +41,15 @@ export const UsuarioConverter = {
 export const ProfesorConverter = {
   toFirestore: (profesor) => {
     return {
-      usuario: profesor.usuario,
-      instrumentos: profesor.instrumentos
+      usuarioUid: profesor.usuarioUid,
+      instrumento: profesor.instrumento
     }
   },
   fromFirestore: (snapshot, options) => {
     const data = snapshot.data(options)
     return new Profesor({
-      usuario: data.usuario,
-      instrumentos: data.instrumentos
+      usuarioUid: data.usuarioUid,
+      instrumento: data.instrumento
     })
   }
 }
@@ -59,7 +59,7 @@ export const AlumnoConverter = {
     return {
       usuarioUid: alumno.usuarioUid,
       profesorId: alumno.profesorId,
-      instrumentosId: alumno.instrumentosId
+      instrumento: alumno.instrumento
     }
   },
   fromFirestore: (snapshot, options) => {
@@ -67,7 +67,7 @@ export const AlumnoConverter = {
     return new Alumno({
       usuarioUid: data.usuarioUid,
       profesorId: data.profesorId,
-      instrumentosId: data.instrumentosId
+      instrumento: data.instrumento
     })
   }
 }
