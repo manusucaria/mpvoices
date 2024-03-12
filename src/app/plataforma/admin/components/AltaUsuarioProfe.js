@@ -165,7 +165,7 @@ const AltaUsuarioProfe = ({
             {errors.password}
           </p>
         )}
-        <div className="flex mb-6">
+        <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
             Nombre:
           </label>
@@ -178,7 +178,7 @@ const AltaUsuarioProfe = ({
             onChange={(e) => setNewUserNombre(e.target.value)}
           />
         </div>
-        <div className="flex mb-6">
+        <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
             Apellido:
           </label>
@@ -191,7 +191,7 @@ const AltaUsuarioProfe = ({
             onChange={(e) => setNewUserApellido(e.target.value)}
           />
         </div>
-        <div className="flex mb-6">
+        <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
             Instr.:
           </label>
