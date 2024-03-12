@@ -110,7 +110,7 @@ const Alta = () => {
         <AltaProfe setShowProfesorForm={cancelarProfesorForm} confirmacionRegistro={confirmacionRegistro} newUserEmail={userEmail} newUserPassword={userPassword} />
       )}
       {showAlumnoForm && !alumnoFormSubmitted && (
-        <AltaUsuarioAlumno onFormSubmit={handleNewFormSubmit} setAlumnoFormSubmitted={setAlumnoFormSubmitted} handleCancelar={handleCancelar} />
+        <AltaUsuarioAlumno onFormSubmit={handleNewFormSubmit} profesores={profesores} setAlumnoFormSubmitted={setAlumnoFormSubmitted} handleCancelar={handleCancelar} />
       )}
       {alumnoFormSubmitted && (
         <AltaAlumno profesores={profesores} setShowAlumnoForm={cancelarAlumnoForm} confirmacionRegistro={confirmacionRegistro} newUserEmail={userEmail} newUserPassword={userPassword} />
