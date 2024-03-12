@@ -89,6 +89,13 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
     return instrumentoFormateado.replace(/_/g, ' ')
   }
 
+  const filterProfesoresPorDia = (profesores, dia) => {
+    if (!dia) {
+      return profesores
+    }
+    return profesores.filter(profesor => profesor.Dia.includes(dia))
+  }
+
   return (
     <div className='w-full'>
       {editMode
@@ -98,7 +105,7 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
             <div className='flex mb-6'>
               <label className='font-bold mr-auto w-2/6'>Instrumento:</label>
               <select
-                className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+                className='text-[#0D0D0D] rounded-3xl pl-2 h-8 w-4/6 ml-auto appearance-none'
                 value={instrumento}
                 onChange={(e) => setInstrumento(e.target.value)}
               >
@@ -109,7 +116,7 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
             <div className='flex mb-6'>
               <label className='font-bold mr-auto w-2/6'>Días:</label>
               <select
-                className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+                className='text-[#0D0D0D] rounded-3xl pl-2 h-8 w-4/6 ml-auto appearance-none'
                 value={dia}
                 onChange={(e) => setDia(e.target.value)}
               >
@@ -123,7 +130,7 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
             <div className='flex mb-6'>
               <label className='font-bold mr-auto w-2/6'>Horario:</label>
               <select
-                className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+                className='text-[#0D0D0D] rounded-3xl pl-2 h-8 w-4/6 ml-auto appearance-none'
                 value={horario}
                 onChange={(e) => setHorario(e.target.value)}
               >
@@ -137,7 +144,7 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
             <div className='flex mb-6'>
               <label className='font-bold mr-auto w-2/6'>Duración:</label>
               <select
-                className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+                className='text-[#0D0D0D] rounded-3xl pl-2 h-8 w-4/6 ml-auto appearance-none'
                 value={duracion}
                 onChange={(e) => setDuracion(e.target.value)}
               >
@@ -151,11 +158,11 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
             <div className='flex mb-6'>
               <label className='font-bold mr-auto w-2/6'>Profesor:</label>
               <select
-                className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+                className='text-[#0D0D0D] rounded-3xl pl-2 h-8 w-4/6 ml-auto appearance-none'
                 value={profesor}
                 onChange={(e) => setProfesor(e.target.value)}
               >
-              {profesores
+              {filterProfesoresPorDia(profesores, dia)
                 .sort((a, b) => a.Nombre.localeCompare(b.Nombre))
                 .map((profesor, index) => (
                   <option key={index} value={profesor.Nombre}>

@@ -160,7 +160,7 @@ const AltaProfesor = ({ setShowProfesorForm, confirmacionRegistro, newUserEmail,
         <div className='flex mb-6'>
           <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Instr.:</label>
           <select
-            className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+            className='text-[#0D0D0D] rounded-3xl pl-2 h-8 w-4/6 ml-auto appearance-none'
             name="Instrumento"
             value={formatInstrumento(profesorData.Instrumento)}
             onChange={handleChange}

@@ -17,7 +17,7 @@ const EditorAlumnos = ({ alumno, setSelectedAlumno, setSelectedProfesor, profeso
 
   return (
     <div className='w-full'>
-      <div className='flex flex-col w-full mx-auto'>
+      <div className='flex flex-col w-full mx-auto pt-4 lg:pt-6'>
         <div className='w-full flex justify-center pb-6 sm:pb-8 mx-auto gap-x-4 sm:gap-x-6'>
           <div className="my-auto ml-auto pt-[0.5px] xl:pt-1">
             <svg className='hover:cursor-pointer stroke-[#FFFFFF] md:hover:stroke-[#F57B48]' onClick={() => volver()} width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">

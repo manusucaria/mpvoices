@@ -13,7 +13,7 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, new
     Dia: '',
     Instrumento: '',
     Profesor: '',
-    Saldo: '',
+    Saldo: 0,
     Email: newUserEmail,
     Contraseña: newUserPassword,
     Duracion: '',
@@ -57,7 +57,6 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, new
       'Dia',
       'Instrumento',
       'Profesor',
-      'Saldo',
       'Duracion',
       'Horario',
       'Tel'
@@ -78,7 +77,8 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, new
       ...alumnoData,
       Notas: [],
       Notificaciones: [],
-      Instrumento: formattedInstrumento
+      Instrumento: formattedInstrumento,
+      Actualizacion: new Date().toISOString()
     }
 
     createAlumno(updatedAlumnoData)
@@ -97,6 +97,13 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, new
   const handleCloseConfirmation = () => {
     setShowConfirmation(false)
     confirmacionRegistro()
+  }
+
+  const filterProfesoresPorDia = (profesores, dia) => {
+    if (!dia) {
+      return profesores
+    }
+    return profesores.filter(profesor => profesor.Dia.includes(dia))
   }
 
   return (
@@ -131,12 +138,12 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, new
         </div>
         <div className='flex mb-6'>
           <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Fecha de nac.:</label>
-          <input placeholder="Fecha de nac." className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="date" name="Fecha" value={alumnoData.Fecha} onChange={handleChange} />
+          <input placeholder="Fecha de nac." className='text-[#0D0D0D] rounded-3xl h-8 px-2 w-4/6 ml-auto' type="date" name="Fecha" value={alumnoData.Fecha} onChange={handleChange} />
         </div>
         <div className='flex mb-6'>
           <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Día:</label>
           <select
-            className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+            className='text-[#0D0D0D] rounded-3xl pl-2 h-8 w-4/6 ml-auto appearance-none'
             name="Dia"
             value={alumnoData.Dia}
             onChange={handleChange}
@@ -152,7 +159,7 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, new
         <div className='flex mb-6'>
           <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Instr.:</label>
           <select
-            className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+            className='text-[#0D0D0D] rounded-3xl pl-2 h-8 w-4/6 ml-auto appearance-none'
             name="Instrumento"
             value={alumnoData.Instrumento}
             onChange={handleChange}
@@ -168,13 +175,13 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, new
         <div className='flex mb-6'>
           <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Profesor:</label>
           <select
-            className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+            className='text-[#0D0D0D] rounded-3xl pl-2 h-8 w-4/6 ml-auto appearance-none'
             name="Profesor"
             value={alumnoData.Profesor}
             onChange={handleChange}
           >
             <option value="">Seleccione un profesor</option>
-            {profesores.map((profesor, index) => (
+            {filterProfesoresPorDia(profesores, alumnoData.Dia).map((profesor, index) => (
               <option key={index} value={profesor.Nombre}>
                 {profesor.Nombre}
               </option>
@@ -182,13 +189,9 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, new
           </select>
         </div>
         <div className='flex mb-6'>
-          <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Saldo:</label>
-          <input placeholder="Saldo" className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto' type="text" name="Saldo" value={alumnoData.Saldo} onChange={handleChange} />
-        </div>
-        <div className='flex mb-6'>
           <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Duración:</label>
           <select
-            className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+            className='text-[#0D0D0D] rounded-3xl pl-2 h-8 w-4/6 ml-auto appearance-none'
             name="Duracion"
             value={alumnoData.Duracion}
             onChange={handleChange}
@@ -202,7 +205,7 @@ const AltaAlumno = ({ setShowAlumnoForm, confirmacionRegistro, newUserEmail, new
         <div className='flex mb-6'>
           <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Horario:</label>
           <select
-            className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+            className='text-[#0D0D0D] rounded-3xl pl-2 h-8 w-4/6 ml-auto appearance-none'
             name="Horario"
             value={alumnoData.Horario}
             onChange={handleChange}

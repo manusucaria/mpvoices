@@ -108,7 +108,7 @@ const EditorDatosProfesor = ({ profesor, setSelectedAlumno, setSelectedProfesor 
       {editMode
         ? (
         <div className='flex flex-col w-full bg-[#0D0D0D]'>
-          <div className='w-full flex justify-center mx-auto gap-x-4 sm:gap-x-6 pb-6 sm:pb-8 bg-[#212121]'>
+          <div className='w-full flex justify-center mx-auto gap-x-4 sm:gap-x-6 pb-6 sm:pb-8 bg-[#212121] pt-4 lg:pt-6'>
             <div className="my-auto ml-auto pt-[0.5px] xl:pt-1">
               <svg className='hover:cursor-pointer stroke-[#FFFFFF] md:hover:stroke-[#9B70BE]' onClick={() => volver()} width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="iconamoon:arrow-up-2-light">
@@ -193,7 +193,7 @@ const EditorDatosProfesor = ({ profesor, setSelectedAlumno, setSelectedProfesor 
             <div className='flex mb-6'>
               <label className='font-bold mr-auto w-2/6'>Instrumento:</label>
               <select
-                className='text-[#0D0D0D] rounded-3xl h-8 px-1 w-4/6 ml-auto'
+                className='text-[#0D0D0D] rounded-3xl pl-2 h-8 w-4/6 ml-auto appearance-none'
                 value={instrumento}
                 onChange={(e) => setInstrumento(e.target.value)}
               >
@@ -218,7 +218,7 @@ const EditorDatosProfesor = ({ profesor, setSelectedAlumno, setSelectedProfesor 
           )
         : (
         <div className='flex flex-col w-full mx-auto'>
-          <div className='w-full flex justify-center mx-auto gap-x-4 sm:gap-x-6 mb-6 sm:mb-8'>
+          <div className='w-full flex justify-center mx-auto gap-x-4 sm:gap-x-6 mb-6 sm:mb-8 pt-4 lg:pt-6'>
             <div className="my-auto ml-auto pt-[0.5px] xl:pt-1">
               <svg className='hover:cursor-pointer stroke-[#FFFFFF] md:hover:stroke-[#BDA0D4]' onClick={() => volver()} width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="iconamoon:arrow-up-2-light">

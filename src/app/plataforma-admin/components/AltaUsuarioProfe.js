@@ -14,6 +14,11 @@ const AltaUsuarioProfe = ({ setProfesorFormSubmitted, handleCancelar, onFormSubm
   const handleSubmit = async (event) => {
     event.preventDefault()
 
+    if (event.nativeEvent.submitter.textContent === 'Cancelar') {
+      handleCancel()
+      return
+    }
+
     setErrors({})
 
     const formErrors = {}
