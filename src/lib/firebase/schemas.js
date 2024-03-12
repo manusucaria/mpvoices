@@ -20,7 +20,7 @@ export class Rol {
 }
 
 export class Usuario {
-  constructor ({ nombre, apellido, email, telefono, rol }) {
+  constructor ({ nombre, apellido, email, telefono = '', rol }) {
     this.full_name = this.parseFullName({ nombre, apellido })
     this.email = Utils.toTrim(email)
     this.telefono = Utils.toTrim(telefono)
@@ -39,27 +39,21 @@ export class Usuario {
 }
 
 export class Profesor {
-  constructor ({ usuario, instrumentos }) {
-    this.usuario = this.parseUsuarioRef({ usuario })
-    this.instrumentos = this.parseInstrumentosRef({ instrumentos })
+  constructor ({ usuarioUid, instrumento }) {
+    this.usuarioUid = this.parseUsuarioRef({ usuarioUid })
+    this.instrumento = instrumento
   }
 
-  parseUsuarioRef ({ usuario }) {
-    return doc(db, 'usuarios', usuario)
-  }
-
-  parseInstrumentosRef ({ instrumentos }) {
-    return instrumentos.map((instrumentoId) => {
-      return doc(db, 'instrumentos', instrumentoId)
-    })
+  parseUsuarioRef ({ usuarioUid }) {
+    return doc(db, 'usuarios', usuarioUid)
   }
 }
 
 export class Alumno {
-  constructor ({ usuarioUid, profesorId, instrumentosId }) {
+  constructor ({ usuarioUid, profesorId, instrumento }) {
     this.usuarioUid = this.parseUsuarioRef({ usuarioUid })
     this.profesorId = this.parseProfesorRef({ profesorId })
-    this.instrumentosId = this.parseInstrumentosRef({ instrumentosId })
+    this.instrumento = instrumento
   }
 
   parseUsuarioRef ({ usuarioUid }) {
@@ -68,11 +62,5 @@ export class Alumno {
 
   parseProfesorRef ({ profesorId }) {
     return doc(db, 'profesores', profesorId)
-  }
-
-  parseInstrumentosRef ({ instrumentosId }) {
-    return instrumentosId.map((instrumentoId) => {
-      return doc(db, 'instrumentos', instrumentoId)
-    })
   }
 }
