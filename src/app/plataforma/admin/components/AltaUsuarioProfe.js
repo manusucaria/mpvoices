@@ -342,11 +342,8 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
                 fill="#E9500E"
               />
             </svg>
-            <p className="text-[#0D0D0D] text-xl my-2 font-bold">
-              ¡La cuenta se creó con éxito!
-            </p>
             <p className="text-[#0D0D0D] text-xl my-4 font-bold">
-              Hemos enviado un email de verificación
+              ¡La cuenta se creó con éxito!
             </p>
             <button
               className="text-[#E9500E] md:hover:text-[#DB9B6D] ml-auto font-bold"
