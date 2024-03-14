@@ -18,14 +18,16 @@ const Alta = () => {
   const [profesores, setProfesores] = useState([])
 
   useEffect(() => {
-    getProfesores().then(data => {
+    getProfesores().then((data) => {
       setProfesores(data)
     })
   }, [])
 
   useEffect(() => {
     if (showAlumnoForm || showProfesorForm) {
-      setBackgroundClass('bg-[#212121] pb-16 pt-0 border-y-1 border-y-[#FFFFFF]')
+      setBackgroundClass(
+        'bg-[#212121] pb-16 pt-0 border-y-1 border-y-[#FFFFFF]'
+      )
     } else {
       setBackgroundClass('bg-[#D9D9D9] py-20')
     }
@@ -89,31 +91,59 @@ const Alta = () => {
   }
 
   return (
-    <div id='Crear' className={`w-full ${backgroundClass}`}>
+    <div id="Crear" className={`w-full ${backgroundClass}`}>
       {!showProfesorForm && !showAlumnoForm && (
-        <h2 className="text-center text-2xl sm:text-3xl mt-4 mb-12 text-[#0D0D0D]">Nuevos usuarios</h2>
+        <h2 className="text-center text-2xl sm:text-3xl mt-4 mb-12 text-[#0D0D0D]">
+          Nuevos usuarios
+        </h2>
       )}
       {!showProfesorForm && !showAlumnoForm && (
         <div className="flex flex-col sm:flex-row justify-center gap-y-12 sm:gap-y-0 mb-6 mx-auto w-full sm:w-4/6 md:w-4/6 lg:w-3/6 gap-x-4">
-          <button className="text-[#FFFFFF] font-botones font-bold bg-[#E9500E] w-4/6 mx-auto sm:my-0 sm:ml-4 h-14 sm:h-12 rounded-3xl md:hover:bg-[#DB9B6D]" onClick={handleShowAlumnoForm}>
+          <button
+            className="text-[#FFFFFF] font-botones font-bold bg-[#E9500E] w-4/6 mx-auto sm:my-0 sm:ml-4 h-14 sm:h-12 rounded-3xl md:hover:bg-[#DB9B6D]"
+            onClick={handleShowAlumnoForm}
+          >
             Alta alumno
           </button>
-          <button className="text-[#FFFFFF] font-botones font-bold bg-[#663481] w-4/6 mx-auto sm:my-0 sm:mr-4 h-14 sm:h-12 rounded-3xl md:hover:bg-[#9B70BE]" onClick={handleShowProfesorForm}>
+          <button
+            className="text-[#FFFFFF] font-botones font-bold bg-[#663481] w-4/6 mx-auto sm:my-0 sm:mr-4 h-14 sm:h-12 rounded-3xl md:hover:bg-[#9B70BE]"
+            onClick={handleShowProfesorForm}
+          >
             Alta profesor
           </button>
         </div>
       )}
       {showProfesorForm && !profesorFormSubmitted && (
-        <AltaUsuarioProfe onFormSubmit={handleNewFormSubmit} setProfesorFormSubmitted={setProfesorFormSubmitted} handleCancelar={handleCancelar} />
+        <AltaUsuarioProfe
+          onFormSubmit={handleNewFormSubmit}
+          setProfesorFormSubmitted={setProfesorFormSubmitted}
+          handleCancelar={handleCancelar}
+        />
       )}
       {profesorFormSubmitted && (
-        <AltaProfe setShowProfesorForm={cancelarProfesorForm} confirmacionRegistro={confirmacionRegistro} newUserEmail={userEmail} newUserPassword={userPassword} />
+        <AltaProfe
+          setShowProfesorForm={cancelarProfesorForm}
+          confirmacionRegistro={confirmacionRegistro}
+          newUserEmail={userEmail}
+          newUserPassword={userPassword}
+        />
       )}
       {showAlumnoForm && !alumnoFormSubmitted && (
-        <AltaUsuarioAlumno onFormSubmit={handleNewFormSubmit} profesores={profesores} setAlumnoFormSubmitted={setAlumnoFormSubmitted} handleCancelar={handleCancelar} />
+        <AltaUsuarioAlumno
+          onFormSubmit={handleNewFormSubmit}
+          profesores={profesores}
+          setAlumnoFormSubmitted={setAlumnoFormSubmitted}
+          handleCancelar={handleCancelar}
+        />
       )}
       {alumnoFormSubmitted && (
-        <AltaAlumno profesores={profesores} setShowAlumnoForm={cancelarAlumnoForm} confirmacionRegistro={confirmacionRegistro} newUserEmail={userEmail} newUserPassword={userPassword} />
+        <AltaAlumno
+          profesores={profesores}
+          setShowAlumnoForm={cancelarAlumnoForm}
+          confirmacionRegistro={confirmacionRegistro}
+          newUserEmail={userEmail}
+          newUserPassword={userPassword}
+        />
       )}
     </div>
   )
