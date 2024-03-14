@@ -9,8 +9,8 @@ const AltaUsuarioProfe = ({
 }) => {
   const [showDaysOptions, setShowDaysOptions] = useState(false)
   const [selectedDays, setSelectedDays] = useState([])
-  const [newUserEmail, setNewUserEmail] = useState('')
-  const [newUserPassword, setNewUserPassword] = useState('')
+  const [newUserEmail, setNewUserEmail] = useState()
+  const [newUserPassword, setNewUserPassword] = useState()
   const [newUserRol, setNewUserRol] = useState()
   const [newUserNombre, setNewUserNombre] = useState()
   const [newUserApellido, setNewUserApellido] = useState()
@@ -75,6 +75,13 @@ const AltaUsuarioProfe = ({
           dias: selectedDays.join(', ')
         })
         setShowConfirmation(true)
+        setNewUserEmail('')
+        setNewUserPassword('')
+        setNewUserRol('')
+        setNewUserNombre('')
+        setNewUserApellido('')
+        setNewUserInstrumento('')
+        setSelectedDays([])
       } catch (error) {
         if (error.code === 'auth/email-already-in-use') {
           formErrors.email = 'E-Mail no disponible'
