@@ -36,6 +36,7 @@ export const signUp = async ({
   email,
   password,
   rolAsignado,
+  phoneNumber = '',
   ...rest
 }) => {
   try {
@@ -60,7 +61,7 @@ export const signUp = async ({
     const setUsuario = new Usuario({
       nombre: rest.nombre,
       apellido: rest.apellido,
-      telefono: rest.telefono,
+      telefono: phoneNumber,
       rol: rolAsignado,
       email
     })
