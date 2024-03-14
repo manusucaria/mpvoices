@@ -60,6 +60,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
         setShowConfirmation(true)
         setNewUserEmail('')
         setNewUserPassword('')
+        setNewUserPhoneNumber('')
         setNewUserRol('')
         setNewUserNombre('')
         setNewUserApellido('')

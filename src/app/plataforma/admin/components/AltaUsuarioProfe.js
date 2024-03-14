@@ -77,6 +77,7 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
         setShowConfirmation(true)
         setNewUserEmail('')
         setNewUserPassword('')
+        setNewUserPhoneNumber('')
         setNewUserRol('')
         setNewUserNombre('')
         setNewUserApellido('')
