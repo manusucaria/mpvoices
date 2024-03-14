@@ -8,18 +8,18 @@ import alas from '@/app/assets/alas.jpg'
 import { horarios, diasSemana } from '@/app/api/data'
 import { getAlumnos } from '@/app/api/api'
 
-import NotificacionProfe from '../../admin/components/NotificacionProfe'
+// import NotificacionProfe from '../../admin/components/NotificacionProfe'
 
 const AgendaProfes = ({ profesor }) => {
   const [alumnos, setAlumnos] = useState([])
-  const [alumnosProfesor, setalumnosProfesor] = useState([])
+  // const [alumnosProfesor, setalumnosProfesor] = useState([])
   const [selectedDay, setSelectedDay] = useState('')
-  const [filteredAlumnos, setFilteredAlumnos] = useState([])
-  const [showNotification, setShowNotification] = useState(false)
+  // const [filteredAlumnos, setFilteredAlumnos] = useState([])
+  // const [showNotification, setShowNotification] = useState(false)
   const [availableDays, setAvailableDays] = useState()
-  const [selectedAlumno, setSelectedAlumno] = useState()
-  const [notification, setNotification] = useState([])
-  const [notas, setNotas] = useState([])
+  // const [selectedAlumno, setSelectedAlumno] = useState()
+  // const [notification, setNotification] = useState([])
+  // const [notas, setNotas] = useState([])
 
   useEffect(() => {
     if (profesor && profesor?.dias) {
@@ -37,21 +37,21 @@ const AgendaProfes = ({ profesor }) => {
     setSelectedDay('')
   }
 
-  const handleAlumnoClick = (alumno) => {
-    setSelectedAlumno(alumno)
-    setNotification(alumno.Notificaciones)
-    setNotas(alumno.Notas)
-    setShowNotification(true)
-  }
+  // const handleAlumnoClick = (alumno) => {
+  //   setSelectedAlumno(alumno)
+  //   setNotification(alumno.Notificaciones)
+  //   setNotas(alumno.Notas)
+  //   setShowNotification(true)
+  // }
 
-  const calcularNuevoHorario = (horario, duracion) => {
-    const [hora, minuto] = horario.split(':').map(Number)
-    const duracionMinutos = duracion / 15 * 15
-    const nuevoHorarioMinutos = hora * 60 + minuto + duracionMinutos
-    const nuevaHora = Math.floor(nuevoHorarioMinutos / 60)
-    const nuevoMinuto = nuevoHorarioMinutos % 60
-    return `${nuevaHora}:${nuevoMinuto < 10 ? '0' : ''}${nuevoMinuto}`
-  }
+  // const calcularNuevoHorario = (horario, duracion) => {
+  //   const [hora, minuto] = horario.split(':').map(Number)
+  //   const duracionMinutos = duracion / 15 * 15
+  //   const nuevoHorarioMinutos = hora * 60 + minuto + duracionMinutos
+  //   const nuevaHora = Math.floor(nuevoHorarioMinutos / 60)
+  //   const nuevoMinuto = nuevoHorarioMinutos % 60
+  //   return `${nuevaHora}:${nuevoMinuto < 10 ? '0' : ''}${nuevoMinuto}`
+  // }
 
   useEffect(() => {
     getAlumnos().then(data => {
@@ -60,25 +60,25 @@ const AgendaProfes = ({ profesor }) => {
   }, [selectedDay])
 
   useEffect(() => {
-    const alumnosDelProfesor = alumnos.filter((alumno) => alumno.Profesor === profesor.Nombre)
-    setalumnosProfesor(alumnosDelProfesor)
+    // const alumnosDelProfesor = alumnos.filter((alumno) => alumno.Profesor === profesor.Nombre)
+    // setalumnosProfesor(alumnosDelProfesor)
   }, [selectedDay, alumnos])
 
   useEffect(() => {
-    const filtered = selectedDay
-      ? alumnosProfesor.filter((alumno) => {
-        const diaAlumnoNormalized = alumno.Dia
-          .toLowerCase()
-          .normalize('NFD')
-          .replace(/[\u0300-\u036f]/g, '')
-        const selectedDayNormalized = selectedDay
-          .toLowerCase()
-          .normalize('NFD')
-          .replace(/[\u0300-\u036f]/g, '')
-        return diaAlumnoNormalized === selectedDayNormalized
-      })
-      : []
-    setFilteredAlumnos(filtered)
+    // const filtered = selectedDay
+    //   ? alumnosProfesor.filter((alumno) => {
+    //     const diaAlumnoNormalized = alumno.Dia
+    //       .toLowerCase()
+    //       .normalize('NFD')
+    //       .replace(/[\u0300-\u036f]/g, '')
+    //     const selectedDayNormalized = selectedDay
+    //       .toLowerCase()
+    //       .normalize('NFD')
+    //       .replace(/[\u0300-\u036f]/g, '')
+    //     return diaAlumnoNormalized === selectedDayNormalized
+    //   })
+    //   : []
+    // setFilteredAlumnos(filtered)
   }, [selectedDay, alumnos])
 
   return (
@@ -154,7 +154,7 @@ const AgendaProfes = ({ profesor }) => {
                     <p className='text-md sm:text-md md:text-base m-auto'>Profesor: {profesor.Nombre} / {profesor.Instrumento}</p>
                   </div>
                 </div>
-                {filteredAlumnos
+                {/* {filteredAlumnos
                   .map((alumno) => (
                     <div key={`${alumno.Nombre}`} className='flex flex-col h-full w-full text-center border-none' style={{
                       gridRowStart: horarios.indexOf(alumno.Horario) + 2,
@@ -182,7 +182,7 @@ const AgendaProfes = ({ profesor }) => {
                         <NotificacionProfe alumno={selectedAlumno} setSelectedAlumno={setSelectedAlumno} notification={notification} notas={notas} setNotification={setNotification} setShowNotification={setShowNotification} />
                       )}
                     </div>
-                  ))}
+                  ))} */}
             </div>
           </div>
         </div>
