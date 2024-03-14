@@ -56,7 +56,7 @@ const AltaUsuarioAlumno = ({
           nombre: newUserNombre,
           apellido: newUserApellido,
           instrumento: newUserInstrumento,
-          profesorId: newUserProfesor
+          profesor: newUserProfesor
         })
         setShowConfirmation(true)
         setNewUserEmail('')

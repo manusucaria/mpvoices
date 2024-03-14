@@ -39,29 +39,29 @@ export class Usuario {
 }
 
 export class Profesor {
-  constructor ({ usuarioUid, instrumento, dias }) {
-    this.usuarioUid = this.parseUsuarioRef({ usuarioUid })
+  constructor ({ usuario, instrumento, dias }) {
+    this.usuario = this.parseUsuarioRef({ usuario })
     this.instrumento = instrumento
     this.dias = dias
   }
 
-  parseUsuarioRef ({ usuarioUid }) {
-    return doc(db, 'usuarios', usuarioUid)
+  parseUsuarioRef ({ usuario }) {
+    return doc(db, 'usuarios', usuario)
   }
 }
 
 export class Alumno {
-  constructor ({ usuarioUid, profesorId, instrumento }) {
-    this.usuarioUid = this.parseUsuarioRef({ usuarioUid })
-    this.profesorId = this.parseProfesorRef({ profesorId })
+  constructor ({ usuario, profesor, instrumento }) {
+    this.usuario = this.parseUsuarioRef({ usuario })
+    this.profesor = this.parseProfesorRef({ profesor })
     this.instrumento = instrumento
   }
 
-  parseUsuarioRef ({ usuarioUid }) {
-    return doc(db, 'usuarios', usuarioUid)
+  parseUsuarioRef ({ usuario }) {
+    return doc(db, 'usuarios', usuario)
   }
 
-  parseProfesorRef ({ profesorId }) {
-    return doc(db, 'profesores', profesorId)
+  parseProfesorRef ({ profesor }) {
+    return doc(db, 'profesores', profesor)
   }
 }
