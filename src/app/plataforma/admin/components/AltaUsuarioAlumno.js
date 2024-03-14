@@ -8,13 +8,13 @@ const AltaUsuarioAlumno = ({
   handleCancelar,
   profesores
 }) => {
-  const [newUserEmail, setNewUserEmail] = useState()
-  const [newUserPassword, setNewUserPassword] = useState()
-  const [newUserRol, setNewUserRol] = useState()
-  const [newUserNombre, setNewUserNombre] = useState()
-  const [newUserApellido, setNewUserApellido] = useState()
-  const [newUserInstrumento, setNewUserInstrumento] = useState()
-  const [newUserProfesor, setNewUserProfesor] = useState()
+  const [newUserEmail, setNewUserEmail] = useState('')
+  const [newUserPassword, setNewUserPassword] = useState('')
+  const [newUserRol, setNewUserRol] = useState('')
+  const [newUserNombre, setNewUserNombre] = useState('')
+  const [newUserApellido, setNewUserApellido] = useState('')
+  const [newUserInstrumento, setNewUserInstrumento] = useState('')
+  const [newUserProfesor, setNewUserProfesor] = useState('')
   const [errors, setErrors] = useState({})
   const [showConfirmation, setShowConfirmation] = useState(false)
 
