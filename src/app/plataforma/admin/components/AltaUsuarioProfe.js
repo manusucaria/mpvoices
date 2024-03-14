@@ -5,9 +5,7 @@ import { getRolByName } from '@/lib/firebase/crud/read'
 import { diasSemana, instrumentos } from '@/app/api/data'
 
 const AltaUsuarioProfe = ({
-  setProfesorFormSubmitted,
-  handleCancelar,
-  onFormSubmit
+  handleCancelar
 }) => {
   const [showDaysOptions, setShowDaysOptions] = useState(false)
   const [selectedDays, setSelectedDays] = useState([])
@@ -67,7 +65,6 @@ const AltaUsuarioProfe = ({
 
     if (Object.keys(formErrors).length === 0) {
       try {
-        onFormSubmit(newUserEmail, newUserPassword)
         await signUp({
           email: newUserEmail,
           password: newUserPassword,
@@ -99,7 +96,6 @@ const AltaUsuarioProfe = ({
 
   const handleCloseConfirmation = () => {
     setShowConfirmation(false)
-    setProfesorFormSubmitted(true)
   }
 
   return (

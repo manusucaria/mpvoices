@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 
-// import AltaProfe from '../components/AltaProfe'
 import AltaUsuarioAlumno from '../components/AltaUsuarioAlumno'
 import AltaUsuarioProfe from '../components/AltaUsuarioProfe'
 
@@ -9,9 +8,6 @@ import { getProfesores } from '@/app/api/api'
 const Alta = () => {
   const [showProfesorForm, setShowProfesorForm] = useState(false)
   const [showAlumnoForm, setShowAlumnoForm] = useState(false)
-  // const [profesorFormSubmitted, setProfesorFormSubmitted] = useState(false)
-  // const [userEmail, setUserEmail] = useState('')
-  // const [userPassword, setUserPassword] = useState('')
   const [backgroundClass, setBackgroundClass] = useState('bg-[#D9D9D9]')
   const [profesores, setProfesores] = useState([])
 
@@ -31,19 +27,12 @@ const Alta = () => {
     }
   }, [showAlumnoForm, showProfesorForm])
 
-  const handleNewFormSubmit = (newUserEmail, newUserPassword) => {
-    // setUserEmail(newUserEmail)
-    // setUserPassword(newUserPassword)
-  }
-
   const handleShowProfesorForm = () => {
     if (showProfesorForm) {
       setShowProfesorForm(false)
-      // setProfesorFormSubmitted(false)
     } else {
       setShowProfesorForm(true)
       setShowAlumnoForm(false)
-      // setProfesorFormSubmitted(false)
     }
   }
 
@@ -53,7 +42,6 @@ const Alta = () => {
     } else {
       setShowAlumnoForm(true)
       setShowProfesorForm(false)
-      // setProfesorFormSubmitted(false)
     }
   }
 
@@ -64,17 +52,9 @@ const Alta = () => {
   //   setProfesorFormSubmitted(false)
   // }
 
-  // const cancelarProfesorForm = () => {
-  //   setShowAlumnoForm(false)
-  //   setShowProfesorForm(false)
-  //   setAlumnoFormSubmitted(false)
-  //   setProfesorFormSubmitted(false)
-  // }
-
   const handleCancelar = () => {
     setShowAlumnoForm(false)
     setShowProfesorForm(false)
-    // setProfesorFormSubmitted(false)
   }
 
   return (
@@ -100,22 +80,11 @@ const Alta = () => {
           </button>
         </div>
       )}
-      {/* {showProfesorForm && !profesorFormSubmitted && ( */}
       {showProfesorForm && (
         <AltaUsuarioProfe
-          onFormSubmit={handleNewFormSubmit}
-          // setProfesorFormSubmitted={setProfesorFormSubmitted}
           handleCancelar={handleCancelar}
         />
       )}
-      {/* {profesorFormSubmitted && (
-        <AltaProfe
-          setShowProfesorForm={cancelarProfesorForm}
-          confirmacionRegistro={confirmacionRegistro}
-          newUserEmail={userEmail}
-          newUserPassword={userPassword}
-        />
-      )} */}
       {showAlumnoForm && (
         <AltaUsuarioAlumno
           profesores={profesores}
