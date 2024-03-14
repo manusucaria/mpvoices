@@ -191,7 +191,7 @@ const AltaUsuarioProfe = ({
           />
         </div>
         {errors.password && (
-          <p className="ml-auto pr-4 mt-1 text-[#FFFFFF] text-sm">
+          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
             {errors.password}
           </p>
         )}
