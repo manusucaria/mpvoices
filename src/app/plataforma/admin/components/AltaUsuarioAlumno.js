@@ -5,9 +5,7 @@ import { getRolByName } from '@/lib/firebase/crud/read'
 import { instrumentos } from '@/app/api/data'
 
 const AltaUsuarioAlumno = ({
-  // setAlumnoFormSubmitted,
   handleCancelar,
-  // onFormSubmit,
   profesores
 }) => {
   const [newUserEmail, setNewUserEmail] = useState()
@@ -51,7 +49,6 @@ const AltaUsuarioAlumno = ({
 
     if (Object.keys(formErrors).length === 0) {
       try {
-        // onFormSubmit(newUserEmail, newUserPassword)
         await signUp({
           email: newUserEmail,
           password: newUserPassword,
@@ -90,7 +87,6 @@ const AltaUsuarioAlumno = ({
 
   const handleCloseConfirmation = () => {
     setShowConfirmation(false)
-    // setAlumnoFormSubmitted(true)
   }
 
   return (
