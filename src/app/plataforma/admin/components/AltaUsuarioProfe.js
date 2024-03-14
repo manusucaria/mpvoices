@@ -4,13 +4,12 @@ import { signUp } from '@/lib/firebase/auth'
 import { getRolByName } from '@/lib/firebase/crud/read'
 import { diasSemana, instrumentos } from '@/app/api/data'
 
-const AltaUsuarioProfe = ({
-  handleCancelar
-}) => {
+const AltaUsuarioProfe = ({ handleCancelar }) => {
   const [showDaysOptions, setShowDaysOptions] = useState(false)
   const [selectedDays, setSelectedDays] = useState([])
   const [newUserEmail, setNewUserEmail] = useState('')
   const [newUserPassword, setNewUserPassword] = useState('')
+  const [newUserPhoneNumber, setNewUserPhoneNumber] = useState('')
   const [newUserRol, setNewUserRol] = useState('')
   const [newUserNombre, setNewUserNombre] = useState('')
   const [newUserApellido, setNewUserApellido] = useState('')
@@ -38,7 +37,7 @@ const AltaUsuarioProfe = ({
     if (checked) {
       updatedSelectedDays.push(name)
     } else {
-      updatedSelectedDays = updatedSelectedDays.filter(day => day !== name)
+      updatedSelectedDays = updatedSelectedDays.filter((day) => day !== name)
     }
     updatedSelectedDays.sort((a, b) => {
       return diasSemana.indexOf(a) - diasSemana.indexOf(b)
@@ -68,6 +67,7 @@ const AltaUsuarioProfe = ({
         await signUp({
           email: newUserEmail,
           password: newUserPassword,
+          phoneNumber: newUserPhoneNumber,
           rolAsignado: newUserRol,
           nombre: newUserNombre,
           apellido: newUserApellido,
@@ -197,6 +197,19 @@ const AltaUsuarioProfe = ({
         )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
+            Teléfono:
+          </label>
+          <input
+            placeholder="XXXXXXXXXX"
+            className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            type="tel"
+            name="phoneNumber"
+            value={newUserPhoneNumber}
+            onChange={(e) => setNewUserPhoneNumber(e.target.value)}
+          />
+        </div>
+        <div className="flex mt-6">
+          <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
             Nombre:
           </label>
           <input
@@ -221,23 +234,23 @@ const AltaUsuarioProfe = ({
             onChange={(e) => setNewUserApellido(e.target.value)}
           />
         </div>
-        <div className='flex mt-6'>
-          <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Día:</label>
+        <div className="flex mt-6">
+          <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">Día:</label>
           <div className="relative w-4/6 ml-auto">
-          <input
-            className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-full'
-            type="text"
-            name="Dia"
-            placeholder="Seleccione un día"
-            value={selectedDays.join(', ')}
-            onClick={handleDayClick}
-            readOnly
-          />
+            <input
+              className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-full"
+              type="text"
+              name="Dia"
+              placeholder="Seleccione un día"
+              value={selectedDays.join(', ')}
+              onClick={handleDayClick}
+              readOnly
+            />
           </div>
         </div>
         {showDaysOptions && (
           <div className="flex flex-col mt-6">
-            <div className='w-4/6 ml-auto'>
+            <div className="w-4/6 ml-auto">
               {diasSemana.map((dia, index) => (
                 <div key={index} className="flex items-center">
                   <input
