@@ -7,7 +7,7 @@ export const POST = async () => {
     const uid = headers().get('x-uid')
     const rol = headers().get('x-rol')
 
-    auth().setCustomUserClaims(uid, { rol })
+    await auth().setCustomUserClaims(uid, { rol })
 
     return new Response(JSON.stringify({ message: 'Rol asignado' }), {
       status: 200
