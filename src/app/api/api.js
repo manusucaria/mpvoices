@@ -9,7 +9,8 @@ import {
   deleteDoc,
   where
 } from 'firebase/firestore'
-import { db } from '../../lib/firebase'
+
+import { db } from '@/lib/firebase/firebase'
 
 // CREATE
 export const createAlumno = async (obj) => {

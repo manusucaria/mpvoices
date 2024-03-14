@@ -1,18 +1,9 @@
 'use client'
 import React, { useState, useEffect, useRef } from 'react'
-import { useAuth } from '../../../lib/auth'
 
 const NavSmall = () => {
-  const user = useAuth()
   const [isNavOpen, setIsNavOpen] = useState(false)
   const appContainerRef = useRef(null)
-  const [rol, setRol] = useState('')
-
-  useEffect(() => {
-    if (user) {
-      setRol(user.displayName)
-    }
-  }, [user])
 
   useEffect(() => {
     const handleLinkClick = (event) => {
@@ -21,7 +12,10 @@ const NavSmall = () => {
       const targetElement = document.getElementById(targetId)
       if (targetElement) {
         const targetOffsetTop = targetElement.offsetTop
-        if (targetOffsetTop + window.innerHeight >= document.body.scrollHeight) {
+        if (
+          targetOffsetTop + window.innerHeight >=
+          document.body.scrollHeight
+        ) {
           window.scrollTo(0, document.body.scrollHeight)
         } else {
           window.scrollTo({
@@ -34,7 +28,10 @@ const NavSmall = () => {
     }
 
     const handleClickOutside = (event) => {
-      if (appContainerRef.current && !appContainerRef.current.contains(event.target)) {
+      if (
+        appContainerRef.current &&
+        !appContainerRef.current.contains(event.target)
+      ) {
         setIsNavOpen(false)
       }
     }
@@ -42,7 +39,9 @@ const NavSmall = () => {
     if (isNavOpen) {
       document.addEventListener('click', handleClickOutside, { passive: true })
     } else {
-      document.removeEventListener('click', handleClickOutside, { passive: true })
+      document.removeEventListener('click', handleClickOutside, {
+        passive: true
+      })
     }
 
     const links = document.querySelectorAll('a[href^="#"]')
@@ -86,16 +85,8 @@ const NavSmall = () => {
       link: '/#Footer'
     },
     {
-      label: 'Plataforma alumnos',
-      link: !user
-        ? '/login'
-        : rol === 'Profesor'
-          ? '/plataforma-profes'
-          : rol === 'Alumno'
-            ? '/plataforma-alumnos'
-            : rol === 'Administrador'
-              ? '/plataforma-admin'
-              : '/login'
+      label: 'Plataforma voices',
+      link: '/plataforma'
     }
   ]
 
@@ -117,17 +108,8 @@ const NavSmall = () => {
             </div>
             <div className="flex ml-auto my-auto pr-6">
               <div className="flex" onClick={() => scrollToTop()}>
-                <a href={
-                  !user
-                    ? '/login'
-                    : rol === 'Profesor'
-                      ? '/plataforma-profes'
-                      : rol === 'Alumno'
-                        ? '/plataforma-alumnos'
-                        : rol === 'Administrador'
-                          ? '/plataforma-admin'
-                          : '/login'
-                  }
+                <a
+                  href="/plataforma"
                   className="flex my-auto"
                 >
                   <svg
@@ -151,7 +133,10 @@ const NavSmall = () => {
           </div>
             )
           : (
-          <div ref={appContainerRef} className="flex items-center w-[60%] sm:w-1/2 pl-8 py-6 bg-[#ffffff]">
+          <div
+            ref={appContainerRef}
+            className="flex items-center w-[60%] sm:w-1/2 pl-8 py-6 bg-[#ffffff]"
+          >
             <svg
               onClick={() => setIsNavOpen((prev) => !prev)}
               className="h-4 w-4 bg-[#ffffff] mr-auto cursor-pointer animate-pulse"
@@ -169,7 +154,11 @@ const NavSmall = () => {
             )}
       </div>
       {isNavOpen === true
-        ? <div ref={appContainerRef} className="flex flex-col w-[60%] sm:w-1/2 pb-96 justify-between h-screen pl-6 animate-display bg-[#ffffff]">
+        ? (
+        <div
+          ref={appContainerRef}
+          className="flex flex-col w-[60%] sm:w-1/2 pb-96 justify-between h-screen pl-6 animate-display bg-[#ffffff]"
+        >
           {routes.map((route) => (
             <div key={route.label} className="flex h-screen mt-4 bg-[#ffffff]">
               <div className="flex mb-2 bg-[#ffffff]">
@@ -184,7 +173,10 @@ const NavSmall = () => {
             </div>
           ))}
         </div>
-        : ''}
+          )
+        : (
+            ''
+          )}
     </nav>
   )
 }

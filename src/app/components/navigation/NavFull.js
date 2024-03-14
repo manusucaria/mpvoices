@@ -1,7 +1,6 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Link from 'next/link'
-import { useAuth } from '../../../lib/auth'
 
 const routes = [
   {
@@ -27,13 +26,6 @@ const routes = [
 ]
 
 const NavFull = () => {
-  const user = useAuth()
-  const [rol, setRol] = useState('')
-  useEffect(() => {
-    if (user) {
-      setRol(user.displayName)
-    }
-  }, [user])
   const scrollToTop = () => {
     window.scrollTo({
       top: 0
@@ -142,7 +134,7 @@ const NavFull = () => {
           <div key={route.label} className="flex min-[1024px]:mx-2 min-[1245px]:mr-4 my-auto">
             <Link
               href={route.link}
-              className={'cursor-pointer text-base hover:translate-y-cursor text-[#FFFFFF] hover:text-[#F57B48]'}
+              className={'cursor-pointer text-base hover:translate-y-cursor hover:text-orange-600'}
             >
               {route.label}
             </Link>
@@ -150,20 +142,10 @@ const NavFull = () => {
         ))}
       </div>
       <div className="flex flex-col my-auto w-[20%]">
-        <Link className='flex mr-auto min-[1024px]:ml-6' href={
-          !user
-            ? '/login'
-            : rol === 'Profesor'
-              ? '/plataforma-profes'
-              : rol === 'Alumno'
-                ? '/plataforma-alumnos'
-                : rol === 'Administrador'
-                  ? '/plataforma-admin'
-                  : '/login'
-        }>
+        <Link className='flex mr-auto min-[1024px]:ml-6' href="/plataforma">
           <div className="relative group">
             <svg
-              className="flex w-auto cursor-pointer fill-current text-[#FFFFFF] hover:text-[#F57B48] mr-auto min-[1024px]:ml-6 min-[1245px]:ml-0"
+              className="flex w-auto cursor-pointer fill-current hover:text-orange-600 mr-auto min-[1024px]:ml-6 min-[1245px]:ml-0"
               xmlns="http://www.w3.org/2000/svg"
               width="17"
               height="19"
