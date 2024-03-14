@@ -45,13 +45,6 @@ const Alta = () => {
     }
   }
 
-  // const confirmacionRegistro = () => {
-  //   setShowAlumnoForm(false)
-  //   setShowProfesorForm(false)
-  //   setAlumnoFormSubmitted(false)
-  //   setProfesorFormSubmitted(false)
-  // }
-
   const handleCancelar = () => {
     setShowAlumnoForm(false)
     setShowProfesorForm(false)
