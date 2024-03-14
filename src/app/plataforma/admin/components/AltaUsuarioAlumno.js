@@ -154,7 +154,7 @@ const AltaUsuarioAlumno = ({
           />
         </div>
         {errors.email && (
-          <p className="ml-auto pr-4 mt-1 text-[#FFFFFF] text-sm">
+          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
             {errors.email}
           </p>
         )}

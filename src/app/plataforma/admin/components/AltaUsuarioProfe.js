@@ -148,7 +148,7 @@ const AltaUsuarioProfe = ({
             Alta profesor
           </h4>
           <p className="text-[#FFFFFF] my-auto mx-4">|</p>
-          <p className="text-[#9B70BE] my-auto text-lg sm:text-xl">
+          <p className="text-navy-blue-light my-auto text-lg sm:text-xl">
             Crear cuenta
           </p>
         </div>
@@ -169,7 +169,7 @@ const AltaUsuarioProfe = ({
           />
         </div>
         {errors.email && (
-          <p className="ml-auto pr-4 mt-1 text-[#FFFFFF] text-sm">
+          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
             {errors.email}
           </p>
         )}
