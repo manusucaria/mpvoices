@@ -100,10 +100,7 @@ export const signUp = async ({
         break
       }
       default:
-        return
     }
-
-    await sendEmailVerification(firebaseUser)
   } catch (error) {
     throw error
   }
