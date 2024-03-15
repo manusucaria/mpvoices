@@ -16,17 +16,17 @@ const EditorDatosProfesor = ({ profesor, setSelectedAlumno, setSelectedProfesor 
 
   useEffect(() => {
     if (profesor) {
-      setNombre(profesor.Nombre || '')
-      setApellido(profesor.Apellido || '')
-      setEmail(profesor.Email || '')
-      setDiasSeleccionados(profesor.Dia ? profesor.Dia.split(',').map(dia => dia.trim()) : [])
-      setInstrumento(profesor.Instrumento || '')
+      setNombre(profesor.usuario.full_name.nombre || '')
+      setApellido(profesor.usuario.full_name.apellido || '')
+      setEmail(profesor.usuario.email || '')
+      setDiasSeleccionados(profesor.dias ? profesor.dias.split(',').map(dia => dia.trim()) : [])
+      setInstrumento(profesor.instrumento || '')
       setOriginalValues({
-        nombre: profesor.Nombre || '',
-        apellido: profesor.Apellido || '',
-        email: profesor.Email || '',
-        dia: profesor.Dia || '',
-        instrumento: profesor.Instrumento || ''
+        nombre: profesor.usuario.full_name.nombre || '',
+        apellido: profesor.usuario.full_name.apellido || '',
+        email: profesor.usuario.Email || '',
+        dia: profesor.dias || '',
+        instrumento: profesor.instrumento || ''
       })
     }
   }, [profesor])
