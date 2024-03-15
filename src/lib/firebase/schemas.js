@@ -65,3 +65,11 @@ export class Alumno {
     return doc(db, 'profesores', profesor)
   }
 }
+
+export class AlumnoClases {
+  constructor ({ dia, horaInicio, horaFin }) {
+    this.dia = dia
+    this.horaInicio = horaInicio
+    this.horaFin = horaFin
+  }
+}
