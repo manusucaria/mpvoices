@@ -18,6 +18,7 @@ export const UsuarioConverter = {
       full_name: usuario.full_name,
       email: usuario.email,
       telefono: usuario.telefono,
+      birthdate: usuario.birthdate,
       rol: usuario.rol
     }
   },
@@ -28,6 +29,7 @@ export const UsuarioConverter = {
       apellido: data.apellido,
       email: data.email,
       telefono: data.telefono,
+      birthdate: data.birthdate,
       rol: data.rol
     })
   }
