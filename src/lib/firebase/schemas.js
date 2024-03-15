@@ -66,10 +66,15 @@ export class Alumno {
   }
 }
 
-export class AlumnoClases {
-  constructor ({ dia, horaInicio, horaFin }) {
+export class AlumnoClase {
+  constructor ({ dia, horaInicio, horaFin, profesor }) {
     this.dia = dia
     this.horaInicio = horaInicio
     this.horaFin = horaFin
+    this.profesor = this.parseProfesorRef({ profesor })
+  }
+
+  parseProfesorRef ({ profesor }) {
+    return doc(db, 'profesores', profesor)
   }
 }

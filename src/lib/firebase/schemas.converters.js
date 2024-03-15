@@ -1,4 +1,4 @@
-import { Alumno, AlumnoClases, Profesor, Rol, Usuario } from './schemas'
+import { Alumno, AlumnoClase, Profesor, Rol, Usuario } from './schemas'
 
 export const RolConverter = {
   toFirestore: (rol) => {
@@ -69,20 +69,22 @@ export const AlumnoConverter = {
   }
 }
 
-export const AlumnoClasesConverter = {
-  toFirestore: (clases) => {
+export const AlumnoClaseConverter = {
+  toFirestore: (clase) => {
     return {
-      dia: clases.dia,
-      horaInicio: clases.horaInicio,
-      horaFin: clases.horaFin
+      dia: clase.dia,
+      horaInicio: clase.horaInicio,
+      horaFin: clase.horaFin,
+      profesor: clase.profesor
     }
   },
   fromFirestore: (snapshot, options) => {
     const data = snapshot.data(options)
-    return new AlumnoClases({
+    return new AlumnoClase({
       dia: data.dia,
       horaInicio: data.horaInicio,
-      horaFin: data.horaFin
+      horaFin: data.horaFin,
+      profesor: data.profesor
     })
   }
 }
