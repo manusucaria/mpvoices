@@ -20,10 +20,11 @@ export class Rol {
 }
 
 export class Usuario {
-  constructor ({ nombre, apellido, email, telefono = '', rol }) {
+  constructor ({ nombre, apellido, email, telefono = '', rol, birthdate }) {
     this.full_name = this.parseFullName({ nombre, apellido })
     this.email = Utils.toTrim(email)
     this.telefono = Utils.toTrim(telefono)
+    this.birthdate = birthdate
     this.rol = this.parseRolRef({ rol })
   }
 
