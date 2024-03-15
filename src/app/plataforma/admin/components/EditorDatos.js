@@ -1,13 +1,14 @@
+import { updateUsuarioAlumnoById } from '@/lib/firebase/actions.admin'
 import React, { useState, useEffect } from 'react'
 
-import { updateAlumno, fetchAlumno } from '@/app/api/api'
+// import { updateAlumno, fetchAlumno } from '@/app/api/api'
 
 const EditorDatos = ({ alumno, setSelectedAlumno }) => {
   const [nombre, setNombre] = useState('')
   const [apellido, setApellido] = useState('')
-  const [fecha, setFecha] = useState('')
+  const [birthdate, setBirthdate] = useState('')
   const [email, setEmail] = useState('')
-  const [tel, setTel] = useState('')
+  const [telefono, setTelefono] = useState('')
   const [originalData, setOriginalData] = useState(null)
   const [editMode, setEditMode] = useState(false)
   const [showConfirmation, setShowConfirmation] = useState(false)
@@ -16,16 +17,16 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
     if (alumno) {
       setNombre(alumno.usuario.full_name.nombre || '')
       setApellido(alumno.usuario.full_name.apellido || '')
-      setFecha(alumno.Fecha || '')
+      setBirthdate(alumno.usuario.birthdate || '')
       setEmail(alumno.usuario.email || '')
-      setTel(alumno.usuario.telefono || '')
+      setTelefono(alumno.usuario.telefono || '')
 
       setOriginalData({
-        Nombre: alumno.usuario.full_name.nombre || '',
-        Apellido: alumno.usuario.full_name.apellido || '',
-        Fecha: alumno.Fecha || '',
-        Email: alumno.usuario.email || '',
-        Tel: alumno.usuario.telefono || ''
+        nombre: alumno.usuario.full_name.nombre || '',
+        apellido: alumno.usuario.full_name.apellido || '',
+        birthdate: alumno.usuario.birthdate || '',
+        email: alumno.usuario.email || '',
+        telefono: alumno.usuario.telefono || ''
       })
     }
   }, [alumno])
@@ -33,15 +34,26 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      const updatedAlumno = {
-        Nombre: nombre,
-        Apellido: apellido,
-        Fecha: fecha,
-        Email: email,
-        Tel: tel
-      }
-      await updateAlumno(alumno.id, updatedAlumno)
-      const updatedAlumnoData = await fetchAlumno(alumno.id)
+      // const updatedAlumno = {
+      //   Nombre: nombre,
+      //   Apellido: apellido,
+      //   Fecha: fecha,
+      //   Email: email,
+      //   Tel: tel
+      // }
+      // await updateAlumno(alumno.id, updatedAlumno)
+      // const updatedAlumnoData = await fetchAlumno(alumno.id)
+      // setSelectedAlumno(updatedAlumnoData)
+      // setEditMode(false)
+      // setShowConfirmation(true)
+      const updatedAlumnoData = await updateUsuarioAlumnoById(alumno.id, {
+        nombre,
+        apellido,
+        birthdate,
+        email,
+        telefono,
+        usuario: alumno.usuario
+      })
       setSelectedAlumno(updatedAlumnoData)
       setEditMode(false)
       setShowConfirmation(true)
@@ -56,11 +68,11 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
 
   const cancelarClick = () => {
     if (originalData) {
-      setNombre(originalData.Nombre)
-      setApellido(originalData.Apellido)
-      setFecha(originalData.Fecha)
-      setEmail(originalData.Email)
-      setTel(originalData.Tel)
+      setNombre(originalData.nombre)
+      setApellido(originalData.apellido)
+      setBirthdate(originalData.birthdate)
+      setEmail(originalData.email)
+      setTelefono(originalData.telefono)
     }
     setEditMode(false)
   }
@@ -110,8 +122,8 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
                 className='text-[#0D0D0D] rounded-3xl h-8 px-2 w-4/6 ml-auto'
                 type='date'
                 name='fecha'
-                value={fecha}
-                onChange={(e) => setFecha(e.target.value)}
+                value={birthdate}
+                onChange={(e) => setBirthdate(e.target.value)}
               />
             </div>
             <div className='flex mb-6'>
@@ -130,8 +142,8 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
                 className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
                 type='text'
                 name='tel'
-                value={tel}
-                onChange={(e) => setTel(e.target.value)}
+                value={telefono}
+                onChange={(e) => setTelefono(e.target.value)}
               />
             </div>
             <div className='flex w-full mx-auto mt-8 gap-x-4'>
@@ -162,7 +174,7 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
             </div>
             <div className='mb-8 flex'>
               <p className='mr-2 text-base font-bold'>Fecha de nac.:</p>
-              <p className='text-base'>{formatDate(fecha)}</p>
+              <p className='text-base'>{formatDate(birthdate)}</p>
             </div>
             <div className='mb-8 flex'>
               <p className='mr-2 text-base font-bold'>E-Mail:</p>
@@ -170,7 +182,7 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
             </div>
             <div className='flex'>
               <p className='mr-2 text-base font-bold'>Teléfono:</p>
-              <p className='text-base'>{tel}</p>
+              <p className='text-base'>{telefono}</p>
             </div>
           </div>
           <div className='bg-[#0D0D0D] flex flex-col mx-auto w-full'>
