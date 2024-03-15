@@ -112,19 +112,23 @@ export const getAllAlumnos = async ({ getUsuario, getRol } = {}) => {
   }
 }
 
-export const getAlumnoById = async (uid, { getUsuario, getRol } = {}) => {
+export const getAlumnoById = async (uid, { getUsuario, getRol, getProfesor } = {}) => {
   try {
     const ref = doc(db, 'alumnos', uid)
     const docSnap = await getDoc(ref)
     if (docSnap.exists()) {
       let usuario = docSnap.data().usuario
+      let profesor = docSnap.data().profesor
       if (getUsuario && usuario.id) {
         usuario = await getUsuarioById({ id: usuario.id })
       }
       if (getRol && getUsuario && usuario.rol && usuario.rol.id) {
         usuario.rol = await getRolById({ id: usuario.rol.id })
       }
-      return { ...docSnap.data(), id: docSnap.id, usuario }
+      if (getProfesor && usuario.profesor && usuario.profesor.id) {
+        profesor = await getProfesorById(usuario.profesor.id, { getUsuario: true })
+      }
+      return { ...docSnap.data(), id: docSnap.id, usuario, profesor }
     }
   } catch (error) {
     throw error
