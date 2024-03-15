@@ -2,10 +2,11 @@ import { deleteDoc, doc, getDoc, updateDoc } from 'firebase/firestore'
 
 import { db } from './firebase'
 import { Profesor, Usuario } from './schemas'
+import { getAlumnoById } from './crud/read'
 
 export const updateUsuarioProfesorById = async (
   uid,
-  { nombre, apellido, email, telefono, dias, instrumento, usuario }
+  { nombre, apellido, birthdate, email, telefono, dias, instrumento, usuario }
 ) => {
   try {
     const data = await (
@@ -31,6 +32,7 @@ export const updateUsuarioProfesorById = async (
     const usuarioData = new Usuario({
       nombre,
       apellido,
+      birthdate,
       email,
       telefono,
       rol: usuario.rol
@@ -51,6 +53,43 @@ export const updateUsuarioProfesorById = async (
     newProfesorUpdated.usuario = { ...newUsuarioUpdated.data(), id: newUsuarioUpdated.id }
 
     return newProfesorUpdated
+  } catch (error) {
+    throw error
+  }
+}
+
+export const updateUsuarioAlumnoById = async (uid, { nombre, apellido, birthdate, email, telefono, usuario }) => {
+  try {
+    const data = await (
+      await fetch('/api/admin/users', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-uid': uid
+        },
+        body: JSON.stringify({ email })
+      })
+    ).json()
+
+    if (data.error && data.code === 'auth/email-already-exists') {
+      throw new Error('El email ya está en uso')
+    }
+
+    const usuarioData = new Usuario({
+      nombre,
+      apellido,
+      birthdate,
+      email,
+      telefono,
+      rol: usuario.rol
+    })
+
+    const usuarioRef = doc(db, 'usuarios', uid)
+    await updateDoc(usuarioRef, Object.assign({}, usuarioData))
+
+    const newUsuarioUpdated = await getAlumnoById(uid, { getUsuario: true })
+
+    return newUsuarioUpdated
   } catch (error) {
     throw error
   }
