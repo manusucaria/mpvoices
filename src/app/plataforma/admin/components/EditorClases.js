@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 
 import { updateAlumno, fetchAlumno } from '@/app/api/api'
 import { horarios, duracionOptions, instrumentos, diasSemana } from '@/app/api/data'
+import { getProfesorById } from '@/lib/firebase/crud/read'
+import Loader from '@/app/components/loader/Loader'
 
 const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
   const [instrumento, setInstrumento] = useState(alumno ? alumno.instrumento : '')
@@ -12,24 +14,33 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
   const [originalData, setOriginalData] = useState(null)
   const [editMode, setEditMode] = useState(false)
   const [showConfirmation, setShowConfirmation] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    if (alumno) {
-      setInstrumento(alumno.Instrumento || '')
-      setDia(alumno.Dia || '')
-      setHorario(alumno.Horario || '')
-      setDuracion(alumno.Duracion || '')
-      setProfesor(alumno.Profesor || '')
+    (async () => {
+      setLoading(true)
+      alumno.profesor = await getProfesorById(alumno.profesor.id, { getUsuario: true })
+      setLoading(false)
+    })()
+  }, [])
+
+  useEffect(() => {
+    if (alumno && !loading) {
+      setInstrumento(alumno.instrumento || '')
+      setDia(alumno.clases.dia || '')
+      setHorario(alumno.clases.hora_inicio || '')
+      setDuracion(alumno.clases.duracion || '')
+      setProfesor(alumno.profesor || '')
 
       setOriginalData({
-        Instrumento: alumno.Instrumento || '',
-        Dia: alumno.Dia || '',
-        Horario: alumno.Horario || '',
-        Duracion: alumno.Duracion || '',
-        Profesor: alumno.Profesor || ''
+        instrumento: alumno.instrumento || '',
+        dia: alumno.clases.dia || '',
+        horario: alumno.clases.hora_iniio || '',
+        duracion: alumno.clases.duracion || '',
+        profesor: alumno.profesor || ''
       })
     }
-  }, [alumno])
+  }, [alumno, loading])
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -89,6 +100,8 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
     const instrumentoFormateado = instrumento.charAt(0).toUpperCase() + instrumento.slice(1)
     return instrumentoFormateado.replace(/_/g, ' ')
   }
+
+  if (loading) return <Loader />
 
   return (
     <div className='w-full'>
@@ -202,7 +215,7 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
             </div>
             <div className='flex'>
               <p className='mr-2 text-base font-bold'>Profesor:</p>
-              <p className='text-base'>{profesor}</p>
+              <p className='text-base'>{profesor.usuario?.full_name.nombre} {profesor.usuario?.full_name.apellido} / {profesor.instrumento} </p>
             </div>
           </div>
           <div className='bg-[#0D0D0D] flex flex-col mx-auto w-full'>
