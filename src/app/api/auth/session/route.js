@@ -6,6 +6,7 @@ import { NextResponse } from 'next/server'
 import firebaseConfig from '@/config/firebase.config'
 import { runAdminApp } from '@/lib/firebase/firebase-admin'
 
+// Inicializar Firebase Admin App para obtener la sesión del usuario en la aplicación de administración.
 runAdminApp()
 
 // Crear una sesión
