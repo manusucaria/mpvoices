@@ -331,7 +331,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
             <option value="">Seleccione un profesor</option>
             {profesores.map((profesor, index) => (
               <option key={index} value={profesor.id}>
-                {profesor.usuario.full_name.nombre} / {profesor.instrumento}
+                {profesor.usuario.full_name.nombre} {profesor.usuario.full_name.apellido} / {profesor.instrumento}
               </option>
             ))}
           </select>
