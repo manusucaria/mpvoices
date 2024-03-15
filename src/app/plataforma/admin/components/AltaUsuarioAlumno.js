@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react'
 
 import { signUp } from '@/lib/firebase/auth'
 import { getRolByName } from '@/lib/firebase/crud/read'
-import { diasSemana, duracionOptions, horarios, instrumentos } from '@/app/api/data'
+import {
+  diasSemana,
+  duracionOptions,
+  horarios,
+  instrumentos
+} from '@/app/api/data'
 
 const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
   const [newUserEmail, setNewUserEmail] = useState('')
@@ -11,6 +16,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
   const [newUserRol, setNewUserRol] = useState('')
   const [newUserNombre, setNewUserNombre] = useState('')
   const [newUserApellido, setNewUserApellido] = useState('')
+  const [newUserBirthdate, setNewUserBirthdate] = useState('')
   const [newUserInstrumento, setNewUserInstrumento] = useState('')
   const [newUserProfesor, setNewUserProfesor] = useState('')
   const [newUserClaseDia, setNewUserClaseDia] = useState('')
@@ -55,6 +61,9 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
     if (!newUserApellido.trim()) {
       formErrors.apellido = 'El campo de apellido es obligatorio'
     }
+    if (!newUserBirthdate.trim()) {
+      formErrors.birthdate = 'El campo fecha de nacimiento es obligatorio'
+    }
     if (!newUserInstrumento.trim()) {
       formErrors.instrumento = 'El campo de instrumento es obligatorio'
     }
@@ -80,6 +89,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
           rolAsignado: newUserRol,
           nombre: newUserNombre,
           apellido: newUserApellido,
+          birthdate: newUserBirthdate,
           instrumento: newUserInstrumento,
           profesor: newUserProfesor,
           clase_dia: newUserClaseDia,
@@ -92,6 +102,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
         setNewUserPhoneNumber('')
         setNewUserNombre('')
         setNewUserApellido('')
+        setNewUserBirthdate('')
         setNewUserInstrumento('')
         setNewUserProfesor('')
         setNewUserClaseDia('')
@@ -268,6 +279,24 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
         )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
+            Fecha de nac.:
+          </label>
+          <input
+            placeholder="Fecha de nac."
+            className="text-[#0D0D0D] rounded-3xl h-8 px-2 w-4/6 ml-auto"
+            type="date"
+            name="birthdate"
+            value={newUserBirthdate}
+            onChange={(e) => setNewUserBirthdate(e.target.value)}
+          />
+        </div>
+        {errors.birthdate && (
+          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+            {errors.birthdate}
+          </p>
+        )}
+        <div className="flex mt-6">
+          <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
             Instr.:
           </label>
           <select
@@ -333,10 +362,12 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
             {errors.clase_dia}
           </p>
         )}
-        <div className='flex mt-6'>
-          <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Hora de inicio:</label>
+        <div className="flex mt-6">
+          <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
+            Hora de inicio:
+          </label>
           <select
-            className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+            className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
             name="Horario"
             value={newUserClaseHoraInicio}
             onChange={(e) => setNewUserClaseHoraInicio(e.target.value)}
@@ -354,17 +385,21 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
             {errors.clase_hora_inicio}
           </p>
         )}
-        <div className='flex mt-6'>
-          <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Duración:</label>
+        <div className="flex mt-6">
+          <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
+            Duración:
+          </label>
           <select
-            className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+            className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
             name="Duracion"
             value={newUserClaseDuracion}
             onChange={(e) => setNewUserClaseDuracion(e.target.value)}
           >
             <option value="">Seleccione una duración</option>
             {duracionOptions.map((duracion, index) => (
-              <option key={index} value={duracion}>{duracion} minutos</option>
+              <option key={index} value={duracion}>
+                {duracion} minutos
+              </option>
             ))}
           </select>
         </div>
