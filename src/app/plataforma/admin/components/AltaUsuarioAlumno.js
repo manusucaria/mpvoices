@@ -40,9 +40,23 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
     if (!newUserEmail.trim()) {
       formErrors.email = 'El campo de correo electrónico es obligatorio'
     }
-
     if (!newUserPassword) {
       formErrors.password = 'El campo de contraseña es obligatorio'
+    }
+    if (!newUserPhoneNumber.trim()) {
+      formErrors.telefono = 'El campo de telefono es obligatorio'
+    }
+    if (!newUserNombre.trim()) {
+      formErrors.nombre = 'El campo de nombre es obligatorio'
+    }
+    if (!newUserApellido.trim()) {
+      formErrors.apellido = 'El campo de apellido es obligatorio'
+    }
+    if (!newUserInstrumento.trim()) {
+      formErrors.instrumento = 'El campo de instrumento es obligatorio'
+    }
+    if (!newUserProfesor.trim()) {
+      formErrors.profesor = 'El campo de profesor es obligatorio'
     }
 
     if (Object.keys(formErrors).length === 0) {
@@ -61,7 +75,6 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
         setNewUserEmail('')
         setNewUserPassword('')
         setNewUserPhoneNumber('')
-        setNewUserRol('')
         setNewUserNombre('')
         setNewUserApellido('')
         setNewUserInstrumento('')
@@ -176,6 +189,11 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
             onChange={(e) => setNewUserPassword(e.target.value)}
           />
         </div>
+        {errors.password && (
+          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+            {errors.password}
+          </p>
+        )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
             Teléfono:
@@ -189,6 +207,11 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
             onChange={(e) => setNewUserPhoneNumber(e.target.value)}
           />
         </div>
+        {errors.telefono && (
+          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+            {errors.telefono}
+          </p>
+        )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
             Nombre:
@@ -202,6 +225,11 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
             onChange={(e) => setNewUserNombre(e.target.value)}
           />
         </div>
+        {errors.nombre && (
+          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+            {errors.nombre}
+          </p>
+        )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
             Apellido:
@@ -215,6 +243,11 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
             onChange={(e) => setNewUserApellido(e.target.value)}
           />
         </div>
+        {errors.apellido && (
+          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+            {errors.apellido}
+          </p>
+        )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
             Instr.:
@@ -233,6 +266,11 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
             ))}
           </select>
         </div>
+        {errors.instrumento && (
+          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+            {errors.instrumento}
+          </p>
+        )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
             Profesor:
@@ -251,9 +289,9 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
             ))}
           </select>
         </div>
-        {errors.password && (
-          <p className="ml-auto pr-4 mt-1 text-white text-sm">
-            {errors.password}
+        {errors.profesor && (
+          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+            {errors.profesor}
           </p>
         )}
         <div className="flex w-full mx-auto gap-x-4 mt-8 mb-2">
