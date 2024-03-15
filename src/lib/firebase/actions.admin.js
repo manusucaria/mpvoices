@@ -1,7 +1,7 @@
 import { deleteDoc, doc, getDoc, updateDoc } from 'firebase/firestore'
 
 import { db } from './firebase'
-import { Profesor, Usuario } from './schemas'
+import { Alumno, Profesor, Usuario } from './schemas'
 import { getAlumnoById } from './crud/read'
 
 export const updateUsuarioProfesorById = async (
@@ -90,6 +90,28 @@ export const updateUsuarioAlumnoById = async (uid, { nombre, apellido, birthdate
     const newUsuarioUpdated = await getAlumnoById(uid, { getUsuario: true })
 
     return newUsuarioUpdated
+  } catch (error) {
+    throw error
+  }
+}
+
+export const updateClasesAlumno = async (uid, { dia, hora_inicio, duracion, instrumento, profesor }) => {
+  try {
+    const alumnoData = new Alumno({
+      usuarioUid: uid,
+      profesorUid: profesor.id,
+      instrumento,
+      clase_dia: dia,
+      clase_hora_inicio: hora_inicio,
+      clase_duracion: duracion
+    })
+
+    const alumnoRef = doc(db, 'alumnos', uid)
+    await updateDoc(alumnoRef, Object.assign({}, alumnoData))
+
+    const newClaseUsuarioUpdated = await getAlumnoById(uid, { getUsuario: true, getProfesor: true })
+
+    return newClaseUsuarioUpdated
   } catch (error) {
     throw error
   }
