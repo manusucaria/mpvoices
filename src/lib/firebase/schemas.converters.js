@@ -54,7 +54,7 @@ export const ProfesorConverter = {
 export const AlumnoConverter = {
   toFirestore: (alumno) => {
     return {
-      Usuario: alumno.usuario,
+      usuario: alumno.usuario,
       profesor: alumno.profesor,
       instrumento: alumno.instrumento
     }
