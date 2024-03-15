@@ -38,7 +38,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
     const formErrors = {}
 
     if (!newUserEmail.trim()) {
-      formErrors.email = 'El campo de correo electrónico es obligatorio'
+      formErrors.email = 'El campo de email es obligatorio'
     }
     if (!newUserPassword) {
       formErrors.password = 'El campo de contraseña es obligatorio'
@@ -284,7 +284,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
             <option value="">Seleccione un profesor</option>
             {profesores.map((profesor, index) => (
               <option key={index} value={profesor.id}>
-                {profesor.Nombre}
+                {profesor.usuario.full_name.nombre} / { profesor.instrumento }
               </option>
             ))}
           </select>
