@@ -1,8 +1,6 @@
 import { updateUsuarioAlumnoById } from '@/lib/firebase/actions.admin'
 import React, { useState, useEffect } from 'react'
 
-// import { updateAlumno, fetchAlumno } from '@/app/api/api'
-
 const EditorDatos = ({ alumno, setSelectedAlumno }) => {
   const [nombre, setNombre] = useState('')
   const [apellido, setApellido] = useState('')
