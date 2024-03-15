@@ -5,9 +5,8 @@ import EditorProfesor from '../components/EditorProfesor'
 import EliminarAlumno from '../components/EliminarAlumno'
 import EliminarProfesor from '../components/EliminarProfesor'
 
-// import { getAlumnos } from '@/app/api/api'
 import { useAuth } from '@/lib/firebase/useAuth'
-import { getAllProfesores } from '@/lib/firebase/crud/read'
+import { getAllAlumnos, getAllProfesores } from '@/lib/firebase/crud/read'
 
 const Buscador = () => {
   const user = useAuth()
@@ -18,9 +17,9 @@ const Buscador = () => {
   const [selectedProfesor, setSelectedProfesor] = useState(null)
 
   useEffect(() => {
-    // getAlumnos().then(data => {
-    //   setAlumnos(data)
-    // })
+    getAllAlumnos({ getUsuario: true }).then(data => {
+      setAlumnos(data)
+    })
     getAllProfesores({ getUsuario: true })
       .then(data => {
         setProfesores(data)
@@ -53,12 +52,12 @@ const Buscador = () => {
 
   const searchTermNormalized = normalizeString(searchTerm)
 
-  // const buscarAlumnos = searchTerm.trim() !== ''
-  //   ? alumnos.filter(alumno => (
-  //     normalizeString(alumno.usuario.full_name.nombre).includes(searchTermNormalized) ||
-  // normalizeString(alumno.usuario.full_name.apellido).includes(searchTermNormalized)
-  //   ))
-  //   : []
+  const buscarAlumnos = searchTerm.trim() !== ''
+    ? alumnos.filter(alumno => (
+      normalizeString(alumno.usuario.full_name.nombre).includes(searchTermNormalized) ||
+  normalizeString(alumno.usuario.full_name.apellido).includes(searchTermNormalized)
+    ))
+    : []
 
   const buscarProfesores = searchTerm.trim() !== ''
     ? profesores.filter(profesor => (
@@ -85,7 +84,7 @@ const Buscador = () => {
           className="text-[#0D0D0D] bg-[#FFFFFF] w-full h-full mx-auto text-center border-none rounded-3xl my-auto"
         />
       </div>
-      {/* {searchTerm.trim() !== '' && (
+      {searchTerm.trim() !== '' && (
         <div className='flex flex-col mx-auto w-full'>
           {buscarAlumnos.map((alumno) => (
             <button key={alumno.id} onClick={() => handleAlumnoClick(alumno)} className='mx-auto mb-8 px-2 sm:mb-6 md:mb-4 bg-[#E9500E] font-botones text-[#FFFFFF] rounded-3xl h-12 sm:h-10 w-4/6 sm:w-3/6 md:hover:bg-[#DB9B6D]'>{alumno.usuario.full_name.nombre} {alumno.usuario.full_name.apellido} - Alumno</button>
@@ -97,7 +96,7 @@ const Buscador = () => {
           <EditorAlumnos profesores={profesores} alumno={selectedAlumno} setSelectedAlumno={setSelectedAlumno} setSelectedProfesor={setSelectedProfesor} />
           <EliminarAlumno selectedAlumno={selectedAlumno} setSelectedAlumno={setSelectedAlumno} />
         </div>
-      )} */}
+      )}
       {searchTerm.trim() !== '' && (
         <div className='flex flex-col mx-auto w-full'>
           {buscarProfesores.map((profesor) => (
