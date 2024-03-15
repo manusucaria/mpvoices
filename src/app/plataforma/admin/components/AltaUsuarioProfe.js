@@ -14,6 +14,7 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
   const [newUserNombre, setNewUserNombre] = useState('')
   const [newUserApellido, setNewUserApellido] = useState('')
   const [newUserInstrumento, setNewUserInstrumento] = useState('')
+  const [newUserBirthdate, setNewUserBirthdate] = useState('')
   const [errors, setErrors] = useState({})
   const [showConfirmation, setShowConfirmation] = useState(false)
 
@@ -69,6 +70,9 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
     if (!newUserApellido.trim()) {
       formErrors.apellido = 'El campo de apellido es obligatorio'
     }
+    if (!newUserBirthdate.trim()) {
+      formErrors.birthdate = 'El campo fecha de nacimiento es obligatorio'
+    }
     if (!selectedDays.join(', ').trim()) {
       formErrors.dias = 'El campo de días es obligatorio'
     }
@@ -85,6 +89,7 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
           rolAsignado: newUserRol,
           nombre: newUserNombre,
           apellido: newUserApellido,
+          birthdate: newUserBirthdate,
           instrumento: newUserInstrumento,
           dias: selectedDays.join(', ')
         })
@@ -264,7 +269,27 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
           </p>
         )}
         <div className="flex mt-6">
-          <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">Día:</label>
+          <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
+            Fecha de nac.:
+          </label>
+          <input
+            placeholder="Fecha de nac."
+            className="text-[#0D0D0D] rounded-3xl h-8 px-2 w-4/6 ml-auto"
+            type="date"
+            name="birthdate"
+            value={newUserBirthdate}
+            onChange={(e) => setNewUserBirthdate(e.target.value)}
+          />
+        </div>
+        {errors.birthdate && (
+          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+            {errors.birthdate}
+          </p>
+        )}
+        <div className="flex mt-6">
+          <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
+            Días de clases:
+          </label>
           <div className="relative w-4/6 ml-auto">
             <input
               className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-full"
@@ -305,7 +330,7 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
             Instr.:
           </label>
           <select
-            className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            className="text-[#0D0D0D] rounded-3xl h-8 px-2 w-4/6 ml-auto"
             name="Instrumento"
             value={newUserInstrumento}
             onChange={(e) => setNewUserInstrumento(e.target.value)}
