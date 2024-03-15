@@ -289,7 +289,7 @@ const AgendaFull = () => {
                             gridRowStart: horarios.indexOf(alumno.Horario) + 2,
                             gridRowEnd:
                               horarios.indexOf(alumno.Horario) +
-                              2 +
+                              3 +
                               alumno.Duracion / 15
                           }}
                         >
