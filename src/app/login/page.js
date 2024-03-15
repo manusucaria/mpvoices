@@ -36,6 +36,9 @@ const LoginForm = () => {
         setErrors({})
         window.location.href = '/plataforma'
       } catch (error) {
+        if (error.code === 'auth/invalid-login-credentials') {
+          setErrors({ email: 'Usuario incorrecto' })
+        }
         if (error.code === 'auth/wrong-password') {
           setErrors({ password: 'Contraseña incorrecta' })
         }
