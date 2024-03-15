@@ -1,4 +1,11 @@
-import { collection, where, query, getDocs, getDoc, doc } from 'firebase/firestore'
+import {
+  collection,
+  where,
+  query,
+  getDocs,
+  getDoc,
+  doc
+} from 'firebase/firestore'
 
 import { db } from '../firebase'
 import { RolConverter } from '../schemas.converters'
