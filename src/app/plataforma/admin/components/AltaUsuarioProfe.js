@@ -57,9 +57,23 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
     if (!newUserEmail.trim()) {
       formErrors.email = 'El campo de correo electrónico es obligatorio'
     }
-
     if (!newUserPassword) {
       formErrors.password = 'El campo de contraseña es obligatorio'
+    }
+    if (!newUserPhoneNumber.trim()) {
+      formErrors.phoneNumber = 'El campo de teléfono es obligatorio'
+    }
+    if (!newUserNombre.trim()) {
+      formErrors.nombre = 'El campo de nombre es obligatorio'
+    }
+    if (!newUserApellido.trim()) {
+      formErrors.apellido = 'El campo de apellido es obligatorio'
+    }
+    if (!selectedDays.join(', ').trim()) {
+      formErrors.dias = 'El campo de días es obligatorio'
+    }
+    if (!newUserInstrumento.trim()) {
+      formErrors.instrumento = 'El campo de instrumento es obligatorio'
     }
 
     if (Object.keys(formErrors).length === 0) {
@@ -78,7 +92,6 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
         setNewUserEmail('')
         setNewUserPassword('')
         setNewUserPhoneNumber('')
-        setNewUserRol('')
         setNewUserNombre('')
         setNewUserApellido('')
         setNewUserInstrumento('')
@@ -209,6 +222,11 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
             onChange={(e) => setNewUserPhoneNumber(e.target.value)}
           />
         </div>
+        {errors.phoneNumber && (
+          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+            {errors.phoneNumber}
+          </p>
+        )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
             Nombre:
@@ -222,6 +240,11 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
             onChange={(e) => setNewUserNombre(e.target.value)}
           />
         </div>
+        {errors.nombre && (
+          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+            {errors.nombre}
+          </p>
+        )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
             Apellido:
@@ -235,6 +258,11 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
             onChange={(e) => setNewUserApellido(e.target.value)}
           />
         </div>
+        {errors.apellido && (
+          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+            {errors.apellido}
+          </p>
+        )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">Día:</label>
           <div className="relative w-4/6 ml-auto">
@@ -267,6 +295,11 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
             </div>
           </div>
         )}
+        {errors.dias && (
+          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+            {errors.dias}
+          </p>
+        )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
             Instr.:
@@ -285,6 +318,11 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
             ))}
           </select>
         </div>
+        {errors.instrumento && (
+          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+            {errors.instrumento}
+          </p>
+        )}
         <div className="flex w-full mx-auto gap-x-4 mt-8 mb-2">
           <button
             className="font-botones font-bold h-12 sm:h-10 w-3/6 mr-auto rounded-3xl bg-[#663481] text-[#FFFFFF] px-3 md:hover:bg-[#9B70BE]"
