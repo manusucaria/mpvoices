@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 
-import { updateAlumno, fetchAlumno } from '@/app/api/api'
 import {
   horarios,
   duracionOptions,
@@ -9,13 +8,14 @@ import {
 } from '@/app/api/data'
 import { getProfesorById } from '@/lib/firebase/crud/read'
 import Loader from '@/app/components/loader/Loader'
+import { updateClasesAlumno } from '@/lib/firebase/actions.admin'
 
 const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
   const [instrumento, setInstrumento] = useState(
     alumno ? alumno.instrumento : ''
   )
-  const [horario, setHorario] = useState(alumno ? alumno.horario : '')
-  const [duracion, setDuracion] = useState(alumno ? alumno.Duracion : '')
+  const [horaInicio, setHoraInicio] = useState(alumno ? alumno.clases.hora_inicio : '')
+  const [duracion, setDuracion] = useState(alumno ? alumno.clases.duracion : '')
   const [dia, setDia] = useState('')
   const [profesor, setProfesor] = useState('')
   const [originalData, setOriginalData] = useState(null)
@@ -37,19 +37,24 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
     if (alumno && !loading) {
       setInstrumento(alumno.instrumento || '')
       setDia(alumno.clases.dia || '')
-      setHorario(alumno.clases.hora_inicio || '')
+      setHoraInicio(alumno.clases.hora_inicio || '')
       setDuracion(alumno.clases.duracion || '')
       setProfesor(alumno.profesor || '')
 
       setOriginalData({
         instrumento: alumno.instrumento || '',
         dia: alumno.clases.dia || '',
-        horario: alumno.clases.hora_iniio || '',
+        hora_inicio: alumno.clases.hora_inicio || '',
         duracion: alumno.clases.duracion || '',
         profesor: alumno.profesor || ''
       })
     }
   }, [alumno, loading])
+
+  const handleProfesor = async (e) => {
+    const profesor = profesores.find((profesor) => profesor.id === e.target.value)
+    setProfesor(profesor)
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -58,17 +63,14 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
         instrumento.charAt(0).toUpperCase() +
         instrumento.slice(1).toLowerCase().replace(/_/g, ' ')
 
-      const updatedAlumno = {
-        Instrumento: formattedInstrumento,
-        Dia: dia,
-        Horario: horario,
-        Duracion: duracion,
-        Profesor: profesor
-      }
-
-      await updateAlumno(alumno.id, updatedAlumno)
-      const updatedAlumnoData = await fetchAlumno(alumno.id)
-      setSelectedAlumno(updatedAlumnoData)
+      const updatedClasesAlumnoData = await updateClasesAlumno(alumno.id, {
+        dia,
+        duracion,
+        hora_inicio: horaInicio,
+        instrumento: formattedInstrumento,
+        profesor
+      })
+      setSelectedAlumno(updatedClasesAlumnoData)
       setEditMode(false)
       setShowConfirmation(true)
     } catch (error) {
@@ -82,11 +84,11 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
 
   const cancelarClick = () => {
     if (originalData) {
-      setInstrumento(originalData.Instrumento)
-      setDia(originalData.Dia)
-      setHorario(originalData.Horario)
-      setDuracion(originalData.Duracion)
-      setProfesor(originalData.Profesor)
+      setInstrumento(originalData.instrumento)
+      setDia(originalData.dia)
+      setHoraInicio(originalData.hora_inicio)
+      setDuracion(originalData.duracion)
+      setProfesor(originalData.profesor)
     }
     setEditMode(false)
   }
@@ -162,8 +164,8 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
               <label className="font-bold mr-auto w-2/6">Horario:</label>
               <select
                 className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
-                value={horario}
-                onChange={(e) => setHorario(e.target.value)}
+                value={horaInicio}
+                onChange={(e) => setHoraInicio(e.target.value)}
               >
                 {horarios.map((hora, index) => (
                   <option key={index} value={hora}>
@@ -190,14 +192,14 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
               <label className="font-bold mr-auto w-2/6">Profesor:</label>
               <select
                 className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
-                value={profesor}
-                onChange={(e) => setProfesor(e.target.value)}
+                defaultValue={profesor.id}
+                onChange={handleProfesor}
               >
                 {profesores
-                  .sort((a, b) => a.Nombre.localeCompare(b.Nombre))
+                  .sort((a, b) => a.usuario.full_name.nombre.localeCompare(b.usuario.full_name.nombre))
                   .map((profesor, index) => (
-                    <option key={index} value={profesor.Nombre}>
-                      {profesor.Nombre}
+                    <option key={index} value={profesor.id}>
+                      {profesor.usuario.full_name.nombre} {profesor.usuario.full_name.apellido} / {profesor.instrumento}
                     </option>
                   ))}
               </select>
@@ -233,7 +235,7 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
             </div>
             <div className="mb-8 flex">
               <p className="mr-2 text-base font-bold">Horario:</p>
-              <p className="text-base">{horario}hs</p>
+              <p className="text-base">{horaInicio}hs</p>
             </div>
             <div className="mb-8 flex">
               <p className="mr-2 text-base font-bold">Duración:</p>
