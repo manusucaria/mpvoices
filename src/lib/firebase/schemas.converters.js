@@ -56,7 +56,8 @@ export const AlumnoConverter = {
     return {
       usuario: alumno.usuario,
       profesor: alumno.profesor,
-      instrumento: alumno.instrumento
+      instrumento: alumno.instrumento,
+      clases: alumno.clases
     }
   },
   fromFirestore: (snapshot, options) => {
@@ -64,27 +65,10 @@ export const AlumnoConverter = {
     return new Alumno({
       usuario: data.usuario,
       profesor: data.profesor,
-      instrumento: data.instrumento
-    })
-  }
-}
-
-export const AlumnoClaseConverter = {
-  toFirestore: (clase) => {
-    return {
-      dia: clase.dia,
-      horaInicio: clase.horaInicio,
-      horaFin: clase.horaFin,
-      profesor: clase.profesor
-    }
-  },
-  fromFirestore: (snapshot, options) => {
-    const data = snapshot.data(options)
-    return new AlumnoClase({
-      dia: data.dia,
-      horaInicio: data.horaInicio,
-      horaFin: data.horaFin,
-      profesor: data.profesor
+      instrumento: data.instrumento,
+      clase_dia: data.clase_dia,
+      clase_duracion: data.clase_duracion,
+      clase_hora_inicio: data.hora_inicio
     })
   }
 }
