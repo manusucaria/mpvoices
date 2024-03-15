@@ -91,7 +91,10 @@ export const signUp = async ({
         const setAlumno = new Alumno({
           usuario: firebaseUser.uid,
           profesor: rest.profesor,
-          instrumento: rest.instrumento
+          instrumento: rest.instrumento,
+          clase_dia: rest.clase_dia,
+          clase_duracion: rest.clase_duracion,
+          clase_hora_inicio: rest.clase_hora_inicio
         })
         const alumnoRef = doc(db, 'alumnos', firebaseUser.uid).withConverter(
           AlumnoConverter
