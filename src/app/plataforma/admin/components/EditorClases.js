@@ -14,8 +14,12 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
   const [instrumento, setInstrumento] = useState(
     alumno ? alumno.instrumento : ''
   )
-  const [horaInicio, setHoraInicio] = useState(alumno ? alumno.clases.hora_inicio : '')
-  const [duracion, setDuracion] = useState(alumno ? alumno.clases.duracion : '')
+  const [horaInicio, setHoraInicio] = useState(
+    alumno ? alumno.clases.hora_inicio : ''
+  )
+  const [duracion, setDuracion] = useState(
+    alumno ? alumno.clases.duracion : ''
+  )
   const [dia, setDia] = useState('')
   const [profesor, setProfesor] = useState('')
   const [originalData, setOriginalData] = useState(null)
@@ -53,7 +57,9 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
   }, [alumno, loading])
 
   const handleProfesor = async (e) => {
-    const profesor = profesores.find((profesor) => profesor.id === e.target.value)
+    const profesor = profesores.find(
+      (profesor) => profesor.id === e.target.value
+    )
     setProfesor(profesor)
   }
 
@@ -199,22 +205,30 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
                 onChange={handleProfesor}
               >
                 {profesores
-                  .sort((a, b) => a.usuario.full_name.nombre.localeCompare(b.usuario.full_name.nombre))
+                  .sort((a, b) =>
+                    a.usuario.full_name.nombre.localeCompare(
+                      b.usuario.full_name.nombre
+                    )
+                  )
                   .map((profesor, index) => (
                     <option key={index} value={profesor.id}>
-                      {profesor.usuario.full_name.nombre} {profesor.usuario.full_name.apellido} / {profesor.instrumento}
+                      {profesor.usuario.full_name.nombre}{' '}
+                      {profesor.usuario.full_name.apellido} /{' '}
+                      {profesor.instrumento}
                     </option>
                   ))}
               </select>
             </div>
             <div className="flex w-full mx-auto mt-8 gap-x-4">
               <button
-                className={`font-botones font-bold rounded-3xl w-3/6 bg-[#E9500E] text-[#FFFFFF] px-3 h-12 sm:h-10 md:hover:bg-[#DB9B6D] ${sending && 'opacity-50'}`}
+                className={`font-botones font-bold rounded-3xl w-3/6 bg-[#E9500E] text-[#FFFFFF] px-3 h-12 sm:h-10 md:hover:bg-[#DB9B6D] ${
+                  sending && 'opacity-50'
+                }`}
                 type="submit"
                 disabled={sending}
               >
-                              {sending
-                                ? (
+                {sending
+                  ? (
                   <div
                     role="status"
                     className="w-full flex items-center justify-center"
@@ -236,10 +250,10 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
                     </svg>
                     <span className="sr-only">Loading...</span>
                   </div>
-                                  )
-                                : (
-                                    'Guardar'
-                                  )}
+                    )
+                  : (
+                      'Guardar'
+                    )}
               </button>
               <button
                 className="font-botones font-bold rounded-3xl w-3/6 ml-auto bg-[#FFFFFF] text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#E9500E] px-3 h-12 sm:h-10"
