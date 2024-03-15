@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react'
 
 import { updateAlumno, fetchAlumno } from '@/app/api/api'
-import { horarios, duracionOptions, instrumentos, diasSemana } from '@/app/api/data'
+import {
+  horarios,
+  duracionOptions,
+  instrumentos,
+  diasSemana
+} from '@/app/api/data'
 import { getProfesorById } from '@/lib/firebase/crud/read'
 import Loader from '@/app/components/loader/Loader'
 
 const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
-  const [instrumento, setInstrumento] = useState(alumno ? alumno.instrumento : '')
+  const [instrumento, setInstrumento] = useState(
+    alumno ? alumno.instrumento : ''
+  )
   const [horario, setHorario] = useState(alumno ? alumno.horario : '')
   const [duracion, setDuracion] = useState(alumno ? alumno.Duracion : '')
   const [dia, setDia] = useState('')
@@ -19,7 +26,9 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
   useEffect(() => {
     (async () => {
       setLoading(true)
-      alumno.profesor = await getProfesorById(alumno.profesor.id, { getUsuario: true })
+      alumno.profesor = await getProfesorById(alumno.profesor.id, {
+        getUsuario: true
+      })
       setLoading(false)
     })()
   }, [])
@@ -45,7 +54,9 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      const formattedInstrumento = instrumento.charAt(0).toUpperCase() + instrumento.slice(1).toLowerCase().replace(/_/g, ' ')
+      const formattedInstrumento =
+        instrumento.charAt(0).toUpperCase() +
+        instrumento.slice(1).toLowerCase().replace(/_/g, ' ')
 
       const updatedAlumno = {
         Instrumento: formattedInstrumento,
@@ -86,9 +97,14 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
 
   const renderInstrumentoOptions = () => {
     return instrumentos.map((instrumento, index) => {
-      const formattedInstrumento = instrumento.charAt(0).toUpperCase() + instrumento.slice(1).toLowerCase().replace(/_/g, ' ')
+      const formattedInstrumento =
+        instrumento.charAt(0).toUpperCase() +
+        instrumento.slice(1).toLowerCase().replace(/_/g, ' ')
       return (
-        <option key={index} value={instrumento.toLowerCase().replace(/\s/g, '_')}>
+        <option
+          key={index}
+          value={instrumento.toLowerCase().replace(/\s/g, '_')}
+        >
           {formattedInstrumento}
         </option>
       )
@@ -97,33 +113,41 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
 
   const formatInstrumento = (instrumento) => {
     if (!instrumento) return ''
-    const instrumentoFormateado = instrumento.charAt(0).toUpperCase() + instrumento.slice(1)
+    const instrumentoFormateado =
+      instrumento.charAt(0).toUpperCase() + instrumento.slice(1)
     return instrumentoFormateado.replace(/_/g, ' ')
   }
 
   if (loading) return <Loader />
 
   return (
-    <div className='w-full'>
+    <div className="w-full">
       {editMode
         ? (
-        <div className='flex flex-col w-full bg-[#0D0D0D] px-4 sm:px-8 pb-8 pt-4'>
-          <form className='w-full mx-auto' onSubmit={handleSubmit}>
-            <div className='flex mb-6'>
-              <label className='font-bold mr-auto w-2/6'>Instrumento:</label>
+        <div className="flex flex-col w-full bg-[#0D0D0D] px-4 sm:px-8 pb-8 pt-4">
+          <form className="w-full mx-auto" onSubmit={handleSubmit}>
+            <div className="flex mb-6">
+              <label className="font-bold mr-auto w-2/6">Instrumento:</label>
               <select
-                className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+                className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
                 value={instrumento}
                 onChange={(e) => setInstrumento(e.target.value)}
               >
-                <option value={instrumento.charAt(0).toUpperCase() + instrumento.slice(1).toLowerCase().replace(/_/g, ' ')}>{instrumento}</option>
+                <option
+                  value={
+                    instrumento.charAt(0).toUpperCase() +
+                    instrumento.slice(1).toLowerCase().replace(/_/g, ' ')
+                  }
+                >
+                  {instrumento}
+                </option>
                 {renderInstrumentoOptions()}
               </select>
             </div>
-            <div className='flex mb-6'>
-              <label className='font-bold mr-auto w-2/6'>Días:</label>
+            <div className="flex mb-6">
+              <label className="font-bold mr-auto w-2/6">Días:</label>
               <select
-                className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+                className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
                 value={dia}
                 onChange={(e) => setDia(e.target.value)}
               >
@@ -134,10 +158,10 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
                 ))}
               </select>
             </div>
-            <div className='flex mb-6'>
-              <label className='font-bold mr-auto w-2/6'>Horario:</label>
+            <div className="flex mb-6">
+              <label className="font-bold mr-auto w-2/6">Horario:</label>
               <select
-                className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+                className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
                 value={horario}
                 onChange={(e) => setHorario(e.target.value)}
               >
@@ -148,10 +172,10 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
                 ))}
               </select>
             </div>
-            <div className='flex mb-6'>
-              <label className='font-bold mr-auto w-2/6'>Duración:</label>
+            <div className="flex mb-6">
+              <label className="font-bold mr-auto w-2/6">Duración:</label>
               <select
-                className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+                className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
                 value={duracion}
                 onChange={(e) => setDuracion(e.target.value)}
               >
@@ -162,31 +186,33 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
                 ))}
               </select>
             </div>
-            <div className='flex mb-6'>
-              <label className='font-bold mr-auto w-2/6'>Profesor:</label>
+            <div className="flex mb-6">
+              <label className="font-bold mr-auto w-2/6">Profesor:</label>
               <select
-                className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+                className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
                 value={profesor}
                 onChange={(e) => setProfesor(e.target.value)}
               >
-              {profesores
-                .sort((a, b) => a.Nombre.localeCompare(b.Nombre))
-                .map((profesor, index) => (
-                  <option key={index} value={profesor.Nombre}>
-                    {profesor.Nombre}
-                  </option>
-                ))
-              }
+                {profesores
+                  .sort((a, b) => a.Nombre.localeCompare(b.Nombre))
+                  .map((profesor, index) => (
+                    <option key={index} value={profesor.Nombre}>
+                      {profesor.Nombre}
+                    </option>
+                  ))}
               </select>
             </div>
-            <div className='flex w-full mx-auto mt-8 gap-x-4'>
-              <button className='font-botones font-bold rounded-3xl w-3/6 bg-[#E9500E] text-[#FFFFFF] px-3 h-12 sm:h-10 md:hover:bg-[#DB9B6D]' type='submit'>
+            <div className="flex w-full mx-auto mt-8 gap-x-4">
+              <button
+                className="font-botones font-bold rounded-3xl w-3/6 bg-[#E9500E] text-[#FFFFFF] px-3 h-12 sm:h-10 md:hover:bg-[#DB9B6D]"
+                type="submit"
+              >
                 Guardar
               </button>
               <button
-                className='font-botones font-bold rounded-3xl w-3/6 ml-auto bg-[#FFFFFF] text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#E9500E] px-3 h-12 sm:h-10'
+                className="font-botones font-bold rounded-3xl w-3/6 ml-auto bg-[#FFFFFF] text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#E9500E] px-3 h-12 sm:h-10"
                 onClick={cancelarClick}
-                type='button'
+                type="button"
               >
                 Cancelar
               </button>
@@ -195,49 +221,57 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
         </div>
           )
         : (
-        <div className='flex flex-col w-full mx-auto bg-[#0D0D0D]'>
-          <div className='px-4 sm:px-8 pb-8 w-full pt-4'>
-            <div className='mb-8 flex'>
-              <p className='mr-2 text-base font-bold'>Instrumento:</p>
-              <p className='text-base'>{formatInstrumento(instrumento)}</p>
+        <div className="flex flex-col w-full mx-auto bg-[#0D0D0D]">
+          <div className="px-4 sm:px-8 pb-8 w-full pt-4">
+            <div className="mb-8 flex">
+              <p className="mr-2 text-base font-bold">Instrumento:</p>
+              <p className="text-base">{formatInstrumento(instrumento)}</p>
             </div>
-            <div className='mb-8 flex'>
-              <p className='mr-2 text-base font-bold'>Días:</p>
-              <p className='text-base'>{dia.toLowerCase()}</p>
+            <div className="mb-8 flex">
+              <p className="mr-2 text-base font-bold">Días:</p>
+              <p className="text-base">{dia.toLowerCase()}</p>
             </div>
-            <div className='mb-8 flex'>
-              <p className='mr-2 text-base font-bold'>Horario:</p>
-              <p className='text-base'>{horario}hs</p>
+            <div className="mb-8 flex">
+              <p className="mr-2 text-base font-bold">Horario:</p>
+              <p className="text-base">{horario}hs</p>
             </div>
-            <div className='mb-8 flex'>
-              <p className='mr-2 text-base font-bold'>Duración:</p>
-              <p className='text-base'>{duracion} min</p>
+            <div className="mb-8 flex">
+              <p className="mr-2 text-base font-bold">Duración:</p>
+              <p className="text-base">{duracion} min</p>
             </div>
-            <div className='flex'>
-              <p className='mr-2 text-base font-bold'>Profesor:</p>
-              <p className='text-base'>{profesor.usuario?.full_name.nombre} {profesor.usuario?.full_name.apellido} / {profesor.instrumento} </p>
+            <div className="flex">
+              <p className="mr-2 text-base font-bold">Profesor:</p>
+              <p className="text-base">
+                {profesor.usuario?.full_name.nombre}{' '}
+                {profesor.usuario?.full_name.apellido} / {profesor.instrumento}{' '}
+              </p>
             </div>
           </div>
-          <div className='bg-[#0D0D0D] flex flex-col mx-auto w-full'>
-            <button className='font-botones font-bold rounded-3xl w-4/6 sm:w-3/6 mx-auto h-12 sm:h-10 mb-8 bg-[#E9500E] md:hover:bg-[#DB9B6D]' onClick={handleEditClick}>
-                Editar clases
+          <div className="bg-[#0D0D0D] flex flex-col mx-auto w-full">
+            <button
+              className="font-botones font-bold rounded-3xl w-4/6 sm:w-3/6 mx-auto h-12 sm:h-10 mb-8 bg-[#E9500E] md:hover:bg-[#DB9B6D]"
+              onClick={handleEditClick}
+            >
+              Editar clases
             </button>
           </div>
         </div>
           )}
-        {showConfirmation && (
-          <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-50 z-50">
-            <div className="bg-[#FFFFFF] p-12 rounded-lg text-center flex flex-col">
-              <p className="text-[#0D0D0D] text-xl mb-4 font-bold">Los cambios se guardaron correctamente.</p>
-              <button
-                className="text-[#E9500E] md:hover:text-[#DB9B6D] ml-auto font-bold"
-                onClick={handleCloseConfirmation}
-              >
-                Entendido
-              </button>
-            </div>
+      {showConfirmation && (
+        <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-50 z-50">
+          <div className="bg-[#FFFFFF] p-12 rounded-lg text-center flex flex-col">
+            <p className="text-[#0D0D0D] text-xl mb-4 font-bold">
+              Los cambios se guardaron correctamente.
+            </p>
+            <button
+              className="text-[#E9500E] md:hover:text-[#DB9B6D] ml-auto font-bold"
+              onClick={handleCloseConfirmation}
+            >
+              Entendido
+            </button>
           </div>
-        )}
+        </div>
+      )}
     </div>
   )
 }
