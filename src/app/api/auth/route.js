@@ -1,10 +1,12 @@
 import { auth } from 'firebase-admin'
-import { customInitApp } from '@/lib/firebase-admin-config'
+
 import { cookies, headers } from 'next/headers'
 import { NextResponse } from 'next/server'
 
-// iniciar firebase
-customInitApp()
+import { runAdminApp } from '@/lib/firebase/firebase-admin'
+
+// Inicializar Firebase Admin App para obtener la sesión del usuario en la aplicación de administración.
+runAdminApp()
 
 export async function POST (request, response) {
   const authorization = headers().get('Authorization')
