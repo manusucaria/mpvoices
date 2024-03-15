@@ -62,6 +62,7 @@ export const signUp = async ({
       nombre: rest.nombre,
       apellido: rest.apellido,
       telefono: phoneNumber,
+      birthdate: rest.birthdate,
       rol: rolAsignado,
       email
     })
