@@ -1,4 +1,4 @@
-import { Alumno, AlumnoClase, Profesor, Rol, Usuario } from './schemas'
+import { Alumno, Profesor, Rol, Usuario } from './schemas'
 
 export const RolConverter = {
   toFirestore: (rol) => {
