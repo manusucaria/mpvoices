@@ -10,6 +10,7 @@ const EditorDatosProfesor = ({
 }) => {
   const [nombre, setNombre] = useState('')
   const [apellido, setApellido] = useState('')
+  const [birthdate, setBirthdate] = useState('')
   const [email, setEmail] = useState('')
   const [telefono, setTelefono] = useState('')
   const [diasSeleccionados, setDiasSeleccionados] = useState([])
@@ -25,6 +26,7 @@ const EditorDatosProfesor = ({
     if (profesor) {
       setNombre(profesor.usuario.full_name.nombre || '')
       setApellido(profesor.usuario.full_name.apellido || '')
+      setBirthdate(profesor.usuario.birthdate || '')
       setEmail(profesor.usuario.email || '')
       setTelefono(profesor.usuario.telefono || '')
       setDiasSeleccionados(
@@ -34,6 +36,7 @@ const EditorDatosProfesor = ({
       setOriginalValues({
         nombre: profesor.usuario.full_name.nombre || '',
         apellido: profesor.usuario.full_name.apellido || '',
+        birthdate: profesor.usuario.birthdate || '',
         email: profesor.usuario.email || '',
         telefono: profesor.usuario.telefono || '',
         dia: profesor.dias || '',
@@ -57,6 +60,7 @@ const EditorDatosProfesor = ({
       const updatedProfesorData = await updateUsuarioProfesorById(profesor.id, {
         nombre,
         apellido,
+        birthdate,
         email,
         telefono,
         dias: diasSeleccionados.join(', '),
@@ -197,6 +201,18 @@ const EditorDatosProfesor = ({
             </div>
             <div className="flex mb-6">
               <label className="text-base font-bold mr-auto w-2/6">
+                Fecha de nac.:
+              </label>
+              <input
+                className="text-[#0D0D0D] rounded-3xl h-8 px-2 w-4/6 ml-auto"
+                type="date"
+                name="birthdate"
+                value={birthdate}
+                onChange={(e) => setBirthdate(e.target.value)}
+              />
+            </div>
+            <div className="flex mb-6">
+              <label className="text-base font-bold mr-auto w-2/6">
                 E-Mail:
               </label>
               <input
@@ -258,7 +274,7 @@ const EditorDatosProfesor = ({
                 </div>
               </div>
             )}
-            <div className="flex mb-6">
+            <div className="flex mt-6">
               <label className="font-bold mr-auto w-2/6">Instrumento:</label>
               <select
                 className="text-[#0D0D0D] rounded-3xl h-8 px-1 w-4/6 ml-auto"
@@ -285,7 +301,9 @@ const EditorDatosProfesor = ({
             )}
             <div className="flex w-full mx-auto my-8 gap-x-4">
               <button
-                className={`font-botones font-bold rounded-3xl w-3/6 bg-[#663481] text-[#FFFFFF] px-3 h-12 sm:h-10 md:hover:bg-[#9B70BE] ${sending && 'opacity-50'}`}
+                className={`font-botones font-bold rounded-3xl w-3/6 bg-[#663481] text-[#FFFFFF] px-3 h-12 sm:h-10 md:hover:bg-[#9B70BE] ${
+                  sending && 'opacity-50'
+                }`}
                 type="submit"
                 disabled={sending}
               >
@@ -371,6 +389,10 @@ const EditorDatosProfesor = ({
             <div className="mb-8 flex">
               <p className="mr-2 text-base font-bold">Apellido:</p>
               <p className="text-base">{apellido}</p>
+            </div>
+            <div className="mb-8 flex">
+              <p className="mr-2 text-base font-bold">Fecha de nac.:</p>
+              <p className="text-base">{birthdate}</p>
             </div>
             <div className="mb-8 flex">
               <p className="mr-2 text-base font-bold">E-Mail:</p>
