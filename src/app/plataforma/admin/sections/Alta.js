@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import AltaUsuarioAlumno from '../components/AltaUsuarioAlumno'
 import AltaUsuarioProfe from '../components/AltaUsuarioProfe'
 
-import { getProfesores } from '@/app/api/api'
+import { getAllProfesores } from '@/lib/firebase/crud/read'
 
 const Alta = () => {
   const [showProfesorForm, setShowProfesorForm] = useState(false)
@@ -12,7 +12,7 @@ const Alta = () => {
   const [profesores, setProfesores] = useState([])
 
   useEffect(() => {
-    getProfesores().then((data) => {
+    getAllProfesores({ getUsuario: true }).then((data) => {
       setProfesores(data)
     })
   }, [])
