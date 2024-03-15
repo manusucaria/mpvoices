@@ -21,11 +21,9 @@ export const getRolByName = async ({ nombre }) => {
 
     if (rol.exists()) {
       return { ...rol.data(), id: rol.id }
-    } else {
-      throw new Error('Rol no encontrado')
     }
   } catch (error) {
-    return null
+    throw error
   }
 }
 
@@ -35,11 +33,9 @@ export const getRolById = async ({ id }) => {
     const docSnap = await getDoc(ref)
     if (docSnap.exists()) {
       return { ...docSnap.data(), id: docSnap.id }
-    } else {
-      return null
     }
   } catch (error) {
-    return null
+    throw error
   }
 }
 
@@ -49,11 +45,9 @@ export const getUsuarioById = async ({ id }) => {
     const docSnap = await getDoc(ref)
     if (docSnap.exists()) {
       return { ...docSnap.data(), id: docSnap.id }
-    } else {
-      return null
     }
   } catch (error) {
-    return null
+    throw error
   }
 }
 
@@ -74,7 +68,7 @@ export const getAllProfesores = async ({ getUsuario, getRol } = {}) => {
     }
     return profesores
   } catch (error) {
-    return null
+    throw error
   }
 }
 
@@ -95,6 +89,6 @@ export const getAllAlumnos = async ({ getUsuario, getRol } = {}) => {
     }
     return alumnos
   } catch (error) {
-    return null
+    throw error
   }
 }
