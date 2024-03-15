@@ -34,18 +34,6 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      // const updatedAlumno = {
-      //   Nombre: nombre,
-      //   Apellido: apellido,
-      //   Fecha: fecha,
-      //   Email: email,
-      //   Tel: tel
-      // }
-      // await updateAlumno(alumno.id, updatedAlumno)
-      // const updatedAlumnoData = await fetchAlumno(alumno.id)
-      // setSelectedAlumno(updatedAlumnoData)
-      // setEditMode(false)
-      // setShowConfirmation(true)
       const updatedAlumnoData = await updateUsuarioAlumnoById(alumno.id, {
         nombre,
         apellido,
