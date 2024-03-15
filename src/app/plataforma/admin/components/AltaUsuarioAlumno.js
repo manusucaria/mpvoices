@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 import { signUp } from '@/lib/firebase/auth'
 import { getRolByName } from '@/lib/firebase/crud/read'
-import { instrumentos } from '@/app/api/data'
+import { diasSemana, duracionOptions, horarios, instrumentos } from '@/app/api/data'
 
 const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
   const [newUserEmail, setNewUserEmail] = useState('')
@@ -13,6 +13,9 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
   const [newUserApellido, setNewUserApellido] = useState('')
   const [newUserInstrumento, setNewUserInstrumento] = useState('')
   const [newUserProfesor, setNewUserProfesor] = useState('')
+  const [newUserClaseDia, setNewUserClaseDia] = useState('')
+  const [newUserClaseHoraInicio, setNewUserClaseHoraInicio] = useState('')
+  const [newUserClaseDuracion, setNewUserClaseDuracion] = useState('')
   const [errors, setErrors] = useState({})
   const [showConfirmation, setShowConfirmation] = useState(false)
 
@@ -58,6 +61,15 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
     if (!newUserProfesor.trim()) {
       formErrors.profesor = 'El campo de profesor es obligatorio'
     }
+    if (!newUserClaseDia.trim()) {
+      formErrors.clase_dia = 'El campo día es obligatorio'
+    }
+    if (!newUserClaseHoraInicio.trim()) {
+      formErrors.clase_hora_inicio = 'El campo hora de inicio es obligatorio'
+    }
+    if (!newUserClaseDuracion.trim()) {
+      formErrors.clase_duracion = 'El campo duración es obligatorio'
+    }
 
     if (Object.keys(formErrors).length === 0) {
       try {
@@ -69,7 +81,10 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
           nombre: newUserNombre,
           apellido: newUserApellido,
           instrumento: newUserInstrumento,
-          profesor: newUserProfesor
+          profesor: newUserProfesor,
+          clase_dia: newUserClaseDia,
+          clase_hora_inicio: newUserClaseHoraInicio,
+          clase_duracion: newUserClaseDuracion
         })
         setShowConfirmation(true)
         setNewUserEmail('')
@@ -79,6 +94,9 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
         setNewUserApellido('')
         setNewUserInstrumento('')
         setNewUserProfesor('')
+        setNewUserClaseDia('')
+        setNewUserClaseHoraInicio('')
+        setNewUserClaseDuracion('')
       } catch (error) {
         if (error.code === 'auth/email-already-in-use') {
           formErrors.email = 'E-Mail no disponible'
@@ -284,7 +302,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
             <option value="">Seleccione un profesor</option>
             {profesores.map((profesor, index) => (
               <option key={index} value={profesor.id}>
-                {profesor.usuario.full_name.nombre} / { profesor.instrumento }
+                {profesor.usuario.full_name.nombre} / {profesor.instrumento}
               </option>
             ))}
           </select>
@@ -292,6 +310,67 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
         {errors.profesor && (
           <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
             {errors.profesor}
+          </p>
+        )}
+        <div className="flex mt-6">
+          <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">Día:</label>
+          <select
+            className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            name="Dia"
+            value={newUserClaseDia}
+            onChange={(e) => setNewUserClaseDia(e.target.value)}
+          >
+            <option value="">Seleccione un día</option>
+            {diasSemana.map((dia, index) => (
+              <option key={index} value={dia}>
+                {dia}
+              </option>
+            ))}
+          </select>
+        </div>
+        {errors.clase_dia && (
+          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+            {errors.clase_dia}
+          </p>
+        )}
+        <div className='flex mt-6'>
+          <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Hora de inicio:</label>
+          <select
+            className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+            name="Horario"
+            value={newUserClaseHoraInicio}
+            onChange={(e) => setNewUserClaseHoraInicio(e.target.value)}
+          >
+            <option value="">Seleccione un horario</option>
+            {horarios.map((horario, index) => (
+              <option key={index} value={horario}>
+                {horario}
+              </option>
+            ))}
+          </select>
+        </div>
+        {errors.clase_hora_inicio && (
+          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+            {errors.clase_hora_inicio}
+          </p>
+        )}
+        <div className='flex mt-6'>
+          <label className='font-bold mr-auto w-2/6 text-[#FFFFFF]'>Duración:</label>
+          <select
+            className='text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto'
+            name="Duracion"
+            value={newUserClaseDuracion}
+            onChange={(e) => setNewUserClaseDuracion(e.target.value)}
+          >
+            <option value="">Seleccione una duración</option>
+            {duracionOptions.map((duracion, index) => (
+              <option key={index} value={duracion}>{duracion} minutos</option>
+            ))}
+          </select>
+        </div>
+        {errors.clase_duracion && (
+          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+            {errors.clase_duracion}
           </p>
         )}
         <div className="flex w-full mx-auto gap-x-4 mt-8 mb-2">
