@@ -14,18 +14,18 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
 
   useEffect(() => {
     if (alumno) {
-      setNombre(alumno.Nombre || '')
-      setApellido(alumno.Apellido || '')
+      setNombre(alumno.usuario.full_name.nombre || '')
+      setApellido(alumno.usuario.full_name.apellido || '')
       setFecha(alumno.Fecha || '')
-      setEmail(alumno.Email || '')
-      setTel(alumno.Tel || '')
+      setEmail(alumno.usuario.email || '')
+      setTel(alumno.usuario.telefono || '')
 
       setOriginalData({
-        Nombre: alumno.Nombre || '',
-        Apellido: alumno.Apellido || '',
+        Nombre: alumno.usuario.full_name.nombre || '',
+        Apellido: alumno.usuario.full_name.apellido || '',
         Fecha: alumno.Fecha || '',
-        Email: alumno.Email || '',
-        Tel: alumno.Tel || ''
+        Email: alumno.usuario.email || '',
+        Tel: alumno.usuario.telefono || ''
       })
     }
   }, [alumno])
