@@ -2,15 +2,16 @@
 
 import React, { useEffect, useState } from 'react'
 
-import Image from 'next/image'
+import { signOut } from 'firebase/auth'
 
-import alasImg from '@/app/assets/alas.jpg'
+import { playfair600 } from '@/utils/fonts/fonts'
+
 import { useAuth } from '@/lib/firebase/useAuth'
 import { getAlumnoById } from '@/lib/firebase/crud/read'
-import { signOut } from 'firebase/auth'
+
 import Loader from '@/app/components/loader/Loader'
 import Button from '@/app/components/button/Button'
-import { playfair600 } from '@/utils/fonts/fonts'
+import CardContainer from './components/CardContainer'
 
 const page = () => {
   const user = useAuth()
@@ -22,10 +23,13 @@ const page = () => {
     (async () => {
       setLoading(true)
       try {
-        window.scrollTo(0, 0)
         if (user) {
           const dataAlumno =
-            user?.uid && (await getAlumnoById(user?.uid, { getUsuario: true }))
+            user?.uid &&
+            (await getAlumnoById(user?.uid, {
+              getUsuario: true,
+              getProfesor: true
+            }))
           if (!dataAlumno) {
             await signOut()
             window.location.reload()
@@ -43,31 +47,35 @@ const page = () => {
   if (loading) return <Loader />
 
   return (
-    <>
-      <div className="w-full h-full flex relative">
-        <Image
-          src={alasImg}
-          width="auto"
-          height="auto"
-          alt="Separador alas voices"
-          priority
-        />
-        <div className="bg-black bg-opacity-20 absolute w-full h-full p-12 top-0 left-0">
-          <div className="bg-black bg-opacity-60 w-full h-full flex flex-col items-center justify-center gap-8 border-1 border-white border-opacity-50">
-            <h2 className={`text-3xl ${playfair600.className}`}>
-              Días y horarios
-            </h2>
-            <div className="flex flex-col gap-6">
-              <Button
-                text={alumno.clases.dia}
-                mode="light"
-                path={`/plataforma/alumnos/clases/${alumno.clases.dia}`}
-              />
-            </div>
-          </div>
-        </div>
+    <div className="w-full h-full flex flex-col items-center">
+      <div className="w-full py-10 text-center flex items-center justify-center">
+        <h2 className={`text-xl sm:text-2xl ${playfair600.className}`}>
+          Inicio | Días y horarios
+        </h2>
       </div>
-    </>
+      <CardContainer title="Clases">
+        <p className="w-full">Instrumento: {alumno.instrumento}</p>
+        <p className="w-full">Días: {alumno.clases.dia}</p>
+        <p className="w-full">Horario: {alumno.clases.hora_inicio}hs</p>
+        <p className="w-full">Duración: {alumno.clases.duracion}minutos</p>
+        <p className="w-full">
+          Profesor: {alumno.profesor.usuario.full_name.nombre}
+        </p>
+
+        <p className="w-full border-y-1 py-1">
+          Importante:{' '}
+          <span className="text-orange-300">
+            recordá que las clases sólo se pueden cancelar con más de 24 hs de
+            antelación.
+          </span>
+        </p>
+
+        <Button
+          text="Cancelar clase"
+          path="/plataforma/alumnos/clases/cancelar"
+        />
+      </CardContainer>
+    </div>
   )
 }
 export default page
