@@ -34,6 +34,7 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
       alumno.profesor = await getProfesorById(alumno.profesor.id, {
         getUsuario: true
       })
+      setProfesor(alumno.profesor)
       setLoading(false)
     })()
   }, [])
@@ -44,7 +45,6 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
       setDia(alumno.clases.dia || '')
       setHoraInicio(alumno.clases.hora_inicio || '')
       setDuracion(alumno.clases.duracion || '')
-      setProfesor(alumno.profesor || '')
 
       setOriginalData({
         instrumento: alumno.instrumento || '',
