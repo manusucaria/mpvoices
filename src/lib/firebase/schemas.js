@@ -58,6 +58,8 @@ export class Alumno {
     this.instrumento = instrumento
     this.clases = { dia: clase_dia, hora_inicio: clase_hora_inicio, duracion: clase_duracion }
     this.pagos = { saldo: pagos_saldo, actualizacion: pagos_actualizacion }
+    this.notas = []
+    this.notificaciones = []
   }
 
   parseUsuarioRef ({ usuarioUid }) {
