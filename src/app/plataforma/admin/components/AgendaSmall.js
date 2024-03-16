@@ -17,7 +17,6 @@ const AgendaSmall = () => {
   const [showNotification, setShowNotification] = useState(false)
   const [selectedAlumno, setSelectedAlumno] = useState()
   const [notification, setNotification] = useState([])
-  const [notas, setNotas] = useState([])
 
   useEffect(() => {
     (async () => {
@@ -118,7 +117,6 @@ const AgendaSmall = () => {
   const handleAlumnoClick = (alumno) => {
     setSelectedAlumno(alumno)
     setNotification(alumno.notificaciones)
-    setNotas(alumno.notas)
     setShowNotification(true)
   }
 
@@ -371,7 +369,6 @@ const AgendaSmall = () => {
                               alumno={selectedAlumno}
                               setSelectedAlumno={setSelectedAlumno}
                               notification={notification}
-                              notas={notas}
                               setNotification={setNotification}
                               setShowNotification={setShowNotification}
                             />
