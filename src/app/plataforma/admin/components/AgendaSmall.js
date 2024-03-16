@@ -24,7 +24,10 @@ const AgendaSmall = () => {
       const profesoresData = await getAllProfesores({ getUsuario: true })
       setProfesores(profesoresData)
 
-      const alumnosData = await getAllAlumnos({ getUsuario: true, getProfesor: true })
+      const alumnosData = await getAllAlumnos({
+        getUsuario: true,
+        getProfesor: true
+      })
       setAlumnos(alumnosData)
     })()
   }, [selectedDay, selectedDay])
@@ -41,7 +44,8 @@ const AgendaSmall = () => {
   useEffect(() => {
     const filtered = selectedDay
       ? profesores.filter((profesor) => {
-        const diaProfesor = profesor.dias.toLocaleLowerCase()
+        const diaProfesor = profesor.dias
+          .toLocaleLowerCase()
           .normalize('NFD')
           .replace(/[\u0300-\u036f]/g, '')
         const diaSeleccionado = selectedDay
@@ -56,10 +60,12 @@ const AgendaSmall = () => {
   }, [selectedDay, profesores])
 
   const filteredProfesoresSorted = filteredProfesores.slice().sort((a, b) => {
-    const nombreProfesorA = a.usuario.full_name.nombre.toLocaleLowerCase()
+    const nombreProfesorA = a.usuario.full_name.nombre
+      .toLocaleLowerCase()
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
-    const nombreProfesorB = b.usuario.full_name.nombre.toLocaleLowerCase()
+    const nombreProfesorB = b.usuario.full_name.nombre
+      .toLocaleLowerCase()
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
     if (nombreProfesorA < nombreProfesorB) return -1
@@ -70,7 +76,8 @@ const AgendaSmall = () => {
   useEffect(() => {
     const filtered = selectedDay
       ? alumnos.filter((alumno) => {
-        const diaAlumnoNormalized = alumno.clases.dia.toLowerCase()
+        const diaAlumnoNormalized = alumno.clases.dia
+          .toLowerCase()
           .normalize('NFD')
           .replace(/[\u0300-\u036f]/g, '')
         const selectedDayNormalized = selectedDay
@@ -272,11 +279,16 @@ const AgendaSmall = () => {
                       className="flex row-start-1 row-end-2 h-12 text-sm border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D]"
                     >
                       <p className="text-md sm:text-md md:text-base m-auto">
-                        Profesor: {profesor.usuario.full_name.nombre} / {profesor.instrumento}
+                        Profesor: {profesor.usuario.full_name.nombre} /{' '}
+                        {profesor.instrumento}
                       </p>
                     </div>
                     {filteredAlumnos
-                      .filter((alumno) => alumno.profesor.usuario.full_name.nombre === profesor.usuario.full_name.nombre)
+                      .filter(
+                        (alumno) =>
+                          alumno.profesor.usuario.full_name.nombre ===
+                          profesor.usuario.full_name.nombre
+                      )
                       .map((alumno) => (
                         <div
                           key={`${alumno.Nombre}`}
@@ -284,9 +296,12 @@ const AgendaSmall = () => {
                           style={{
                             gridColumn:
                               filteredProfesoresSorted.findIndex(
-                                (p) => p.usuario.full_name.nombre === profesor.usuario.full_name.nombre
+                                (p) =>
+                                  p.usuario.full_name.nombre ===
+                                  profesor.usuario.full_name.nombre
                               ) - startIndex,
-                            gridRowStart: horarios.indexOf(alumno.clases.hora_inicio) + 2,
+                            gridRowStart:
+                              horarios.indexOf(alumno.clases.hora_inicio) + 2,
                             gridRowEnd:
                               horarios.indexOf(alumno.clases.hora_inicio) +
                               3 +
@@ -303,7 +318,8 @@ const AgendaSmall = () => {
                             }`}
                           >
                             <p className="text-sm sm:text-sm md:text-base mt-auto font-bold pt-2 text-[#0D0D0D]">
-                              Alumno: {alumno.usuario.full_name.nombre} {alumno.usuario.full_name.apellido}
+                              Alumno: {alumno.usuario.full_name.nombre}{' '}
+                              {alumno.usuario.full_name.apellido}
                             </p>
                             <p className="text-sm sm:text-sm md:text-base mb-auto text-[#0D0D0D]">
                               {alumno.instrumento} {alumno.clases.hora_inicio}-
