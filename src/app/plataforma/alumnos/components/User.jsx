@@ -2,9 +2,8 @@
 
 import React, { useEffect, useState } from 'react'
 
-import { useAuth } from '@/lib/firebase/useAuth'
-
 import { getAlumnoById } from '@/lib/firebase/crud/read'
+import { useAuth } from '@/lib/firebase/useAuth'
 import { signOut } from '@/lib/firebase/auth'
 
 import { playfair600 } from '@/utils/fonts/fonts'
@@ -17,6 +16,7 @@ const User = ({ children }) => {
   const user = useAuth()
 
   const [alumno, setAlumno] = useState(null)
+  const [quantityNotificaciones, setQuantityNotificaciones] = useState(0)
   const [loading, setLoading] = useState(true)
   const [isModalOpen, setModalOpen] = useState(false)
 
@@ -40,6 +40,7 @@ const User = ({ children }) => {
             window.location.reload()
           }
           setAlumno(dataAlumno)
+          setQuantityNotificaciones(dataAlumno?.notificaciones.length)
           setLoading(false)
         }
       } catch (error) {
@@ -69,11 +70,12 @@ const User = ({ children }) => {
             </p>
           </div>
           <div className="bg-white-dark text-black w-1/3 rounded-md flex flex-col items-center justify-start gap-5 py-10">
-            <p className={`${playfair600.className}`}>Clases a recuperar: 0</p>
+            <p className={`${playfair600.className} ${quantityNotificaciones > 0 && 'text-orange-600'}`}>Clases a recuperar: {quantityNotificaciones}</p>
             <Button
               text="Agendar clase"
-              mode="light"
+              mode={!quantityNotificaciones > 0 && 'disabled-light'}
               path="/plataforma/alumnos/clases/agendar"
+              disabled={!quantityNotificaciones > 0}
             />
           </div>
         </div>
