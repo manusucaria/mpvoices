@@ -91,20 +91,24 @@ export const getProfesorById = async (uid, { getUsuario, getRol } = {}) => {
   }
 }
 
-export const getAllAlumnos = async ({ getUsuario, getRol } = {}) => {
+export const getAllAlumnos = async ({ getUsuario, getRol, getProfesor } = {}) => {
   try {
     const ref = collection(db, 'alumnos')
     const querySnapshot = await getDocs(ref)
     const alumnos = []
     for (const doc of querySnapshot.docs) {
       let usuario = doc.data().usuario
+      let profesor = doc.data().profesor
       if (getUsuario && usuario.id) {
         usuario = await getUsuarioById({ id: usuario.id })
       }
       if (getRol && getUsuario && usuario.rol && usuario.rol.id) {
         usuario.rol = await getRolById({ id: usuario.rol.id })
       }
-      alumnos.push({ ...doc.data(), id: doc.id, usuario })
+      if (getProfesor && profesor && profesor.id) {
+        profesor = await getProfesorById(profesor.id, { getUsuario: true })
+      }
+      alumnos.push({ ...doc.data(), id: doc.id, usuario, profesor })
     }
     return alumnos
   } catch (error) {
