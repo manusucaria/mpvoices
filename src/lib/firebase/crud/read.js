@@ -129,8 +129,8 @@ export const getAlumnoById = async (uid, { getUsuario, getRol, getProfesor } = {
       if (getRol && getUsuario && usuario.rol && usuario.rol.id) {
         usuario.rol = await getRolById({ id: usuario.rol.id })
       }
-      if (getProfesor && usuario.profesor && usuario.profesor.id) {
-        profesor = await getProfesorById(usuario.profesor.id, { getUsuario: true })
+      if (getProfesor && profesor && profesor.id) {
+        profesor = await getProfesorById(profesor.id, { getUsuario: true })
       }
       return { ...docSnap.data(), id: docSnap.id, usuario, profesor }
     }
