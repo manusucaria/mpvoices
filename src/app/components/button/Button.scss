@@ -9,6 +9,9 @@
   &-dark {
     @apply bg-black text-white;
   }
+  &-disabled {
+    @apply pointer-events-none opacity-70;
+  }
 
   &-alter {
     @apply  hover:bg-navy-blue hover:text-white hover:opacity-100;
