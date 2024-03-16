@@ -1,9 +1,4 @@
-import {
-  Alumno,
-  Profesor,
-  Rol,
-  Usuario
-} from './schemas'
+import { Alumno, Profesor, Rol, Usuario } from './schemas'
 
 export const RolConverter = {
   toFirestore: (rol) => {
@@ -23,6 +18,7 @@ export const UsuarioConverter = {
       full_name: usuario.full_name,
       email: usuario.email,
       telefono: usuario.telefono,
+      birthdate: usuario.birthdate,
       rol: usuario.rol
     }
   },
@@ -33,6 +29,7 @@ export const UsuarioConverter = {
       apellido: data.apellido,
       email: data.email,
       telefono: data.telefono,
+      birthdate: data.birthdate,
       rol: data.rol
     })
   }
@@ -59,17 +56,26 @@ export const ProfesorConverter = {
 export const AlumnoConverter = {
   toFirestore: (alumno) => {
     return {
-      Usuario: alumno.usuario,
+      usuario: alumno.usuario,
       profesor: alumno.profesor,
-      instrumento: alumno.instrumento
+      instrumento: alumno.instrumento,
+      clases: alumno.clases,
+      pagos: alumno.pagos,
+      notas: alumno.notas,
+      notificaciones: alumno.notificaciones
     }
   },
   fromFirestore: (snapshot, options) => {
     const data = snapshot.data(options)
     return new Alumno({
-      usuario: data.usuario,
-      profesor: data.profesor,
-      instrumento: data.instrumento
+      usuarioUid: data.usuario,
+      profesorUid: data.profesor,
+      instrumento: data.instrumento,
+      clase_dia: data.clase_dia,
+      clase_duracion: data.clase_duracion,
+      clase_hora_inicio: data.hora_inicio,
+      pagos_saldo: data.pagos_saldo,
+      pagos_actualizacion: data.pagos_actualizacion
     })
   }
 }

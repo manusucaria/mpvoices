@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react'
 
 import { signUp } from '@/lib/firebase/auth'
 import { getRolByName } from '@/lib/firebase/crud/read'
-import { instrumentos } from '@/app/api/data'
+import {
+  diasSemana,
+  duracionOptions,
+  horarios,
+  instrumentos
+} from '@/app/api/data'
 
 const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
   const [newUserEmail, setNewUserEmail] = useState('')
@@ -11,8 +16,14 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
   const [newUserRol, setNewUserRol] = useState('')
   const [newUserNombre, setNewUserNombre] = useState('')
   const [newUserApellido, setNewUserApellido] = useState('')
+  const [newUserBirthdate, setNewUserBirthdate] = useState('')
   const [newUserInstrumento, setNewUserInstrumento] = useState('')
   const [newUserProfesor, setNewUserProfesor] = useState('')
+  const [newUserClaseDia, setNewUserClaseDia] = useState('')
+  const [newUserClaseHoraInicio, setNewUserClaseHoraInicio] = useState('')
+  const [newUserClaseDuracion, setNewUserClaseDuracion] = useState('')
+  const [newUserPagosSaldo, setNewUserPagosSaldo] = useState('')
+  const [newUserPagosAtualizacion, setNewUserPagosActualizacion] = useState('')
   const [errors, setErrors] = useState({})
   const [showConfirmation, setShowConfirmation] = useState(false)
 
@@ -38,11 +49,43 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
     const formErrors = {}
 
     if (!newUserEmail.trim()) {
-      formErrors.email = 'El campo de correo electrónico es obligatorio'
+      formErrors.email = 'El campo de email es obligatorio'
     }
-
     if (!newUserPassword) {
       formErrors.password = 'El campo de contraseña es obligatorio'
+    }
+    if (!newUserPhoneNumber.trim()) {
+      formErrors.telefono = 'El campo de telefono es obligatorio'
+    }
+    if (!newUserNombre.trim()) {
+      formErrors.nombre = 'El campo de nombre es obligatorio'
+    }
+    if (!newUserApellido.trim()) {
+      formErrors.apellido = 'El campo de apellido es obligatorio'
+    }
+    if (!newUserBirthdate.trim()) {
+      formErrors.birthdate = 'El campo fecha de nacimiento es obligatorio'
+    }
+    if (!newUserInstrumento.trim()) {
+      formErrors.instrumento = 'El campo de instrumento es obligatorio'
+    }
+    if (!newUserProfesor.trim()) {
+      formErrors.profesor = 'El campo de profesor es obligatorio'
+    }
+    if (!newUserClaseDia.trim()) {
+      formErrors.clase_dia = 'El campo día es obligatorio'
+    }
+    if (!newUserClaseHoraInicio.trim()) {
+      formErrors.clase_hora_inicio = 'El campo hora de inicio es obligatorio'
+    }
+    if (!newUserClaseDuracion.trim()) {
+      formErrors.clase_duracion = 'El campo duración es obligatorio'
+    }
+    if (!newUserPagosSaldo.trim()) {
+      formErrors.pagos_saldo = 'El campo saldo es obligatorio'
+    }
+    if (!newUserPagosAtualizacion.trim()) {
+      formErrors.pagos_actualizacion = 'El campo actualización es obligatorio'
     }
 
     if (Object.keys(formErrors).length === 0) {
@@ -54,18 +97,29 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
           rolAsignado: newUserRol,
           nombre: newUserNombre,
           apellido: newUserApellido,
+          birthdate: newUserBirthdate,
           instrumento: newUserInstrumento,
-          profesor: newUserProfesor
+          profesor: newUserProfesor,
+          clase_dia: newUserClaseDia,
+          clase_hora_inicio: newUserClaseHoraInicio,
+          clase_duracion: newUserClaseDuracion,
+          pagos_saldo: newUserPagosSaldo,
+          pagos_actualizacion: newUserPagosAtualizacion
         })
         setShowConfirmation(true)
         setNewUserEmail('')
         setNewUserPassword('')
         setNewUserPhoneNumber('')
-        setNewUserRol('')
         setNewUserNombre('')
         setNewUserApellido('')
+        setNewUserBirthdate('')
         setNewUserInstrumento('')
         setNewUserProfesor('')
+        setNewUserClaseDia('')
+        setNewUserClaseHoraInicio('')
+        setNewUserClaseDuracion('')
+        setNewUserPagosSaldo('')
+        setNewUserPagosActualizacion('')
       } catch (error) {
         if (error.code === 'auth/email-already-in-use') {
           formErrors.email = 'E-Mail no disponible'
@@ -176,6 +230,11 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
             onChange={(e) => setNewUserPassword(e.target.value)}
           />
         </div>
+        {errors.password && (
+          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+            {errors.password}
+          </p>
+        )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
             Teléfono:
@@ -189,6 +248,11 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
             onChange={(e) => setNewUserPhoneNumber(e.target.value)}
           />
         </div>
+        {errors.telefono && (
+          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+            {errors.telefono}
+          </p>
+        )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
             Nombre:
@@ -202,6 +266,11 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
             onChange={(e) => setNewUserNombre(e.target.value)}
           />
         </div>
+        {errors.nombre && (
+          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+            {errors.nombre}
+          </p>
+        )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
             Apellido:
@@ -215,6 +284,29 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
             onChange={(e) => setNewUserApellido(e.target.value)}
           />
         </div>
+        {errors.apellido && (
+          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+            {errors.apellido}
+          </p>
+        )}
+        <div className="flex mt-6">
+          <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
+            Fecha de nac.:
+          </label>
+          <input
+            placeholder="Fecha de nac."
+            className="text-[#0D0D0D] rounded-3xl h-8 px-2 w-4/6 ml-auto"
+            type="date"
+            name="birthdate"
+            value={newUserBirthdate}
+            onChange={(e) => setNewUserBirthdate(e.target.value)}
+          />
+        </div>
+        {errors.birthdate && (
+          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+            {errors.birthdate}
+          </p>
+        )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
             Instr.:
@@ -233,12 +325,17 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
             ))}
           </select>
         </div>
+        {errors.instrumento && (
+          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+            {errors.instrumento}
+          </p>
+        )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
             Profesor:
           </label>
           <select
-            className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            className="text-[#0D0D0D] rounded-3xl h-8 px-2 w-4/6 ml-auto"
             name="profesorId"
             value={newUserProfesor}
             onChange={(e) => setNewUserProfesor(e.target.value)}
@@ -246,14 +343,118 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
             <option value="">Seleccione un profesor</option>
             {profesores.map((profesor, index) => (
               <option key={index} value={profesor.id}>
-                {profesor.Nombre}
+                {profesor.usuario.full_name.nombre}{' '}
+                {profesor.usuario.full_name.apellido} / {profesor.instrumento} / {profesor.dias}
               </option>
             ))}
           </select>
         </div>
-        {errors.password && (
-          <p className="ml-auto pr-4 mt-1 text-white text-sm">
-            {errors.password}
+        {errors.profesor && (
+          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+            {errors.profesor}
+          </p>
+        )}
+        <div className="flex mt-6">
+          <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">Día:</label>
+          <select
+            className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            name="Dia"
+            value={newUserClaseDia}
+            onChange={(e) => setNewUserClaseDia(e.target.value)}
+          >
+            <option value="">Seleccione un día</option>
+            {diasSemana.map((dia, index) => (
+              <option key={index} value={dia}>
+                {dia}
+              </option>
+            ))}
+          </select>
+        </div>
+        {errors.clase_dia && (
+          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+            {errors.clase_dia}
+          </p>
+        )}
+        <div className="flex mt-6">
+          <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
+            Hora de inicio:
+          </label>
+          <select
+            className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            name="Horario"
+            value={newUserClaseHoraInicio}
+            onChange={(e) => setNewUserClaseHoraInicio(e.target.value)}
+          >
+            <option value="">Seleccione un horario</option>
+            {horarios.map((horario, index) => (
+              <option key={index} value={horario}>
+                {horario}
+              </option>
+            ))}
+          </select>
+        </div>
+        {errors.clase_hora_inicio && (
+          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+            {errors.clase_hora_inicio}
+          </p>
+        )}
+        <div className="flex mt-6">
+          <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
+            Duración:
+          </label>
+          <select
+            className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            name="Duracion"
+            value={newUserClaseDuracion}
+            onChange={(e) => setNewUserClaseDuracion(e.target.value)}
+          >
+            <option value="">Seleccione una duración</option>
+            {duracionOptions.map((duracion, index) => (
+              <option key={index} value={duracion}>
+                {duracion} minutos
+              </option>
+            ))}
+          </select>
+        </div>
+        {errors.clase_duracion && (
+          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+            {errors.clase_duracion}
+          </p>
+        )}
+        <div className="flex mt-6">
+          <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
+            Saldo:
+          </label>
+          <input
+            placeholder="Saldo"
+            className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            type="number"
+            name="pagos_saldo"
+            value={newUserPagosSaldo}
+            onChange={(e) => setNewUserPagosSaldo(e.target.value)}
+          />
+        </div>
+        {errors.pagos_saldo && (
+          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+            {errors.pagos_saldo}
+          </p>
+        )}
+        <div className="flex mt-6">
+          <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
+            Actualización de pago:
+          </label>
+          <input
+            placeholder="Actualización de pago"
+            className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            type="date"
+            name="pagos_actualizacion"
+            value={newUserPagosAtualizacion}
+            onChange={(e) => setNewUserPagosActualizacion(e.target.value)}
+          />
+        </div>
+        {errors.pagos_actualizacion && (
+          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+            {errors.pagos_actualizacion}
           </p>
         )}
         <div className="flex w-full mx-auto gap-x-4 mt-8 mb-2">

@@ -14,6 +14,7 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
   const [newUserNombre, setNewUserNombre] = useState('')
   const [newUserApellido, setNewUserApellido] = useState('')
   const [newUserInstrumento, setNewUserInstrumento] = useState('')
+  const [newUserBirthdate, setNewUserBirthdate] = useState('')
   const [errors, setErrors] = useState({})
   const [showConfirmation, setShowConfirmation] = useState(false)
 
@@ -57,9 +58,26 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
     if (!newUserEmail.trim()) {
       formErrors.email = 'El campo de correo electrónico es obligatorio'
     }
-
     if (!newUserPassword) {
       formErrors.password = 'El campo de contraseña es obligatorio'
+    }
+    if (!newUserPhoneNumber.trim()) {
+      formErrors.phoneNumber = 'El campo de teléfono es obligatorio'
+    }
+    if (!newUserNombre.trim()) {
+      formErrors.nombre = 'El campo de nombre es obligatorio'
+    }
+    if (!newUserApellido.trim()) {
+      formErrors.apellido = 'El campo de apellido es obligatorio'
+    }
+    if (!newUserBirthdate.trim()) {
+      formErrors.birthdate = 'El campo fecha de nacimiento es obligatorio'
+    }
+    if (!selectedDays.join(', ').trim()) {
+      formErrors.dias = 'El campo de días es obligatorio'
+    }
+    if (!newUserInstrumento.trim()) {
+      formErrors.instrumento = 'El campo de instrumento es obligatorio'
     }
 
     if (Object.keys(formErrors).length === 0) {
@@ -71,6 +89,7 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
           rolAsignado: newUserRol,
           nombre: newUserNombre,
           apellido: newUserApellido,
+          birthdate: newUserBirthdate,
           instrumento: newUserInstrumento,
           dias: selectedDays.join(', ')
         })
@@ -78,7 +97,6 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
         setNewUserEmail('')
         setNewUserPassword('')
         setNewUserPhoneNumber('')
-        setNewUserRol('')
         setNewUserNombre('')
         setNewUserApellido('')
         setNewUserInstrumento('')
@@ -209,6 +227,11 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
             onChange={(e) => setNewUserPhoneNumber(e.target.value)}
           />
         </div>
+        {errors.phoneNumber && (
+          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+            {errors.phoneNumber}
+          </p>
+        )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
             Nombre:
@@ -222,6 +245,11 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
             onChange={(e) => setNewUserNombre(e.target.value)}
           />
         </div>
+        {errors.nombre && (
+          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+            {errors.nombre}
+          </p>
+        )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
             Apellido:
@@ -235,8 +263,33 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
             onChange={(e) => setNewUserApellido(e.target.value)}
           />
         </div>
+        {errors.apellido && (
+          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+            {errors.apellido}
+          </p>
+        )}
         <div className="flex mt-6">
-          <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">Día:</label>
+          <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
+            Fecha de nac.:
+          </label>
+          <input
+            placeholder="Fecha de nac."
+            className="text-[#0D0D0D] rounded-3xl h-8 px-2 w-4/6 ml-auto"
+            type="date"
+            name="birthdate"
+            value={newUserBirthdate}
+            onChange={(e) => setNewUserBirthdate(e.target.value)}
+          />
+        </div>
+        {errors.birthdate && (
+          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+            {errors.birthdate}
+          </p>
+        )}
+        <div className="flex mt-6">
+          <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
+            Días de clases:
+          </label>
           <div className="relative w-4/6 ml-auto">
             <input
               className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-full"
@@ -267,12 +320,17 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
             </div>
           </div>
         )}
+        {errors.dias && (
+          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+            {errors.dias}
+          </p>
+        )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
             Instr.:
           </label>
           <select
-            className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            className="text-[#0D0D0D] rounded-3xl h-8 px-2 w-4/6 ml-auto"
             name="Instrumento"
             value={newUserInstrumento}
             onChange={(e) => setNewUserInstrumento(e.target.value)}
@@ -285,6 +343,11 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
             ))}
           </select>
         </div>
+        {errors.instrumento && (
+          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+            {errors.instrumento}
+          </p>
+        )}
         <div className="flex w-full mx-auto gap-x-4 mt-8 mb-2">
           <button
             className="font-botones font-bold h-12 sm:h-10 w-3/6 mr-auto rounded-3xl bg-[#663481] text-[#FFFFFF] px-3 md:hover:bg-[#9B70BE]"

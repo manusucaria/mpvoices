@@ -1,26 +1,23 @@
 import React, { useState } from 'react'
 
-import { deleteProfesor } from '@/app/api/api'
+import { deleteUserAsAdmin } from '@/lib/firebase/actions.admin'
 
 const EliminarProfesor = ({ selectedProfesor, setSelectedProfesor }) => {
   const [showConfirmation, setShowConfirmation] = useState(false)
   const [showDone, setShowDone] = useState(false)
-  const email = selectedProfesor.Email
-  const password = selectedProfesor.Contraseña
 
   const handleSubmit = () => {
     setShowConfirmation(true)
   }
 
-  const handleConfirmDelete = () => {
-    deleteProfesor(email, password)
-      .then(() => {
-        setShowConfirmation(false)
-        setShowDone(true)
-      })
-      .catch(error => {
-        console.error('Error al eliminar profesor:', error.message)
-      })
+  const handleConfirmDelete = async () => {
+    try {
+      await deleteUserAsAdmin({ uid: selectedProfesor.id })
+      setShowConfirmation(false)
+      setShowDone(true)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   const handleCloseConfirmation = () => {
