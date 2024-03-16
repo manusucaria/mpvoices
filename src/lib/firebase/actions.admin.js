@@ -117,6 +117,19 @@ export const updateClasesAlumno = async (uid, { dia, hora_inicio, duracion, inst
   }
 }
 
+export const updatePagosAlumno = async (uid, { saldo, actualizacion }) => {
+  try {
+    const alumnoRef = doc(db, 'alumnos', uid)
+    await updateDoc(alumnoRef, { pagos: { saldo, actualizacion } })
+
+    const newPagosUsuarioUpdated = await getAlumnoById(uid, { getUsuario: true, getProfesor: true })
+
+    return newPagosUsuarioUpdated
+  } catch (error) {
+    throw error
+  }
+}
+
 export const deleteUserAsAdmin = async ({ uid }) => {
   try {
     const data = await (
