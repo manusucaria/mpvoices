@@ -12,6 +12,9 @@
   &-disabled {
     @apply pointer-events-none opacity-70;
   }
+  &-disabled-light {
+    @apply bg-white text-black pointer-events-none opacity-70;
+  }
 
   &-alter {
     @apply  hover:bg-navy-blue hover:text-white hover:opacity-100;
