@@ -19,7 +19,8 @@ const Page = () => {
   useEffect(() => {
     (async () => {
       setLoading(true)
-      const profeData = user?.uid && await getProfesorById(user?.uid, { getUsuario: true })
+      const profeData =
+        user?.uid && (await getProfesorById(user?.uid, { getUsuario: true }))
       setProfesor(profeData)
       const daysString = profeData?.dias
       const daysArray = daysString?.split(/[, \s]*[, y]\s*/)
