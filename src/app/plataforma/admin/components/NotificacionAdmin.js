@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 
-import { updateAlumno, fetchAlumno } from '@/app/api/api'
+import { udpateNotasAlumno } from '@/lib/firebase/actions.admin'
 
 const NotificacionAdmin = ({ alumno, notification, setSelectedAlumno, setNotification, setShowNotification }) => {
   const [editingNotes, setEditingNotes] = useState(false)
   const [newNote, setNewNote] = useState('')
-  const [localNotas, setLocalNotas] = useState(alumno.Notas || [])
+  const [localNotas, setLocalNotas] = useState(alumno.notas || [])
   const [previousNotas, setPreviousNotas] = useState([])
 
   const closeNotification = () => {
@@ -42,8 +42,7 @@ const NotificacionAdmin = ({ alumno, notification, setSelectedAlumno, setNotific
   }
 
   const updateNotes = async () => {
-    await updateAlumno(alumno.id, { ...alumno, Notas: localNotas })
-    const updatedAlumnoData = await fetchAlumno(alumno.id)
+    const updatedAlumnoData = await udpateNotasAlumno(alumno.id, { notas: localNotas })
     setSelectedAlumno(updatedAlumnoData)
     setEditingNotes(false)
   }
