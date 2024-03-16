@@ -98,6 +98,10 @@ const page = () => {
       setShowModal(false)
       setSelectedDate(null)
       setSuccess(true)
+
+      setTimeout(() => {
+        window.location.reload()
+      }, 2000)
     } catch (error) {
       setError(error)
       setShowModal(false)
