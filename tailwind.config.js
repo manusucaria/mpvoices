@@ -23,8 +23,14 @@ module.exports = {
         300: '#FDBA74',
         600: '#EB5A0C'
       },
-      white: '#ffffff',
-      black: '#0D0D0D',
+      white: {
+        DEFAULT: '#ffffff',
+        dark: '#D9D9D9'
+      },
+      black: {
+        DEFAULT: '#0D0D0D',
+        light: '#212121'
+      },
       gray: {
         100: '#F3F4F6',
         200: '#E5E7EB',
