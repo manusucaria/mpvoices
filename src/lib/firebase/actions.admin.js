@@ -130,6 +130,19 @@ export const updatePagosAlumno = async (uid, { saldo, actualizacion }) => {
   }
 }
 
+export const udpateNotasAlumno = async (uid, { notas }) => {
+  try {
+    const alumnoRef = doc(db, 'alumnos', uid)
+    await updateDoc(alumnoRef, { notas })
+
+    const newNotasUsuarioUpdated = await getAlumnoById(uid, { getUsuario: true, getProfesor: true })
+
+    return newNotasUsuarioUpdated
+  } catch (error) {
+    throw error
+  }
+}
+
 export const deleteUserAsAdmin = async ({ uid }) => {
   try {
     const data = await (
