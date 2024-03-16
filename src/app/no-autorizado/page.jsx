@@ -7,6 +7,7 @@ import Loader from '../components/loader/Loader'
 
 import { useAuth } from '@/lib/firebase/useAuth'
 import { signOut } from '@/lib/firebase/auth'
+import { openSans800 } from '@/utils/fonts/fonts'
 
 export default function Unauthorized () {
   const user = useAuth()
@@ -34,7 +35,7 @@ export default function Unauthorized () {
             src="/voices.svg"
             alt="Workflow"
           />
-          <p className="text-center font-black text-5xl mt-6">401</p>
+          <p className={`text-center text-6xl mt-6 ${openSans800.className}`}>401</p>
           <h2 className="mt-6 text-center text-3xl">No autorizado</h2>
           <p className="mt-2 text-center text-sm text-gray-600">
             No tienes permiso para acceder a esta página.
