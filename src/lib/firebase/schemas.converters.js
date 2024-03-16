@@ -59,18 +59,21 @@ export const AlumnoConverter = {
       usuario: alumno.usuario,
       profesor: alumno.profesor,
       instrumento: alumno.instrumento,
-      clases: alumno.clases
+      clases: alumno.clases,
+      pagos: alumno.pagos
     }
   },
   fromFirestore: (snapshot, options) => {
     const data = snapshot.data(options)
     return new Alumno({
-      usuario: data.usuario,
-      profesor: data.profesor,
+      usuarioUid: data.usuario,
+      profesorUid: data.profesor,
       instrumento: data.instrumento,
       clase_dia: data.clase_dia,
       clase_duracion: data.clase_duracion,
-      clase_hora_inicio: data.hora_inicio
+      clase_hora_inicio: data.hora_inicio,
+      pagos_saldo: data.pagos_saldo,
+      pagos_actualizacion: data.pagos_actualizacion
     })
   }
 }
