@@ -141,7 +141,7 @@ const page = () => {
 
         {error && <p className="text-orange-600">{error.message}</p>}
         {success && (
-          <p className="text-navy-blue-light">
+          <p className="text-orange-300">
             La clase ha sido cancelada correctamente
           </p>
         )}
