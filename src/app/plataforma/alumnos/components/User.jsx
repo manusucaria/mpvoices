@@ -53,7 +53,7 @@ const User = ({ children }) => {
 
   return (
     <>
-      <div className="w-full py-8">
+      <div className="w-full py-12">
         <h1
           className={`text-3xl sm:text-5xl text-center ${playfair600.className}`}
         >
