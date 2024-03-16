@@ -60,13 +60,24 @@ const User = ({ children }) => {
           ¡Hola {alumno.usuario.full_name.nombre}!
         </h1>
       </div>
-      {children}
-      <div className="w-full grid grid-cols-1">
-        <div className="bg-white-dark text-black w-full py-16 flex justify-around items-center text-2xl">
-          <p className={`${playfair600.className}`}>Saldo: {alumno.pagos.saldo}</p>
-          <p className={`${playfair600.className}`}>Clases a recuperar: 0</p>
+      <div className="bg-black-light w-full">{children}</div>
+      <div className="bg-black-light w-full grid grid-cols-1">
+        <div className="w-full py-10 flex justify-center text-2xl gap-10">
+          <div className="bg-white-dark text-black w-1/3 rounded-md flex flex-col items-center justify-start gap-5 py-10">
+            <p className={`${playfair600.className}`}>
+              Saldo: {alumno.pagos.saldo}
+            </p>
+          </div>
+          <div className="bg-white-dark text-black w-1/3 rounded-md flex flex-col items-center justify-start gap-5 py-10">
+            <p className={`${playfair600.className}`}>Clases a recuperar: 0</p>
+            <Button
+              text="Agendar clase"
+              mode="light"
+              path="/plataforma/alumnos/clases/agendar"
+            />
+          </div>
         </div>
-        <div className="bg-black-light w-full pt-10 pb-20 flex items-center justify-center">
+        <div className="bg-black-light w-full pt-10 pb-32 flex items-center justify-center">
           <Button
             text="Cerrar sesión"
             mode="light"
