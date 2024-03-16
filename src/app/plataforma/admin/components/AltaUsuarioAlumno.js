@@ -335,7 +335,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
             Profesor:
           </label>
           <select
-            className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            className="text-[#0D0D0D] rounded-3xl h-8 px-2 w-4/6 ml-auto"
             name="profesorId"
             value={newUserProfesor}
             onChange={(e) => setNewUserProfesor(e.target.value)}
@@ -343,7 +343,8 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
             <option value="">Seleccione un profesor</option>
             {profesores.map((profesor, index) => (
               <option key={index} value={profesor.id}>
-                {profesor.usuario.full_name.nombre} {profesor.usuario.full_name.apellido} / {profesor.instrumento}
+                {profesor.usuario.full_name.nombre}{' '}
+                {profesor.usuario.full_name.apellido} / {profesor.instrumento} / {profesor.dias}
               </option>
             ))}
           </select>
