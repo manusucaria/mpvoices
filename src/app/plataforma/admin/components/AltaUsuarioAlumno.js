@@ -22,6 +22,8 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
   const [newUserClaseDia, setNewUserClaseDia] = useState('')
   const [newUserClaseHoraInicio, setNewUserClaseHoraInicio] = useState('')
   const [newUserClaseDuracion, setNewUserClaseDuracion] = useState('')
+  const [newUserPagosSaldo, setNewUserPagosSaldo] = useState('')
+  const [newUserPagosAtualizacion, setNewUserPagosActualizacion] = useState('')
   const [errors, setErrors] = useState({})
   const [showConfirmation, setShowConfirmation] = useState(false)
 
@@ -79,6 +81,12 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
     if (!newUserClaseDuracion.trim()) {
       formErrors.clase_duracion = 'El campo duración es obligatorio'
     }
+    if (!newUserPagosSaldo.trim()) {
+      formErrors.pagos_saldo = 'El campo saldo es obligatorio'
+    }
+    if (!newUserPagosAtualizacion.trim()) {
+      formErrors.pagos_actualizacion = 'El campo actualización es obligatorio'
+    }
 
     if (Object.keys(formErrors).length === 0) {
       try {
@@ -94,7 +102,9 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
           profesor: newUserProfesor,
           clase_dia: newUserClaseDia,
           clase_hora_inicio: newUserClaseHoraInicio,
-          clase_duracion: newUserClaseDuracion
+          clase_duracion: newUserClaseDuracion,
+          pagos_saldo: newUserPagosSaldo,
+          pagos_actualizacion: newUserPagosAtualizacion
         })
         setShowConfirmation(true)
         setNewUserEmail('')
@@ -108,6 +118,8 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
         setNewUserClaseDia('')
         setNewUserClaseHoraInicio('')
         setNewUserClaseDuracion('')
+        setNewUserPagosSaldo('')
+        setNewUserPagosActualizacion('')
       } catch (error) {
         if (error.code === 'auth/email-already-in-use') {
           formErrors.email = 'E-Mail no disponible'
@@ -406,6 +418,42 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
         {errors.clase_duracion && (
           <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
             {errors.clase_duracion}
+          </p>
+        )}
+        <div className="flex mt-6">
+          <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
+            Saldo:
+          </label>
+          <input
+            placeholder="Saldo"
+            className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            type="number"
+            name="pagos_saldo"
+            value={newUserPagosSaldo}
+            onChange={(e) => setNewUserPagosSaldo(e.target.value)}
+          />
+        </div>
+        {errors.pagos_saldo && (
+          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+            {errors.pagos_saldo}
+          </p>
+        )}
+        <div className="flex mt-6">
+          <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
+            Actualización de pago:
+          </label>
+          <input
+            placeholder="Actualización de pago"
+            className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            type="date"
+            name="pagos_actualizacion"
+            value={newUserPagosAtualizacion}
+            onChange={(e) => setNewUserPagosActualizacion(e.target.value)}
+          />
+        </div>
+        {errors.pagos_actualizacion && (
+          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+            {errors.pagos_actualizacion}
           </p>
         )}
         <div className="flex w-full mx-auto gap-x-4 mt-8 mb-2">
