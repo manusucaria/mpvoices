@@ -4,12 +4,14 @@ import React, { useEffect, useState } from 'react'
 
 import { playfair600 } from '@/utils/fonts/fonts'
 
+import { createNotificacionAlumno } from '@/lib/firebase/crud/update'
 import { getAlumnoById } from '@/lib/firebase/crud/read'
 import { useAuth } from '@/lib/firebase/useAuth'
 import { signOut } from '@/lib/firebase/auth'
 
 import Button from '@/app/components/button/Button'
 import Loader from '@/app/components/loader/Loader'
+import Modal from '@/app/components/modal/Modal'
 
 import CardContainer from '../../components/CardContainer'
 import ButtonReturn from '../../components/ButtonReturn'
@@ -20,9 +22,12 @@ const page = () => {
 
   const [alumno, setAlumno] = useState(null)
   const [highlightedDays, setHighlightedDays] = useState([])
+  const [selectedDate, setSelectedDate] = useState(null)
+  const [selectedDay, setSelectedDay] = useState(null)
+  const [showModal, setShowModal] = useState(false)
   const [loading, setLoading] = useState(true)
-
-  const [selectedDate, setSelectedDate] = useState(null) // Estado para almacenar la fecha seleccionada
+  const [success, setSuccess] = useState(false)
+  const [error, setError] = useState(null)
 
   const getDaysInMonth = ({ month, year, dayOfWeek }) => {
     const days = []
@@ -73,9 +78,32 @@ const page = () => {
     })()
   }, [user])
 
-  const handleCancelarClase = () => {
-    console.log('cancelar clase')
-    console.log(selectedDate)
+  useEffect(() => {
+    setError(null)
+    setSuccess(false)
+  }, [selectedDay])
+
+  const handleCancelarClase = async () => {
+    try {
+      const parseFechaString = selectedDate.toLocaleDateString('es-ES', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long'
+      })
+      const messageNotificacion = `No asistirá a la clase del ${parseFechaString}`
+      const newAlumnoData = await createNotificacionAlumno(alumno.id, {
+        notificacion: messageNotificacion
+      })
+      setAlumno(newAlumnoData)
+      setShowModal(false)
+      setSelectedDate(null)
+      setSuccess(true)
+    } catch (error) {
+      setError(error)
+      setShowModal(false)
+      setSelectedDate(null)
+      setSuccess(false)
+    }
   }
 
   if (loading) return <Loader />
@@ -96,7 +124,7 @@ const page = () => {
           <Button
             text={selectedDate ? 'Cancelar clase' : 'Seleccionar fecha'}
             mode={!selectedDate ? 'disabled' : ''}
-            onClick={handleCancelarClase}
+            onClick={() => setShowModal(true)}
             disabled={!selectedDate}
             hasACallback
           />
@@ -107,6 +135,22 @@ const page = () => {
           clases={alumno.clases}
           selectedDate={selectedDate}
           setSelectedDate={setSelectedDate}
+          selectedDay={selectedDay}
+          setSelectedDay={setSelectedDay}
+        />
+
+        {error && <p className="text-orange-600">{error.message}</p>}
+        {success && (
+          <p className="text-navy-blue-light">
+            La clase ha sido cancelada correctamente
+          </p>
+        )}
+
+        <Modal
+          callback={handleCancelarClase}
+          isOpen={showModal}
+          leggend="¿Estás seguro que querés cancelar la clase?"
+          onClose={() => setShowModal(false)}
         />
       </CardContainer>
     </div>
