@@ -2,6 +2,7 @@ import React from 'react'
 
 import { playfair600 } from '@/utils/fonts/fonts'
 import ButtonReturn from '../../components/ButtonReturn'
+import CardContainer from '../../components/CardContainer'
 
 const page = () => {
   return (
@@ -12,6 +13,8 @@ const page = () => {
           Agendar clase
         </h2>
       </div>
+      <CardContainer title="Seleccionar nueva clase">
+      </CardContainer>
     </div>
   )
 }
