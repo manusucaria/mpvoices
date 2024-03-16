@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 
 import { useAuth } from '@/lib/firebase/useAuth.js'
 import { signOut } from '@/lib/firebase/auth'
-import { getProfesores } from '@/app/api/api'
+import { getProfesorById } from '@/lib/firebase/crud/read'
 import Loader from '@/app/components/loader/Loader'
 
 import AgendaProfes from './components/AgendaProfes'
@@ -17,19 +17,15 @@ const Page = () => {
   const [showConfirmation, setShowConfirmation] = useState(false)
 
   useEffect(() => {
-    if (user) setLoading(false)
-
-    return () => setLoading(false)
-  }, [user])
-
-  useEffect(() => {
     (async () => {
-      const profesores = await getProfesores()
-      const profe = profesores.find((profe) => profe.id === user?.uid)
-      setProfesor(profe)
-      const daysString = profe?.dias
+      setLoading(true)
+      const profeData =
+        user?.uid && (await getProfesorById(user?.uid, { getUsuario: true }))
+      setProfesor(profeData)
+      const daysString = profeData?.dias
       const daysArray = daysString?.split(/[, \s]*[, y]\s*/)
       setAvailableDays(daysArray)
+      setLoading(false)
     })()
   }, [user])
 
@@ -54,8 +50,7 @@ const Page = () => {
         ? (
         <div className="flex flex-col">
           <h1 className="text-center text-[#FFFFFF] text-3xl sm:text-5xl mt-8 mb-12">
-            {/* ¡Hola {profesor.Nombre}! */}
-            ¡Hola!
+            ¡Hola {profesor?.usuario.full_name.nombre}!
           </h1>
           <AgendaProfes availableDays={availableDays} profesor={profesor} />
           <div className="bg-[#212121] flex w-full py-16">
