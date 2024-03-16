@@ -6,20 +6,20 @@ import alasSmall from '@/app/assets/alasSmall.jpg'
 import alas from '@/app/assets/alas.jpg'
 
 import { horarios, diasSemana } from '@/app/api/data'
-import { getAlumnos } from '@/app/api/api'
+import { getAllAlumnos } from '@/lib/firebase/crud/read'
 
-// import NotificacionProfe from '../../admin/components/NotificacionProfe'
+import NotificacionProfe from '../../admin/components/NotificacionProfe'
 
 const AgendaProfes = ({ profesor }) => {
   const [alumnos, setAlumnos] = useState([])
-  // const [alumnosProfesor, setalumnosProfesor] = useState([])
+  const [alumnosProfesor, setalumnosProfesor] = useState([])
   const [selectedDay, setSelectedDay] = useState('')
-  // const [filteredAlumnos, setFilteredAlumnos] = useState([])
-  // const [showNotification, setShowNotification] = useState(false)
+  const [filteredAlumnos, setFilteredAlumnos] = useState([])
+  const [showNotification, setShowNotification] = useState(false)
   const [availableDays, setAvailableDays] = useState()
-  // const [selectedAlumno, setSelectedAlumno] = useState()
-  // const [notification, setNotification] = useState([])
-  // const [notas, setNotas] = useState([])
+  const [selectedAlumno, setSelectedAlumno] = useState()
+  const [notification, setNotification] = useState([])
+  const [notas, setNotas] = useState([])
 
   useEffect(() => {
     if (profesor && profesor?.dias) {
@@ -37,48 +37,49 @@ const AgendaProfes = ({ profesor }) => {
     setSelectedDay('')
   }
 
-  // const handleAlumnoClick = (alumno) => {
-  //   setSelectedAlumno(alumno)
-  //   setNotification(alumno.Notificaciones)
-  //   setNotas(alumno.Notas)
-  //   setShowNotification(true)
-  // }
+  const handleAlumnoClick = (alumno) => {
+    setSelectedAlumno(alumno)
+    setNotification(alumno.notificaciones)
+    setNotas(alumno.notas)
+    setShowNotification(true)
+  }
 
-  // const calcularNuevoHorario = (horario, duracion) => {
-  //   const [hora, minuto] = horario.split(':').map(Number)
-  //   const duracionMinutos = duracion / 15 * 15
-  //   const nuevoHorarioMinutos = hora * 60 + minuto + duracionMinutos
-  //   const nuevaHora = Math.floor(nuevoHorarioMinutos / 60)
-  //   const nuevoMinuto = nuevoHorarioMinutos % 60
-  //   return `${nuevaHora}:${nuevoMinuto < 10 ? '0' : ''}${nuevoMinuto}`
-  // }
+  const calcularNuevoHorario = (horario, duracion) => {
+    const [hora, minuto] = horario.split(':').map(Number)
+    const duracionMinutos = duracion / 15 * 15
+    const nuevoHorarioMinutos = hora * 60 + minuto + duracionMinutos
+    const nuevaHora = Math.floor(nuevoHorarioMinutos / 60)
+    const nuevoMinuto = nuevoHorarioMinutos % 60
+    return `${nuevaHora}:${nuevoMinuto < 10 ? '0' : ''}${nuevoMinuto}`
+  }
 
   useEffect(() => {
-    getAlumnos().then(data => {
-      setAlumnos(data)
-    })
+    (async () => {
+      const alumnosData = await getAllAlumnos({ getUsuario: true, getProfesor: true })
+      setAlumnos(alumnosData)
+    })()
   }, [selectedDay])
 
   useEffect(() => {
-    // const alumnosDelProfesor = alumnos.filter((alumno) => alumno.Profesor === profesor.Nombre)
-    // setalumnosProfesor(alumnosDelProfesor)
+    const alumnosDelProfesor = alumnos.filter((alumno) => alumno.profesor.usuario.full_name.nombre === profesor.usuario.full_name.nombre)
+    setalumnosProfesor(alumnosDelProfesor)
   }, [selectedDay, alumnos])
 
   useEffect(() => {
-    // const filtered = selectedDay
-    //   ? alumnosProfesor.filter((alumno) => {
-    //     const diaAlumnoNormalized = alumno.Dia
-    //       .toLowerCase()
-    //       .normalize('NFD')
-    //       .replace(/[\u0300-\u036f]/g, '')
-    //     const selectedDayNormalized = selectedDay
-    //       .toLowerCase()
-    //       .normalize('NFD')
-    //       .replace(/[\u0300-\u036f]/g, '')
-    //     return diaAlumnoNormalized === selectedDayNormalized
-    //   })
-    //   : []
-    // setFilteredAlumnos(filtered)
+    const filtered = selectedDay
+      ? alumnosProfesor.filter((alumno) => {
+        const diaAlumnoNormalized = alumno.clases.dia
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+        const selectedDayNormalized = selectedDay
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+        return diaAlumnoNormalized === selectedDayNormalized
+      })
+      : []
+    setFilteredAlumnos(filtered)
   }, [selectedDay, alumnos])
 
   return (
@@ -151,24 +152,24 @@ const AgendaProfes = ({ profesor }) => {
               <div className="grid grid-cols-1 grid-rows-45 text-center">
                 <div className='bg-[#0D0D0D] row-start-1 row-end-2'>
                   <div className='rounded-tr-2xl border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D] flex h-12 text-sm bg-[#663481]'>
-                    <p className='text-md sm:text-md md:text-base m-auto'>Profesor: {profesor.Nombre} / {profesor.Instrumento}</p>
+                    <p className='text-md sm:text-md md:text-base m-auto'>Profesor: {profesor.usuario.full_name.nombre} / {profesor.instrumento}</p>
                   </div>
                 </div>
-                {/* {filteredAlumnos
+                {filteredAlumnos
                   .map((alumno) => (
                     <div key={`${alumno.Nombre}`} className='flex flex-col h-full w-full text-center border-none' style={{
-                      gridRowStart: horarios.indexOf(alumno.Horario) + 2,
-                      gridRowEnd: horarios.indexOf(alumno.Horario) + 2 + alumno.Duracion / 15
+                      gridRowStart: horarios.indexOf(alumno.clases.hora_inicio) + 2,
+                      gridRowEnd: horarios.indexOf(alumno.clases.hora_inicio) + 3 + alumno.clases.duracion / 15
                     }}>
                       <div
                         className={`flex flex-col m-auto h-[97.5%] w-[97.5%] text-center ${
-                          alumno && alumno.Notificaciones && alumno.Notificaciones.length > 0 ? 'bg-[#FFC9CB]' : 'bg-[#ACFDB2]'
+                          alumno && alumno.notificaciones && alumno.notificaciones.length > 0 ? 'bg-[#FFC9CB]' : 'bg-[#ACFDB2]'
                         }`}
                       >
-                        <p className='text-sm sm:text-sm md:text-base mt-auto font-bold pt-2 text-[#0D0D0D]'>Alumno: {alumno.Nombre} {alumno.Apellido}</p>
-                        <p className='text-sm sm:text-sm md:text-base mb-auto text-[#0D0D0D]'>{alumno.Instrumento} {alumno.Horario}-{calcularNuevoHorario(alumno.Horario, alumno.Duracion)}hs</p>
+                        <p className='text-sm sm:text-sm md:text-base mt-auto font-bold pt-2 text-[#0D0D0D]'>Alumno: {alumno.usuario.full_name.nombre} {alumno.usuario.full_name.apellido}</p>
+                        <p className='text-sm sm:text-sm md:text-base mb-auto text-[#0D0D0D]'>{alumno.instrumento} {alumno.clases.hora_inicio}-{calcularNuevoHorario(alumno.clases.hora_inicio, alumno.clases.duracion)}hs</p>
                         <div className='ms-auto pb-2 pe-2 sm:pe-4'>
-                          {alumno && alumno.Notificaciones && (alumno.Notificaciones.length > 0 || alumno.Notas.length > 0)
+                          {alumno && alumno.notificaciones && (alumno.notificaciones.length > 0 || alumno.notas.length > 0)
                             ? <svg className='md:cursor-pointer' onClick={() => handleAlumnoClick(alumno)} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M5.55 2.08L4.12 0.65C1.72 2.48 0.14 5.3 0 8.5H2C2.15 5.85 3.51 3.53 5.55 2.08ZM17.94 8.5H19.94C19.79 5.3 18.21 2.48 15.82 0.65L14.4 2.08C16.42 3.53 17.79 5.85 17.94 8.5ZM15.97 9C15.97 5.93 14.33 3.36 11.47 2.68V2C11.47 1.17 10.8 0.5 9.97 0.5C9.14 0.5 8.47 1.17 8.47 2V2.68C5.6 3.36 3.97 5.92 3.97 9V14L1.97 16V17H17.97V16L15.97 14V9ZM9.97 20C10.11 20 10.24 19.99 10.37 19.96C11.02 19.82 11.55 19.38 11.81 18.78C11.91 18.54 11.96 18.28 11.96 18H7.96C7.97 19.1 8.86 20 9.97 20Z" fill="#D0242A"/>
                               </svg>
@@ -182,7 +183,7 @@ const AgendaProfes = ({ profesor }) => {
                         <NotificacionProfe alumno={selectedAlumno} setSelectedAlumno={setSelectedAlumno} notification={notification} notas={notas} setNotification={setNotification} setShowNotification={setShowNotification} />
                       )}
                     </div>
-                  ))} */}
+                  ))}
             </div>
           </div>
         </div>
