@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import { updateAlumno, fetchAlumno } from '@/app/api/api'
+import { updatePagosAlumno } from '@/lib/firebase/actions.admin'
 
 const EditorPagos = ({ alumno, setSelectedAlumno }) => {
   const [saldo, setSaldo] = useState(0)
@@ -11,21 +11,16 @@ const EditorPagos = ({ alumno, setSelectedAlumno }) => {
 
   useEffect(() => {
     if (alumno) {
-      setSaldo(alumno.Saldo || 0)
-      setOriginalSaldo(alumno.Saldo || 0)
-      setActualizacion(alumno.Actualizacion || '')
+      setSaldo(alumno.pagos.saldo || 0)
+      setOriginalSaldo(alumno.pagos.saldo || 0)
+      setActualizacion(alumno.pagos.actualizacion || '')
     }
   }, [alumno])
 
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      const updatedAlumno = {
-        Saldo: saldo,
-        Actualizacion: actualizacion
-      }
-      await updateAlumno(alumno.id, updatedAlumno)
-      const updatedAlumnoData = await fetchAlumno(alumno.id)
+      const updatedAlumnoData = await updatePagosAlumno(alumno.id, { saldo, actualizacion })
       setSelectedAlumno(updatedAlumnoData)
       setEditMode(false)
       setShowConfirmation(true)
