@@ -14,9 +14,7 @@ const layout = ({ children }) => {
         <Aside />
       </aside>
       <div className="w-full flex flex-col items-center justify-center border-l-1">
-        <User>
-          <div className="w-full">{children}</div>
-        </User>
+        <User>{children}</User>
       </div>
       <div className="w-2/12"></div>
     </div>
