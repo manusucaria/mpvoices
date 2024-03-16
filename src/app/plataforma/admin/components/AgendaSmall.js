@@ -117,8 +117,8 @@ const AgendaSmall = () => {
 
   const handleAlumnoClick = (alumno) => {
     setSelectedAlumno(alumno)
-    setNotification(alumno.Notificaciones)
-    setNotas(alumno.Notas)
+    setNotification(alumno.notificaciones)
+    setNotas(alumno.notas)
     setShowNotification(true)
   }
 
@@ -331,9 +331,9 @@ const AgendaSmall = () => {
                             </p>
                             <div className="ms-auto pb-2 pe-2 sm:pe-4">
                               {alumno &&
-                              alumno.Notificaciones &&
-                              (alumno.Notificaciones.length > 0 ||
-                                (alumno.Notas && alumno.Notas.length > 0))
+                              alumno.notificaciones &&
+                              (alumno.notificaciones.length > 0 ||
+                                (alumno.notas && alumno.notas.length > 0))
                                 ? (
                                 <svg
                                   onClick={() => handleAlumnoClick(alumno)}
