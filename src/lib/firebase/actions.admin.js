@@ -1,7 +1,7 @@
 import { deleteDoc, doc, getDoc, updateDoc } from 'firebase/firestore'
 
 import { db } from './firebase'
-import { Alumno, Profesor, Usuario } from './schemas'
+import { Profesor, Usuario } from './schemas'
 import { getAlumnoById } from './crud/read'
 
 export const updateUsuarioProfesorById = async (
@@ -50,7 +50,10 @@ export const updateUsuarioProfesorById = async (
 
     const newUsuarioUpdated = await getDoc(usuarioRef)
 
-    newProfesorUpdated.usuario = { ...newUsuarioUpdated.data(), id: newUsuarioUpdated.id }
+    newProfesorUpdated.usuario = {
+      ...newUsuarioUpdated.data(),
+      id: newUsuarioUpdated.id
+    }
 
     return newProfesorUpdated
   } catch (error) {
@@ -58,7 +61,10 @@ export const updateUsuarioProfesorById = async (
   }
 }
 
-export const updateUsuarioAlumnoById = async (uid, { nombre, apellido, birthdate, email, telefono, usuario }) => {
+export const updateUsuarioAlumnoById = async (
+  uid,
+  { nombre, apellido, birthdate, email, telefono, usuario }
+) => {
   try {
     const data = await (
       await fetch('/api/admin/users', {
@@ -95,21 +101,26 @@ export const updateUsuarioAlumnoById = async (uid, { nombre, apellido, birthdate
   }
 }
 
-export const updateClasesAlumno = async (uid, { dia, hora_inicio, duracion, instrumento, profesor }) => {
+export const updateClasesAlumno = async (
+  uid,
+  { dia, hora_inicio, duracion, instrumento, profesor }
+) => {
   try {
-    const alumnoData = new Alumno({
-      usuarioUid: uid,
-      profesorUid: profesor.id,
+    const alumnoRef = doc(db, 'alumnos', uid)
+    await updateDoc(alumnoRef, {
       instrumento,
-      clase_dia: dia,
-      clase_hora_inicio: hora_inicio,
-      clase_duracion: duracion
+      profesor: doc(db, 'profesores', profesor.id),
+      clases: {
+        dia,
+        hora_inicio,
+        duracion
+      }
     })
 
-    const alumnoRef = doc(db, 'alumnos', uid)
-    await updateDoc(alumnoRef, Object.assign({}, alumnoData))
-
-    const newClaseUsuarioUpdated = await getAlumnoById(uid, { getUsuario: true, getProfesor: true })
+    const newClaseUsuarioUpdated = await getAlumnoById(uid, {
+      getUsuario: true,
+      getProfesor: true
+    })
 
     return newClaseUsuarioUpdated
   } catch (error) {
@@ -122,7 +133,10 @@ export const updatePagosAlumno = async (uid, { saldo, actualizacion }) => {
     const alumnoRef = doc(db, 'alumnos', uid)
     await updateDoc(alumnoRef, { pagos: { saldo, actualizacion } })
 
-    const newPagosUsuarioUpdated = await getAlumnoById(uid, { getUsuario: true, getProfesor: true })
+    const newPagosUsuarioUpdated = await getAlumnoById(uid, {
+      getUsuario: true,
+      getProfesor: true
+    })
 
     return newPagosUsuarioUpdated
   } catch (error) {
@@ -135,7 +149,10 @@ export const udpateNotasAlumno = async (uid, { notas }) => {
     const alumnoRef = doc(db, 'alumnos', uid)
     await updateDoc(alumnoRef, { notas })
 
-    const newNotasUsuarioUpdated = await getAlumnoById(uid, { getUsuario: true, getProfesor: true })
+    const newNotasUsuarioUpdated = await getAlumnoById(uid, {
+      getUsuario: true,
+      getProfesor: true
+    })
 
     return newNotasUsuarioUpdated
   } catch (error) {
