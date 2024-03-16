@@ -52,11 +52,12 @@ export class Profesor {
 }
 
 export class Alumno {
-  constructor ({ usuarioUid, profesorUid, instrumento, clase_dia, clase_duracion, clase_hora_inicio }) {
+  constructor ({ usuarioUid, profesorUid, instrumento, clase_dia, clase_duracion, clase_hora_inicio, pagos_saldo, pagos_actualizacion }) {
     this.usuario = this.parseUsuarioRef({ usuarioUid })
     this.profesor = this.parseProfesorRef({ profesorUid })
     this.instrumento = instrumento
     this.clases = { dia: clase_dia, hora_inicio: clase_hora_inicio, duracion: clase_duracion }
+    this.pagos = { saldo: pagos_saldo, actualizacion: pagos_actualizacion }
   }
 
   parseUsuarioRef ({ usuarioUid }) {
