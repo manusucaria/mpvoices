@@ -1,15 +1,16 @@
 'use client'
 
 import { openSans500 } from '@/utils/fonts/fonts'
-import React, { useState } from 'react'
+import React from 'react'
 
 const Calendario = ({
   highlightedDays = [],
   clases = {},
   selectedDate,
-  setSelectedDate
+  setSelectedDate,
+  selectedDay,
+  setSelectedDay
 }) => {
-  const [selectedDay, setSelectedDay] = useState(null) // Estado para almacenar el dia seleccionado
   const currentMonth = new Date() // Obtenemos el mes actual
 
   const handleDateClick = (day) => {
