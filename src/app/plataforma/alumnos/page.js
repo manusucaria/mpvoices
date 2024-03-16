@@ -53,7 +53,17 @@ const page = () => {
           Inicio | Días y horarios
         </h2>
       </div>
-      <CardContainer title="Clases">
+      <CardContainer
+        title="Clases"
+        warning
+        bottom
+        button={
+          <Button
+            text="Cancelar clase"
+            path="/plataforma/alumnos/clases/cancelar"
+          />
+        }
+      >
         <p className="w-full">Instrumento: {alumno.instrumento}</p>
         <p className="w-full">Días: {alumno.clases.dia}</p>
         <p className="w-full">Horario: {alumno.clases.hora_inicio}hs</p>
@@ -61,19 +71,6 @@ const page = () => {
         <p className="w-full">
           Profesor: {alumno.profesor.usuario.full_name.nombre}
         </p>
-
-        <p className="w-full border-y-1 py-1">
-          Importante:{' '}
-          <span className="text-orange-300">
-            recordá que las clases sólo se pueden cancelar con más de 24 hs de
-            antelación.
-          </span>
-        </p>
-
-        <Button
-          text="Cancelar clase"
-          path="/plataforma/alumnos/clases/cancelar"
-        />
       </CardContainer>
     </div>
   )
