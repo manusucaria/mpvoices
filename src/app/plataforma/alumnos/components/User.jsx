@@ -64,7 +64,7 @@ const User = ({ children }) => {
         <div className="w-full py-10 flex justify-center text-2xl gap-10">
           <div className="bg-white-dark text-black w-1/3 rounded-md flex flex-col items-center justify-start gap-5 py-10">
             <p className={`${playfair600.className}`}>
-              Saldo: {alumno.pagos.saldo}
+              Saldo: {alumno?.pagos?.saldo}
             </p>
           </div>
           <div className="bg-white-dark text-black w-1/3 rounded-md flex flex-col items-center justify-start gap-5 py-10">
