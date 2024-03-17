@@ -1,6 +1,14 @@
 import React from 'react'
 
-const CardContainer = ({ children, button, title, warning, top, bottom }) => {
+const CardContainer = ({
+  children,
+  button,
+  title,
+  warning,
+  top,
+  bottom,
+  header
+}) => {
   return (
     <div className="bg-black w-1/2 p-10 text-base flex flex-col items-center gap-10">
       <div className="w-full">
@@ -14,6 +22,7 @@ const CardContainer = ({ children, button, title, warning, top, bottom }) => {
             </span>
           </p>
         )}
+        {header}
       </div>
       {children}
       {warning && bottom && (
