@@ -16,7 +16,6 @@ const User = ({ children }) => {
   const user = useAuth()
 
   const [alumno, setAlumno] = useState(null)
-  const [quantityNotificaciones, setQuantityNotificaciones] = useState(0)
   const [loading, setLoading] = useState(true)
   const [isModalOpen, setModalOpen] = useState(false)
 
@@ -40,7 +39,6 @@ const User = ({ children }) => {
             window.location.reload()
           }
           setAlumno(dataAlumno)
-          setQuantityNotificaciones(dataAlumno?.notificaciones.length)
           setLoading(false)
         }
       } catch (error) {
@@ -70,12 +68,18 @@ const User = ({ children }) => {
             </p>
           </div>
           <div className="bg-white-dark text-black w-1/3 rounded-md flex flex-col items-center justify-start gap-5 py-10">
-            <p className={`${playfair600.className} ${quantityNotificaciones > 0 && 'text-orange-600'}`}>Clases a recuperar: {quantityNotificaciones}</p>
+            <p
+              className={`${playfair600.className} ${
+                alumno.clases.canceladas > 0 && 'text-orange-600'
+              }`}
+            >
+              Clases a recuperar: {alumno.clases.canceladas}
+            </p>
             <Button
               text="Agendar clase"
-              mode={!quantityNotificaciones > 0 && 'disabled-light'}
+              mode={!alumno.clases.canceladas > 0 && 'disabled-light'}
               path="/plataforma/alumnos/clases/agendar"
-              disabled={!quantityNotificaciones > 0}
+              disabled={!alumno.clases.canceladas > 0}
             />
           </div>
         </div>
