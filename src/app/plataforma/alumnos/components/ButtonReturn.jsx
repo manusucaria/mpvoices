@@ -9,7 +9,7 @@ const ButtonReturn = ({ idVisible = true }) => {
   if (!idVisible) return null
 
   return (
-    <div className="absolute top-0 left-1/3 h-full flex items-center">
+    <div className="absolute top-0 left-10 sm:left-1/4 md:left-1/3 h-full flex items-center">
       <button
         className="p-2 text-white hover:text-orange-600 flex items-center justify-center"
         onClick={() => router.back()}

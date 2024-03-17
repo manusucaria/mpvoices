@@ -61,13 +61,13 @@ const User = ({ children }) => {
       </div>
       <div className="bg-black-light w-full">{children}</div>
       <div className="bg-black-light w-full grid grid-cols-1">
-        <div className="w-full py-10 flex justify-center text-2xl gap-10">
-          <div className="bg-white-dark text-black w-1/3 rounded-md flex flex-col items-center justify-start gap-5 py-10">
+        <div className="w-full py-10 flex flex-col lg:flex-row items-center lg:items-stretch justify-center text-lg sm:text-xl lg:text-2xl gap-10">
+          <div className="bg-white-dark text-black w-2/3 lg:w-1/3 rounded-md flex flex-col items-center justify-start gap-5 py-10">
             <p className={`${playfair600.className}`}>
               Saldo: {alumno?.pagos?.saldo}
             </p>
           </div>
-          <div className="bg-white-dark text-black w-1/3 rounded-md flex flex-col items-center justify-start gap-5 py-10">
+          <div className="bg-white-dark text-black w-2/3 lg:w-1/3 rounded-md flex flex-col items-center justify-start gap-5 py-10">
             <p
               className={`${playfair600.className} ${
                 alumno.clases.canceladas > 0 && 'text-orange-600'
@@ -80,6 +80,7 @@ const User = ({ children }) => {
               mode={!alumno.clases.canceladas > 0 && 'disabled-light'}
               path="/plataforma/alumnos/clases/agendar"
               disabled={!alumno.clases.canceladas > 0}
+              isFull
             />
           </div>
         </div>

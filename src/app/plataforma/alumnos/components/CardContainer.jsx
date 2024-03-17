@@ -13,7 +13,7 @@ const CardContainer = ({
   icon
 }) => {
   return (
-    <div className="bg-black w-1/2 p-10 text-base flex flex-col items-center gap-10">
+    <div className="bg-black w-full sm:w-2/3 md:w-1/2 p-10 text-base flex flex-col items-center gap-10">
       {icon}
       <div className="w-full">
         <h3 className={`w-full text-start border-b-1 pb-1 ${isTitlePlayfair ? 'text-2xl' : 'text-xl'} ${isTitlePlayfair && playfair600.className}`}>{title}</h3>

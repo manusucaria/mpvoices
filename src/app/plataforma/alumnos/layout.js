@@ -10,13 +10,13 @@ export const metadata = {
 const layout = ({ children }) => {
   return (
     <div className="w-full flex items-start">
-      <aside className="w-2/12 py-24">
+      <aside className="w-2/12 py-24 hidden lg:grid">
         <Aside />
       </aside>
       <div className="w-full flex flex-col items-center justify-center border-l-1">
         <User>{children}</User>
       </div>
-      <div className="w-2/12"></div>
+      <div className="w-2/12 hidden lg:grid"></div>
     </div>
   )
 }
