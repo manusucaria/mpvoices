@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from 'react'
 
+import { useRouter } from 'next/navigation'
+
 import { playfair600 } from '@/utils/fonts/fonts'
 
 import { getAlumnoById } from '@/lib/firebase/crud/read'
@@ -14,14 +16,18 @@ import Modal from '@/app/components/modal/Modal'
 
 import ButtonReturn from '../../components/ButtonReturn'
 import CardContainer from '../../components/CardContainer'
+import { createAgendarRecuperarClaseAlumno } from '@/lib/firebase/crud/update'
 
 const page = () => {
   const user = useAuth()
+  const router = useRouter()
 
   const [alumno, setAlumno] = useState(null)
   const [days, setDays] = useState([])
   const [selectedDay, setSelectedDay] = useState(null)
   const [showModal, setShowModal] = useState(false)
+  const [error, setError] = useState(null)
+  const [success, setSuccess] = useState(false)
   const [loading, setLoading] = useState(true)
 
   const getFutureDaysInMonth = ({ month, year, daysOfWeek }) => {
@@ -69,6 +75,9 @@ const page = () => {
             await signOut()
             window.location.reload()
           }
+          if (dataAlumno.clases.canceladas <= 0) {
+            router.push('/plataforma/alumnos')
+          }
           const currentYear = new Date().getFullYear()
           const currentMonth = new Date().getMonth()
           const futureDays = getFutureDaysInMonth({
@@ -88,7 +97,26 @@ const page = () => {
   }, [user])
 
   const handleAgendarClase = async () => {
-    console.log(selectedDay)
+    try {
+      const messageNotificacion = `Recuperará su clase el ${selectedDay}`
+      const newAlumnoData = await createAgendarRecuperarClaseAlumno(alumno.id, {
+        notificacion: messageNotificacion
+      })
+      setAlumno(newAlumnoData)
+      setShowModal(false)
+      setSuccess(true)
+      setSelectedDay(null)
+      setError(null)
+
+      setTimeout(() => {
+        window.location.reload()
+      }, 2000)
+    } catch (error) {
+      setError(error)
+      setShowModal(false)
+      setSelectedDay(null)
+      setSuccess(false)
+    }
   }
 
   if (loading) return <Loader />
@@ -143,12 +171,19 @@ const page = () => {
             </div>
           ))}
 
-          <Modal
-            leggend="¿Estás seguro que querés agendar la nueva clase?"
-            callback={handleAgendarClase}
-            isOpen={showModal}
-            onClose={() => setShowModal(false)}
-          />
+        {error && <p className="text-orange-600">{error.message}</p>}
+        {success && (
+          <p className="text-orange-300">
+            La clase ha sido agendada con éxito
+          </p>
+        )}
+
+        <Modal
+          leggend="¿Estás seguro que querés agendar la nueva clase?"
+          callback={handleAgendarClase}
+          isOpen={showModal}
+          onClose={() => setShowModal(false)}
+        />
       </CardContainer>
     </div>
   )
