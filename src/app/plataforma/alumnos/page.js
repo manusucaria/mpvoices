@@ -1,110 +1,78 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import React, { useEffect, useState } from 'react'
+
+import { signOut } from 'firebase/auth'
 
 import { playfair600 } from '@/utils/fonts/fonts'
-// import { getAlumnoByEmail } from '@/app/api/api'
-import { useAuth } from '@/lib/firebase/useAuth.js'
-import { signOut } from '@/lib/firebase/auth.js'
-import Wrapper from '@/app/components/wrapper/Wrapper.jsx'
+
+import { useAuth } from '@/lib/firebase/useAuth'
+import { getAlumnoById } from '@/lib/firebase/crud/read'
+
 import Loader from '@/app/components/loader/Loader'
 import Button from '@/app/components/button/Button'
-import Modal from '@/app/components/modal/Modal'
+import CardContainer from './components/CardContainer'
 
 const page = () => {
   const user = useAuth()
-  const router = useRouter()
+
+  const [alumno, setAlumno] = useState(null)
   const [loading, setLoading] = useState(true)
-  // const [alumno, setAlumno] = useState(null)
-  const [isModalOpen, setModalOpen] = useState(false)
 
   useEffect(() => {
-    const fetchAlumnoData = async () => {
+    (async () => {
+      setLoading(true)
       try {
-        setLoading(true)
-        window.scrollTo(0, 0)
-        // if (user) {
-        //   const dataAlumno = await getAlumnoByEmail({ email: user.email })
-        //   if (!dataAlumno) {
-        //     await signOut()
-        //     window.location.reload()
-        //   }
-        //   setAlumno(dataAlumno)
-        // }
+        if (user) {
+          const dataAlumno =
+            user?.uid &&
+            (await getAlumnoById(user?.uid, {
+              getUsuario: true,
+              getProfesor: true
+            }))
+          if (!dataAlumno) {
+            await signOut()
+            window.location.reload()
+          }
+          setAlumno(dataAlumno)
+          setLoading(false)
+        }
       } catch (error) {
         await signOut()
         window.location.reload()
-      } finally {
-        setLoading(false)
       }
-    }
-    fetchAlumnoData()
-  }, [user, router])
+    })()
+  }, [user])
 
-  const handleLogout = async () => {
-    setLoading(true)
-    await signOut()
-    window.location.reload()
-    setLoading(false)
-  }
+  if (loading) return <Loader />
 
   return (
-    <section className={`w-full py-24 ${playfair600.className}`}>
-      <Wrapper className="flex flex-col justify-center items-center gap-16">
-        {loading
-          ? (
-          <Loader />
-            )
-          : (
-          <>
-            {user && (
-              <div className="w-full flex flex-col justify-center items-center mx-auto gap-24">
-                <p
-                  className={`text-3xl sm:text-5xl text-center ${playfair600.className}`}
-                >
-                  {/* ¡Hola {user.Nombre} {alumno.Apellido}! */}
-                  Hola
-                </p>
-
-                <div className="w-2/3 grid place-items-center gap-8">
-                  <Button
-                    mode="light"
-                    path="/plataforma-alumnos/clases/info"
-                    text="Información clases"
-                  />
-                  <Button
-                    mode="light"
-                    path="/plataforma-alumnos/clases/cancelar"
-                    text="Cancelar clases"
-                  />
-                  <Button
-                    mode="light"
-                    path="/plataforma-alumnos/clases/reprogramar"
-                    text="Reprogramar clases"
-                  />
-                </div>
-
-                <button
-                  className="transition-colors duration-300 hover:text-orange-600"
-                  onClick={() => setModalOpen(true)}
-                >
-                  Cerrar sesión
-                </button>
-
-                <Modal
-                  leggend="¿Estás segur@ que deseas cerrar tu sesión?"
-                  isOpen={isModalOpen}
-                  onClose={() => setModalOpen(false)}
-                  callback={handleLogout}
-                />
-              </div>
-            )}
-          </>
-            )}
-      </Wrapper>
-    </section>
+    <div className="w-full h-full flex flex-col items-center">
+      <div className="w-full py-10 text-center flex items-center justify-center">
+        <h2 className={`text-xl sm:text-2xl ${playfair600.className}`}>
+          Inicio | Días y horarios
+        </h2>
+      </div>
+      <CardContainer
+        title="Clases"
+        warning
+        bottom
+        button={
+          <Button
+            text="Cancelar clase"
+            path="/plataforma/alumnos/clases/cancelar"
+          />
+        }
+      >
+        <p className="w-full">Instrumento: {alumno.instrumento}</p>
+        <p className="w-full">Días: {alumno.clases.dia}</p>
+        <p className="w-full">Horario: {alumno.clases.hora_inicio}hs</p>
+        <p className="w-full">Duración: {alumno.clases.duracion}minutos</p>
+        <p className="w-full">
+          Profesor: {alumno.profesor.usuario.full_name.nombre}
+        </p>
+      </CardContainer>
+    </div>
   )
 }
-
 export default page

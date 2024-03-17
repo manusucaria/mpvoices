@@ -3,11 +3,20 @@
   @apply w-[80%] sm:w-72 py-2 rounded-full text-base;
   @apply transition-opacity ease-linear duration-100 hover:opacity-70;
   
+  &-full {
+    @apply sm:w-[80%];
+  }
   &-light {
     @apply bg-white text-black;
   }
   &-dark {
     @apply bg-black text-white;
+  }
+  &-disabled {
+    @apply pointer-events-none opacity-70;
+  }
+  &-disabled-light {
+    @apply bg-white text-black pointer-events-none opacity-70;
   }
 
   &-alter {
