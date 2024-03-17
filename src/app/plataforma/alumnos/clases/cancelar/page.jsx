@@ -44,7 +44,7 @@ const page = () => {
 
     const date = new Date(year, month, 1)
     while (date.getMonth() === month) {
-      if (date.getDay() === dayOfWeekNumber) {
+      if ((date.getDay() === dayOfWeekNumber) && date > new Date()) {
         days.push(date.getDate())
       }
       date.setDate(date.getDate() + 1)
