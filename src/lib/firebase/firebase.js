@@ -3,7 +3,6 @@ import { getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 
 import { firebaseConfig } from '@/config/config'
-import { getAuth } from 'firebase/auth'
 
 const config = {
   apiKey: firebaseConfig.API_KEY,
