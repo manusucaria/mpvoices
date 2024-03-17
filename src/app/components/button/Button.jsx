@@ -11,6 +11,7 @@ function Button ({
   alterColor,
   path,
   hasACallback,
+  isFull = false,
   ...props
 }) {
   return (
@@ -18,9 +19,9 @@ function Button ({
       {hasACallback
         ? (
         <button
-          className={`Button ${mode ? `Button-${mode}` : ''} ${
+          className={`Button ${mode && `Button-${mode}`} ${
             openSans700.className
-          } ${alterColor ? 'Button-alter' : ''}`}
+          } ${alterColor ? 'Button-alter' : ''} ${isFull && 'Button-full'}`}
           {...props}
         >
           {text}
@@ -29,10 +30,10 @@ function Button ({
         : (
         <Link
           href={path}
-          target={`${target ? '_blank' : ''}`}
-          className={`Button ${mode ? `Button-${mode}` : ''} ${
+          target={target && '_blank'}
+          className={`Button ${mode && `Button-${mode}`} ${
             openSans700.className
-          } ${alterColor ? 'Button-alter' : ''}`}
+          } ${alterColor ? 'Button-alter' : ''} ${isFull && 'Button-full'}`}
           {...props}
         >
           {text}
