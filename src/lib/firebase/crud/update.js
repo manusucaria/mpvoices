@@ -7,12 +7,12 @@ export const createNotificacionAlumno = async (uid, { notificacion }) => {
   try {
     const alumnoRef = doc(db, 'alumnos', uid)
     const alumnoSnap = await getAlumnoById(uid)
-    if (alumnoSnap.notificaciones.includes(notificacion)) {
+    if (alumnoSnap.notificaciones && alumnoSnap.notificaciones.includes(notificacion)) {
       throw new Error('Ya fué notificado previamente')
     }
 
     await updateDoc(alumnoRef, {
-      notificaciones: [...alumnoSnap.notificaciones, notificacion],
+      notificaciones: alumnoSnap.notificaciones ? [...alumnoSnap.notificaciones, notificacion] : [notificacion],
       'clases.canceladas': alumnoSnap.clases.canceladas > 0 ? alumnoSnap.clases.canceladas + 1 : 1
     })
 
@@ -31,7 +31,7 @@ export const createAgendarRecuperarClaseAlumno = async (uid, { notificacion }) =
   try {
     const alumnoRef = doc(db, 'alumnos', uid)
     const alumnoSnap = await getAlumnoById(uid)
-    if (alumnoSnap.notificaciones.includes(notificacion)) {
+    if (alumnoSnap.notificaciones && alumnoSnap.notificaciones.includes(notificacion)) {
       throw new Error('Ya fué notificado previamente')
     }
 
