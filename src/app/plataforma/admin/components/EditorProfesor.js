@@ -375,7 +375,7 @@ const EditorDatosProfesor = ({
             </h3>
             <p className="my-auto">|</p>
             <p className="text-navy-blue-light my-auto md:mt-1 text-xl sm:text-2xl mr-auto">
-              {profesor.Nombre} {profesor.Apellido}
+              {profesor?.usuario.full_name.nombre} {profesor?.usuario.full_name.apellido}
             </p>
           </div>
           <div className="bg-black px-4 sm:px-8 py-8 flex flex-col mx-auto w-full">
