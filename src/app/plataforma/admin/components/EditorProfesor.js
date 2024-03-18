@@ -351,7 +351,7 @@ const EditorDatosProfesor = ({
           <div className="w-full flex justify-center mx-auto gap-x-4 sm:gap-x-6 mb-6 sm:mb-8">
             <div className="my-auto ml-auto pt-[0.5px] xl:pt-1">
               <svg
-                className="hover:cursor-pointer stroke-navy-blue-light md:hover:stroke-navy-blue"
+                className="hover:cursor-pointer stroke-white md:hover:stroke-navy-blue"
                 onClick={() => volver()}
                 width="34"
                 height="32"
@@ -374,7 +374,7 @@ const EditorDatosProfesor = ({
               Profesor
             </h3>
             <p className="my-auto">|</p>
-            <p className="text-navy-blue-light my-auto md:mt-1 text-xl sm:text-2xl mr-auto">
+            <p className="text-navy-blue my-auto md:mt-1 text-xl sm:text-2xl mr-auto">
               {profesor.Nombre} {profesor.Apellido}
             </p>
           </div>

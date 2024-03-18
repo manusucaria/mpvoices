@@ -130,7 +130,7 @@ const AgendaSmall = () => {
         <div className="flex justify-center mb-4">
           <div className="flex my-auto pt-1">
             <svg
-              className="my-auto md:hover:cursor-pointer stroke-white md:hover:stroke-orange-300"
+              className="my-auto md:hover:cursor-pointer stroke-white md:hover:stroke-orange-600"
               onClick={() => showAllDays()}
               width="34"
               height="32"
@@ -154,7 +154,7 @@ const AgendaSmall = () => {
               Días y horarios
             </h3>
             <p className="my-auto mx-4 sm:mx-8">|</p>
-            <p className="text-orange-300 my-auto mt-1 lg:mt-1 text-xl sm:text-2xl">
+            <p className="text-orange-600 my-auto mt-1 lg:mt-1 text-xl sm:text-2xl">
               {selectedDay}
             </p>
           </div>
