@@ -131,11 +131,11 @@ const EditorDatosProfesor = ({
     <div className="w-full">
       {editMode
         ? (
-        <div className="flex flex-col w-full bg-[#0D0D0D]">
-          <div className="w-full flex justify-center mx-auto gap-x-4 sm:gap-x-6 pb-6 sm:pb-8 bg-[#212121]">
+        <div className="flex flex-col w-full bg-black">
+          <div className="w-full flex justify-center mx-auto gap-x-4 sm:gap-x-6 pb-6 sm:pb-8 bg-[#212121] pt-4 lg:pt-6">
             <div className="my-auto ml-auto pt-[0.5px] xl:pt-1">
               <svg
-                className="hover:cursor-pointer stroke-[#9B70BE] md:hover:stroke-[#663481]"
+                className="hover:cursor-pointer stroke-white md:hover:stroke-navy-blue-light"
                 onClick={() => volver()}
                 width="34"
                 height="32"
@@ -154,24 +154,24 @@ const EditorDatosProfesor = ({
                 </g>
               </svg>
             </div>
-            <h3 className="text-[#FFFFFF] my-auto text-xl sm:text-2xl">
+            <h3 className="text-white my-auto text-xl sm:text-2xl">
               Profesor
             </h3>
             <p className="my-auto">|</p>
-            <p className="text-[#9B70BE] my-auto md:mt-1 text-xl sm:text-2xl mr-auto">
-              {profesor.Nombre} {profesor.Apellido}
+            <p className="text-navy-blue-light my-auto md:mt-1 text-xl sm:text-2xl mr-auto">
+            {profesor?.usuario.full_name.nombre} {profesor?.usuario.full_name.apellido}
             </p>
           </div>
           <form
-            className="px-4 sm:px-8 pt-8 w-full mx-auto bg-[#0D0D0D]"
+            className="px-4 sm:px-8 pt-8 w-full mx-auto bg-black"
             onSubmit={handleSubmit}
           >
-            <div className="flex border-b-[0.5px] sm:border-b-1 border-b-[#FFFFFF] pb-8 mb-8">
-              <h4 className="text-[#FFFFFF] my-auto text-xl sm:text-2xl">
+            <div className="flex border-b-[0.5px] sm:border-b-1 border-b-white pb-8 mb-8">
+              <h4 className="text-white my-auto text-xl sm:text-2xl">
                 Datos
               </h4>
-              <p className="text-[#FFFFFF] my-auto mx-4">|</p>
-              <p className="text-[#9B70BE] my-auto text-xl sm:text-2xl">
+              <p className="text-white my-auto mx-4">|</p>
+              <p className="text-navy-blue-light my-auto text-xl sm:text-2xl">
                 Editar
               </p>
             </div>
@@ -180,7 +180,7 @@ const EditorDatosProfesor = ({
                 Nombre:
               </label>
               <input
-                className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+                className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
                 type="text"
                 name="nombre"
                 value={nombre}
@@ -192,7 +192,7 @@ const EditorDatosProfesor = ({
                 Apellido:
               </label>
               <input
-                className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+                className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
                 type="text"
                 name="apellido"
                 value={apellido}
@@ -204,7 +204,7 @@ const EditorDatosProfesor = ({
                 Fecha de nac.:
               </label>
               <input
-                className="text-[#0D0D0D] rounded-3xl h-8 px-2 w-4/6 ml-auto"
+                className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto"
                 type="date"
                 name="birthdate"
                 value={birthdate}
@@ -216,7 +216,7 @@ const EditorDatosProfesor = ({
                 E-Mail:
               </label>
               <input
-                className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+                className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
                 type="text"
                 name="email"
                 value={email}
@@ -228,7 +228,7 @@ const EditorDatosProfesor = ({
                 Teléfono:
               </label>
               <input
-                className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+                className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
                 type="text"
                 name="telefono"
                 value={telefono}
@@ -238,7 +238,7 @@ const EditorDatosProfesor = ({
             <div className="flex mb-6">
               <label className="text-base font-bold mr-auto w-2/6">Días:</label>
               <input
-                className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+                className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
                 type="text"
                 onFocus={() => setShowDiasCheckbox(true)}
                 value={diasSeleccionados
@@ -277,7 +277,7 @@ const EditorDatosProfesor = ({
             <div className="flex mt-6">
               <label className="font-bold mr-auto w-2/6">Instrumento:</label>
               <select
-                className="text-[#0D0D0D] rounded-3xl h-8 px-1 w-4/6 ml-auto"
+                className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto appearance-none"
                 value={instrumento}
                 onChange={(e) => setInstrumento(e.target.value)}
               >
@@ -301,7 +301,7 @@ const EditorDatosProfesor = ({
             )}
             <div className="flex w-full mx-auto my-8 gap-x-4">
               <button
-                className={`font-botones font-bold rounded-3xl w-3/6 bg-[#663481] text-[#FFFFFF] px-3 h-12 sm:h-10 md:hover:bg-[#9B70BE] ${
+                className={`font-botones font-bold rounded-3xl w-3/6 bg-navy-blue text-white px-3 h-12 sm:h-10 md:hover:bg-navy-blue-light ${
                   sending && 'opacity-50'
                 }`}
                 type="submit"
@@ -336,7 +336,7 @@ const EditorDatosProfesor = ({
                     )}
               </button>
               <button
-                className="font-botones font-bold rounded-3xl w-3/6 ml-auto bg-[#FFFFFF] text-[#0D0D0D] md:hover:text-[#663481] border-2 border-[#663481] px-3 h-12 sm:h-10"
+                className="font-botones font-bold rounded-3xl w-3/6 ml-auto bg-white text-black md:hover:text-navy-blue border-2 border-navy-blue px-3 h-12 sm:h-10"
                 onClick={cancelarClick}
                 type="button"
               >
@@ -348,10 +348,10 @@ const EditorDatosProfesor = ({
           )
         : (
         <div className="flex flex-col w-full mx-auto">
-          <div className="w-full flex justify-center mx-auto gap-x-4 sm:gap-x-6 mb-6 sm:mb-8">
+          <div className="w-full flex justify-center mx-auto gap-x-4 sm:gap-x-6 mb-6 sm:mb-8 pt-4 lg:pt-6">
             <div className="my-auto ml-auto pt-[0.5px] xl:pt-1">
               <svg
-                className="hover:cursor-pointer stroke-[#9B70BE] md:hover:stroke-[#663481]"
+                className="hover:cursor-pointer stroke-white md:hover:stroke-navy-blue-light"
                 onClick={() => volver()}
                 width="34"
                 height="32"
@@ -370,16 +370,16 @@ const EditorDatosProfesor = ({
                 </g>
               </svg>
             </div>
-            <h3 className="text-[#FFFFFF] my-auto text-xl sm:text-2xl">
+            <h3 className="text-white my-auto text-xl sm:text-2xl">
               Profesor
             </h3>
             <p className="my-auto">|</p>
-            <p className="text-[#9B70BE] my-auto md:mt-1 text-xl sm:text-2xl mr-auto">
-              {profesor.Nombre} {profesor.Apellido}
+            <p className="text-navy-blue-light my-auto md:mt-1 text-xl sm:text-2xl mr-auto">
+              {profesor?.usuario.full_name.nombre} {profesor?.usuario.full_name.apellido}
             </p>
           </div>
-          <div className="bg-[#0D0D0D] px-4 sm:px-8 py-8 flex flex-col mx-auto w-full">
-            <h4 className="text-[#FFFFFF] my-auto text-xl sm:text-2xl border-b-[0.5px] sm:border-b-1 border-b-[#FFFFFF] pb-8 mb-8">
+          <div className="bg-black px-4 sm:px-8 py-8 flex flex-col mx-auto w-full">
+            <h4 className="text-white my-auto text-xl sm:text-2xl border-b-[0.5px] sm:border-b-1 border-b-white pb-8 mb-8">
               Datos
             </h4>
             <div className="mb-8 flex">
@@ -424,9 +424,9 @@ const EditorDatosProfesor = ({
               <p className="text-base">{formatInstrumento(instrumento)}</p>
             </div>
           </div>
-          <div className="bg-[#0D0D0D] flex flex-col mx-auto w-full">
+          <div className="bg-black flex flex-col mx-auto w-full">
             <button
-              className="font-botones font-bold rounded-3xl w-4/6 sm:w-3/6 mx-auto h-12 sm:h-10 mb-8 bg-[#663481] md:hover:bg-[#9B70BE]"
+              className="font-botones font-bold rounded-3xl w-4/6 sm:w-3/6 mx-auto h-12 sm:h-10 mb-8 bg-navy-blue md:hover:bg-navy-blue-light"
               onClick={handleEditClick}
             >
               Editar perfil
@@ -436,12 +436,12 @@ const EditorDatosProfesor = ({
           )}
       {showConfirmation && (
         <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-50 z-50">
-          <div className="bg-[#FFFFFF] p-12 rounded-lg text-center flex flex-col">
-            <p className="text-[#0D0D0D] text-xl mb-4 font-bold">
+          <div className="bg-white p-12 rounded-lg text-center flex flex-col">
+            <p className="text-black text-xl mb-4 font-bold">
               Los cambios se guardaron correctamente.
             </p>
             <button
-              className="text-[#E9500E] md:hover:text-[#DB9B6D] ml-auto font-bold"
+              className="text-orange-600 md:hover:text-orange-300 ml-auto font-bold"
               onClick={handleCloseConfirmation}
             >
               Entendido

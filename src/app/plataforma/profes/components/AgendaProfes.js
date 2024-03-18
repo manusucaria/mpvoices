@@ -93,10 +93,10 @@ const AgendaProfes = ({ profesor }) => {
     <div>
       {selectedDay
         ? (
-        <div className="flex justify-center items-center mb-4">
+        <div className="flex justify-center items-center mb-4 bg-[#212121]">
           <div className="flex my-auto pb-3">
             <svg
-              className="my-auto md:hover:cursor-pointer stroke-[#FFFFFF] md:hover:stroke-[#E9500E]"
+              className="my-auto md:hover:cursor-pointer stroke-white md:hover:stroke-orange-300"
               onClick={() => showAllDays()}
               width="34"
               height="32"
@@ -116,11 +116,11 @@ const AgendaProfes = ({ profesor }) => {
             </svg>
           </div>
           <div className="my-auto flex ml-4 sm:ml-8 mb-4">
-            <h3 className="text-[#FFFFFF] my-auto text-xl sm:text-2xl">
+            <h3 className="text-white my-auto text-xl sm:text-2xl">
               Días y horarios
             </h3>
             <p className="my-auto mx-4 sm:mx-8">|</p>
-            <p className="text-[#E9500E] my-auto pt-1 text-xl sm:text-2xl">
+            <p className="text-orange-300 my-auto pt-1 text-xl sm:text-2xl">
               {selectedDay.toLowerCase()}
             </p>
           </div>
@@ -128,7 +128,7 @@ const AgendaProfes = ({ profesor }) => {
           )
         : (
         <div className="grid grid-cols-1 grid-rows-1 h-auto">
-          <div className="bg-[#0D0D0D] col-start-1 col-end-1 row-start-1 row-end-1 z-40 border-2 lg:border-4 border-[#FFFFFF] opacity-30 h-[94%] w-[94%] sm:h-[90%] sm:w-[90%] m-auto"></div>
+          <div className="bg-black col-start-1 col-end-1 row-start-1 row-end-1 z-40 border-2 lg:border-4 border-white opacity-30 h-[94%] w-[94%] sm:h-[90%] sm:w-[90%] m-auto"></div>
           <Image
             width={500}
             height={500}
@@ -146,7 +146,7 @@ const AgendaProfes = ({ profesor }) => {
             priority
           />
           <div className="col-start-1 col-end-1 row-start-1 row-end-1 w-full m-auto z-40 flex flex-col">
-            <h2 className="text-center text-3xl m-auto text-[#FFFFFF] mb-8 sm:mb-6 lg:mb-8 xl:mb-10">
+            <h2 className="text-center text-3xl m-auto text-white mb-8 sm:mb-6 lg:mb-8 xl:mb-10">
               Días y horarios
             </h2>
             {availableDays
@@ -154,11 +154,11 @@ const AgendaProfes = ({ profesor }) => {
                   <button
                     key={index}
                     onClick={() => filterAlumnosByDay(day)}
-                    className={`bg-[#FFFFFF] font-botones font-bold text-[#0D0D0D] sm:text-lg rounded-3xl mx-auto h-10 sm:h-8 md:h-8 lg:h-10 w-4/6 sm:w-3/6 md:w-2/6 ${
+                    className={`bg-white font-botones font-bold text-black sm:text-lg rounded-3xl mx-auto h-10 sm:h-8 md:h-8 lg:h-10 w-4/6 sm:w-3/6 md:w-2/6 ${
                       index === diasSemana.length - 1
                         ? ''
                         : 'mb-6 md:mb-4 xl:mb-6'
-                    } md:hover:bg-[#E9500E] md:hover:text-[#FFFFFF]`}
+                    } md:hover:bg-orange-600 md:hover:text-white`}
                   >
                     {day.toLowerCase()}
                   </button>
@@ -170,29 +170,29 @@ const AgendaProfes = ({ profesor }) => {
       {selectedDay && (
         <div className="flex flex-col overflow-x-auto mx-auto w-full px-4 md:w-4/6 mb-12">
           <div className="grid grid-cols-[20%_80%] grid-rows-45">
-            <div className="rounded-tl-2xl border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D] border-r-[0.5px] sm:border-r-1 border-r-[#0D0D0D] bg-[#E9500E] h-12 text-center col-start-1 col-end-2 row-start-1 row-end-2 flex">
-              <p className="text-md sm:text-md md:text-base m-auto text-[#FFFFFF]">
+            <div className="rounded-tl-2xl border-b-[0.5px] sm:border-b-1 border-b-black border-r-[0.5px] sm:border-r-1 border-r-black bg-orange-600 h-12 text-center col-start-1 col-end-2 row-start-1 row-end-2 flex">
+              <p className="text-md sm:text-md md:text-base m-auto text-white">
                 Hora
               </p>
             </div>
             {horarios.map((time, index) => (
               <div
                 key={index}
-                className={`text-center border-r-[0.5px] sm:border-r-1 border-r-[#0D0D0D] col-start-1 col-end-2 bg-[#FFFFFF] flex h-12 ${
+                className={`text-center border-r-[0.5px] sm:border-r-1 border-r-black col-start-1 col-end-2 bg-white flex h-12 ${
                   index === horarios.length - 1
                     ? 'border-b-none rounded-bl-2xl'
-                    : 'border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D]'
+                    : 'border-b-[0.5px] sm:border-b-1 border-b-black'
                 }`}
               >
-                <p className="text-md sm:text-md md:text-base m-auto text-[#0D0D0D]">
+                <p className="text-md sm:text-md md:text-base m-auto text-black">
                   {time}
                 </p>
               </div>
             ))}
-            <div className="col-start-2 col-end-3 row-start-1 row-end-46 grid grid-cols-1 bg-[#FFFFFF] rounded-br-2xl">
+            <div className="col-start-2 col-end-3 row-start-1 row-end-46 grid grid-cols-1 bg-white rounded-br-2xl">
               <div className="grid grid-cols-1 grid-rows-45 text-center">
-                <div className="bg-[#0D0D0D] row-start-1 row-end-2">
-                  <div className="rounded-tr-2xl border-b-[0.5px] sm:border-b-1 border-b-[#0D0D0D] flex h-12 text-sm bg-[#663481]">
+                <div className="bg-black row-start-1 row-end-2">
+                  <div className="rounded-tr-2xl border-b-[0.5px] sm:border-b-1 border-b-black flex h-12 text-sm bg-navy-blue">
                     <p className="text-md sm:text-md md:text-base m-auto">
                       Profesor: {profesor.usuario.full_name.nombre} /{' '}
                       {profesor.instrumento}
@@ -221,11 +221,11 @@ const AgendaProfes = ({ profesor }) => {
                           : 'bg-[#ACFDB2]'
                       }`}
                     >
-                      <p className="text-sm sm:text-sm md:text-base mt-auto font-bold pt-2 text-[#0D0D0D]">
+                      <p className="text-sm sm:text-sm md:text-base mt-auto font-bold pt-2 text-black">
                         Alumno: {alumno.usuario.full_name.nombre}{' '}
                         {alumno.usuario.full_name.apellido}
                       </p>
-                      <p className="text-sm sm:text-sm md:text-base mb-auto text-[#0D0D0D]">
+                      <p className="text-sm sm:text-sm md:text-base mb-auto text-black">
                         {alumno.instrumento} {alumno.clases.hora_inicio}-
                         {calcularNuevoHorario(
                           alumno.clases.hora_inicio,

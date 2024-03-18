@@ -98,10 +98,6 @@ const page = () => {
       setShowModal(false)
       setSelectedDate(null)
       setSuccess(true)
-
-      setTimeout(() => {
-        window.location.reload()
-      }, 2000)
     } catch (error) {
       setError(error)
       setShowModal(false)
@@ -116,7 +112,7 @@ const page = () => {
     <div className="w-full h-full flex flex-col items-center">
       <div className="w-full py-10 text-center flex items-center justify-center relative">
         <ButtonReturn />
-        <h2 className={`text-xl sm:text-2xl ${playfair600.className}`}>
+        <h2 className={`text-2xl sm:text-3xl ${playfair600.className}`}>
           Cancelar clase
         </h2>
       </div>
@@ -126,7 +122,7 @@ const page = () => {
         top
         button={
           <Button
-            text={selectedDate ? 'Cancelar clase' : 'Seleccionar fecha'}
+            text={'Cancelar clase'}
             mode={!selectedDate ? 'disabled' : ''}
             onClick={() => setShowModal(true)}
             disabled={!selectedDate}
@@ -145,9 +141,16 @@ const page = () => {
 
         {error && <p className="text-orange-600">{error.message}</p>}
         {success && (
-          <p className="text-orange-300">
-            La clase ha sido cancelada correctamente
-          </p>
+          <Modal
+            isOpen={success}
+            leggend={'La clase se canceló con éxito'}
+            onClose={() => {
+              setSuccess(false)
+              window.location.href = '/plataforma/alumnos'
+            }}
+            isCheckedIcon={true}
+            leggendClose="Entendido"
+          />
         )}
 
         <Modal
