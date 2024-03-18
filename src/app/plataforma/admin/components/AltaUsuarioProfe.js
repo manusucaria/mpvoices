@@ -4,7 +4,7 @@ import { signUp } from '@/lib/firebase/auth'
 import { getRolByName } from '@/lib/firebase/crud/read'
 import { diasSemana, instrumentos } from '@/app/api/data'
 
-const AltaUsuarioProfe = ({ handleCancelar }) => {
+const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
   const [showDaysOptions, setShowDaysOptions] = useState(false)
   const [selectedDays, setSelectedDays] = useState([])
   const [newUserEmail, setNewUserEmail] = useState('')
@@ -114,6 +114,7 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
 
     setSendingData(false)
     setErrors(formErrors)
+    setShowProfesorForm(false)
   }
 
   const handleCancel = () => {

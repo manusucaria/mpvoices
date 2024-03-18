@@ -73,11 +73,12 @@ const Alta = () => {
           </button>
         </div>
       )}
-      {showProfesorForm && <AltaUsuarioProfe handleCancelar={handleCancelar} />}
+      {showProfesorForm && <AltaUsuarioProfe handleCancelar={handleCancelar} setShowProfesorForm={setShowProfesorForm}/>}
       {showAlumnoForm && (
         <AltaUsuarioAlumno
           profesores={profesores}
           handleCancelar={handleCancelar}
+          setShowAlumnoForm={setShowAlumnoForm}
         />
       )}
     </div>
