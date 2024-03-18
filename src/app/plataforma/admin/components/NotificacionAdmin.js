@@ -58,25 +58,25 @@ const NotificacionAdmin = ({
   return (
     <div>
       <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-50 z-[100]">
-        <div className="p-12 w-[90%] min-[490px]:w-4/6 md:w-3/6 lg:w-2/6 rounded-lg mx-auto flex flex-col bg-[#FFFFFF] border-1 border-[#0D0D0D]">
-          <p className="text-[#0D0D0D] font-bold text-xl mx-auto mb-6">
+        <div className="p-12 w-[90%] min-[490px]:w-4/6 md:w-3/6 lg:w-2/6 rounded-lg mx-auto flex flex-col bg-white border-1 border-black">
+          <p className="text-black font-bold text-xl mx-auto mb-6">
             Notificaciones
           </p>
           <div className="flex flex-col w-full mx-auto">
             {notification.map((item, index) => (
-              <div key={index} className="text-[#0D0D0D] font-bold mx-auto">
+              <div key={index} className="text-black font-bold mx-auto">
                 - {item}
               </div>
             ))}
           </div>
-          <p className="text-[#0D0D0D] font-bold text-xl mx-auto my-6">Notas</p>
+          <p className="text-black font-bold text-xl mx-auto my-6">Notas</p>
           <div className="flex flex-col mx-auto w-full mb-6">
             {localNotas.map((item, index) => (
               <div key={index} className="flex mx-auto gap-x-6 mb-2">
                 {editingNotes
                   ? (
                   <input
-                    className="text-[#0D0D0D] px-2"
+                    className="text-black px-2"
                     type="text"
                     value={localNotas[index]}
                     onChange={(event) => {
@@ -87,13 +87,13 @@ const NotificacionAdmin = ({
                   />
                     )
                   : (
-                  <div className="text-[#0D0D0D] text-base my-auto">
+                  <div className="text-black text-base my-auto">
                     - {item}
                   </div>
                     )}
                 {editingNotes && (
                   <p
-                    className="text-[#E9500E] md:cursor-pointer my-auto text-base font-bold md:hover:text-[#DB9B6D]"
+                    className="text-orange-600 md:cursor-pointer my-auto text-base font-bold md:hover:text-orange-300"
                     onClick={() => deleteNoteLocally(index)}
                   >
                     X
@@ -105,14 +105,14 @@ const NotificacionAdmin = ({
           {editingNotes && (
             <div className="flex flex-col mx-auto mb-6">
               <input
-                className="text-[#0D0D0D] px-2 mb-4"
+                className="text-black px-2 mb-4"
                 type="text"
                 value={newNote}
                 onChange={handleNoteChange}
                 placeholder="Ingrese una nueva nota"
               />
               <button
-                className="text-[#E9500E] text-base font-bold md:hover:text-[#DB9B6D]"
+                className="text-orange-600 text-base font-bold md:hover:text-orange-300"
                 onClick={addNoteLocally}
               >
                 Agregar Nota
@@ -123,13 +123,13 @@ const NotificacionAdmin = ({
             {editingNotes && (
               <>
                 <button
-                  className="text-[#E9500E] font-bold md:hover:text-[#DB9B6D]"
+                  className="text-orange-600 font-bold md:hover:text-orange-300"
                   onClick={toggleEditing}
                 >
                   Cancelar
                 </button>
                 <button
-                  className="text-[#E9500E] font-bold md:hover:text-[#DB9B6D]"
+                  className="text-orange-600 font-bold md:hover:text-orange-300"
                   onClick={updateNotes}
                 >
                   Guardar
@@ -139,13 +139,13 @@ const NotificacionAdmin = ({
             {!editingNotes && (
               <>
                 <button
-                  className="text-[#E9500E] font-bold md:hover:text-[#DB9B6D]"
+                  className="text-orange-600 font-bold md:hover:text-orange-300"
                   onClick={toggleEditing}
                 >
                   Editar Notas
                 </button>
                 <button
-                  className="text-[#E9500E] font-bold md:hover:text-[#DB9B6D]"
+                  className="text-orange-600 font-bold md:hover:text-orange-300"
                   onClick={closeNotification}
                 >
                   Entendido

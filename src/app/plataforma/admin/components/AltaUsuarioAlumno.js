@@ -377,7 +377,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
         )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-white">
-            Hora de inicio:
+            Horario:
           </label>
           <select
             className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"

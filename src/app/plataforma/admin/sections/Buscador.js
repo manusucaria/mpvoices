@@ -90,7 +90,7 @@ const Buscador = () => {
       <h2 className="text-center text-2xl sm:text-3xl text-white lg:mb-4">
         Buscar usuarios
       </h2>
-      <div className="flex text-[#0D0D0D] bg-white w-5/6 sm:w-4/6 md:w-3/6 mx-auto text-center py-2 mb-8 sm:mb-6 mt-12 rounded-3xl px-4">
+      <div className="flex text-black bg-white w-5/6 sm:w-4/6 md:w-3/6 mx-auto text-center py-2 mb-8 sm:mb-6 mt-12 rounded-3xl px-4">
         <svg
           width="37"
           height="38"
@@ -109,10 +109,10 @@ const Buscador = () => {
         <input
           type="text"
           placeholder="Buscar alumnos o profesores"
-          value={searchTerm}
+          value={searchTerm.toLowerCase()}
           onChange={handleSearchTermChange}
           onClick={clearDetails}
-          className="text-[#0D0D0D] bg-white w-full h-full mx-auto text-center border-none rounded-3xl my-auto"
+          className="text-black bg-white w-full h-full mx-auto text-center border-none rounded-3xl my-auto"
         />
       </div>
       {searchTerm.trim() !== '' && (

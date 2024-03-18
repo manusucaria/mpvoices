@@ -14,7 +14,7 @@ const NotificacionProfe = ({
   return (
     <div>
       <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-50 z-[100]">
-        <div className="p-12 w-[90%] min-[490px]:w-4/6 md:w-3/6 lg:w-2/6 rounded-lg mx-auto flex flex-col bg-[#FFFFFF] border-1 border-[#0D0D0D]">
+        <div className="p-12 w-[90%] min-[490px]:w-4/6 md:w-3/6 lg:w-2/6 rounded-lg mx-auto flex flex-col bg-white border-1 border-black">
           <svg
             className="cursor-pointer mx-auto mb-6"
             width="20"
@@ -28,26 +28,26 @@ const NotificacionProfe = ({
               fill="#D0242A"
             />
           </svg>
-          <p className="text-[#0D0D0D] font-bold text-xl mx-auto mb-6">
+          <p className="text-black font-bold text-xl mx-auto mb-6">
             Notificaciones
           </p>
           <div className="flex flex-col w-full mx-auto">
             {notification.map((item, index) => (
-              <div key={index} className="text-[#0D0D0D] font-bold mx-auto">
+              <div key={index} className="text-black font-bold mx-auto">
                 - {item}
               </div>
             ))}
           </div>
-          <p className="text-[#0D0D0D] font-bold text-xl mx-auto my-6">Notas</p>
+          <p className="text-black font-bold text-xl mx-auto my-6">Notas</p>
           <div className="flex flex-col mx-auto w-full mb-6">
             {alumno.notas.map((item, index) => (
               <div key={index} className="flex mx-auto mb-2">
-                <div className="text-[#0D0D0D] text-base my-auto">- {item}</div>
+                <div className="text-black text-base my-auto">- {item}</div>
               </div>
             ))}
           </div>
           <button
-            className="text-[#E9500E] mx-auto mt-4 font-bold md:hover:text-[#DB9B6D]"
+            className="text-orange-600 mx-auto mt-4 font-bold md:hover:text-orange-300"
             onClick={closeNotification}
           >
             Entendido

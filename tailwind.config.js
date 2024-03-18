@@ -20,8 +20,8 @@ module.exports = {
     },
     colors: {
       orange: {
-        300: '#FDBA74',
-        600: '#E9500E'
+        300: '#F57B48',
+        600: '#A33100'
       },
       white: {
         DEFAULT: '#ffffff',
@@ -41,7 +41,7 @@ module.exports = {
         100: '#F5F5F4'
       },
       'navy-blue': '#663481',
-      'navy-blue-light': '#9B70BE'
+      'navy-blue-light': '#BDA0D4'
     },
     extend: {
       backgroundImage: {
