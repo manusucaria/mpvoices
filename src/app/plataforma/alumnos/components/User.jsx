@@ -94,7 +94,7 @@ const User = ({ children }) => {
         </div>
       </div>
       <Modal
-        leggend="¿Estás segur@ que deseas cerrar sesión?"
+        leggend="¿Estás seguro que deseas cerrar sesión?"
         isOpen={isModalOpen}
         onClose={() => setModalOpen(false)}
         callback={handleLogout}
