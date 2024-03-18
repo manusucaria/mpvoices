@@ -118,7 +118,7 @@ const page = () => {
     <div className="w-full h-full flex flex-col items-center">
       <div className="w-full py-10 text-center flex items-center justify-center relative">
         <ButtonReturn />
-        <h2 className={`text-xl sm:text-2xl ${playfair600.className}`}>
+        <h2 className={`text-2xl sm:text-3xl ${playfair600.className}`}>
           Agendar clase
         </h2>
       </div>
@@ -147,7 +147,7 @@ const page = () => {
         isTitlePlayfair={success}
         header={
           !success && (
-            <p className="w-full border-b-1 py-1">
+            <p className="w-full border-b-1 py-2">
               Clases disponibles |{' '}
               <span className="text-orange-600">
                 {alumno.profesor.instrumento} | Profesor{' '}
@@ -216,7 +216,7 @@ const page = () => {
             {error && <p className="text-orange-600">{error.message}</p>}
 
             <Modal
-              leggend="¿Estás seguro que querés agendar la nueva clase?"
+              leggend="¿Seguro querés agendar la nueva clase?"
               callback={handleAgendarClase}
               isOpen={showModal}
               onClose={() => setShowModal(false)}
