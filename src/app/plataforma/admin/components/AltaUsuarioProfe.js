@@ -129,7 +129,7 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
       <div className="mx-auto flex justify-center w-full md:w-4/6 lg:w-3/6 my-8">
         <div className="flex my-auto pt-1">
           <svg
-            className="my-auto md:hover:cursor-pointer stroke-[#9B70BE] md:hover:stroke-[#663481]"
+            className="my-auto md:hover:cursor-pointer stroke-navy-blue-light md:hover:stroke-navy-blue"
             onClick={handleCancel}
             width="34"
             height="32"
@@ -149,38 +149,38 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
           </svg>
         </div>
         <div className="my-auto flex ml-4">
-          <h3 className="text-[#FFFFFF] my-auto text-xl sm:text-2xl">
+          <h3 className="text-white my-auto text-xl sm:text-2xl">
             Nuevos usuarios
           </h3>
-          <p className="text-[#FFFFFF] my-auto mx-2">|</p>
-          <p className="text-[#9B70BE] my-auto lg:mt-1 text-xl sm:text-2xl">
+          <p className="text-white my-auto mx-2">|</p>
+          <p className="text-navy-blue-light my-auto lg:mt-1 text-xl sm:text-2xl">
             Alta profesor
           </p>
         </div>
       </div>
       <form
-        className="flex flex-col mx-auto w-full md:w-4/6 lg:w-3/6 bg-[#0D0D0D] px-4 sm:px-8 py-8"
+        className="flex flex-col mx-auto w-full md:w-4/6 lg:w-3/6 bg-black px-4 sm:px-8 py-8"
         onSubmit={handleSubmit}
       >
-        <div className="flex border-b-[0.5px] sm:border-b-1 border-b-[#FFFFFF] pb-8 mb-8">
-          <h4 className="text-[#FFFFFF] my-auto text-lg sm:text-xl">
+        <div className="flex border-b-[0.5px] sm:border-b-1 border-b-white pb-8 mb-8">
+          <h4 className="text-white my-auto text-lg sm:text-xl">
             Alta profesor
           </h4>
-          <p className="text-[#FFFFFF] my-auto mx-4">|</p>
+          <p className="text-white my-auto mx-4">|</p>
           <p className="text-navy-blue-light my-auto text-lg sm:text-xl">
             Crear cuenta
           </p>
         </div>
         <div className="flex">
           <label
-            className="font-bold mr-auto w-2/6 text-[#FFFFFF]"
+            className="font-bold mr-auto w-2/6 text-white"
             htmlFor="email"
           >
             E-Mail:
           </label>
           <input
             placeholder="E-Mail"
-            className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
             id="email"
             type="email"
             value={newUserEmail}
@@ -194,14 +194,14 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
         )}
         <div className="flex mt-6">
           <label
-            className="font-bold mr-auto w-2/6 text-[#FFFFFF]"
+            className="font-bold mr-auto w-2/6 text-white"
             htmlFor="password"
           >
             Password:
           </label>
           <input
             placeholder="Contraseña"
-            className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
             id="password"
             type="text"
             value={newUserPassword}
@@ -215,12 +215,12 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
           </p>
         )}
         <div className="flex mt-6">
-          <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
+          <label className="font-bold mr-auto w-2/6 text-white">
             Teléfono:
           </label>
           <input
             placeholder="XXXXXXXXXX"
-            className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
             type="tel"
             name="phoneNumber"
             value={newUserPhoneNumber}
@@ -233,12 +233,12 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
           </p>
         )}
         <div className="flex mt-6">
-          <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
+          <label className="font-bold mr-auto w-2/6 text-white">
             Nombre:
           </label>
           <input
             placeholder="Nombre"
-            className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
             type="text"
             name="Nombre"
             value={newUserNombre}
@@ -251,12 +251,12 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
           </p>
         )}
         <div className="flex mt-6">
-          <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
+          <label className="font-bold mr-auto w-2/6 text-white">
             Apellido:
           </label>
           <input
             placeholder="Apellido"
-            className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
             type="text"
             name="Apellido"
             value={newUserApellido}
@@ -269,12 +269,12 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
           </p>
         )}
         <div className="flex mt-6">
-          <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
+          <label className="font-bold mr-auto w-2/6 text-white">
             Fecha de nac.:
           </label>
           <input
             placeholder="Fecha de nac."
-            className="text-[#0D0D0D] rounded-3xl h-8 px-2 w-4/6 ml-auto"
+            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto"
             type="date"
             name="birthdate"
             value={newUserBirthdate}
@@ -287,12 +287,12 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
           </p>
         )}
         <div className="flex mt-6">
-          <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
+          <label className="font-bold mr-auto w-2/6 text-white">
             Días de clases:
           </label>
           <div className="relative w-4/6 ml-auto">
             <input
-              className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-full"
+              className="text-black rounded-3xl h-8 pl-2 w-full"
               type="text"
               name="Dia"
               placeholder="Seleccione un día"
@@ -326,11 +326,11 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
           </p>
         )}
         <div className="flex mt-6">
-          <label className="font-bold mr-auto w-2/6 text-[#FFFFFF]">
+          <label className="font-bold mr-auto w-2/6 text-white">
             Instr.:
           </label>
           <select
-            className="text-[#0D0D0D] rounded-3xl h-8 px-2 w-4/6 ml-auto"
+            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto"
             name="Instrumento"
             value={newUserInstrumento}
             onChange={(e) => setNewUserInstrumento(e.target.value)}
@@ -350,7 +350,7 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
         )}
         <div className="flex w-full mx-auto gap-x-4 mt-8 mb-2">
           <button
-            className="font-botones font-bold h-12 sm:h-10 w-3/6 mr-auto rounded-3xl bg-[#663481] text-[#FFFFFF] px-3 md:hover:bg-[#9B70BE]"
+            className="font-botones font-bold h-12 sm:h-10 w-3/6 mr-auto rounded-3xl bg-navy-blue text-white px-3 md:hover:bg-navy-blue-light"
             type="submit"
           >
             {sendingData
@@ -382,7 +382,7 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
                 )}
           </button>
           <button
-            className="font-botones font-bold h-12 sm:h-10 w-3/6 ml-auto rounded-3xl bg-[#FFFFFF] text-[#0D0D0D] md:hover:text-[#663481] border-2 border-[#663481] px-3"
+            className="font-botones font-bold h-12 sm:h-10 w-3/6 ml-auto rounded-3xl bg-white text-black md:hover:text-navy-blue border-2 border-navy-blue px-3"
             onClick={handleCancel}
           >
             Cancelar
@@ -391,7 +391,7 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
       </form>
       {showConfirmation && (
         <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-50 z-50">
-          <div className="bg-[#FFFFFF] p-12 rounded-lg text-center flex flex-col">
+          <div className="bg-white p-12 rounded-lg text-center flex flex-col">
             <svg
               className="mx-auto"
               width="24"
@@ -405,11 +405,11 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
                 fill="#E9500E"
               />
             </svg>
-            <p className="text-[#0D0D0D] text-xl my-4 font-bold">
+            <p className="text-black text-xl my-4 font-bold">
               ¡La cuenta se creó con éxito!
             </p>
             <button
-              className="text-[#E9500E] md:hover:text-[#DB9B6D] ml-auto font-bold"
+              className="text-orange-600 md:hover:text-orange-300 ml-auto font-bold"
               onClick={handleCloseConfirmation}
             >
               Entendido

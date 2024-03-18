@@ -22,7 +22,7 @@ const LoginForm = () => {
 
     const formErrors = {}
     if (!validateEmail(email)) {
-      formErrors.email = 'Se necesita email'
+      formErrors.email = 'Email inválido'
     }
     if (!password) {
       formErrors.password = 'Se necesita contraseña'
@@ -62,11 +62,11 @@ const LoginForm = () => {
       </div>
 
       <form
-        className="border-2 border-white-200 rounded-md m-4 flex flex-col gap-4 py-6 px-4"
+        className="border-2 border-white-dark rounded-md m-4 flex flex-col gap-4 py-6 px-4"
         onSubmit={handleSubmit}
       >
-        <div className='px-2'>
-          <label className="text-whiteml-1" htmlFor="email">
+        <div className="px-2">
+          <label className="text-white ml-1" htmlFor="email">
             Usuario:
           </label>
           <input
@@ -79,11 +79,13 @@ const LoginForm = () => {
             autoComplete="email"
           />
           {errors.email && (
-            <p className="text-orange-600 w-full text-sm text-right">{errors.email}</p>
+            <p className="text-orange-600 w-full text-sm text-right">
+              {errors.email}
+            </p>
           )}
         </div>
-        <div className='px-2'>
-          <label className="text-whiteml-1" htmlFor="password">
+        <div className="px-2">
+          <label className="text-white ml-1" htmlFor="password">
             Contraseña:
           </label>
           <div className="grid grid-cols-3 grid-rows-1 w-full mt-2">
@@ -109,14 +111,18 @@ const LoginForm = () => {
             </button>
           </div>
           {errors.password && (
-            <p className="text-orange-600 w-full text-sm text-right">{errors.password}</p>
+            <p className="text-orange-600 w-full text-sm text-right">
+              {errors.password}
+            </p>
           )}
         </div>
         {errors.message && (
-          <p className="text-orange-600 w-full text-sm text-right">{errors.message}</p>
+          <p className="text-orange-600 w-full text-sm text-right">
+            {errors.message}
+          </p>
         )}
         <button
-          className={`hover:bg-[#E9500E] hover:border-white transition-all w-full py-3 px-4 shadow-md border border-[#E9500E] text-white font-bold rounded-3xl mt-5 ${
+          className={`hover:bg-orange-600 hover:border-white transition-all w-full py-3 px-4 shadow-md border border-orange-600 text-white font-bold rounded-3xl mt-5 ${
             sending && 'opacity-50'
           }`}
           type="submit"

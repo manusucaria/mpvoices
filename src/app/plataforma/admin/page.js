@@ -59,9 +59,9 @@ const page = () => {
             <Agenda cambios={cambios} />
             <Buscador newCambio={newCambio} cambios={cambios} />
             <Alta newCambio={newCambio} cambios={cambios} />
-            <div className="bg-[#212121] flex w-full py-16">
+            <div className="bg-black-light flex w-full py-16">
               <button
-                className="bg-[#FFFFFF] mx-auto text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#E9500E] font-botones font-bold p-2 my-12 lg:mb-12 w-4/6 sm:w-2/6 h-12 sm:h-10 text-center rounded-3xl hover:cursor-pointer"
+                className="bg-white mx-auto text-black md:hover:text-orange-600 border-2 border-orange-600 font-botones font-bold p-2 my-12 lg:mb-12 w-4/6 sm:w-2/6 h-12 sm:h-10 text-center rounded-3xl hover:cursor-pointer"
                 onClick={handleSubmit}
               >
                 <p>Cerrar sesión</p>
@@ -77,13 +77,13 @@ const page = () => {
             </p>
             <div className="flex mx-auto gap-x-16">
               <button
-                className="text-[#E9500E] font-bold md:hover:text-[#DB9B6D]"
+                className="text-orange-600 font-bold md:hover:text-orange-300"
                 onClick={handleLogout}
               >
                 Si
               </button>
               <button
-                className="text-[#E9500E] font-bold md:hover:text-[#DB9B6D]"
+                className="text-orange-600 font-bold md:hover:text-orange-300"
                 onClick={handleCloseConfirmation}
               >
                 No
