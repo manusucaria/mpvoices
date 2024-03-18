@@ -93,7 +93,7 @@ const AgendaProfes = ({ profesor }) => {
     <div>
       {selectedDay
         ? (
-        <div className="flex justify-center items-center mb-4">
+        <div className="flex justify-center items-center mb-4 bg-[#212121]">
           <div className="flex my-auto pb-3">
             <svg
               className="my-auto md:hover:cursor-pointer stroke-white md:hover:stroke-orange-300"
