@@ -4,7 +4,7 @@ import { signUp } from '@/lib/firebase/auth'
 import { getRolByName } from '@/lib/firebase/crud/read'
 import { diasSemana, instrumentos } from '@/app/api/data'
 
-const AltaUsuarioProfe = ({ handleCancelar }) => {
+const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
   const [showDaysOptions, setShowDaysOptions] = useState(false)
   const [selectedDays, setSelectedDays] = useState([])
   const [newUserEmail, setNewUserEmail] = useState('')
@@ -115,6 +115,7 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
 
     setSendingData(false)
     setErrors(formErrors)
+    setShowProfesorForm(false)
   }
 
   const handleCancel = () => {
@@ -127,10 +128,10 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
 
   return (
     <div className="flex flex-col mx-auto w-full">
-      <div className="mx-auto flex justify-center w-full md:w-4/6 lg:w-3/6 my-8">
+      <div className="mx-auto flex justify-center w-full md:w-4/6 lg:w-3/6 mb-8 mt-16">
         <div className="flex my-auto pt-1">
           <svg
-            className="my-auto md:hover:cursor-pointer stroke-navy-blue-light md:hover:stroke-navy-blue"
+            className="my-auto md:hover:cursor-pointer stroke-white md:hover:stroke-navy-blue"
             onClick={handleCancel}
             width="34"
             height="32"
@@ -289,7 +290,7 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
         )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-white">
-            Días de clases:
+            Días:
           </label>
           <div className="relative w-4/6 ml-auto">
             <input
@@ -331,7 +332,7 @@ const AltaUsuarioProfe = ({ handleCancelar }) => {
             Instr.:
           </label>
           <select
-            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto"
+            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto appearance-none"
             name="Instrumento"
             value={newUserInstrumento}
             onChange={(e) => setNewUserInstrumento(e.target.value)}

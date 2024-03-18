@@ -83,12 +83,12 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
     <div className="w-full">
       {editMode
         ? (
-        <div className="flex flex-col w-full bg-[#0D0D0D] px-4 sm:px-8 pb-8 pt-4">
+        <div className="flex flex-col w-full bg-black px-4 sm:px-8 pb-8 pt-4">
           <form className="w-full mx-auto" onSubmit={handleSubmit}>
             <div className="flex mb-6">
               <label className="font-bold mr-auto w-2/6">Nombre:</label>
               <input
-                className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+                className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
                 type="text"
                 name="nombre"
                 value={nombre}
@@ -98,7 +98,7 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
             <div className="flex mb-6">
               <label className="font-bold mr-auto w-2/6">Apellido:</label>
               <input
-                className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+                className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
                 type="text"
                 name="apellido"
                 value={apellido}
@@ -108,7 +108,7 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
             <div className="flex mb-6">
               <label className="font-bold mr-auto w-2/6">Fecha de nac.:</label>
               <input
-                className="text-[#0D0D0D] rounded-3xl h-8 px-2 w-4/6 ml-auto"
+                className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto"
                 type="date"
                 name="fecha"
                 value={birthdate}
@@ -118,7 +118,7 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
             <div className="flex mb-6">
               <label className="font-bold mr-auto w-2/6">E-Mail:</label>
               <input
-                className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+                className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
                 type="text"
                 name="email"
                 value={email}
@@ -128,7 +128,7 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
             <div className="flex mb-6">
               <label className="font-bold mr-auto w-2/6">Teléfono:</label>
               <input
-                className="text-[#0D0D0D] rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+                className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
                 type="text"
                 name="tel"
                 value={telefono}
@@ -137,7 +137,7 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
             </div>
             <div className="flex w-full mx-auto mt-8 gap-x-4">
               <button
-                className={`font-botones font-bold rounded-3xl w-3/6 bg-[#E9500E] text-[#FFFFFF] px-3 h-12 sm:h-10 md:hover:bg-[#DB9B6D] ${
+                className={`font-botones font-bold rounded-3xl w-3/6 bg-orange-600 text-white px-3 h-12 sm:h-10 md:hover:bg-orange-300 ${
                   sending && 'opacity-50'
                 }`}
                 type="submit"
@@ -172,7 +172,7 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
                     )}
               </button>
               <button
-                className="font-botones font-bold rounded-3xl w-3/6 ml-auto bg-[#FFFFFF] text-[#0D0D0D] md:hover:text-[#E9500E] border-2 border-[#E9500E] px-3 h-12 sm:h-10"
+                className="font-botones font-bold rounded-3xl w-3/6 ml-auto bg-white text-black md:hover:text-orange-600 border-2 border-orange-600 px-3 h-12 sm:h-10"
                 onClick={cancelarClick}
                 type="button"
               >
@@ -183,7 +183,7 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
         </div>
           )
         : (
-        <div className="flex flex-col w-full mx-auto bg-[#0D0D0D]">
+        <div className="flex flex-col w-full mx-auto bg-black">
           <div className="px-4 sm:px-8 pb-8 w-full pt-4">
             <div className="mb-8 flex">
               <p className="mr-2 text-base font-bold">Nombre:</p>
@@ -206,9 +206,9 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
               <p className="text-base">{telefono}</p>
             </div>
           </div>
-          <div className="bg-[#0D0D0D] flex flex-col mx-auto w-full">
+          <div className="bg-black flex flex-col mx-auto w-full">
             <button
-              className="font-botones font-bold rounded-3xl w-4/6 sm:w-3/6 mx-auto h-12 sm:h-10 mb-8 bg-[#E9500E] md:hover:bg-[#DB9B6D]"
+              className="font-botones font-bold rounded-3xl w-4/6 sm:w-3/6 mx-auto h-12 sm:h-10 mb-8 bg-orange-600 md:hover:bg-orange-300"
               onClick={handleEditClick}
             >
               Editar datos
@@ -218,12 +218,12 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
           )}
       {showConfirmation && (
         <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-50 z-50">
-          <div className="bg-[#FFFFFF] p-12 rounded-lg text-center flex flex-col">
-            <p className="text-[#0D0D0D] text-xl mb-4 font-bold">
+          <div className="bg-white p-12 rounded-lg text-center flex flex-col">
+            <p className="text-black text-xl mb-4 font-bold">
               Los cambios se guardaron correctamente.
             </p>
             <button
-              className="text-[#E9500E] md:hover:text-[#DB9B6D] ml-auto font-bold"
+              className="text-orange-600 md:hover:text-orange-300 ml-auto font-bold"
               onClick={handleCloseConfirmation}
             >
               Entendido

@@ -9,7 +9,7 @@ import {
   instrumentos
 } from '@/app/api/data'
 
-const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
+const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) => {
   const [newUserEmail, setNewUserEmail] = useState('')
   const [newUserPassword, setNewUserPassword] = useState('')
   const [newUserPhoneNumber, setNewUserPhoneNumber] = useState('')
@@ -131,8 +131,8 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
       }
     }
     setSendingData(false)
-
     setErrors(formErrors)
+    setShowAlumnoForm(false)
   }
 
   const handleCancel = () => {
@@ -145,10 +145,10 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
 
   return (
     <div className="flex flex-col mx-auto w-full">
-      <div className="mx-auto flex justify-center w-full md:w-4/6 lg:w-3/6 my-8">
+      <div className="mx-auto flex justify-center w-full md:w-4/6 lg:w-3/6 mb-8 mt-16">
         <div className="flex my-auto pt-1">
           <svg
-            className="my-auto md:hover:cursor-pointer stroke-orange-600 md:hover:stroke-orange-300"
+            className="my-auto md:hover:cursor-pointer stroke-white md:hover:stroke-orange-300"
             onClick={handleCancel}
             width="34"
             height="32"
@@ -172,7 +172,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
             Nuevos usuarios
           </h3>
           <p className="text-white my-auto mx-2">|</p>
-          <p className="text-orange-600 my-auto lg:mt-1 text-xl sm:text-2xl">
+          <p className="text-orange-300 my-auto lg:mt-1 text-xl sm:text-2xl">
             Alta alumno
           </p>
         </div>
@@ -186,7 +186,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
             Alta alumno
           </h4>
           <p className="text-white my-auto mx-4">|</p>
-          <p className="text-orange-600 my-auto text-lg sm:text-xl">
+          <p className="text-orange-300 my-auto text-lg sm:text-xl">
             Crear cuenta
           </p>
         </div>
@@ -208,7 +208,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
           />
         </div>
         {errors.email && (
-          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
             {errors.email}
           </p>
         )}
@@ -231,7 +231,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
           />
         </div>
         {errors.password && (
-          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
             {errors.password}
           </p>
         )}
@@ -249,7 +249,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
           />
         </div>
         {errors.telefono && (
-          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
             {errors.telefono}
           </p>
         )}
@@ -267,7 +267,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
           />
         </div>
         {errors.nombre && (
-          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
             {errors.nombre}
           </p>
         )}
@@ -285,7 +285,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
           />
         </div>
         {errors.apellido && (
-          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
             {errors.apellido}
           </p>
         )}
@@ -303,7 +303,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
           />
         </div>
         {errors.birthdate && (
-          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
             {errors.birthdate}
           </p>
         )}
@@ -312,7 +312,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
             Instr.:
           </label>
           <select
-            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto appearance-none"
             name="instrumento"
             value={newUserInstrumento}
             onChange={(e) => setNewUserInstrumento(e.target.value)}
@@ -326,7 +326,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
           </select>
         </div>
         {errors.instrumento && (
-          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
             {errors.instrumento}
           </p>
         )}
@@ -335,7 +335,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
             Profesor:
           </label>
           <select
-            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto"
+            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto appearance-none"
             name="profesorId"
             value={newUserProfesor}
             onChange={(e) => setNewUserProfesor(e.target.value)}
@@ -350,14 +350,14 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
           </select>
         </div>
         {errors.profesor && (
-          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
             {errors.profesor}
           </p>
         )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-white">Día:</label>
           <select
-            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto appearance-none"
             name="Dia"
             value={newUserClaseDia}
             onChange={(e) => setNewUserClaseDia(e.target.value)}
@@ -371,16 +371,16 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
           </select>
         </div>
         {errors.clase_dia && (
-          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
             {errors.clase_dia}
           </p>
         )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-white">
-            Hora de inicio:
+            Horario:
           </label>
           <select
-            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto appearance-none"
             name="Horario"
             value={newUserClaseHoraInicio}
             onChange={(e) => setNewUserClaseHoraInicio(e.target.value)}
@@ -394,7 +394,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
           </select>
         </div>
         {errors.clase_hora_inicio && (
-          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
             {errors.clase_hora_inicio}
           </p>
         )}
@@ -403,7 +403,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
             Duración:
           </label>
           <select
-            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto appearance-none"
             name="Duracion"
             value={newUserClaseDuracion}
             onChange={(e) => setNewUserClaseDuracion(e.target.value)}
@@ -417,7 +417,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
           </select>
         </div>
         {errors.clase_duracion && (
-          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
             {errors.clase_duracion}
           </p>
         )}
@@ -435,7 +435,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
           />
         </div>
         {errors.pagos_saldo && (
-          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
             {errors.pagos_saldo}
           </p>
         )}
@@ -453,7 +453,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores }) => {
           />
         </div>
         {errors.pagos_actualizacion && (
-          <p className="ml-auto pr-4 mt-1 text-orange-600 text-sm">
+          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
             {errors.pagos_actualizacion}
           </p>
         )}
