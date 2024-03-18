@@ -127,7 +127,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
 
   return (
     <div className="flex flex-col mx-auto w-full">
-      <div className="mx-auto flex justify-center w-full md:w-4/6 lg:w-3/6 my-8">
+      <div className="mx-auto flex justify-center w-full md:w-4/6 lg:w-3/6 mb-8 mt-16">
         <div className="flex my-auto pt-1">
           <svg
             className="my-auto md:hover:cursor-pointer stroke-navy-blue-light md:hover:stroke-navy-blue"
