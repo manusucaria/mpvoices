@@ -64,7 +64,7 @@ const User = ({ children }) => {
         <div className="w-full py-10 flex flex-col lg:flex-row items-center lg:items-stretch justify-center text-lg sm:text-xl lg:text-2xl gap-10">
           <div className="bg-white-dark text-black w-2/3 lg:w-1/3 rounded-md flex flex-col items-center justify-start gap-5 py-10">
             <p className={`${playfair600.className}`}>
-              Saldo: {alumno?.pagos?.saldo}
+              Saldo: ${alumno?.pagos?.saldo}
             </p>
           </div>
           <div className="bg-white-dark text-black w-2/3 lg:w-1/3 rounded-md flex flex-col items-center justify-start gap-5 py-10">
@@ -87,7 +87,7 @@ const User = ({ children }) => {
         <div className="bg-black-light w-full pt-10 pb-32 flex items-center justify-center">
           <Button
             text="Cerrar sesión"
-            mode="light"
+            mode="signOut"
             hasACallback={true}
             onClick={() => setModalOpen(true)}
           />

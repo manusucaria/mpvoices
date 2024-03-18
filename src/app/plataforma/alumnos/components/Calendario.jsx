@@ -80,8 +80,7 @@ const Calendario = ({
         </div>
       </div>
       <p className="w-full text-start flex flex-col items-start justify-start">
-        {selectedDate
-          ? (
+        {selectedDate && (
           <>
             <span>
               {selectedDate.toLocaleDateString('es-ES', {
@@ -93,10 +92,7 @@ const Calendario = ({
             <span>{clases.hora_inicio} hs</span>
             <span>{clases.duracion} minutos</span>
           </>
-            )
-          : (
-              'Seleccione una fecha'
-            )}
+        )}
       </p>
     </div>
   )

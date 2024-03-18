@@ -49,7 +49,7 @@ const page = () => {
   return (
     <div className="w-full h-full flex flex-col items-center">
       <div className="w-full py-10 text-center flex items-center justify-center">
-        <h2 className={`text-xl sm:text-2xl ${playfair600.className}`}>
+        <h2 className={`text-2xl sm:text-3xl ${playfair600.className}`}>
           Inicio | Días y horarios
         </h2>
       </div>
