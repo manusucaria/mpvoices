@@ -87,10 +87,10 @@ const Buscador = () => {
         !selectedAlumno && !selectedProfesor && 'pb-24'
       }`}
     >
-      <h2 className="text-center text-2xl sm:text-3xl text-[#FFFFFF] lg:mb-4">
+      <h2 className="text-center text-2xl sm:text-3xl text-white lg:mb-4">
         Buscar usuarios
       </h2>
-      <div className="flex text-[#0D0D0D] bg-[#FFFFFF] w-5/6 sm:w-4/6 md:w-3/6 mx-auto text-center py-2 mb-8 sm:mb-6 mt-12 rounded-3xl px-4">
+      <div className="flex text-[#0D0D0D] bg-white w-5/6 sm:w-4/6 md:w-3/6 mx-auto text-center py-2 mb-8 sm:mb-6 mt-12 rounded-3xl px-4">
         <svg
           width="37"
           height="38"
@@ -112,7 +112,7 @@ const Buscador = () => {
           value={searchTerm}
           onChange={handleSearchTermChange}
           onClick={clearDetails}
-          className="text-[#0D0D0D] bg-[#FFFFFF] w-full h-full mx-auto text-center border-none rounded-3xl my-auto"
+          className="text-[#0D0D0D] bg-white w-full h-full mx-auto text-center border-none rounded-3xl my-auto"
         />
       </div>
       {searchTerm.trim() !== '' && (
@@ -121,7 +121,7 @@ const Buscador = () => {
             <button
               key={alumno.id}
               onClick={() => handleAlumnoClick(alumno)}
-              className="mx-auto mb-8 px-2 sm:mb-6 md:mb-4 bg-[#E9500E] font-botones text-[#FFFFFF] rounded-3xl h-12 sm:h-10 w-4/6 sm:w-3/6 md:hover:bg-[#DB9B6D]"
+              className="mx-auto mb-8 px-2 sm:mb-6 md:mb-4 bg-orange-600 font-botones text-white rounded-3xl h-12 sm:h-10 w-4/6 sm:w-3/6 md:hover:bg-orange-300"
             >
               {alumno.usuario.full_name.nombre}{' '}
               {alumno.usuario.full_name.apellido} - Alumno
@@ -149,7 +149,7 @@ const Buscador = () => {
             <button
               key={profesor.id}
               onClick={() => handleProfesorClick(profesor)}
-              className="mx-auto mb-8 px-2 sm:mb-6 md:mb-4 bg-[#663481] text-[#FFFFFF] font-botones rounded-3xl h-12 sm:h-10 w-4/6 sm:w-3/6 md:hover:bg-[#9B70BE]"
+              className="mx-auto mb-8 px-2 sm:mb-6 md:mb-4 bg-navy-blue text-white font-botones rounded-3xl h-12 sm:h-10 w-4/6 sm:w-3/6 md:hover:bg-navy-blue-light"
             >
               {profesor.usuario.full_name.nombre}{' '}
               {profesor.usuario.full_name.apellido} - Profesor

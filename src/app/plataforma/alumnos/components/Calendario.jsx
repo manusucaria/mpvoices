@@ -11,7 +11,7 @@ const Calendario = ({
   selectedDay,
   setSelectedDay
 }) => {
-  const currentMonth = new Date() // Obtenemos el mes actual
+  const currentMonth = new Date()
 
   const handleDateClick = (day) => {
     setSelectedDay(null)
@@ -47,7 +47,7 @@ const Calendario = ({
           highlightedDays.includes(day) &&
           'hover:bg-orange-600 hover:bg-opacity-30 pointer-events-auto'
         } ${highlightedDays.includes(day) && 'font-black text-orange-600'} ${
-          selectedDay === day && day !== null && 'bg-orange-600 bg-opacity-30'
+          selectedDay === day && day !== null && 'bg-orange-600 text-white'
         } pointer-events-none w-auto h-8 rounded-md flex items-center justify-center`}
         onClick={() => handleDateClick(day)}
         disabled={!highlightedDays.includes(day) && day !== null}

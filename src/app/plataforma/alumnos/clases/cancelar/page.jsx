@@ -98,10 +98,6 @@ const page = () => {
       setShowModal(false)
       setSelectedDate(null)
       setSuccess(true)
-
-      setTimeout(() => {
-        window.location.reload()
-      }, 2000)
     } catch (error) {
       setError(error)
       setShowModal(false)
@@ -145,9 +141,16 @@ const page = () => {
 
         {error && <p className="text-orange-600">{error.message}</p>}
         {success && (
-          <p className="text-orange-300">
-            La clase ha sido cancelada correctamente
-          </p>
+          <Modal
+            isOpen={success}
+            leggend={'La clase se canceló con éxito'}
+            onClose={() => {
+              setSuccess(false)
+              window.location.href = '/plataforma/alumnos'
+            }}
+            isCheckedIcon={true}
+            leggendClose="Entendido"
+          />
         )}
 
         <Modal
