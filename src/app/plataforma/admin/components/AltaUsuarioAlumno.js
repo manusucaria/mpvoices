@@ -312,7 +312,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             Instr.:
           </label>
           <select
-            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto appearance-none"
             name="instrumento"
             value={newUserInstrumento}
             onChange={(e) => setNewUserInstrumento(e.target.value)}
@@ -335,7 +335,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             Profesor:
           </label>
           <select
-            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto"
+            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto appearance-none"
             name="profesorId"
             value={newUserProfesor}
             onChange={(e) => setNewUserProfesor(e.target.value)}
@@ -357,7 +357,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-white">Día:</label>
           <select
-            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto appearance-none"
             name="Dia"
             value={newUserClaseDia}
             onChange={(e) => setNewUserClaseDia(e.target.value)}
@@ -380,7 +380,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             Horario:
           </label>
           <select
-            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto appearance-none"
             name="Horario"
             value={newUserClaseHoraInicio}
             onChange={(e) => setNewUserClaseHoraInicio(e.target.value)}
@@ -403,7 +403,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             Duración:
           </label>
           <select
-            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto appearance-none"
             name="Duracion"
             value={newUserClaseDuracion}
             onChange={(e) => setNewUserClaseDuracion(e.target.value)}

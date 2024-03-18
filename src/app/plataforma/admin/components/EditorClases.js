@@ -140,7 +140,7 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
             <div className="flex mb-6">
               <label className="font-bold mr-auto w-2/6">Instrumento:</label>
               <select
-                className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+                className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto appearance-none"
                 value={instrumento}
                 onChange={(e) => setInstrumento(e.target.value)}
               >
@@ -158,7 +158,7 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
             <div className="flex mb-6">
               <label className="font-bold mr-auto w-2/6">Días:</label>
               <select
-                className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+                className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto appearance-none"
                 value={dia}
                 onChange={(e) => setDia(e.target.value)}
               >
@@ -172,7 +172,7 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
             <div className="flex mb-6">
               <label className="font-bold mr-auto w-2/6">Horario:</label>
               <select
-                className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+                className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto appearance-none"
                 value={horaInicio}
                 onChange={(e) => setHoraInicio(e.target.value)}
               >
@@ -186,7 +186,7 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
             <div className="flex mb-6">
               <label className="font-bold mr-auto w-2/6">Duración:</label>
               <select
-                className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+                className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto appearance-none"
                 value={duracion}
                 onChange={(e) => setDuracion(e.target.value)}
               >
@@ -200,7 +200,7 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
             <div className="flex mb-6">
               <label className="font-bold mr-auto w-2/6">Profesor:</label>
               <select
-                className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+                className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto appearance-none"
                 defaultValue={profesor.id}
                 onChange={handleProfesor}
               >

@@ -331,7 +331,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
             Instr.:
           </label>
           <select
-            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto"
+            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto appearance-none"
             name="Instrumento"
             value={newUserInstrumento}
             onChange={(e) => setNewUserInstrumento(e.target.value)}
