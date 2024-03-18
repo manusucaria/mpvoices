@@ -132,7 +132,7 @@ const EditorDatosProfesor = ({
       {editMode
         ? (
         <div className="flex flex-col w-full bg-black">
-          <div className="w-full flex justify-center mx-auto gap-x-4 sm:gap-x-6 pb-6 sm:pb-8 bg-[#212121]">
+          <div className="w-full flex justify-center mx-auto gap-x-4 sm:gap-x-6 pb-6 sm:pb-8 bg-[#212121] pt-4 lg:pt-6">
             <div className="my-auto ml-auto pt-[0.5px] xl:pt-1">
               <svg
                 className="hover:cursor-pointer stroke-white md:hover:stroke-navy-blue-light"
