@@ -29,7 +29,7 @@ const AgendaSmall = () => {
       })
       setAlumnos(alumnosData)
     })()
-  }, [selectedDay, selectedDay])
+  }, [selectedDay, selectedAlumno])
 
   const filterAlumnosByDay = (day) => {
     setSelectedDay(day)
@@ -123,7 +123,7 @@ const AgendaSmall = () => {
   return (
     <div
       id="Agenda"
-      className={`flex flex-col md:hidden ${selectedDay ? 'mb-6' : ''}`}
+      className={`flex flex-col bg-[#212121] md:hidden ${selectedDay ? 'mb-6' : ''}`}
     >
       {selectedDay
         ? (
@@ -162,7 +162,7 @@ const AgendaSmall = () => {
           )
         : (
         <div className="grid grid-cols-1 grid-rows-1 h-auto">
-          <div className="bg-[#010101] col-start-1 col-end-1 row-start-1 row-end-1 z-40 border-2 lg:border-4 border-white opacity-30 h-[94%] w-[94%] sm:h-[90%] sm:w-[90%] m-auto"></div>
+          <div className="col-start-1 col-end-1 row-start-1 row-end-1 z-40 border-2 lg:border-4 border-white opacity-30 h-[94%] w-[94%] sm:h-[90%] sm:w-[90%] m-auto"></div>
           <Image
             width={500}
             height={500}
@@ -309,8 +309,8 @@ const AgendaSmall = () => {
                           <div
                             className={`flex flex-col m-auto h-[97.5%] w-[95%] text-center ${
                               alumno &&
-                              alumno.Notificaciones &&
-                              alumno.Notificaciones.length > 0
+                              alumno.notificaciones &&
+                              alumno.notificaciones.length > 0
                                 ? 'bg-[#FFC9CB]'
                                 : 'bg-[#ACFDB2]'
                             }`}

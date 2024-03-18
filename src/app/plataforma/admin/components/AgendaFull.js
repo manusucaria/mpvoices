@@ -310,8 +310,8 @@ const AgendaFull = () => {
                           <div
                             className={`flex flex-col m-auto h-[97.5%] w-[95%] text-center ${
                               alumno &&
-                              alumno.Notificaciones &&
-                              alumno.Notificaciones.length > 0
+                              alumno.notificaciones &&
+                              alumno.notificaciones.length > 0
                                 ? 'bg-[#FFC9CB]'
                                 : 'bg-[#ACFDB2]'
                             }`}
