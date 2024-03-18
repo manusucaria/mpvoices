@@ -130,7 +130,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
       <div className="mx-auto flex justify-center w-full md:w-4/6 lg:w-3/6 mb-8 mt-16">
         <div className="flex my-auto pt-1">
           <svg
-            className="my-auto md:hover:cursor-pointer stroke-navy-blue-light md:hover:stroke-navy-blue"
+            className="my-auto md:hover:cursor-pointer stroke-white md:hover:stroke-navy-blue"
             onClick={handleCancel}
             width="34"
             height="32"
@@ -289,7 +289,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
         )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-white">
-            Días de clases:
+            Días:
           </label>
           <div className="relative w-4/6 ml-auto">
             <input

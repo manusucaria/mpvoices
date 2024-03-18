@@ -348,10 +348,10 @@ const EditorDatosProfesor = ({
           )
         : (
         <div className="flex flex-col w-full mx-auto">
-          <div className="w-full flex justify-center mx-auto gap-x-4 sm:gap-x-6 mb-6 sm:mb-8">
+          <div className="w-full flex justify-center mx-auto gap-x-4 sm:gap-x-6 mb-6 sm:mb-8 pt-4 lg:pt-6">
             <div className="my-auto ml-auto pt-[0.5px] xl:pt-1">
               <svg
-                className="hover:cursor-pointer stroke-white md:hover:stroke-navy-blue"
+                className="hover:cursor-pointer stroke-white md:hover:stroke-navy-blue-light"
                 onClick={() => volver()}
                 width="34"
                 height="32"
@@ -374,7 +374,7 @@ const EditorDatosProfesor = ({
               Profesor
             </h3>
             <p className="my-auto">|</p>
-            <p className="text-navy-blue my-auto md:mt-1 text-xl sm:text-2xl mr-auto">
+            <p className="text-navy-blue-light my-auto md:mt-1 text-xl sm:text-2xl mr-auto">
               {profesor.Nombre} {profesor.Apellido}
             </p>
           </div>
@@ -441,7 +441,7 @@ const EditorDatosProfesor = ({
               Los cambios se guardaron correctamente.
             </p>
             <button
-              className="text-[#E9500E] md:hover:text-[#DB9B6D] ml-auto font-bold"
+              className="text-orange-600 md:hover:text-orange-300 ml-auto font-bold"
               onClick={handleCloseConfirmation}
             >
               Entendido
