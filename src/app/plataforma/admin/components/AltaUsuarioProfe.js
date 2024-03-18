@@ -100,6 +100,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
         setNewUserNombre('')
         setNewUserApellido('')
         setNewUserInstrumento('')
+        setNewUserBirthdate('')
         setSelectedDays([])
       } catch (error) {
         if (error.code === 'auth/email-already-in-use') {
