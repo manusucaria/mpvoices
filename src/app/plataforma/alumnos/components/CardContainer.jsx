@@ -16,9 +16,9 @@ const CardContainer = ({
     <div className="bg-black w-full sm:w-2/3 md:w-1/2 p-10 text-base flex flex-col items-center gap-10">
       {icon}
       <div className="w-full">
-        <h3 className={`w-full text-start border-b-1 pb-1 ${isTitlePlayfair ? 'text-2xl' : 'text-xl'} ${isTitlePlayfair && playfair600.className}`}>{title}</h3>
+        <h3 className={`w-full text-start border-b-1 pb-2 ${isTitlePlayfair ? 'text-2xl' : 'text-xl'} ${isTitlePlayfair && playfair600.className}`}>{title}</h3>
         {warning && top && (
-          <p className="w-full border-b-1 py-1">
+          <p className="w-full border-b-1 py-2">
             Importante:{' '}
             <span className="text-orange-300">
               recordá que las clases sólo se pueden cancelar con más de 24 hs de
