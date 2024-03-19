@@ -1,51 +1,41 @@
-import { doc, updateDoc } from 'firebase/firestore'
+import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
 
 import { db } from '../firebase'
 import { getAlumnoById } from './read'
 
-export const createNotificacionAlumno = async (uid, { notificacion }) => {
+export const updateAlumnoCancelarClase = async (uid, { fecha }) => {
   try {
     const alumnoRef = doc(db, 'alumnos', uid)
-    const alumnoSnap = await getAlumnoById(uid)
-    if (alumnoSnap.notificaciones && alumnoSnap.notificaciones.includes(notificacion)) {
-      throw new Error('Ya fué notificado previamente')
-    }
 
     await updateDoc(alumnoRef, {
-      notificaciones: alumnoSnap.notificaciones ? [...alumnoSnap.notificaciones, notificacion] : [notificacion],
-      'clases.canceladas': alumnoSnap.clases.canceladas > 0 ? alumnoSnap.clases.canceladas + 1 : 1
+      'clases.canceladas': arrayUnion({ fecha }),
+      'clases.notificaciones': arrayUnion({ fecha, tipo: 'cancelar' })
     })
 
-    const newNotificacionesAlumnoUpdated = await getAlumnoById(uid, {
+    const alumnoUpdated = await getAlumnoById(uid, {
       getUsuario: true,
       getProfesor: true
     })
-
-    return newNotificacionesAlumnoUpdated
+    return alumnoUpdated
   } catch (error) {
     throw error
   }
 }
 
-export const createAgendarRecuperarClaseAlumno = async (uid, { notificacion }) => {
+export const updateAlumnoRecuperarClase = async (uid, { fecha }) => {
   try {
     const alumnoRef = doc(db, 'alumnos', uid)
-    const alumnoSnap = await getAlumnoById(uid)
-    if (alumnoSnap.notificaciones && alumnoSnap.notificaciones.includes(notificacion)) {
-      throw new Error('Ya fué notificado previamente')
-    }
 
     await updateDoc(alumnoRef, {
-      'clases.canceladas': alumnoSnap.clases.canceladas > 0 ? alumnoSnap.clases.canceladas - 1 : 0,
-      notificaciones: [...alumnoSnap.notificaciones, notificacion]
+      'clases.recuperar': arrayUnion({ fecha }),
+      'clases.notificaciones': arrayUnion({ fecha, tipo: 'recuperar' })
     })
 
-    const newAgendarRecuperarClaseAlumnoUpdated = await getAlumnoById(uid, {
+    const alumnoUpdated = await getAlumnoById(uid, {
       getUsuario: true,
       getProfesor: true
     })
-
-    return newAgendarRecuperarClaseAlumnoUpdated
+    return alumnoUpdated
   } catch (error) {
     throw error
   }
