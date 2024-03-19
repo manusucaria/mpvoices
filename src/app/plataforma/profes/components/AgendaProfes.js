@@ -39,7 +39,7 @@ const AgendaProfes = ({ profesor }) => {
 
   const handleAlumnoClick = (alumno) => {
     setSelectedAlumno(alumno)
-    setNotification(alumno.notificaciones)
+    setNotification(alumno.clases.notificaciones)
     setNotas(alumno.notas)
     setShowNotification(true)
   }

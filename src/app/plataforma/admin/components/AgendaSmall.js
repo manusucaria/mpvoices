@@ -116,7 +116,7 @@ const AgendaSmall = () => {
 
   const handleAlumnoClick = (alumno) => {
     setSelectedAlumno(alumno)
-    setNotification(alumno.notificaciones)
+    setNotification(alumno.clases.notificaciones)
     setShowNotification(true)
   }
 
