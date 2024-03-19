@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server'
 
-import firebaseConfig from './config/firebase.config'
 import { cookies } from 'next/headers'
+
+import { firebaseConfig } from './config/config'
 
 export const middleware = async (req) => {
   const { pathname, origin } = req.nextUrl
