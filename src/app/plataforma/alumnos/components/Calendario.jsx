@@ -120,13 +120,16 @@ const Calendario = ({
             ' font-black text-orange-300 hover:bg-orange-600 hover:bg-opacity-40 pointer-events-auto'
         }
         if (fechaCancelada) {
-          buttonClass += ' bg-orange-300 text-orange-600 font-black'
+          buttonClass += ' bg-white text-black font-black'
         }
-        if (fechaAgendada) {
+        if (fechaAgendada && !isSelected) {
           buttonClass +=
-            ' bg-navy-blue-light text-navy-blue font-black pointer-events-auto'
+          ' bg-navy-blue-light text-navy-blue font-black pointer-events-auto'
         }
-        if (isSelected) {
+        if (isSelected && fechaAgendada) {
+          buttonClass += ' bg-navy-blue text-white font-black'
+        }
+        if (isSelected && !fechaAgendada) {
           buttonClass += ' bg-orange-600 text-white font-black'
         }
       }
@@ -149,7 +152,7 @@ const Calendario = ({
       <div className="w-80">
         <ul className="text-sm text-white text-opacity-50 flex flex-col gap-2">
           <li className="flex gap-2">
-            <span className="bg-orange-300 w-5 h-5 rounded-full"></span>Clases
+            <span className="bg-white w-5 h-5 rounded-full"></span>Clases
             canceladas
           </li>
           <li className="flex gap-2">
