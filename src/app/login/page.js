@@ -39,6 +39,9 @@ const LoginForm = () => {
         if (error.code === 'auth/invalid-login-credentials') {
           setErrors({ message: 'Credenciales no válidas' })
         }
+        if (error.code === 'auth/invalid-credential') {
+          setErrors({ message: 'Credenciales no válidas' })
+        }
         if (error.code === 'auth/wrong-password') {
           setErrors({ password: 'Contraseña incorrecta' })
         }
@@ -79,7 +82,7 @@ const LoginForm = () => {
             autoComplete="email"
           />
           {errors.email && (
-            <p className="text-orange-600 w-full text-sm text-right">
+            <p className="text-white w-full text-sm text-right px-2">
               {errors.email}
             </p>
           )}
@@ -111,13 +114,13 @@ const LoginForm = () => {
             </button>
           </div>
           {errors.password && (
-            <p className="text-orange-600 w-full text-sm text-right">
+            <p className="text-white w-full text-sm text-right px-2">
               {errors.password}
             </p>
           )}
         </div>
         {errors.message && (
-          <p className="text-orange-600 w-full text-sm text-right">
+          <p className="text-white w-full text-sm text-right px-2">
             {errors.message}
           </p>
         )}
