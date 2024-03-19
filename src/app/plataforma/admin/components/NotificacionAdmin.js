@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import { format } from 'date-fns'
 import { udpateNotasAlumno } from '@/lib/firebase/actions.admin'
 
 const NotificacionAdmin = ({
@@ -70,7 +70,13 @@ const NotificacionAdmin = ({
             <p className='text-[#0D0D0D] font-bold text-xl mx-auto mb-8'>Notificaciones</p>
             <div className='flex flex-col w-full mx-auto gap-y-2'>
               {notification.map((item, index) => (
-                <div key={index} className='text-[#0D0D0D] font-bold mx-auto'>- {item}</div>
+                <div key={index} className='text-[#0D0D0D] font-bold mx-auto'>
+                  - {item.tipo === 'cancelar'
+                  ? `No asistirá a la clase del ${format(item.fecha.toDate(), 'dd/MM/yyyy')}`
+                  : item.tipo === 'recuperar'
+                    ? `Asistirá a recuperar el ${format(item.fecha.toDate(), 'dd/MM/yyyy')}`
+                    : ''}
+                </div>
               ))}
             </div>
             <div className='flex justify-center gap-x-12 sm:gap-x-16 mt-8'>

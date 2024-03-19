@@ -7,7 +7,9 @@ import WaButton from './components/WaButton'
 
 export const metadata = {
   title: 'MP Voices',
-  description: 'Maria Peña Voices',
+  description: 'Maria Peña Voices'
+}
+export const viewport = {
   themeColor: '#0D0D0D'
 }
 
