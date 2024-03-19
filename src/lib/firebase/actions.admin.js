@@ -27,7 +27,7 @@ export const updateUsuarioProfesorById = async (
     const profesorData = new Profesor({
       dias,
       instrumento,
-      usuario: usuario.id
+      usuarioUid: usuario.id
     })
     const usuarioData = new Usuario({
       nombre,
@@ -35,7 +35,7 @@ export const updateUsuarioProfesorById = async (
       birthdate,
       email,
       telefono,
-      rol: usuario.rol
+      rolUid: usuario.rol
     })
 
     const profesorRef = doc(db, 'profesores', uid)
@@ -87,7 +87,7 @@ export const updateUsuarioAlumnoById = async (
       birthdate,
       email,
       telefono,
-      rol: usuario.rol
+      rolUid: usuario.rol
     })
 
     const usuarioRef = doc(db, 'usuarios', uid)
@@ -110,11 +110,9 @@ export const updateClasesAlumno = async (
     await updateDoc(alumnoRef, {
       instrumento,
       profesor: doc(db, 'profesores', profesor.id),
-      clases: {
-        dia,
-        hora_inicio,
-        duracion
-      }
+      'clases.dia': dia,
+      'clases.hora_inicio': hora_inicio,
+      'clases.duracion': duracion
     })
 
     const newClaseUsuarioUpdated = await getAlumnoById(uid, {
@@ -131,7 +129,10 @@ export const updateClasesAlumno = async (
 export const updatePagosAlumno = async (uid, { saldo, actualizacion }) => {
   try {
     const alumnoRef = doc(db, 'alumnos', uid)
-    await updateDoc(alumnoRef, { pagos: { saldo, actualizacion } })
+    await updateDoc(alumnoRef, {
+      'pagos.saldo': saldo,
+      'pagos.actualizacion': actualizacion
+    })
 
     const newPagosUsuarioUpdated = await getAlumnoById(uid, {
       getUsuario: true,
