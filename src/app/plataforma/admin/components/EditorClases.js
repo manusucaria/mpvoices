@@ -213,8 +213,7 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
                   .map((profesor, index) => (
                     <option key={index} value={profesor.id}>
                       {profesor.usuario.full_name.nombre}{' '}
-                      {profesor.usuario.full_name.apellido} /{' '}
-                      {profesor.instrumento}
+                      {profesor.usuario.full_name.apellido}{' '}
                     </option>
                   ))}
               </select>
@@ -289,7 +288,7 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
               <p className="mr-2 text-base font-bold">Profesor:</p>
               <p className="text-base">
                 {profesor.usuario?.full_name.nombre}{' '}
-                {profesor.usuario?.full_name.apellido} / {profesor.instrumento}{' '}
+                {profesor.usuario?.full_name.apellido}
               </p>
             </div>
           </div>
