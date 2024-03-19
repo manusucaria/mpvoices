@@ -1,7 +1,10 @@
 'use client'
 
-import { openSans500 } from '@/utils/fonts/fonts'
 import React, { useEffect, useState } from 'react'
+import { format } from 'date-fns'
+import { es } from 'date-fns/locale'
+
+import { openSans500 } from '@/utils/fonts/fonts'
 
 const Calendario = ({
   dayOfWeek = '',
@@ -15,6 +18,8 @@ const Calendario = ({
   const [highlightedDays, setHighlightedDays] = useState([])
   const [fechasCanceladas, setFechasCanceladas] = useState([])
   const [fechasAgendadas, setFechasAgendadas] = useState([])
+
+  const [formatCurrentMonth, setFormatCurrentMonth] = useState('')
 
   useEffect(() => {
     const days = []
@@ -51,6 +56,7 @@ const Calendario = ({
       )
     )
     setHighlightedDays(days)
+    setFormatCurrentMonth(format(currentMonth, 'MMMM yyyy', { locale: es }))
   }, [currentMonth])
 
   const handleMonthChange = (increment) => {
@@ -61,6 +67,7 @@ const Calendario = ({
       newMonth.setMonth(newMonth.getMonth() + increment)
       return newMonth
     })
+    setFormatCurrentMonth(format(currentMonth, 'MMMM yyyy', { locale: es }))
   }
 
   const handleDateClick = (day) => {
@@ -113,12 +120,11 @@ const Calendario = ({
             ' font-black text-orange-300 hover:bg-orange-600 hover:bg-opacity-40 pointer-events-auto'
         }
         if (fechaCancelada) {
-          buttonClass +=
-            ' bg-orange-300 text-orange-600 font-black'
+          buttonClass += ' bg-orange-300 text-orange-600 font-black'
         }
         if (fechaAgendada) {
           buttonClass +=
-            ' bg-navy-blue-light text-navy-blue font-black'
+            ' bg-navy-blue-light text-navy-blue font-black pointer-events-auto'
         }
         if (isSelected) {
           buttonClass += ' bg-orange-600 text-white font-black'
@@ -141,12 +147,14 @@ const Calendario = ({
   return (
     <div className="w-full grid grid-cols-1 place-content-center place-items-center gap-5">
       <div className="w-80">
-        <ul className='text-sm text-white text-opacity-50 flex flex-col gap-2'>
-          <li className='flex gap-2'>
-            <span className='bg-orange-300 w-5 h-5 rounded-full'></span>Clases canceladas
+        <ul className="text-sm text-white text-opacity-50 flex flex-col gap-2">
+          <li className="flex gap-2">
+            <span className="bg-orange-300 w-5 h-5 rounded-full"></span>Clases
+            canceladas
           </li>
-          <li className='flex gap-2'>
-            <span className='bg-navy-blue-light w-5 h-5 rounded-full'></span>Clases agendas
+          <li className="flex gap-2">
+            <span className="bg-navy-blue-light w-5 h-5 rounded-full"></span>
+            Clases agendadas
           </li>
         </ul>
         <ul className="bg-black text-white w-full py-1 rounded-t-md flex items-center justify-between">
@@ -170,10 +178,7 @@ const Calendario = ({
           </li>
           <li>
             <h2 className={`w-full py-1 text-center ${openSans500.className}`}>
-              {currentMonth.toLocaleDateString('es-ES', {
-                month: 'long',
-                year: 'numeric'
-              })}
+              {formatCurrentMonth}
             </h2>
           </li>
           <li>
@@ -212,11 +217,12 @@ const Calendario = ({
         {selectedDate && (
           <>
             <span>
-              {selectedDate.toLocaleDateString('es-ES', {
-                weekday: 'long',
-                day: 'numeric',
-                month: 'long'
-              })}
+              {
+                format(selectedDate,
+                  'EEEE d MMMM',
+                  { locale: es }
+                )
+              }
             </span>
             <span>{clases.hora_inicio} hs</span>
             <span>{clases.duracion} minutos</span>
