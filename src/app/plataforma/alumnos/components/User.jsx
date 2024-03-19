@@ -18,6 +18,7 @@ const User = ({ children }) => {
   const [alumno, setAlumno] = useState(null)
   const [loading, setLoading] = useState(true)
   const [isModalOpen, setModalOpen] = useState(false)
+  const [clasesCanceladasQuantity, setClasesCanceladasQuantity] = useState(0)
 
   const handleLogout = async () => {
     setLoading(true)
@@ -39,6 +40,9 @@ const User = ({ children }) => {
             window.location.reload()
           }
           setAlumno(dataAlumno)
+          setClasesCanceladasQuantity(
+            dataAlumno?.clases?.canceladas?.length || 0
+          )
           setLoading(false)
         }
       } catch (error) {
@@ -56,7 +60,7 @@ const User = ({ children }) => {
         <h1
           className={`text-3xl sm:text-5xl text-center ${playfair600.className}`}
         >
-          ¡Hola {alumno.usuario.full_name.nombre}!
+          ¡Hola {alumno?.usuario?.full_name?.nombre}!
         </h1>
       </div>
       <div className="bg-black-light w-full">{children}</div>
@@ -70,16 +74,16 @@ const User = ({ children }) => {
           <div className="bg-white-dark text-black w-2/3 lg:w-1/3 rounded-md flex flex-col items-center justify-start gap-5 py-10">
             <p
               className={`${playfair600.className} ${
-                alumno.clases.canceladas > 0 && 'text-orange-600'
+                clasesCanceladasQuantity > 0 && 'text-orange-600'
               }`}
             >
-              Clases a recuperar: {alumno.clases.canceladas}
+              Clases a recuperar: {clasesCanceladasQuantity}
             </p>
             <Button
               text="Agendar clase"
-              mode={!alumno.clases.canceladas > 0 && 'disabled-light'}
+              mode={!clasesCanceladasQuantity > 0 && 'disabled-light'}
               path="/plataforma/alumnos/clases/agendar"
-              disabled={!alumno.clases.canceladas > 0}
+              disabled={!clasesCanceladasQuantity > 0}
               isFull
             />
           </div>
