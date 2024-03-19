@@ -91,7 +91,7 @@ const LoginForm = () => {
           <label className="text-white ml-1" htmlFor="password">
             Contraseña:
           </label>
-          <div className="grid grid-cols-3 grid-rows-1 w-full mt-2">
+          <div className="grid grid-cols-3 grid-rows-1 w-full mt-2 relative">
             <input
               placeholder="Contraseña"
               className="text-black border-2 border-slate-200 rounded-3xl p-2 w-full col-start-1 col-end-4 row-start-1 row-end-2"
@@ -104,7 +104,7 @@ const LoginForm = () => {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="p-2 mt-1 bg-transparent border-none focus:outline-none mr-2 z-20 col-start-3 col-end-4 row-start-1 row-end-2"
+              className="h-full px-4 bg-transparent border-none focus:outline-none z-20 absolute top-0 right-0"
             >
               <img
                 src={showPassword ? '/mostrar.png' : '/ocultar.png'}
