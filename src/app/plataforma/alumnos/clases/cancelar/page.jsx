@@ -57,7 +57,9 @@ const page = () => {
 
   const handleCancelarClase = async () => {
     try {
-      const newAlumnoData = await updateAlumnoCancelarClase(user.uid, { fecha: selectedDate })
+      const newAlumnoData = await updateAlumnoCancelarClase(user.uid, {
+        fecha: selectedDate
+      })
       setAlumno(newAlumnoData)
       setShowModal(false)
       setSelectedDate(null)
