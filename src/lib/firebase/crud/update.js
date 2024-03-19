@@ -27,7 +27,7 @@ export const updateAlumnoRecuperarClase = async (uid, { fecha }) => {
     const alumnoRef = doc(db, 'alumnos', uid)
 
     await updateDoc(alumnoRef, {
-      'clases.recuperar': arrayUnion({ fecha }),
+      'clases.agendadas': arrayUnion({ fecha }),
       'clases.notificaciones': arrayUnion({ fecha, tipo: 'recuperar' })
     })
 
