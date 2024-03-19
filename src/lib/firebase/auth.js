@@ -63,7 +63,7 @@ export const signUp = async ({
       apellido: rest.apellido,
       telefono: phoneNumber,
       birthdate: rest.birthdate,
-      rol: rolAsignado,
+      rolUid: rolAsignado.id,
       email
     })
 
@@ -77,7 +77,7 @@ export const signUp = async ({
       case 'profesor': {
         const setProfesor = new Profesor({
           instrumento: rest.instrumento,
-          usuario: firebaseUser.uid,
+          usuarioUid: firebaseUser.uid,
           dias: rest.dias
         })
         const profesorRef = doc(

@@ -20,12 +20,12 @@ export class Rol {
 }
 
 export class Usuario {
-  constructor ({ nombre, apellido, email, telefono = '', rol, birthdate }) {
+  constructor ({ nombre, apellido, email, telefono = '', rolUid, birthdate }) {
     this.full_name = this.parseFullName({ nombre, apellido })
     this.email = Utils.toTrim(email)
     this.telefono = Utils.toTrim(telefono)
     this.birthdate = birthdate
-    this.rol = this.parseRolRef({ rol })
+    this.rol = this.parseRolRef({ rolUid })
   }
 
   parseFullName ({ nombre, apellido }) {
@@ -34,20 +34,20 @@ export class Usuario {
     return { nombre, apellido }
   }
 
-  parseRolRef ({ rol }) {
-    return doc(db, 'roles', rol.id)
+  parseRolRef ({ rolUid }) {
+    return doc(db, 'roles', rolUid)
   }
 }
 
 export class Profesor {
-  constructor ({ usuario, instrumento, dias }) {
-    this.usuario = this.parseUsuarioRef({ usuario })
+  constructor ({ usuarioUid, instrumento, dias }) {
+    this.usuario = this.parseUsuarioRef({ usuarioUid })
     this.instrumento = instrumento
     this.dias = dias
   }
 
-  parseUsuarioRef ({ usuario }) {
-    return doc(db, 'usuarios', usuario)
+  parseUsuarioRef ({ usuarioUid }) {
+    return doc(db, 'usuarios', usuarioUid)
   }
 }
 
@@ -56,10 +56,9 @@ export class Alumno {
     this.usuario = this.parseUsuarioRef({ usuarioUid })
     this.profesor = this.parseProfesorRef({ profesorUid })
     this.instrumento = instrumento
-    this.clases = { dia: clase_dia, hora_inicio: clase_hora_inicio, duracion: clase_duracion, canceladas: 0 }
+    this.clases = { dia: clase_dia, hora_inicio: clase_hora_inicio, duracion: clase_duracion, canceladas: [], notificaciones: [], agendadas: [] }
     this.pagos = { saldo: pagos_saldo, actualizacion: pagos_actualizacion }
     this.notas = []
-    this.notificaciones = []
   }
 
   parseUsuarioRef ({ usuarioUid }) {

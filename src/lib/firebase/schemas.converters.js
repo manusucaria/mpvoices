@@ -30,7 +30,7 @@ export const UsuarioConverter = {
       email: data.email,
       telefono: data.telefono,
       birthdate: data.birthdate,
-      rol: data.rol
+      rolUid: data.rol
     })
   }
 }
@@ -46,7 +46,7 @@ export const ProfesorConverter = {
   fromFirestore: (snapshot, options) => {
     const data = snapshot.data(options)
     return new Profesor({
-      usuario: data.usuario,
+      usuarioUid: data.usuario,
       instrumento: data.instrumento,
       dias: data.dias
     })
