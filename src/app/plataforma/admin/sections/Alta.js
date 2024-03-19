@@ -8,7 +8,6 @@ import { getAllProfesores } from '@/lib/firebase/crud/read'
 const Alta = () => {
   const [showProfesorForm, setShowProfesorForm] = useState(false)
   const [showAlumnoForm, setShowAlumnoForm] = useState(false)
-  const [backgroundClass, setBackgroundClass] = useState('bg-white-dark')
   const [profesores, setProfesores] = useState([])
 
   useEffect(() => {
@@ -16,16 +15,6 @@ const Alta = () => {
       setProfesores(data)
     })
   }, [])
-
-  useEffect(() => {
-    if (showAlumnoForm || showProfesorForm) {
-      setBackgroundClass(
-        'bg-black-light pb-16 pt-0 border-y-1 border-y-white'
-      )
-    } else {
-      setBackgroundClass('bg-white-dark py-20')
-    }
-  }, [showAlumnoForm, showProfesorForm])
 
   const handleShowProfesorForm = () => {
     if (showProfesorForm) {
@@ -51,7 +40,7 @@ const Alta = () => {
   }
 
   return (
-    <div id="Crear" className={`w-full ${backgroundClass}`}>
+    <div id="Crear" className={`w-full ${showAlumnoForm || showProfesorForm ? 'bg-black-light pb-16 pt-0 border-y-1 border-y-white' : 'bg-white-dark py-20'}`}>
       {!showProfesorForm && !showAlumnoForm && (
         <h2 className="text-center text-2xl sm:text-3xl mt-4 mb-12 text-black">
           Nuevos usuarios
