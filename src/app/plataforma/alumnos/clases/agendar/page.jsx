@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from 'react'
 
-import { playfair600 } from '@/utils/fonts/fonts'
+import { openSans500, playfair600 } from '@/utils/fonts/fonts'
 
-import { createAgendarRecuperarClaseAlumno } from '@/lib/firebase/crud/update'
+import { updateAlumnoRecuperarClase } from '@/lib/firebase/crud/update'
 import { getAlumnoById } from '@/lib/firebase/crud/read'
 import { useAuth } from '@/lib/firebase/useAuth'
 import { signOut } from '@/lib/firebase/auth'
@@ -20,43 +20,18 @@ const page = () => {
   const user = useAuth()
 
   const [alumno, setAlumno] = useState(null)
-  const [days, setDays] = useState([])
-  const [selectedDay, setSelectedDay] = useState(null)
+
+  const [selectedDate, setSelectedDate] = useState(null)
+  const [isSelectedDay, setIsSelectedDay] = useState(false)
+  const [highlightedDays, setHighlightedDays] = useState([])
+  const [dayOfWeek, setDayOfWeek] = useState('')
+  const [currentMonth, setCurrentMonth] = useState(new Date())
+  const [clasesAgendadas, setClasesAgendadas] = useState([])
+
   const [showModal, setShowModal] = useState(false)
-  const [error, setError] = useState(null)
   const [success, setSuccess] = useState(false)
+  const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
-
-  const getFutureDaysInMonth = ({ month, year, daysOfWeek }) => {
-    const days = []
-    const daysOfWeekSpanish = [
-      'domingo',
-      'lunes',
-      'martes',
-      'miércoles',
-      'jueves',
-      'viernes',
-      'sábado'
-    ]
-    const daysOfWeekNumbers = daysOfWeek.map((day) =>
-      daysOfWeekSpanish.indexOf(day.toLowerCase())
-    )
-
-    const date = new Date(year, month, 1)
-    while (date.getMonth() === month) {
-      if (daysOfWeekNumbers.includes(date.getDay()) && date > new Date()) {
-        days.push(
-          date.toLocaleDateString('es-ES', {
-            weekday: 'long',
-            day: 'numeric',
-            month: 'long'
-          })
-        )
-      }
-      date.setDate(date.getDate() + 1)
-    }
-    return days
-  }
 
   useEffect(() => {
     (async () => {
@@ -72,17 +47,13 @@ const page = () => {
             await signOut()
             window.location.reload()
           }
-          if (dataAlumno.clases.canceladas <= 0) {
+          if (
+            Array(dataAlumno.clases.agendadas).length <
+            Array(dataAlumno.clases.canceladas).length
+          ) {
             window.location.href = '/plataforma/alumnos'
           }
-          const currentYear = new Date().getFullYear()
-          const currentMonth = new Date().getMonth()
-          const futureDays = getFutureDaysInMonth({
-            month: currentMonth,
-            year: currentYear,
-            daysOfWeek: dataAlumno.profesor.dias.split(', ')
-          })
-          setDays(futureDays)
+          setDayOfWeek(dataAlumno.clases.dia)
           setAlumno(dataAlumno)
           setLoading(false)
         }
@@ -93,21 +64,83 @@ const page = () => {
     })()
   }, [user])
 
+  useEffect(() => {
+    const days = []
+    const scheduledDays = []
+    const daysOfWeek = [
+      'domingo',
+      'lunes',
+      'martes',
+      'miércoles',
+      'jueves',
+      'viernes',
+      'sábado'
+    ]
+    const dayOfWeekNumber = daysOfWeek.indexOf(dayOfWeek.toLowerCase())
+
+    const date = new Date(
+      currentMonth.getFullYear(),
+      currentMonth.getMonth(),
+      1
+    )
+    while (date.getMonth() === currentMonth.getMonth()) {
+      if (
+        date.getDay() === dayOfWeekNumber &&
+        date > new Date() &&
+        !alumno?.clases?.canceladas?.some(
+          (cancelada) =>
+            new Date(cancelada?.fecha?.seconds * 1000).getDate() ===
+            date.getDate()
+        )
+      ) {
+        days.push(date.getDate())
+      }
+      if (
+        date > new Date() &&
+        alumno?.clases?.agendadas?.some(
+          (agendada) =>
+            new Date(agendada?.fecha?.seconds * 1000).getDate() ===
+            date.getDate()
+        )
+      ) {
+        scheduledDays.push(date.getDate())
+      }
+      date.setDate(date.getDate() + 1)
+    }
+    setHighlightedDays(days)
+    setClasesAgendadas(scheduledDays)
+  }, [currentMonth, dayOfWeek, alumno])
+
+  const handleDateClick = (day) => {
+    setIsSelectedDay(true)
+    setSelectedDate(
+      new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day)
+    )
+  }
+
+  const handleMonthChange = (increment) => {
+    setSelectedDate(null)
+    setIsSelectedDay(false)
+    setClasesAgendadas([])
+    setCurrentMonth((prevMonth) => {
+      const newMonth = new Date(prevMonth)
+      newMonth.setMonth(newMonth.getMonth() + increment)
+      return newMonth
+    })
+  }
+
   const handleAgendarClase = async () => {
     try {
-      const messageNotificacion = `Recuperará su clase el ${selectedDay}`
-      const newAlumnoData = await createAgendarRecuperarClaseAlumno(alumno.id, {
-        notificacion: messageNotificacion
+      const newAlumnoData = await updateAlumnoRecuperarClase(alumno.id, {
+        fecha: selectedDate
       })
       setAlumno(newAlumnoData)
       setShowModal(false)
       setSuccess(true)
-      setSelectedDay(null)
       setError(null)
     } catch (error) {
       setError(error)
       setShowModal(false)
-      setSelectedDay(null)
       setSuccess(false)
     }
   }
@@ -169,10 +202,10 @@ const page = () => {
               )
             : (
             <Button
-              text={selectedDay ? 'Agendar clase' : 'Seleccionar una clase'}
-              mode={!selectedDay ? 'disabled-light' : ''}
+              text={'Agendar clase'}
+              mode={!isSelectedDay ? 'disabled-light' : ''}
               onClick={() => setShowModal(true)}
-              disabled={!selectedDay}
+              disabled={!isSelectedDay}
               hasACallback
             />
               )
@@ -192,26 +225,100 @@ const page = () => {
             )
           : (
           <>
-            {days.length > 0 &&
-              days.map((day, index) => (
-                <div key={index} className="w-full flex items-start gap-4">
-                  <input
-                    value={day}
-                    name="dia"
-                    type="radio"
-                    className="w-4 h-4 rounded-full text-orange-600 bg-black border-gray-500 focus:ring-orange-600 focus:ring-2"
-                    onChange={() => setSelectedDay(day)}
-                  />
-                  <label
-                    className="text-sm font-medium flex flex-col gap-1 items-start justify-start"
-                    htmlFor={`dia-${index}`}
+            <ul className="bg-black text-white w-full py-1 rounded-t-md flex items-center justify-between">
+              <li>
+                <button
+                  className="text-white hover:text-orange-300 rounded-md px-4 py-1"
+                  onClick={() => handleMonthChange(-1)}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    fill="none"
                   >
-                    <span>Día: {day}</span>
-                    <span>Horario: {alumno.clases.hora_inicio} hs</span>
-                    <span>Duración: {alumno.clases.duracion} minutos</span>
-                  </label>
-                </div>
-              ))}
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <polyline points="15 6 9 12 15 18" />
+                  </svg>
+                </button>
+              </li>
+              <li>
+                <h2
+                  className={`w-full py-1 text-center ${openSans500.className}`}
+                >
+                  {currentMonth.toLocaleDateString('es-ES', {
+                    month: 'long',
+                    year: 'numeric'
+                  })}
+                </h2>
+              </li>
+              <li>
+                <button
+                  className="text-white hover:text-orange-300 rounded-md px-4 py-1"
+                  onClick={() => handleMonthChange(+1)}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    fill="none"
+                  >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <polyline points="9 6 15 12 9 18" />
+                  </svg>
+                </button>
+              </li>
+            </ul>
+            <div className="w-full flex flex-col gap-5 items-start justify-start">
+              {highlightedDays.length > 0 &&
+                highlightedDays.map((day, index) => (
+                  <div
+                    key={index}
+                    className={`w-full flex items-start gap-4 ${
+                      clasesAgendadas.includes(day) && 'opacity-50'
+                    }`}
+                  >
+                    {!clasesAgendadas.includes(day)
+                      ? (
+                      <input
+                        value={day}
+                        name="dia"
+                        type="radio"
+                        checked={
+                          isSelectedDay && selectedDate.getDate() === day
+                        }
+                        disabled={clasesAgendadas.includes(day)}
+                        className="w-4 h-4 rounded-full text-orange-600 bg-black border-gray-500 focus:ring-orange-600 focus:ring-2"
+                        onChange={() => handleDateClick(day)}
+                      />
+                        )
+                      : (
+                      <div className="w-4 h-4 rounded-full bg-gray-500"></div>
+                        )}
+                    <label
+                      className="text-sm font-medium flex flex-col gap-1 items-start justify-start"
+                      htmlFor={`dia-${index}`}
+                    >
+                      <span>
+                        Día: {day} de{' '}
+                        {currentMonth.toLocaleDateString('es-Es', {
+                          month: 'long',
+                          year: 'numeric'
+                        })}
+                      </span>
+                      <span>Horario: {alumno.clases.hora_inicio} hs</span>
+                      <span>Duración: {alumno.clases.duracion} minutos</span>
+                      {clasesAgendadas.includes(day) && (
+                        <span>Clase ya agendada</span>
+                      )}
+                    </label>
+                  </div>
+                ))}
+            </div>
 
             {error && <p className="text-orange-600">{error.message}</p>}
 
