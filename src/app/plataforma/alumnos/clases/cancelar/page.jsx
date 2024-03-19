@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 
 import { playfair600 } from '@/utils/fonts/fonts'
 
-import { createNotificacionAlumno } from '@/lib/firebase/crud/update'
+import { updateAlumnoCancelarClase } from '@/lib/firebase/crud/update'
 import { getAlumnoById } from '@/lib/firebase/crud/read'
 import { useAuth } from '@/lib/firebase/useAuth'
 import { signOut } from '@/lib/firebase/auth'
@@ -21,36 +21,13 @@ const page = () => {
   const user = useAuth()
 
   const [alumno, setAlumno] = useState(null)
-  const [highlightedDays, setHighlightedDays] = useState([])
+  const [dayOfWeek, setDayOfWeek] = useState(null)
   const [selectedDate, setSelectedDate] = useState(null)
   const [selectedDay, setSelectedDay] = useState(null)
   const [showModal, setShowModal] = useState(false)
   const [loading, setLoading] = useState(true)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState(null)
-
-  const getDaysInMonth = ({ month, year, dayOfWeek }) => {
-    const days = []
-    const daysOfWeek = [
-      'domingo',
-      'lunes',
-      'martes',
-      'miércoles',
-      'jueves',
-      'viernes',
-      'sábado'
-    ]
-    const dayOfWeekNumber = daysOfWeek.indexOf(dayOfWeek.toLowerCase())
-
-    const date = new Date(year, month, 1)
-    while (date.getMonth() === month) {
-      if ((date.getDay() === dayOfWeekNumber) && date > new Date()) {
-        days.push(date.getDate())
-      }
-      date.setDate(date.getDate() + 1)
-    }
-    return days
-  }
 
   useEffect(() => {
     (async () => {
@@ -62,12 +39,7 @@ const page = () => {
             await signOut()
             window.location.reload()
           }
-          const days = getDaysInMonth({
-            month: new Date().getMonth(),
-            year: new Date().getFullYear(),
-            dayOfWeek: dataAlumno.clases.dia
-          })
-          setHighlightedDays(days)
+          setDayOfWeek(dataAlumno.clases.dia)
           setAlumno(dataAlumno)
           setLoading(false)
         }
@@ -85,15 +57,7 @@ const page = () => {
 
   const handleCancelarClase = async () => {
     try {
-      const parseFechaString = selectedDate.toLocaleDateString('es-ES', {
-        weekday: 'long',
-        day: 'numeric',
-        month: 'long'
-      })
-      const messageNotificacion = `No asistirá a la clase del ${parseFechaString}`
-      const newAlumnoData = await createNotificacionAlumno(alumno.id, {
-        notificacion: messageNotificacion
-      })
+      const newAlumnoData = await updateAlumnoCancelarClase(user.uid, { fecha: selectedDate })
       setAlumno(newAlumnoData)
       setShowModal(false)
       setSelectedDate(null)
@@ -131,7 +95,7 @@ const page = () => {
         }
       >
         <Calendario
-          highlightedDays={highlightedDays}
+          dayOfWeek={dayOfWeek}
           clases={alumno.clases}
           selectedDate={selectedDate}
           setSelectedDate={setSelectedDate}
