@@ -1,11 +1,9 @@
 'use client'
 import React, { useState, useEffect } from 'react'
-
 import { useAuth } from '@/lib/firebase/useAuth.js'
 import { signOut } from '@/lib/firebase/auth'
 import { getProfesorById } from '@/lib/firebase/crud/read'
 import Loader from '@/app/components/loader/Loader'
-
 import AgendaProfes from './components/AgendaProfes'
 
 const Page = () => {
@@ -49,9 +47,10 @@ const Page = () => {
       {user
         ? (
         <div className="flex flex-col">
-          <h1 className="text-center text-white text-3xl sm:text-5xl mt-8 mb-12">
+          <h1 className="text-center text-white text-3xl sm:text-5xl mt-8 mb-4">
             ¡Hola {profesor?.usuario.full_name.nombre}!
           </h1>
+          <h2 className='text-center text-white mb-12 text-xl sm:text-2xl px-4'>Te damos la bienvenida a la Plataforma Voices</h2>
           <AgendaProfes availableDays={availableDays} profesor={profesor} />
           <div className="bg-black-light flex w-full py-16">
             <button

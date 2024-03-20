@@ -1,12 +1,9 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-
 import Buscador from './sections/Buscador.js'
 import Agenda from './sections/Agenda.js'
 import Alta from './sections/Alta'
-
 import Menu from './components/Menu'
-
 import { useAuth } from '@/lib/firebase/useAuth.js'
 import { signOut } from '@/lib/firebase/auth.js'
 import Loader from '@/app/components/loader/Loader.jsx'
@@ -53,9 +50,10 @@ const page = () => {
             <Menu handleLogOut={handleSubmit} />
           </div>
           <div className="xl:col-start-2 xl:col-end-9 flex flex-col xl:border-l-1 xl:border-l-white">
-            <h1 className="text-center text-white text-3xl sm:text-5xl mt-8 mb-12">
+            <h1 className="text-center text-white text-3xl sm:text-5xl mt-8 mb-4">
               ¡Hola Administrador/a!
             </h1>
+            <h2 className='text-center text-white mb-12 text-xl sm:text-2xl px-4'>Te damos la bienvenida a la Plataforma Voices</h2>
             <Agenda cambios={cambios} />
             <Buscador newCambio={newCambio} cambios={cambios} />
             <Alta newCambio={newCambio} cambios={cambios} />
