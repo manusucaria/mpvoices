@@ -1,14 +1,12 @@
 'use client'
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
-
 import alasSmall from '@/app/assets/alasSmall.jpg'
 import alas from '@/app/assets/alas.jpg'
-
 import { horarios, diasSemana } from '@/app/api/data'
 import { getAllAlumnos } from '@/lib/firebase/crud/read'
-
 import NotificacionProfe from '../../admin/components/NotificacionProfe'
+import { isWithinInterval, addDays } from 'date-fns'
 
 const AgendaProfes = ({ profesor }) => {
   const [alumnos, setAlumnos] = useState([])
@@ -88,6 +86,21 @@ const AgendaProfes = ({ profesor }) => {
       : []
     setFilteredAlumnos(filtered)
   }, [selectedDay, alumnos])
+
+  const isNotificationWithinCurrentWeek = (notificaciones) => {
+    if (!Array.isArray(notificaciones)) {
+      return false
+    }
+    const today = new Date()
+    const endOfNextSixDays = addDays(today, 6)
+    for (const notificacion of notificaciones) {
+      const fecha = new Date(notificacion.fecha.seconds * 1000 + notificacion.fecha.nanoseconds / 1000000)
+      if (isWithinInterval(fecha, { start: today, end: endOfNextSixDays })) {
+        return true
+      }
+    }
+    return false
+  }
 
   return (
     <div>
@@ -212,15 +225,13 @@ const AgendaProfes = ({ profesor }) => {
                         alumno.clases.duracion / 15
                     }}
                   >
-                    <div
-                      className={`flex flex-col m-auto h-[97.5%] w-[97.5%] text-center ${
-                        alumno &&
-                        alumno.notificaciones &&
-                        alumno.notificaciones.length > 0
-                          ? 'bg-[#FFC9CB]'
-                          : 'bg-[#ACFDB2]'
-                      }`}
-                    >
+                      <div
+                        className={`flex flex-col m-auto h-[97.5%] w-[95%] text-center ${
+                          isNotificationWithinCurrentWeek(alumno.clases.notificaciones)
+                            ? 'bg-[#FFC9CB]'
+                            : 'bg-[#ACFDB2]'
+                        }`}
+                      >
                       <p className="text-sm sm:text-sm md:text-base mt-auto font-bold pt-2 text-black">
                         Alumno: {alumno.usuario.full_name.nombre}{' '}
                         {alumno.usuario.full_name.apellido}
@@ -235,8 +246,8 @@ const AgendaProfes = ({ profesor }) => {
                       </p>
                       <div className="ms-auto pb-2 pe-2 sm:pe-4">
                         {alumno &&
-                        alumno.notificaciones &&
-                        (alumno.notificaciones.length > 0 ||
+                        alumno.clases.notificaciones &&
+                        (alumno.clases.notificaciones.length > 0 ||
                           alumno.notas.length > 0)
                           ? (
                           <svg

@@ -16,6 +16,8 @@ const NotificacionProfe = ({
     setShowingNotifications(!showingNotifications)
   }
 
+  const sortedNotifications = notification.sort((a, b) => a.fecha.toDate() - b.fecha.toDate())
+
   return (
       <div className='fixed top-0 left-0 w-full h-full flex justify-center items-center px-3 bg-[#0D0D0D] bg-opacity-30 z-[100]'>
           {showingNotifications
@@ -25,7 +27,7 @@ const NotificacionProfe = ({
               </svg>
             <p className='text-[#0D0D0D] font-bold text-xl mx-auto mb-8'>Notificaciones</p>
             <div className='flex flex-col w-full mx-auto gap-y-2'>
-              {notification.map((item, index) => (
+              {sortedNotifications.map((item, index) => (
                 <div key={index} className='text-[#0D0D0D] font-bold mx-auto'>
                   - {item.tipo === 'cancelar'
                   ? `No asistirá a la clase del ${format(item.fecha.toDate(), 'dd/MM/yyyy')}`
