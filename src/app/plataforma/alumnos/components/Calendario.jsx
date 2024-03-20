@@ -45,17 +45,24 @@ const Calendario = ({
       }
       date.setDate(date.getDate() + 1)
     }
+    const agendadas = clases?.agendadas?.map((agendada) => {
+      return new Date(agendada.fecha.seconds * 1000).getDate()
+    })
+
     setFechasCanceladas(
       clases.canceladas.map(
         (cancelada) => new Date(cancelada?.fecha?.seconds * 1000)
       )
     )
     setFechasAgendadas(
-      clases?.agendadas?.map(
-        (agendada) => new Date(agendada?.fecha?.seconds * 1000)
-      )
+      clases?.agendadas?.map((agendada) => {
+        return {
+          ...agendada,
+          fecha: new Date(agendada?.fecha?.seconds * 1000)
+        }
+      })
     )
-    setHighlightedDays(days)
+    setHighlightedDays([...days, ...agendadas])
     setFormatCurrentMonth(format(currentMonth, 'MMMM yyyy', { locale: es }))
   }, [currentMonth])
 
@@ -73,9 +80,21 @@ const Calendario = ({
   const handleDateClick = (day) => {
     setSelectedDay(null)
     setSelectedDay(day)
-    setSelectedDate(
-      new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day)
+    const selectedDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day)
+    const agendada = fechasAgendadas.find(
+      (agendada) =>
+        new Date(agendada.fecha).getDate() === day &&
+        new Date(agendada.fecha).getMonth() === currentMonth.getMonth() &&
+        new Date(agendada.fecha).getFullYear() === currentMonth.getFullYear()
     )
+    if (agendada) {
+      setSelectedDate(agendada)
+    } else {
+      setSelectedDate({ fecha: selectedDate, hora_inicio: clases.hora_inicio, duracion: clases.duracion })
+    }
+    // setSelectedDate(
+    //   new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day)
+    // )
   }
 
   const renderCalendar = () => {
@@ -104,9 +123,9 @@ const Calendario = ({
       )
       const fechaAgendada = fechasAgendadas.find(
         (agendada) =>
-          agendada.getDate() === day &&
-          agendada.getMonth() === currentMonth.getMonth() &&
-          agendada.getFullYear() === currentMonth.getFullYear()
+          new Date(agendada.fecha).getDate() === day &&
+          new Date(agendada.fecha).getMonth() === currentMonth.getMonth() &&
+          new Date(agendada.fecha).getFullYear() === currentMonth.getFullYear()
       )
       const isHighlighted = highlightedDays.includes(day)
       const isSelected = selectedDay === day
@@ -124,7 +143,7 @@ const Calendario = ({
         }
         if (fechaAgendada && !isSelected) {
           buttonClass +=
-          ' bg-navy-blue-light text-navy-blue font-black pointer-events-auto'
+            ' bg-navy-blue-light text-navy-blue font-black pointer-events-auto'
         }
         if (isSelected && fechaAgendada) {
           buttonClass += ' bg-navy-blue text-white font-black'
@@ -219,16 +238,9 @@ const Calendario = ({
       <p className="w-full text-start flex flex-col items-start justify-start">
         {selectedDate && (
           <>
-            <span>
-              {
-                format(selectedDate,
-                  'EEEE d MMMM',
-                  { locale: es }
-                )
-              }
-            </span>
-            <span>{clases.hora_inicio} hs</span>
-            <span>{clases.duracion} minutos</span>
+            <span>{format(selectedDate.fecha, 'EEEE d MMMM', { locale: es })}</span>
+            <span>{selectedDate.hora_inicio} hs</span>
+            <span>{selectedDate.duracion} minutos</span>
           </>
         )}
       </p>
