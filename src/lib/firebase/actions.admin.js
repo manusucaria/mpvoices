@@ -35,7 +35,7 @@ export const updateUsuarioProfesorById = async (
       birthdate,
       email,
       telefono,
-      rolUid: usuario.rol
+      rolUid: usuario.rol.id
     })
 
     const profesorRef = doc(db, 'profesores', uid)
