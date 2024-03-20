@@ -79,7 +79,7 @@ const LoginForm = () => {
             autoComplete="email"
           />
           {errors.email && (
-            <p className="text-orange-600 w-full text-sm text-right">
+            <p className="text-white w-full text-sm text-right">
               {errors.email}
             </p>
           )}
@@ -111,13 +111,13 @@ const LoginForm = () => {
             </button>
           </div>
           {errors.password && (
-            <p className="text-orange-600 w-full text-sm text-right">
+            <p className="text-white w-full text-sm text-right">
               {errors.password}
             </p>
           )}
         </div>
         {errors.message && (
-          <p className="text-orange-600 w-full text-sm text-right">
+          <p className="text-white w-full text-sm text-right">
             {errors.message}
           </p>
         )}
