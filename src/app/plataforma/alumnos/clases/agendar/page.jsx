@@ -52,8 +52,10 @@ const page = () => {
             window.location.reload()
           }
           if (
-            Array(dataAlumno.clases.agendadas).length <
-            Array(dataAlumno.clases.canceladas).length
+            !(dataAlumno.clases.agendadas.length <
+              dataAlumno.clases.canceladas.length ||
+            (dataAlumno.clases.agendadas.length === 0 &&
+              dataAlumno.clases.canceladas.length > 0))
           ) {
             window.location.href = '/plataforma/alumnos'
           }
