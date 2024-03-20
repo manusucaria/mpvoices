@@ -132,7 +132,6 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
     }
     setSendingData(false)
     setErrors(formErrors)
-    setShowAlumnoForm(false)
   }
 
   const handleCancel = () => {
@@ -141,6 +140,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
 
   const handleCloseConfirmation = () => {
     setShowConfirmation(false)
+    setShowAlumnoForm(false)
   }
 
   return (
@@ -276,7 +276,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             Teléfono:
           </label>
           <input
-            placeholder="XXXXXXXXXX"
+            placeholder="Teléfono"
             className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
             type="tel"
             name="phoneNumber"

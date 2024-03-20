@@ -93,6 +93,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
           instrumento: newUserInstrumento,
           dias: selectedDays.join(', ')
         })
+        console.log('Usuario creado correctamente')
         setShowConfirmation(true)
         setNewUserEmail('')
         setNewUserPassword('')
@@ -115,7 +116,6 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
 
     setSendingData(false)
     setErrors(formErrors)
-    setShowProfesorForm(false)
   }
 
   const handleCancel = () => {
@@ -124,6 +124,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
 
   const handleCloseConfirmation = () => {
     setShowConfirmation(false)
+    setShowProfesorForm(false)
   }
 
   return (
@@ -294,7 +295,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
             Teléfono:
           </label>
           <input
-            placeholder="XXXXXXXXXX"
+            placeholder="Teléfono"
             className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
             type="tel"
             name="phoneNumber"
