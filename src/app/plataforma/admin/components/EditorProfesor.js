@@ -49,14 +49,6 @@ const EditorDatosProfesor = ({
     event.preventDefault()
     setSending(true)
     try {
-      const formattedInstrumento = instrumento
-        .toLowerCase()
-        .split('_')
-        .map((word, index) =>
-          index === 0 ? word.charAt(0).toUpperCase() + word.slice(1) : word
-        )
-        .join(' ')
-
       const updatedProfesorData = await updateUsuarioProfesorById(profesor.id, {
         nombre,
         apellido,
@@ -64,7 +56,12 @@ const EditorDatosProfesor = ({
         email,
         telefono,
         dias: diasSeleccionados.join(', '),
-        instrumento: formattedInstrumento,
+        instrumento: instrumento.toLowerCase()
+          .split('_')
+          .map((word, index) =>
+            index === 0 ? word.charAt(0).toUpperCase() + word.slice(1) : word
+          )
+          .join(' '),
         usuario: profesor.usuario
       })
       setError(null)
