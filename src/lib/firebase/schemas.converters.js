@@ -61,8 +61,7 @@ export const AlumnoConverter = {
       instrumento: alumno.instrumento,
       clases: alumno.clases,
       pagos: alumno.pagos,
-      notas: alumno.notas,
-      notificaciones: alumno.notificaciones
+      notas: alumno.notas
     }
   },
   fromFirestore: (snapshot, options) => {
