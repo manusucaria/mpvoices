@@ -1,11 +1,16 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import { format } from 'date-fns'
+import { es } from 'date-fns/locale'
 
 import { openSans500, playfair600 } from '@/utils/fonts/fonts'
 
 import { updateAlumnoRecuperarClase } from '@/lib/firebase/crud/update'
-import { getAlumnoById } from '@/lib/firebase/crud/read'
+import {
+  getAllAlumnosFromAProfesorExcludingCurrentAlumno,
+  getAlumnoById
+} from '@/lib/firebase/crud/read'
 import { useAuth } from '@/lib/firebase/useAuth'
 import { signOut } from '@/lib/firebase/auth'
 
@@ -23,10 +28,9 @@ const page = () => {
 
   const [selectedDate, setSelectedDate] = useState(null)
   const [isSelectedDay, setIsSelectedDay] = useState(false)
+  const [availableDays, setAvailableDays] = useState([])
   const [highlightedDays, setHighlightedDays] = useState([])
-  const [dayOfWeek, setDayOfWeek] = useState('')
   const [currentMonth, setCurrentMonth] = useState(new Date())
-  const [clasesAgendadas, setClasesAgendadas] = useState([])
 
   const [showModal, setShowModal] = useState(false)
   const [success, setSuccess] = useState(false)
@@ -48,12 +52,48 @@ const page = () => {
             window.location.reload()
           }
           if (
-            Array(dataAlumno.clases.agendadas).length <
-            Array(dataAlumno.clases.canceladas).length
+            !(dataAlumno.clases.agendadas.length <
+              dataAlumno.clases.canceladas.length ||
+            (dataAlumno.clases.agendadas.length === 0 &&
+              dataAlumno.clases.canceladas.length > 0))
           ) {
             window.location.href = '/plataforma/alumnos'
           }
-          setDayOfWeek(dataAlumno.clases.dia)
+          const alumnosDelProfesorActual =
+            await getAllAlumnosFromAProfesorExcludingCurrentAlumno(
+              dataAlumno?.profesor?.id,
+              user.uid,
+              { getUsuario: true }
+            )
+          const days = []
+          const agendedDays = []
+          const canceledDays = []
+          alumnosDelProfesorActual.forEach((a) => {
+            a.clases.agendadas.forEach((agendada) => {
+              agendedDays.push({
+                ...agendada,
+                fecha: new Date(agendada.fecha.seconds * 1000)
+              })
+            })
+            a.clases.canceladas.forEach((cancelada) => {
+              canceledDays.push({
+                fecha: new Date(cancelada.fecha.seconds * 1000),
+                hora_inicio: a.clases.hora_inicio,
+                duracion: a.clases.duracion
+              })
+            })
+          })
+          for (const canceled of canceledDays) {
+            const isAgended = agendedDays.find(
+              (a) =>
+                format(a.fecha, 'dd/MM/yyyy') ===
+                format(canceled.fecha, 'dd/MM/yyyy')
+            )
+            if (!isAgended) {
+              days.push(canceled)
+            }
+          }
+          setAvailableDays(days)
           setAlumno(dataAlumno)
           setLoading(false)
         }
@@ -65,63 +105,33 @@ const page = () => {
   }, [user])
 
   useEffect(() => {
-    const days = []
-    const scheduledDays = []
-    const daysOfWeek = [
-      'domingo',
-      'lunes',
-      'martes',
-      'miércoles',
-      'jueves',
-      'viernes',
-      'sábado'
-    ]
-    const dayOfWeekNumber = daysOfWeek.indexOf(dayOfWeek.toLowerCase())
-
-    const date = new Date(
-      currentMonth.getFullYear(),
-      currentMonth.getMonth(),
-      1
-    )
-    while (date.getMonth() === currentMonth.getMonth()) {
-      if (
-        date.getDay() === dayOfWeekNumber &&
-        date > new Date() &&
-        !alumno?.clases?.canceladas?.some(
-          (cancelada) =>
-            new Date(cancelada?.fecha?.seconds * 1000).getDate() ===
-            date.getDate()
-        )
-      ) {
-        days.push(date.getDate())
-      }
-      if (
-        date > new Date() &&
-        alumno?.clases?.agendadas?.some(
-          (agendada) =>
-            new Date(agendada?.fecha?.seconds * 1000).getDate() ===
-            date.getDate()
-        )
-      ) {
-        scheduledDays.push(date.getDate())
-      }
-      date.setDate(date.getDate() + 1)
+    if (availableDays.length > 0) {
+      const days = []
+      availableDays.forEach((day) => {
+        const date = new Date(day.fecha)
+        if (
+          date.getMonth() === currentMonth.getMonth() &&
+          date.getFullYear() === currentMonth.getFullYear()
+        ) {
+          days.push({
+            fecha: date,
+            hora_inicio: day.hora_inicio,
+            duracion: day.duracion
+          })
+        }
+      })
+      setHighlightedDays(days)
     }
-    setHighlightedDays(days)
-    setClasesAgendadas(scheduledDays)
-  }, [currentMonth, dayOfWeek, alumno])
+  }, [currentMonth, alumno])
 
   const handleDateClick = (day) => {
     setIsSelectedDay(true)
-    setSelectedDate(
-      new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day)
-    )
+    setSelectedDate(day)
   }
 
   const handleMonthChange = (increment) => {
     setSelectedDate(null)
     setIsSelectedDay(false)
-    setClasesAgendadas([])
     setCurrentMonth((prevMonth) => {
       const newMonth = new Date(prevMonth)
       newMonth.setMonth(newMonth.getMonth() + increment)
@@ -132,7 +142,9 @@ const page = () => {
   const handleAgendarClase = async () => {
     try {
       const newAlumnoData = await updateAlumnoRecuperarClase(alumno.id, {
-        fecha: selectedDate
+        fecha: selectedDate.fecha,
+        hora_inicio: selectedDate.hora_inicio,
+        duracion: selectedDate.duracion
       })
       setAlumno(newAlumnoData)
       setShowModal(false)
@@ -276,45 +288,31 @@ const page = () => {
             <div className="w-full flex flex-col gap-5 items-start justify-start">
               {highlightedDays.length > 0 &&
                 highlightedDays.map((day, index) => (
-                  <div
-                    key={index}
-                    className={`w-full flex items-start gap-4 ${
-                      clasesAgendadas.includes(day) && 'opacity-50'
-                    }`}
-                  >
-                    {!clasesAgendadas.includes(day)
-                      ? (
-                      <input
-                        value={day}
-                        name="dia"
-                        type="radio"
-                        checked={
-                          isSelectedDay && selectedDate.getDate() === day
-                        }
-                        disabled={clasesAgendadas.includes(day)}
-                        className="w-4 h-4 rounded-full text-orange-600 bg-black border-gray-500 focus:ring-orange-600 focus:ring-2"
-                        onChange={() => handleDateClick(day)}
-                      />
-                        )
-                      : (
-                      <div className="w-4 h-4 rounded-full bg-gray-500"></div>
-                        )}
+                  <div key={index} className="w-full flex items-start gap-4 ">
+                    <input
+                      value={day}
+                      name="dia"
+                      type="radio"
+                      checked={
+                        isSelectedDay &&
+                        selectedDate.fecha.getDate() ===
+                          new Date(day.fecha).getDate()
+                      }
+                      className="w-4 h-4 rounded-full text-orange-600 bg-black border-gray-500 focus:ring-orange-600 focus:ring-2"
+                      onChange={() => handleDateClick(day)}
+                    />
                     <label
                       className="text-sm font-medium flex flex-col gap-1 items-start justify-start"
                       htmlFor={`dia-${index}`}
                     >
                       <span>
-                        Día: {day} de{' '}
-                        {currentMonth.toLocaleDateString('es-Es', {
-                          month: 'long',
-                          year: 'numeric'
+                        Día:{' '}
+                        {format(new Date(day.fecha), 'd MMMM yyyy', {
+                          locale: es
                         })}
                       </span>
-                      <span>Horario: {alumno.clases.hora_inicio} hs</span>
-                      <span>Duración: {alumno.clases.duracion} minutos</span>
-                      {clasesAgendadas.includes(day) && (
-                        <span>Clase ya agendada</span>
-                      )}
+                      <span>Horario: {day.hora_inicio} hs</span>
+                      <span>Duración: {day.duracion} minutos</span>
                     </label>
                   </div>
                 ))}
