@@ -48,7 +48,7 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
     } catch (error) {
       console.error('Error al actualizar los datos:', error)
     }
-    setSending(true)
+    setSending(false)
   }
 
   const handleEditClick = () => {
