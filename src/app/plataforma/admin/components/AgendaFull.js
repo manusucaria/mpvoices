@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { addDays, isWithinInterval } from 'date-fns'
 import Image from 'next/image'
-
 import alas from '@/app/assets/alas.jpg'
 import { diasSemana, horarios } from '@/app/api/data'
 import NotificacionAdmin from './NotificacionAdmin.js'
@@ -118,6 +118,21 @@ const AgendaFull = () => {
     setSelectedAlumno(alumno)
     setNotification(alumno.clases.notificaciones)
     setShowNotification(true)
+  }
+
+  const isNotificationWithinCurrentWeek = (notificaciones) => {
+    if (!Array.isArray(notificaciones)) {
+      return false
+    }
+    const today = new Date()
+    const endOfNextSixDays = addDays(today, 6)
+    for (const notificacion of notificaciones) {
+      const fecha = new Date(notificacion.fecha.seconds * 1000 + notificacion.fecha.nanoseconds / 1000000)
+      if (isWithinInterval(fecha, { start: today, end: endOfNextSixDays })) {
+        return true
+      }
+    }
+    return false
   }
 
   return (
@@ -307,15 +322,13 @@ const AgendaFull = () => {
                               alumno.clases.duracion / 15
                           }}
                         >
-                          <div
-                            className={`flex flex-col m-auto h-[97.5%] w-[95%] text-center ${
-                              alumno &&
-                              alumno.notificaciones &&
-                              alumno.notificaciones.length > 0
-                                ? 'bg-[#FFC9CB]'
-                                : 'bg-[#ACFDB2]'
-                            }`}
-                          >
+                            <div
+                              className={`flex flex-col m-auto h-[97.5%] w-[95%] text-center ${
+                                isNotificationWithinCurrentWeek(alumno.clases.notificaciones)
+                                  ? 'bg-[#FFC9CB]'
+                                  : 'bg-[#ACFDB2]'
+                              }`}
+                            >
                             <p className="text-sm sm:text-sm md:text-base mt-auto font-bold pt-2 text-black">
                               Alumno: {alumno.usuario.full_name.nombre}{' '}
                               {alumno.usuario.full_name.apellido}
@@ -330,8 +343,8 @@ const AgendaFull = () => {
                             </p>
                             <div className="ms-auto pb-2 pe-2 sm:pe-4">
                               {alumno &&
-                              alumno.notificaciones &&
-                              (alumno.notificaciones.length > 0 ||
+                              alumno.clases.notificaciones &&
+                              (alumno.clases.notificaciones.length > 0 ||
                                 (alumno.notas && alumno.notas.length > 0))
                                 ? (
                                 <svg

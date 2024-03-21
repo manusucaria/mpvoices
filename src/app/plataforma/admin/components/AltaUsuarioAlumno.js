@@ -132,7 +132,6 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
     }
     setSendingData(false)
     setErrors(formErrors)
-    setShowAlumnoForm(false)
   }
 
   const handleCancel = () => {
@@ -141,6 +140,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
 
   const handleCloseConfirmation = () => {
     setShowConfirmation(false)
+    setShowAlumnoForm(false)
   }
 
   return (
@@ -191,6 +191,42 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
           </p>
         </div>
         <div className="flex">
+          <label className="font-bold mr-auto w-2/6 text-white">
+            Nombre:
+          </label>
+          <input
+            placeholder="Nombre"
+            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            type="text"
+            name="nombre"
+            value={newUserNombre}
+            onChange={(e) => setNewUserNombre(e.target.value)}
+          />
+        </div>
+        {errors.nombre && (
+          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
+            {errors.nombre}
+          </p>
+        )}
+        <div className="flex mt-6">
+          <label className="font-bold mr-auto w-2/6 text-white">
+            Apellido:
+          </label>
+          <input
+            placeholder="Apellido"
+            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto"
+            type="text"
+            name="apellido"
+            value={newUserApellido}
+            onChange={(e) => setNewUserApellido(e.target.value)}
+          />
+        </div>
+        {errors.apellido && (
+          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
+            {errors.apellido}
+          </p>
+        )}
+        <div className="flex mt-6">
           <label
             className="font-bold mr-auto w-2/6 text-white"
             htmlFor="email"
@@ -240,7 +276,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             Teléfono:
           </label>
           <input
-            placeholder="XXXXXXXXXX"
+            placeholder="Teléfono"
             className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
             type="tel"
             name="phoneNumber"
@@ -251,42 +287,6 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
         {errors.telefono && (
           <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
             {errors.telefono}
-          </p>
-        )}
-        <div className="flex mt-6">
-          <label className="font-bold mr-auto w-2/6 text-white">
-            Nombre:
-          </label>
-          <input
-            placeholder="Nombre"
-            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
-            type="text"
-            name="nombre"
-            value={newUserNombre}
-            onChange={(e) => setNewUserNombre(e.target.value)}
-          />
-        </div>
-        {errors.nombre && (
-          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
-            {errors.nombre}
-          </p>
-        )}
-        <div className="flex mt-6">
-          <label className="font-bold mr-auto w-2/6 text-white">
-            Apellido:
-          </label>
-          <input
-            placeholder="Apellido"
-            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto"
-            type="text"
-            name="apellido"
-            value={newUserApellido}
-            onChange={(e) => setNewUserApellido(e.target.value)}
-          />
-        </div>
-        {errors.apellido && (
-          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
-            {errors.apellido}
           </p>
         )}
         <div className="flex mt-6">
@@ -441,11 +441,11 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
         )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-white">
-            Actualización de pago:
+            Actualización:
           </label>
           <input
             placeholder="Actualización de pago"
-            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto"
             type="date"
             name="pagos_actualizacion"
             value={newUserPagosAtualizacion}
@@ -515,7 +515,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
               />
             </svg>
             <p className="text-black text-xl my-4 font-bold">
-              ¡La cuenta se creó con éxito!,
+              ¡La cuenta se creó con éxito!
             </p>
             <button
               className="text-orange-600 md:hover:text-[#DB9B6D] ml-auto font-bold"

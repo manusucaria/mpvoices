@@ -56,7 +56,6 @@ const EditorDatosProfesor = ({
           index === 0 ? word.charAt(0).toUpperCase() + word.slice(1) : word
         )
         .join(' ')
-
       const updatedProfesorData = await updateUsuarioProfesorById(profesor.id, {
         nombre,
         apellido,

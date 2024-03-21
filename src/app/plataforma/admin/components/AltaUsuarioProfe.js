@@ -93,6 +93,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
           instrumento: newUserInstrumento,
           dias: selectedDays.join(', ')
         })
+        console.log('Usuario creado correctamente')
         setShowConfirmation(true)
         setNewUserEmail('')
         setNewUserPassword('')
@@ -115,7 +116,6 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
 
     setSendingData(false)
     setErrors(formErrors)
-    setShowProfesorForm(false)
   }
 
   const handleCancel = () => {
@@ -124,6 +124,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
 
   const handleCloseConfirmation = () => {
     setShowConfirmation(false)
+    setShowProfesorForm(false)
   }
 
   return (
@@ -174,67 +175,6 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
           </p>
         </div>
         <div className="flex">
-          <label
-            className="font-bold mr-auto w-2/6 text-white"
-            htmlFor="email"
-          >
-            E-Mail:
-          </label>
-          <input
-            placeholder="E-Mail"
-            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
-            id="email"
-            type="email"
-            value={newUserEmail}
-            onChange={(e) => setNewUserEmail(e.target.value)}
-          />
-        </div>
-        {errors.email && (
-          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
-            {errors.email}
-          </p>
-        )}
-        <div className="flex mt-6">
-          <label
-            className="font-bold mr-auto w-2/6 text-white"
-            htmlFor="password"
-          >
-            Password:
-          </label>
-          <input
-            placeholder="Contraseña"
-            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
-            id="password"
-            type="text"
-            value={newUserPassword}
-            autoComplete="new-password"
-            onChange={(e) => setNewUserPassword(e.target.value)}
-          />
-        </div>
-        {errors.password && (
-          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
-            {errors.password}
-          </p>
-        )}
-        <div className="flex mt-6">
-          <label className="font-bold mr-auto w-2/6 text-white">
-            Teléfono:
-          </label>
-          <input
-            placeholder="XXXXXXXXXX"
-            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
-            type="tel"
-            name="phoneNumber"
-            value={newUserPhoneNumber}
-            onChange={(e) => setNewUserPhoneNumber(e.target.value)}
-          />
-        </div>
-        {errors.phoneNumber && (
-          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
-            {errors.phoneNumber}
-          </p>
-        )}
-        <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-white">
             Nombre:
           </label>
@@ -290,6 +230,29 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
         )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-white">
+            Instr.:
+          </label>
+          <select
+            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto appearance-none"
+            name="Instrumento"
+            value={newUserInstrumento}
+            onChange={(e) => setNewUserInstrumento(e.target.value)}
+          >
+            <option value="">Seleccione un instrumento</option>
+            {instrumentos.map((instrumento, index) => (
+              <option key={index} value={instrumento}>
+                {instrumento}
+              </option>
+            ))}
+          </select>
+        </div>
+        {errors.instrumento && (
+          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+            {errors.instrumento}
+          </p>
+        )}
+        <div className="flex mt-6">
+          <label className="font-bold mr-auto w-2/6 text-white">
             Días:
           </label>
           <div className="relative w-4/6 ml-auto">
@@ -329,25 +292,63 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
         )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-white">
-            Instr.:
+            Teléfono:
           </label>
-          <select
-            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto appearance-none"
-            name="Instrumento"
-            value={newUserInstrumento}
-            onChange={(e) => setNewUserInstrumento(e.target.value)}
-          >
-            <option value="">Seleccione un instrumento</option>
-            {instrumentos.map((instrumento, index) => (
-              <option key={index} value={instrumento}>
-                {instrumento}
-              </option>
-            ))}
-          </select>
+          <input
+            placeholder="Teléfono"
+            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            type="tel"
+            name="phoneNumber"
+            value={newUserPhoneNumber}
+            onChange={(e) => setNewUserPhoneNumber(e.target.value)}
+          />
         </div>
-        {errors.instrumento && (
+        {errors.phoneNumber && (
           <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
-            {errors.instrumento}
+            {errors.phoneNumber}
+          </p>
+        )}
+        <div className="flex mt-6">
+          <label
+            className="font-bold mr-auto w-2/6 text-white"
+            htmlFor="email"
+          >
+            E-Mail:
+          </label>
+          <input
+            placeholder="E-Mail"
+            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            id="email"
+            type="email"
+            value={newUserEmail}
+            onChange={(e) => setNewUserEmail(e.target.value)}
+          />
+        </div>
+        {errors.email && (
+          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+            {errors.email}
+          </p>
+        )}
+        <div className="flex mt-6">
+          <label
+            className="font-bold mr-auto w-2/6 text-white"
+            htmlFor="password"
+          >
+            Password:
+          </label>
+          <input
+            placeholder="Contraseña"
+            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            id="password"
+            type="text"
+            value={newUserPassword}
+            autoComplete="new-password"
+            onChange={(e) => setNewUserPassword(e.target.value)}
+          />
+        </div>
+        {errors.password && (
+          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+            {errors.password}
           </p>
         )}
         <div className="flex w-full mx-auto gap-x-4 mt-8 mb-2">
