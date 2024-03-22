@@ -45,8 +45,15 @@ const Calendario = ({
       }
       date.setDate(date.getDate() + 1)
     }
-    const agendadas = clases?.agendadas?.map((agendada) => {
-      return new Date(agendada.fecha.seconds * 1000).getDate()
+    // const agendadas = clases?.agendadas?.map((agendada) => {
+    //   return new Date(agendada.fecha.seconds * 1000).getDate()
+    // })
+
+    const agendadas = clases?.agendadas?.filter((agendada) => {
+      const agendadaDate = new Date(agendada.fecha.seconds * 1000)
+      return agendadaDate.getMonth() === currentMonth.getMonth()
+    }).map((agendada) => {
+      return new Date(agendada?.fecha?.seconds * 1000).getDate()
     })
 
     setFechasCanceladas(
@@ -92,9 +99,6 @@ const Calendario = ({
     } else {
       setSelectedDate({ fecha: selectedDate, hora_inicio: clases.hora_inicio, duracion: clases.duracion })
     }
-    // setSelectedDate(
-    //   new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day)
-    // )
   }
 
   const renderCalendar = () => {
