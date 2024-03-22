@@ -51,7 +51,7 @@ const page = () => {
           </div>
           <div className="xl:col-start-2 xl:col-end-9 flex flex-col xl:border-l-1 xl:border-l-white">
             <h1 className="text-center text-white text-3xl sm:text-5xl mt-8 mb-4">
-              ¡Hola Administrador/a!
+              ¡Hola Administrador!
             </h1>
             <h2 className='text-center text-white mb-12 text-xl sm:text-2xl px-4'>Te damos la bienvenida a la Plataforma Voices</h2>
             <Agenda cambios={cambios} />

@@ -188,7 +188,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
           />
         </div>
         {errors.nombre && (
-          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.nombre}
           </p>
         )}
@@ -206,7 +206,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
           />
         </div>
         {errors.apellido && (
-          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.apellido}
           </p>
         )}
@@ -224,7 +224,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
           />
         </div>
         {errors.birthdate && (
-          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.birthdate}
           </p>
         )}
@@ -247,7 +247,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
           </select>
         </div>
         {errors.instrumento && (
-          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.instrumento}
           </p>
         )}
@@ -286,7 +286,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
           </div>
         )}
         {errors.dias && (
-          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.dias}
           </p>
         )}
@@ -304,7 +304,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
           />
         </div>
         {errors.phoneNumber && (
-          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.phoneNumber}
           </p>
         )}
@@ -325,7 +325,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
           />
         </div>
         {errors.email && (
-          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.email}
           </p>
         )}
@@ -347,7 +347,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
           />
         </div>
         {errors.password && (
-          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.password}
           </p>
         )}
