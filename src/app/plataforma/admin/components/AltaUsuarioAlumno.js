@@ -49,7 +49,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
     const formErrors = {}
 
     if (!newUserEmail.trim()) {
-      formErrors.email = 'El campo de email es obligatorio'
+      formErrors.email = 'El campo de E-Mail es obligatorio'
     }
     if (!newUserPassword) {
       formErrors.password = 'El campo de contraseña es obligatorio'
