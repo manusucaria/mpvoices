@@ -142,7 +142,7 @@ const AgendaSmall = () => {
     >
       {selectedDay
         ? (
-        <div className="flex justify-center mb-4">
+        <div className="flex justify-center my-4">
           <div className="flex my-auto pt-1">
             <svg
               className="my-auto md:hover:cursor-pointer stroke-white md:hover:stroke-orange-300"
