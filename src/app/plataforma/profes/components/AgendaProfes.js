@@ -88,23 +88,17 @@ const AgendaProfes = ({ profesor }) => {
   }, [selectedDay, alumnos])
 
   const isNotificationWithinCurrentWeek = (clases) => {
-    if (!Array.isArray(clases)) {
+    if (!clases || clases.length === 0) {
       return false
     }
-    const agendadas = clases.agendadas
-    const canceladas = clases.canceladas
     const today = new Date()
     const endOfNextSixDays = addDays(today, 6)
-    for (const agendada of agendadas) {
-      const fecha = new Date(agendada.fecha.seconds * 1000 + agendada.fecha.nanoseconds / 1000000)
-      if (isWithinInterval(fecha, { start: today, end: endOfNextSixDays })) {
-        return true
-      }
-    }
-    for (const cancelada of canceladas) {
-      const fecha = new Date(cancelada.fecha.seconds * 1000 + cancelada.fecha.nanoseconds / 1000000)
-      if (isWithinInterval(fecha, { start: today, end: endOfNextSixDays })) {
-        return true
+    for (const clase of clases) {
+      for (const evento of clase) {
+        const fecha = new Date(evento.fecha.seconds * 1000 + evento.fecha.nanoseconds / 1000000)
+        if (isWithinInterval(fecha, { start: today, end: endOfNextSixDays })) {
+          return true
+        }
       }
     }
     return false
