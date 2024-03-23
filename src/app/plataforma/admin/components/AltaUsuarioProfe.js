@@ -238,7 +238,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
             value={newUserInstrumento}
             onChange={(e) => setNewUserInstrumento(e.target.value)}
           >
-            <option value="">Seleccione un instrumento</option>
+            <option className="text-black" value="">Seleccione un instrumento</option>
             {instrumentos.map((instrumento, index) => (
               <option key={index} value={instrumento}>
                 {instrumento}
@@ -295,7 +295,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
             Teléfono:
           </label>
           <input
-            placeholder="Teléfono"
+            placeholder="+54 9 11 11505050"
             className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
             type="tel"
             name="phoneNumber"
@@ -316,7 +316,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
             E-Mail:
           </label>
           <input
-            placeholder="E-Mail"
+            placeholder="mail@ejemplo.com"
             className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
             id="email"
             type="email"
@@ -337,7 +337,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
             Password:
           </label>
           <input
-            placeholder="Contraseña"
+            placeholder="Mínimo 8 caracteres"
             className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
             id="password"
             type="text"

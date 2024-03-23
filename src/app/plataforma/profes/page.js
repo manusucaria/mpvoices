@@ -50,7 +50,7 @@ const Page = () => {
           <h1 className="text-center text-white text-3xl sm:text-5xl mt-8 mb-4">
             ¡Hola {profesor?.usuario.full_name.nombre}!
           </h1>
-          <h2 className='text-center text-white mb-12 text-xl sm:text-2xl px-4'>Te damos la bienvenida a la Plataforma Voices</h2>
+          <h2 className='text-center text-white mb-12 text-2xl sm:text-4xl px-4'>Te damos la bienvenida a la Plataforma Voices</h2>
           <AgendaProfes availableDays={availableDays} profesor={profesor} />
           <div className="bg-black-light flex w-full py-16">
             <button

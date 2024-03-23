@@ -145,6 +145,7 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
                 onChange={(e) => setInstrumento(e.target.value)}
               >
                 <option
+                  className='text-black'
                   value={
                     instrumento.charAt(0).toUpperCase() +
                     instrumento.slice(1).toLowerCase().replace(/_/g, ' ')
@@ -163,7 +164,7 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
                 onChange={(e) => setDia(e.target.value)}
               >
                 {diasSemana.map((dia, index) => (
-                  <option value={dia} key={index}>
+                  <option className='text-black' value={dia} key={index}>
                     {dia}
                   </option>
                 ))}
@@ -177,7 +178,7 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
                 onChange={(e) => setHoraInicio(e.target.value)}
               >
                 {horarios.map((hora, index) => (
-                  <option key={index} value={hora}>
+                  <option className='text-black' key={index} value={hora}>
                     {hora}
                   </option>
                 ))}
@@ -191,7 +192,7 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
                 onChange={(e) => setDuracion(e.target.value)}
               >
                 {duracionOptions.map((duracionOption, index) => (
-                  <option key={index} value={duracionOption}>
+                  <option className='text-black' key={index} value={duracionOption}>
                     {duracionOption} min
                   </option>
                 ))}
@@ -211,7 +212,7 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
                     )
                   )
                   .map((profesor, index) => (
-                    <option key={index} value={profesor.id}>
+                    <option className='text-black' key={index} value={profesor.id}>
                       {profesor.usuario.full_name.nombre}{' '}
                       {profesor.usuario.full_name.apellido}{' '}
                     </option>

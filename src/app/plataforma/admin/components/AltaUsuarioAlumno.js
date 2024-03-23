@@ -234,7 +234,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             E-Mail:
           </label>
           <input
-            placeholder="E-Mail"
+            placeholder="mail@ejemplo.com"
             className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
             id="email"
             name="email"
@@ -256,7 +256,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             Password:
           </label>
           <input
-            placeholder="Contraseña"
+            placeholder="Mínimo 8 caracteres"
             className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
             id="password"
             name="password"
@@ -276,7 +276,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             Teléfono:
           </label>
           <input
-            placeholder="Teléfono"
+            placeholder="+54 9 11 11505050"
             className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
             type="tel"
             name="phoneNumber"
@@ -317,9 +317,9 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             value={newUserInstrumento}
             onChange={(e) => setNewUserInstrumento(e.target.value)}
           >
-            <option value="">Seleccione un instrumento</option>
+            <option className='text-black' value="">Seleccione un instrumento</option>
             {instrumentos.map((instrumento, index) => (
-              <option key={index} value={instrumento}>
+              <option className='text-black' key={index} value={instrumento}>
                 {instrumento}
               </option>
             ))}
@@ -340,9 +340,9 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             value={newUserProfesor}
             onChange={(e) => setNewUserProfesor(e.target.value)}
           >
-            <option value="">Seleccione un profesor</option>
+            <option className='text-black' value="">Seleccione un profesor</option>
             {profesores.map((profesor, index) => (
-              <option key={index} value={profesor.id}>
+              <option className='text-black' key={index} value={profesor.id}>
                 {profesor.usuario.full_name.nombre}{' '}
                 {profesor.usuario.full_name.apellido} / {profesor.instrumento} / {profesor.dias}
               </option>
@@ -362,9 +362,9 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             value={newUserClaseDia}
             onChange={(e) => setNewUserClaseDia(e.target.value)}
           >
-            <option value="">Seleccione un día</option>
+            <option className='text-black' value="">Seleccione un día</option>
             {diasSemana.map((dia, index) => (
-              <option key={index} value={dia}>
+              <option className='text-black' key={index} value={dia}>
                 {dia}
               </option>
             ))}
@@ -385,9 +385,9 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             value={newUserClaseHoraInicio}
             onChange={(e) => setNewUserClaseHoraInicio(e.target.value)}
           >
-            <option value="">Seleccione un horario</option>
+            <option className='text-black' value="">Seleccione un horario</option>
             {horarios.map((horario, index) => (
-              <option key={index} value={horario}>
+              <option className='text-black' key={index} value={horario}>
                 {horario}
               </option>
             ))}
@@ -408,9 +408,9 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             value={newUserClaseDuracion}
             onChange={(e) => setNewUserClaseDuracion(e.target.value)}
           >
-            <option value="">Seleccione una duración</option>
+            <option className='text-black' value="">Seleccione una duración</option>
             {duracionOptions.map((duracion, index) => (
-              <option key={index} value={duracion}>
+              <option className='text-black' key={index} value={duracion}>
                 {duracion} minutos
               </option>
             ))}

@@ -42,7 +42,7 @@ const EliminarAlumno = ({ selectedAlumno, setSelectedAlumno }) => {
         <div className='fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-50 z-50'>
           <div className='bg-white p-12 rounded-lg text-center flex flex-col'>
             <p className='text-black text-xl mb-4 font-bold'>
-              ¿Está seguro de que desea eliminar al alumno?
+              ¿Seguro de que desea eliminar al alumno?
             </p>
             <div className='flex mx-auto gap-x-16'>
               <button
