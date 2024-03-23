@@ -80,7 +80,7 @@ const NotificacionAdmin = ({
                   <div className='flex flex-col w-full mx-auto gap-y-2'>
                     {sortedCanceladas.map((item, index) => (
                       <div key={index} className='text-[#0D0D0D] font-bold mx-auto'>
-                        <p>`{alumno.usuario.full_name.nombre} {alumno.usuario.full_name.apellido} no asistirá a la clase del {format(item.fecha.toDate(), 'dd/MM/yyyy')}`</p>
+                        <p>- {alumno.usuario.full_name.nombre} {alumno.usuario.full_name.apellido} no asistirá a la clase del {format(item.fecha.toDate(), 'dd/MM/yyyy')}</p>
                       </div>
                     ))}
                   </div>
@@ -92,7 +92,7 @@ const NotificacionAdmin = ({
                     <div className='flex flex-col w-full mx-auto gap-y-2'>
                       {sortedAgendadas.map((item, index) => (
                         <div key={index} className='text-[#0D0D0D] font-bold mx-auto'>
-                          <p>`{item.alumno.full_name.nombre} {item.alumno.full_name.apellido} asistirá a la clase del {format(item.fecha.toDate(), 'dd/MM/yyyy')}`</p>
+                          <p>- {item.alumno.full_name.nombre} {item.alumno.full_name.apellido} asistirá a la clase del {format(item.fecha.toDate(), 'dd/MM/yyyy')}</p>
                         </div>
                       ))}
                     </div>

@@ -16,7 +16,8 @@ const AgendaSmall = () => {
   const [backgroundColorAlpha, setBackgroundColorAlpha] = useState(1)
   const [showNotification, setShowNotification] = useState(false)
   const [selectedAlumno, setSelectedAlumno] = useState()
-  const [notification, setNotification] = useState([])
+  const [canceladas, setCanceladas] = useState([])
+  const [agendadas, setAgendadas] = useState([])
 
   useEffect(() => {
     (async () => {
@@ -116,18 +117,25 @@ const AgendaSmall = () => {
 
   const handleAlumnoClick = (alumno) => {
     setSelectedAlumno(alumno)
-    setNotification(alumno.clases.notificaciones)
+    setAgendadas(alumno.clases.agendadas)
+    setCanceladas(alumno.clases.canceladas)
     setShowNotification(true)
   }
 
-  const isNotificationWithinCurrentWeek = (notificaciones) => {
-    if (!Array.isArray(notificaciones)) {
+  const isNotificationWithinCurrentWeek = (clases) => {
+    if (!Array.isArray(clases)) {
       return false
     }
     const today = new Date()
     const endOfNextSixDays = addDays(today, 6)
-    for (const notificacion of notificaciones) {
-      const fecha = new Date(notificacion.fecha.seconds * 1000 + notificacion.fecha.nanoseconds / 1000000)
+    for (const agendada of clases.agendadas) {
+      const fecha = new Date(agendada.fecha.seconds * 1000 + agendada.fecha.nanoseconds / 1000000)
+      if (isWithinInterval(fecha, { start: today, end: endOfNextSixDays })) {
+        return true
+      }
+    }
+    for (const cancelada of clases.canceladas) {
+      const fecha = new Date(cancelada.fecha.seconds * 1000 + cancelada.fecha.nanoseconds / 1000000)
       if (isWithinInterval(fecha, { start: today, end: endOfNextSixDays })) {
         return true
       }
@@ -323,7 +331,7 @@ const AgendaSmall = () => {
                         >
                             <div
                               className={`flex flex-col m-auto h-[97.5%] w-[95%] text-center ${
-                                isNotificationWithinCurrentWeek(alumno.clases.notificaciones)
+                                isNotificationWithinCurrentWeek(alumno.clases)
                                   ? 'bg-[#FFC9CB]'
                                   : 'bg-[#ACFDB2]'
                               }`}
@@ -342,8 +350,9 @@ const AgendaSmall = () => {
                             </p>
                             <div className="ms-auto pb-2 pe-2 sm:pe-4">
                               {alumno &&
-                              alumno.clases.notificaciones &&
-                              (alumno.clases.notificaciones.length > 0 ||
+                              alumno.clases.agendadas &&
+                              alumno.clases.canceladas &&
+                              (alumno.clases.agendadas.length > 0 || alumno.clases.canceladas.length > 0 ||
                                 (alumno.notas && alumno.notas.length > 0))
                                 ? (
                                 <svg
@@ -377,12 +386,14 @@ const AgendaSmall = () => {
                                   )}
                             </div>
                           </div>
-                          {showNotification && notification && (
+                          {showNotification && agendadas && canceladas && (
                             <NotificacionAdmin
                               alumno={selectedAlumno}
                               setSelectedAlumno={setSelectedAlumno}
-                              notification={notification}
-                              setNotification={setNotification}
+                              canceladas={canceladas}
+                              agendadas={agendadas}
+                              setCanceladas={setCanceladas}
+                              setAgendadas={setAgendadas}
                               setShowNotification={setShowNotification}
                             />
                           )}

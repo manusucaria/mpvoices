@@ -3,12 +3,15 @@ import { format } from 'date-fns'
 
 const NotificacionProfe = ({
   alumno,
-  notification,
-  setNotification,
+  agendadas,
+  canceladas,
+  setAgendadas,
+  setCanceladas,
   setShowNotification
 }) => {
   const closeNotification = () => {
-    setNotification([])
+    setAgendadas([])
+    setCanceladas([])
     setShowNotification(false)
   }
   const [showingNotifications, setShowingNotifications] = useState(true)
@@ -16,7 +19,8 @@ const NotificacionProfe = ({
     setShowingNotifications(!showingNotifications)
   }
 
-  const sortedNotifications = notification.sort((a, b) => a.fecha.toDate() - b.fecha.toDate())
+  const sortedCanceladas = canceladas.sort((a, b) => a.fecha.toDate() - b.fecha.toDate())
+  const sortedAgendadas = agendadas.sort((a, b) => a.fecha.toDate() - b.fecha.toDate())
 
   return (
       <div className='fixed top-0 left-0 w-full h-full flex justify-center items-center px-3 bg-[#0D0D0D] bg-opacity-30 z-[100]'>
@@ -26,17 +30,30 @@ const NotificacionProfe = ({
                 <path d="M5.55 2.08L4.12 0.65C1.72 2.48 0.14 5.3 0 8.5H2C2.15 5.85 3.51 3.53 5.55 2.08ZM17.94 8.5H19.94C19.79 5.3 18.21 2.48 15.82 0.65L14.4 2.08C16.42 3.53 17.79 5.85 17.94 8.5ZM15.97 9C15.97 5.93 14.33 3.36 11.47 2.68V2C11.47 1.17 10.8 0.5 9.97 0.5C9.14 0.5 8.47 1.17 8.47 2V2.68C5.6 3.36 3.97 5.92 3.97 9V14L1.97 16V17H17.97V16L15.97 14V9ZM9.97 20C10.11 20 10.24 19.99 10.37 19.96C11.02 19.82 11.55 19.38 11.81 18.78C11.91 18.54 11.96 18.28 11.96 18H7.96C7.97 19.1 8.86 20 9.97 20Z" fill="#0D0D0D"/>
               </svg>
             <p className='text-[#0D0D0D] font-bold text-xl mx-auto mb-8'>Notificaciones</p>
-            <div className='flex flex-col w-full mx-auto gap-y-2'>
-              {sortedNotifications.map((item, index) => (
-                <div key={index} className='text-[#0D0D0D] font-bold mx-auto'>
-                  - {item.tipo === 'cancelar'
-                  ? `No asistirá a la clase del ${format(item.fecha.toDate(), 'dd/MM/yyyy')}`
-                  : item.tipo === 'recuperar'
-                    ? `Asistirá a recuperar el día ${format(item.fecha.toDate(), 'dd/MM/yyyy')}`
-                    : ''}
+            {sortedCanceladas.length > 0
+              ? <div className='mb-8 mx-auto flex flex-col'>
+                  <p className='text-[#0D0D0D] font-bold text-lg mx-auto mb-4'>Canceladas</p>
+                  <div className='flex flex-col w-full mx-auto gap-y-2'>
+                    {sortedCanceladas.map((item, index) => (
+                      <div key={index} className='text-[#0D0D0D] font-bold mx-auto'>
+                        <p>- {alumno.usuario.full_name.nombre} {alumno.usuario.full_name.apellido} no asistirá a la clase del {format(item.fecha.toDate(), 'dd/MM/yyyy')}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              ))}
-            </div>
+              : ''}
+              {sortedAgendadas.length > 0
+                ? <div className='mb-8 mx-auto flex flex-col'>
+                    <p className='text-[#0D0D0D] font-bold text-lg mx-auto mb-4'>Agendadas</p>
+                    <div className='flex flex-col w-full mx-auto gap-y-2'>
+                      {sortedAgendadas.map((item, index) => (
+                        <div key={index} className='text-[#0D0D0D] font-bold mx-auto'>
+                          <p>- {item.alumno.full_name.nombre} {item.alumno.full_name.apellido} asistirá a la clase del {format(item.fecha.toDate(), 'dd/MM/yyyy')}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                : ''}
             <div className='flex justify-center gap-x-12 sm:gap-x-16 mt-8'>
               <button className='text-orange-600 font-bold md:hover:text-orange-300' onClick={toggleView}>
                 Ver Notas
