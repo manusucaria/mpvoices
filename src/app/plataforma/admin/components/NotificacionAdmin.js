@@ -63,8 +63,16 @@ const NotificacionAdmin = ({
     setShowingNotifications(!showingNotifications)
   }
 
-  const sortedCanceladas = canceladas.sort((a, b) => a.fecha.toDate() - b.fecha.toDate())
-  const sortedAgendadas = agendadas.sort((a, b) => a.fecha.toDate() - b.fecha.toDate())
+  const sortedCanceladas = canceladas.sort((a, b) => {
+    const dateA = a.fecha.toDate().getTime()
+    const dateB = b.fecha.toDate().getTime()
+    return dateA - dateB
+  })
+  const sortedAgendadas = agendadas.sort((a, b) => {
+    const dateA = a.fecha.toDate().getTime()
+    const dateB = b.fecha.toDate().getTime()
+    return dateA - dateB
+  })
 
   return (
       <div className='fixed top-0 left-0 w-full h-full flex justify-center items-center px-3 bg-[#0D0D0D] bg-opacity-30z-[100]'>

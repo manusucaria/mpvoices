@@ -18,7 +18,6 @@ const AgendaProfes = ({ profesor }) => {
   const [selectedAlumno, setSelectedAlumno] = useState()
   const [canceladas, setCanceladas] = useState([])
   const [agendadas, setAgendadas] = useState([])
-  const [notas, setNotas] = useState([])
 
   useEffect(() => {
     if (profesor && profesor?.dias) {
@@ -40,7 +39,6 @@ const AgendaProfes = ({ profesor }) => {
     setSelectedAlumno(alumno)
     setAgendadas(alumno.clases.agendadas)
     setCanceladas(alumno.clases.canceladas)
-    setNotas(alumno.notas)
     setShowNotification(true)
   }
 
@@ -298,7 +296,6 @@ const AgendaProfes = ({ profesor }) => {
                         agendadas={agendadas}
                         setCanceladas={setCanceladas}
                         setAgendadas={setAgendadas}
-                        notas={notas}
                         setShowNotification={setShowNotification}
                       />
                     )}
