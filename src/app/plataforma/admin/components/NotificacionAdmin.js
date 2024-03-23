@@ -76,7 +76,7 @@ const NotificacionAdmin = ({
             <p className='text-[#0D0D0D] font-bold text-xl mx-auto mb-8'>Notificaciones</p>
             {sortedCanceladas.length > 0
               ? <div className='mb-8 mx-auto flex flex-col'>
-                  <p className='text-[#0D0D0D] font-bold text-xl mx-auto mb-4'>Canceladas</p>
+                  <p className='text-[#0D0D0D] font-bold text-lg mx-auto mb-4'>Canceladas</p>
                   <div className='flex flex-col w-full mx-auto gap-y-2'>
                     {sortedCanceladas.map((item, index) => (
                       <div key={index} className='text-[#0D0D0D] font-bold mx-auto'>
@@ -88,7 +88,7 @@ const NotificacionAdmin = ({
               : ''}
               {sortedAgendadas.length > 0
                 ? <div className='mb-8 mx-auto flex flex-col'>
-                    <p className='text-[#0D0D0D] font-bold text-xl mx-auto mb-4'>Agendadas</p>
+                    <p className='text-[#0D0D0D] font-bold text-lg mx-auto mb-4'>Agendadas</p>
                     <div className='flex flex-col w-full mx-auto gap-y-2'>
                       {sortedAgendadas.map((item, index) => (
                         <div key={index} className='text-[#0D0D0D] font-bold mx-auto'>
