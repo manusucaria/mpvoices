@@ -5,8 +5,10 @@ import alas from '@/app/assets/alas.jpg'
 import { diasSemana, horarios } from '@/app/api/data'
 import NotificacionAdmin from './NotificacionAdmin.js'
 import { getAllAlumnos, getAllProfesores } from '@/lib/firebase/crud/read.js'
+import { useAuth } from '@/lib/firebase/useAuth'
 
 const AgendaFull = () => {
+  const user = useAuth()
   const [alumnos, setAlumnos] = useState([])
   const [profesores, setProfesores] = useState([])
   const [selectedDay, setSelectedDay] = useState('')
@@ -30,7 +32,7 @@ const AgendaFull = () => {
       })
       setAlumnos(alumnosData)
     })()
-  }, [selectedDay, selectedAlumno])
+  }, [user, selectedDay, selectedAlumno])
 
   const filterAlumnosByDay = (day) => {
     setSelectedDay(day)
