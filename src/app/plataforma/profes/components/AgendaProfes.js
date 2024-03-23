@@ -91,15 +91,17 @@ const AgendaProfes = ({ profesor }) => {
     if (!Array.isArray(clases)) {
       return false
     }
+    const agendadas = clases.agendadas
+    const canceladas = clases.canceladas
     const today = new Date()
     const endOfNextSixDays = addDays(today, 6)
-    for (const agendada of clases.agendadas) {
+    for (const agendada of agendadas) {
       const fecha = new Date(agendada.fecha.seconds * 1000 + agendada.fecha.nanoseconds / 1000000)
       if (isWithinInterval(fecha, { start: today, end: endOfNextSixDays })) {
         return true
       }
     }
-    for (const cancelada of clases.canceladas) {
+    for (const cancelada of canceladas) {
       const fecha = new Date(cancelada.fecha.seconds * 1000 + cancelada.fecha.nanoseconds / 1000000)
       if (isWithinInterval(fecha, { start: today, end: endOfNextSixDays })) {
         return true
