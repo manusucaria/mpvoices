@@ -108,7 +108,7 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
             <div className="flex mb-6">
               <label className="font-bold mr-auto w-2/6">Fecha de nac.:</label>
               <input
-                className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto"
+                className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto appearance-none"
                 type="date"
                 name="fecha"
                 value={birthdate}

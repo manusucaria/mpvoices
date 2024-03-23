@@ -203,7 +203,7 @@ const EditorDatosProfesor = ({
                 Fecha de nac.:
               </label>
               <input
-                className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto"
+                className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto appearance-none"
                 type="date"
                 name="birthdate"
                 value={birthdate}

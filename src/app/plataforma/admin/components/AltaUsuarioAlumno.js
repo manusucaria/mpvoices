@@ -295,7 +295,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
           </label>
           <input
             placeholder="Fecha de nac."
-            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto"
+            className="text-[#666666] rounded-3xl h-8 px-2 w-4/6 ml-auto appearance-none"
             type="date"
             name="birthdate"
             value={newUserBirthdate}
@@ -309,7 +309,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
         )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-white">
-            Instr.:
+            Instrumento:
           </label>
           <select
             className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto appearance-none"
@@ -317,7 +317,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             value={newUserInstrumento}
             onChange={(e) => setNewUserInstrumento(e.target.value)}
           >
-            <option className='text-black' value="">Seleccione un instrumento</option>
+            <option className='text-[#666666]' value="">Seleccione un instrumento</option>
             {instrumentos.map((instrumento, index) => (
               <option className='text-black' key={index} value={instrumento}>
                 {instrumento}
@@ -340,7 +340,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             value={newUserProfesor}
             onChange={(e) => setNewUserProfesor(e.target.value)}
           >
-            <option className='text-black' value="">Seleccione un profesor</option>
+            <option className='text-[#666666]' value="">Seleccione un profesor</option>
             {profesores.map((profesor, index) => (
               <option className='text-black' key={index} value={profesor.id}>
                 {profesor.usuario.full_name.nombre}{' '}
@@ -362,7 +362,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             value={newUserClaseDia}
             onChange={(e) => setNewUserClaseDia(e.target.value)}
           >
-            <option className='text-black' value="">Seleccione un día</option>
+            <option className='text-[#666666]' value="">Seleccione un día</option>
             {diasSemana.map((dia, index) => (
               <option className='text-black' key={index} value={dia}>
                 {dia}
@@ -385,7 +385,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             value={newUserClaseHoraInicio}
             onChange={(e) => setNewUserClaseHoraInicio(e.target.value)}
           >
-            <option className='text-black' value="">Seleccione un horario</option>
+            <option className='text-[#666666]' value="">Seleccione un horario</option>
             {horarios.map((horario, index) => (
               <option className='text-black' key={index} value={horario}>
                 {horario}
@@ -408,7 +408,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             value={newUserClaseDuracion}
             onChange={(e) => setNewUserClaseDuracion(e.target.value)}
           >
-            <option className='text-black' value="">Seleccione una duración</option>
+            <option className='text-[#666666]' value="">Seleccione una duración</option>
             {duracionOptions.map((duracion, index) => (
               <option className='text-black' key={index} value={duracion}>
                 {duracion} minutos

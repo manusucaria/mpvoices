@@ -216,7 +216,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
           </label>
           <input
             placeholder="Fecha de nac."
-            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto"
+            className="text-[#666666] rounded-3xl h-8 px-2 w-4/6 ml-auto appearance-none"
             type="date"
             name="birthdate"
             value={newUserBirthdate}
@@ -230,7 +230,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
         )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-white">
-            Instr.:
+            Instrumento:
           </label>
           <select
             className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto appearance-none"
@@ -238,7 +238,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
             value={newUserInstrumento}
             onChange={(e) => setNewUserInstrumento(e.target.value)}
           >
-            <option className="text-black" value="">Seleccione un instrumento</option>
+            <option className="text-[#666666]" value="">Seleccione un instrumento</option>
             {instrumentos.map((instrumento, index) => (
               <option key={index} value={instrumento}>
                 {instrumento}
