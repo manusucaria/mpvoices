@@ -22,7 +22,6 @@ const AgendaSmall = () => {
     (async () => {
       const profesoresData = await getAllProfesores({ getUsuario: true })
       setProfesores(profesoresData)
-
       const alumnosData = await getAllAlumnos({
         getUsuario: true,
         getProfesor: true

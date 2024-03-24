@@ -57,7 +57,7 @@ const AgendaProfes = ({ profesor }) => {
       })
       setAlumnos(alumnosData)
     })()
-  }, [selectedDay])
+  }, [selectedDay, selectedAlumno])
 
   useEffect(() => {
     const alumnosDelProfesor = alumnos.filter(
