@@ -10,9 +10,8 @@ import Loader from '@/app/components/loader/Loader.jsx'
 
 const page = () => {
   const user = useAuth()
-
-  const [loading, setLoading] = useState(true)
   const [cambios, setCambios] = useState()
+  const [loading, setLoading] = useState(true)
   const [showConfirmation, setShowConfirmation] = useState(false)
 
   useEffect(() => {
@@ -33,10 +32,6 @@ const page = () => {
     window.location.reload()
   }
 
-  const newCambio = (cambio) => {
-    setCambios(cambio)
-  }
-
   const handleCloseConfirmation = () => {
     setShowConfirmation(false)
   }
@@ -55,8 +50,8 @@ const page = () => {
             </h1>
             <h2 className='text-center text-white mb-12 text-[1.6rem] sm:text-4xl px-4'>Te damos la bienvenida a la Plataforma Voices</h2>
             <Agenda cambios={cambios} />
-            <Buscador newCambio={newCambio} cambios={cambios} />
-            <Alta newCambio={newCambio} cambios={cambios} />
+            <Buscador setCambios={setCambios} cambios={cambios} />
+            <Alta setCambios={setCambios} />
             <div className="bg-black-light flex w-full py-16">
               <button
                 className="bg-white mx-auto text-black md:hover:text-orange-600 border-2 border-orange-600 font-botones font-bold p-2 my-12 lg:mb-12 w-4/6 sm:w-2/6 h-12 sm:h-10 text-center rounded-3xl hover:cursor-pointer"

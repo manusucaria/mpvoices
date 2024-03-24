@@ -6,7 +6,7 @@ import { diasSemana, horarios } from '@/app/api/data'
 import NotificacionAdmin from './NotificacionAdmin.js'
 import { getAllAlumnos, getAllProfesores } from '@/lib/firebase/crud/read.js'
 
-const AgendaFull = () => {
+const AgendaFull = ({ cambios }) => {
   const [alumnos, setAlumnos] = useState([])
   const [profesores, setProfesores] = useState([])
   const [selectedDay, setSelectedDay] = useState('')
@@ -29,7 +29,7 @@ const AgendaFull = () => {
       })
       setAlumnos(alumnosData)
     })()
-  }, [selectedDay, selectedAlumno])
+  }, [selectedDay, selectedAlumno, cambios])
 
   const filterAlumnosByDay = (day) => {
     setSelectedDay(day)
@@ -318,7 +318,7 @@ const AgendaFull = () => {
                               horarios.indexOf(alumno.clases.hora_inicio) + 2,
                             gridRowEnd:
                               horarios.indexOf(alumno.clases.hora_inicio) +
-                              3 +
+                              2 +
                               alumno.clases.duracion / 15
                           }}
                         >

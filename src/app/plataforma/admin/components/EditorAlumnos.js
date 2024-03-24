@@ -3,7 +3,7 @@ import EditorDatos from './EditorDatos'
 import EditorClases from './EditorClases'
 import EditorPagos from './EditorPagos'
 
-const EditorAlumnos = ({ alumno, setSelectedAlumno, setSelectedProfesor, profesores }) => {
+const EditorAlumnos = ({ alumno, setSelectedAlumno, setSelectedProfesor, profesores, setCambios }) => {
   const [tab, setTab] = useState('datos')
 
   const handleTabChange = (tabName) => {
@@ -58,9 +58,9 @@ const EditorAlumnos = ({ alumno, setSelectedAlumno, setSelectedProfesor, profeso
         </div>
       </div>
       <div className=''>
-        {tab === 'datos' && <EditorDatos alumno={alumno} setSelectedAlumno={setSelectedAlumno} />}
-        {tab === 'clases' && <EditorClases profesores={profesores} alumno={alumno} setSelectedAlumno={setSelectedAlumno} />}
-        {tab === 'pagos' && <EditorPagos alumno={alumno} setSelectedAlumno={setSelectedAlumno} />}
+        {tab === 'datos' && <EditorDatos alumno={alumno} setSelectedAlumno={setSelectedAlumno} setCambios={setCambios} />}
+        {tab === 'clases' && <EditorClases profesores={profesores} alumno={alumno} setSelectedAlumno={setSelectedAlumno} setCambios={setCambios} />}
+        {tab === 'pagos' && <EditorPagos alumno={alumno} setSelectedAlumno={setSelectedAlumno} setCambios={setCambios} />}
       </div>
     </div>
   )

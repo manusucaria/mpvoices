@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { deleteUserAsAdmin } from '@/lib/firebase/actions.admin'
 
-const EliminarAlumno = ({ selectedAlumno, setSelectedAlumno }) => {
+const EliminarAlumno = ({ selectedAlumno, setSelectedAlumno, setCambios }) => {
   const [showConfirmation, setShowConfirmation] = useState(false)
   const [showDone, setShowDone] = useState(false)
 
@@ -13,6 +13,7 @@ const EliminarAlumno = ({ selectedAlumno, setSelectedAlumno }) => {
   const handleConfirmDelete = async () => {
     try {
       await deleteUserAsAdmin({ uid: selectedAlumno.id })
+      setCambios(true)
       setShowConfirmation(false)
       setShowDone(true)
     } catch (error) {

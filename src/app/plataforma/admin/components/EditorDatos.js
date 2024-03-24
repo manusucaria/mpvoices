@@ -1,7 +1,7 @@
 import { updateUsuarioAlumnoById } from '@/lib/firebase/actions.admin'
 import React, { useState, useEffect } from 'react'
 
-const EditorDatos = ({ alumno, setSelectedAlumno }) => {
+const EditorDatos = ({ alumno, setSelectedAlumno, setCambios }) => {
   const [nombre, setNombre] = useState('')
   const [apellido, setApellido] = useState('')
   const [birthdate, setBirthdate] = useState('')
@@ -43,6 +43,7 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
         usuario: alumno.usuario
       })
       setSelectedAlumno(updatedAlumnoData)
+      setCambios(true)
       setEditMode(false)
       setShowConfirmation(true)
     } catch (error) {

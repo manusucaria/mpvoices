@@ -6,7 +6,7 @@ import NotificacionAdmin from './NotificacionAdmin.js'
 import { getAllAlumnos, getAllProfesores } from '@/lib/firebase/crud/read.js'
 import { isWithinInterval, addDays } from 'date-fns'
 
-const AgendaSmall = () => {
+const AgendaSmall = ({ cambios }) => {
   const [alumnos, setAlumnos] = useState([])
   const [profesores, setProfesores] = useState([])
   const [selectedDay, setSelectedDay] = useState('')
@@ -28,7 +28,7 @@ const AgendaSmall = () => {
       })
       setAlumnos(alumnosData)
     })()
-  }, [selectedDay, selectedAlumno])
+  }, [selectedDay, selectedAlumno, cambios])
 
   const filterAlumnosByDay = (day) => {
     setSelectedDay(day)
@@ -316,7 +316,7 @@ const AgendaSmall = () => {
                               horarios.indexOf(alumno.clases.hora_inicio) + 2,
                             gridRowEnd:
                               horarios.indexOf(alumno.clases.hora_inicio) +
-                              3 +
+                              2 +
                               alumno.clases.duracion / 15
                           }}
                         >

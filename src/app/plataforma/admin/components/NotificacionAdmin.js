@@ -15,8 +15,6 @@ const NotificacionAdmin = ({
   const [previousNotas, setPreviousNotas] = useState([])
   const [showingNotifications, setShowingNotifications] = useState(true)
 
-  console.log(notificaciones.map((notificacion) => notificacion.usuario))
-
   const closeNotification = () => {
     setNotificaciones([])
     setShowNotification(false)

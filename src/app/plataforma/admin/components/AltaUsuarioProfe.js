@@ -3,7 +3,7 @@ import { signUp } from '@/lib/firebase/auth'
 import { getRolByName } from '@/lib/firebase/crud/read'
 import { diasSemana, instrumentos } from '@/app/api/data'
 
-const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
+const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm, setCambios }) => {
   const [showDaysOptions, setShowDaysOptions] = useState(false)
   const [selectedDays, setSelectedDays] = useState([])
   const [newUserEmail, setNewUserEmail] = useState('')
@@ -111,7 +111,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
         }
       }
     }
-
+    setCambios(true)
     setSendingData(false)
     setErrors(formErrors)
   }
@@ -293,7 +293,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
             Teléfono:
           </label>
           <input
-            placeholder="+54 9 11 11505050"
+            placeholder="+54 9 11 56505050"
             className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
             type="tel"
             name="phoneNumber"

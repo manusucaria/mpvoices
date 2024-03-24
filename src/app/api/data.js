@@ -17,7 +17,7 @@ export const horarios = (() => {
   return horarios
 })()
 
-export const duracionOptions = [30, 45, 60, 75, 90]
+export const duracionOptions = [30, 45, 60, 75, 90, 105, 120]
 
 export const diasSemana = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes']
 

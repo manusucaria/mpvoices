@@ -219,7 +219,7 @@ const AgendaProfes = ({ profesor }) => {
                         horarios.indexOf(alumno.clases.hora_inicio) + 2,
                       gridRowEnd:
                         horarios.indexOf(alumno.clases.hora_inicio) +
-                        3 +
+                        2 +
                         alumno.clases.duracion / 15
                     }}
                   >

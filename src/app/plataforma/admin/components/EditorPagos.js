@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-
 import { updatePagosAlumno } from '@/lib/firebase/actions.admin'
 
-const EditorPagos = ({ alumno, setSelectedAlumno }) => {
+const EditorPagos = ({ alumno, setSelectedAlumno, setCambios }) => {
   const [saldo, setSaldo] = useState(0)
   const [originalSaldo, setOriginalSaldo] = useState(0)
   const [actualizacion, setActualizacion] = useState('')
@@ -27,6 +26,7 @@ const EditorPagos = ({ alumno, setSelectedAlumno }) => {
         actualizacion
       })
       setSelectedAlumno(updatedAlumnoData)
+      setCambios(true)
       setEditMode(false)
       setShowConfirmation(true)
     } catch (error) {

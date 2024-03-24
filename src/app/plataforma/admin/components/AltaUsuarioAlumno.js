@@ -9,7 +9,7 @@ import {
   instrumentos
 } from '@/app/api/data'
 
-const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) => {
+const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm, setCambios }) => {
   const [newUserEmail, setNewUserEmail] = useState('')
   const [newUserPassword, setNewUserPassword] = useState('')
   const [newUserPhoneNumber, setNewUserPhoneNumber] = useState('')
@@ -130,6 +130,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
         }
       }
     }
+    setCambios(true)
     setSendingData(false)
     setErrors(formErrors)
   }

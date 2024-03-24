@@ -3,11 +3,11 @@ import React from 'react'
 import AgendaFull from '../components/AgendaFull'
 import AgendaSmall from '../components/AgendaSmall'
 
-const Agenda = () => {
+const Agenda = ({ cambios }) => {
   return (
     <div>
-      <AgendaFull />
-      <AgendaSmall />
+      <AgendaFull cambios={cambios} />
+      <AgendaSmall cambios={cambios} />
     </div>
   )
 }

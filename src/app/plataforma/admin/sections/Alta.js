@@ -5,7 +5,7 @@ import AltaUsuarioProfe from '../components/AltaUsuarioProfe'
 
 import { getAllProfesores } from '@/lib/firebase/crud/read'
 
-const Alta = () => {
+const Alta = ({ setCambios }) => {
   const [showProfesorForm, setShowProfesorForm] = useState(false)
   const [showAlumnoForm, setShowAlumnoForm] = useState(false)
   const [profesores, setProfesores] = useState([])
@@ -62,10 +62,11 @@ const Alta = () => {
           </button>
         </div>
       )}
-      {showProfesorForm && <AltaUsuarioProfe handleCancelar={handleCancelar} setShowProfesorForm={setShowProfesorForm}/>}
+      {showProfesorForm && <AltaUsuarioProfe setCambios={setCambios} handleCancelar={handleCancelar} setShowProfesorForm={setShowProfesorForm}/>}
       {showAlumnoForm && (
         <AltaUsuarioAlumno
           profesores={profesores}
+          setCambios={setCambios}
           handleCancelar={handleCancelar}
           setShowAlumnoForm={setShowAlumnoForm}
         />

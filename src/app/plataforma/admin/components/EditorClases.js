@@ -10,7 +10,7 @@ import { getProfesorById } from '@/lib/firebase/crud/read'
 import Loader from '@/app/components/loader/Loader'
 import { updateClasesAlumno } from '@/lib/firebase/actions.admin'
 
-const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
+const EditorClases = ({ alumno, setSelectedAlumno, profesores, setCambios }) => {
   const [instrumento, setInstrumento] = useState(
     alumno ? alumno.instrumento : ''
   )
@@ -79,6 +79,7 @@ const EditorClases = ({ alumno, setSelectedAlumno, profesores }) => {
         profesor
       })
       setSelectedAlumno(updatedClasesAlumnoData)
+      setCambios(true)
       setEditMode(false)
       setShowConfirmation(true)
     } catch (error) {
