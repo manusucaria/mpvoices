@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-
 import { signUp } from '@/lib/firebase/auth'
 import { getRolByName } from '@/lib/firebase/crud/read'
 import { diasSemana, instrumentos } from '@/app/api/data'
@@ -17,7 +16,6 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
   const [newUserBirthdate, setNewUserBirthdate] = useState('')
   const [errors, setErrors] = useState({})
   const [showConfirmation, setShowConfirmation] = useState(false)
-
   const [sendingData, setSendingData] = useState(false)
 
   useEffect(() => {
@@ -56,28 +54,28 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
     const formErrors = {}
 
     if (!newUserEmail.trim()) {
-      formErrors.email = 'El campo de E-Mail es obligatorio'
+      formErrors.email = 'El campo es obligatorio'
     }
     if (!newUserPassword) {
-      formErrors.password = 'El campo de contraseña es obligatorio'
+      formErrors.password = 'El campo es obligatorio'
     }
     if (!newUserPhoneNumber.trim()) {
-      formErrors.phoneNumber = 'El campo de teléfono es obligatorio'
+      formErrors.phoneNumber = 'El campo es obligatorio'
     }
     if (!newUserNombre.trim()) {
-      formErrors.nombre = 'El campo de nombre es obligatorio'
+      formErrors.nombre = 'El campo es obligatorio'
     }
     if (!newUserApellido.trim()) {
-      formErrors.apellido = 'El campo de apellido es obligatorio'
+      formErrors.apellido = 'El campo es obligatorio'
     }
     if (!newUserBirthdate.trim()) {
-      formErrors.birthdate = 'El campo fecha de nacimiento es obligatorio'
+      formErrors.birthdate = 'El campo es obligatorio'
     }
     if (!selectedDays.join(', ').trim()) {
-      formErrors.dias = 'El campo de días es obligatorio'
+      formErrors.dias = 'El campo es obligatorio'
     }
     if (!newUserInstrumento.trim()) {
-      formErrors.instrumento = 'El campo de instrumento es obligatorio'
+      formErrors.instrumento = 'El campo es obligatorio'
     }
 
     if (Object.keys(formErrors).length === 0) {
@@ -215,8 +213,8 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
             Fecha de nac.:
           </label>
           <input
-            placeholder="Fecha de nac."
-            className="text-[#666666] rounded-3xl h-8 px-2 w-4/6 ml-auto appearance-none"
+            placeholder="dd/mm/aaaa"
+            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto appearance-none"
             type="date"
             name="birthdate"
             value={newUserBirthdate}

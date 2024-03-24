@@ -8,7 +8,6 @@ import AgendaProfes from './components/AgendaProfes'
 
 const Page = () => {
   const user = useAuth()
-
   const [loading, setLoading] = useState(true)
   const [profesor, setProfesor] = useState({})
   const [availableDays, setAvailableDays] = useState()

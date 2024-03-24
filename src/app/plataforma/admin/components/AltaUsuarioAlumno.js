@@ -49,43 +49,43 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
     const formErrors = {}
 
     if (!newUserEmail.trim()) {
-      formErrors.email = 'El campo de E-Mail es obligatorio'
+      formErrors.email = 'El campo es obligatorio'
     }
     if (!newUserPassword) {
-      formErrors.password = 'El campo de contraseña es obligatorio'
+      formErrors.password = 'El campo es obligatorio'
     }
     if (!newUserPhoneNumber.trim()) {
-      formErrors.telefono = 'El campo de telefono es obligatorio'
+      formErrors.telefono = 'El campo es obligatorio'
     }
     if (!newUserNombre.trim()) {
-      formErrors.nombre = 'El campo de nombre es obligatorio'
+      formErrors.nombre = 'El campo es obligatorio'
     }
     if (!newUserApellido.trim()) {
-      formErrors.apellido = 'El campo de apellido es obligatorio'
+      formErrors.apellido = 'El campo es obligatorio'
     }
     if (!newUserBirthdate.trim()) {
-      formErrors.birthdate = 'El campo fecha de nacimiento es obligatorio'
+      formErrors.birthdate = 'El campo es obligatorio'
     }
     if (!newUserInstrumento.trim()) {
-      formErrors.instrumento = 'El campo de instrumento es obligatorio'
+      formErrors.instrumento = 'El campo es obligatorio'
     }
     if (!newUserProfesor.trim()) {
-      formErrors.profesor = 'El campo de profesor es obligatorio'
+      formErrors.profesor = 'El campo es obligatorio'
     }
     if (!newUserClaseDia.trim()) {
-      formErrors.clase_dia = 'El campo día es obligatorio'
+      formErrors.clase_dia = 'El campo es obligatorio'
     }
     if (!newUserClaseHoraInicio.trim()) {
-      formErrors.clase_hora_inicio = 'El campo hora de inicio es obligatorio'
+      formErrors.clase_hora_inicio = 'El campo es obligatorio'
     }
     if (!newUserClaseDuracion.trim()) {
-      formErrors.clase_duracion = 'El campo duración es obligatorio'
+      formErrors.clase_duracion = 'El campo es obligatorio'
     }
     if (!newUserPagosSaldo.trim()) {
-      formErrors.pagos_saldo = 'El campo saldo es obligatorio'
+      formErrors.pagos_saldo = 'El campo es obligatorio'
     }
     if (!newUserPagosAtualizacion.trim()) {
-      formErrors.pagos_actualizacion = 'El campo actualización es obligatorio'
+      formErrors.pagos_actualizacion = 'El campo es obligatorio'
     }
 
     if (Object.keys(formErrors).length === 0) {
@@ -276,7 +276,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             Teléfono:
           </label>
           <input
-            placeholder="+54 9 11 11505050"
+            placeholder="+54 9 11 56505050"
             className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
             type="tel"
             name="phoneNumber"
@@ -294,8 +294,8 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             Fecha de nac.:
           </label>
           <input
-            placeholder="Fecha de nac."
-            className="text-[#666666] rounded-3xl h-8 px-2 w-4/6 ml-auto appearance-none"
+            placeholder="dd/mm/aaaa"
+            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto appearance-none"
             type="date"
             name="birthdate"
             value={newUserBirthdate}
@@ -445,7 +445,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
           </label>
           <input
             placeholder="Actualización de pago"
-            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto"
+            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto appearance-none"
             type="date"
             name="pagos_actualizacion"
             value={newUserPagosAtualizacion}

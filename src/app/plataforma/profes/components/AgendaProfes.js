@@ -16,8 +16,7 @@ const AgendaProfes = ({ profesor }) => {
   const [showNotification, setShowNotification] = useState(false)
   const [availableDays, setAvailableDays] = useState()
   const [selectedAlumno, setSelectedAlumno] = useState()
-  const [canceladas, setCanceladas] = useState([])
-  const [agendadas, setAgendadas] = useState([])
+  const [notificaciones, setNotificaciones] = useState([])
 
   useEffect(() => {
     if (profesor && profesor?.dias) {
@@ -37,8 +36,7 @@ const AgendaProfes = ({ profesor }) => {
 
   const handleAlumnoClick = (alumno) => {
     setSelectedAlumno(alumno)
-    setAgendadas(alumno.clases.agendadas)
-    setCanceladas(alumno.clases.canceladas)
+    setNotificaciones(alumno.clases.notificaciones)
     setShowNotification(true)
   }
 
@@ -87,22 +85,14 @@ const AgendaProfes = ({ profesor }) => {
     setFilteredAlumnos(filtered)
   }, [selectedDay, alumnos])
 
-  const isNotificationWithinCurrentWeek = (clases) => {
-    if (!Array.isArray(clases)) {
+  const isNotificationWithinCurrentWeek = (notificaciones) => {
+    if (!Array.isArray(notificaciones)) {
       return false
     }
-    const agendadas = clases.agendadas
-    const canceladas = clases.canceladas
     const today = new Date()
     const endOfNextSixDays = addDays(today, 6)
-    for (const agendada of agendadas) {
-      const fecha = new Date(agendada.fecha.seconds * 1000 + agendada.fecha.nanoseconds / 1000000)
-      if (isWithinInterval(fecha, { start: today, end: endOfNextSixDays })) {
-        return true
-      }
-    }
-    for (const cancelada of canceladas) {
-      const fecha = new Date(cancelada.fecha.seconds * 1000 + cancelada.fecha.nanoseconds / 1000000)
+    for (const notificacion of notificaciones) {
+      const fecha = new Date(notificacion.fecha.seconds * 1000 + notificacion.fecha.nanoseconds / 1000000)
       if (isWithinInterval(fecha, { start: today, end: endOfNextSixDays })) {
         return true
       }
@@ -222,7 +212,7 @@ const AgendaProfes = ({ profesor }) => {
                 </div>
                 {filteredAlumnos.map((alumno) => (
                   <div
-                    key={`${alumno.Nombre}`}
+                    key={`${alumno.id}`}
                     className="flex flex-col h-full w-full text-center border-none"
                     style={{
                       gridRowStart:
@@ -235,7 +225,7 @@ const AgendaProfes = ({ profesor }) => {
                   >
                       <div
                         className={`flex flex-col m-auto h-[97.5%] w-[95%] text-center ${
-                          isNotificationWithinCurrentWeek(alumno.clases)
+                          isNotificationWithinCurrentWeek(alumno.clases.notificaciones)
                             ? 'bg-[#FFC9CB]'
                             : 'bg-[#ACFDB2]'
                         }`}
@@ -254,9 +244,8 @@ const AgendaProfes = ({ profesor }) => {
                       </p>
                       <div className="ms-auto pb-2 pe-2 sm:pe-4">
                         {alumno &&
-                        alumno.clases.agendadas &&
-                        alumno.clases.canceladas &&
-                        (alumno.clases.agendadas.length > 0 || alumno.clases.canceladas.length > 0 ||
+                        alumno.clases.notificaciones &&
+                        (alumno.clases.notificaciones.length > 0 ||
                           alumno.notas.length > 0)
                           ? (
                           <svg
@@ -290,14 +279,12 @@ const AgendaProfes = ({ profesor }) => {
                             )}
                       </div>
                     </div>
-                    {showNotification && agendadas && canceladas && (
+                    {showNotification && (
                       <NotificacionProfe
                         alumno={selectedAlumno}
                         setSelectedAlumno={setSelectedAlumno}
-                        canceladas={canceladas}
-                        agendadas={agendadas}
-                        setCanceladas={setCanceladas}
-                        setAgendadas={setAgendadas}
+                        notificaciones={notificaciones}
+                        setNotificaciones={setNotificaciones}
                         setShowNotification={setShowNotification}
                       />
                     )}
