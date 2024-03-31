@@ -88,6 +88,10 @@ const AgendaSmall = ({ cambios }) => {
     setFilteredAlumnos(filtered)
   }, [selectedDay, alumnos])
 
+  useEffect(() => {
+    setBackgroundColorAlpha(1)
+  }, [selectedDay])
+
   const handleNext = () => {
     if (startIndex + 1 < filteredProfesores.length) {
       setStartIndex((prevIndex) => {
