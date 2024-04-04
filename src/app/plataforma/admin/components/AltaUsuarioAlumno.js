@@ -9,7 +9,7 @@ import {
   instrumentos
 } from '@/app/api/data'
 
-const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) => {
+const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm, setCambios }) => {
   const [newUserEmail, setNewUserEmail] = useState('')
   const [newUserPassword, setNewUserPassword] = useState('')
   const [newUserPhoneNumber, setNewUserPhoneNumber] = useState('')
@@ -49,43 +49,43 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
     const formErrors = {}
 
     if (!newUserEmail.trim()) {
-      formErrors.email = 'El campo de email es obligatorio'
+      formErrors.email = 'El campo es obligatorio'
     }
     if (!newUserPassword) {
-      formErrors.password = 'El campo de contraseña es obligatorio'
+      formErrors.password = 'El campo es obligatorio'
     }
     if (!newUserPhoneNumber.trim()) {
-      formErrors.telefono = 'El campo de telefono es obligatorio'
+      formErrors.telefono = 'El campo es obligatorio'
     }
     if (!newUserNombre.trim()) {
-      formErrors.nombre = 'El campo de nombre es obligatorio'
+      formErrors.nombre = 'El campo es obligatorio'
     }
     if (!newUserApellido.trim()) {
-      formErrors.apellido = 'El campo de apellido es obligatorio'
+      formErrors.apellido = 'El campo es obligatorio'
     }
     if (!newUserBirthdate.trim()) {
-      formErrors.birthdate = 'El campo fecha de nacimiento es obligatorio'
+      formErrors.birthdate = 'El campo es obligatorio'
     }
     if (!newUserInstrumento.trim()) {
-      formErrors.instrumento = 'El campo de instrumento es obligatorio'
+      formErrors.instrumento = 'El campo es obligatorio'
     }
     if (!newUserProfesor.trim()) {
-      formErrors.profesor = 'El campo de profesor es obligatorio'
+      formErrors.profesor = 'El campo es obligatorio'
     }
     if (!newUserClaseDia.trim()) {
-      formErrors.clase_dia = 'El campo día es obligatorio'
+      formErrors.clase_dia = 'El campo es obligatorio'
     }
     if (!newUserClaseHoraInicio.trim()) {
-      formErrors.clase_hora_inicio = 'El campo hora de inicio es obligatorio'
+      formErrors.clase_hora_inicio = 'El campo es obligatorio'
     }
     if (!newUserClaseDuracion.trim()) {
-      formErrors.clase_duracion = 'El campo duración es obligatorio'
+      formErrors.clase_duracion = 'El campo es obligatorio'
     }
     if (!newUserPagosSaldo.trim()) {
-      formErrors.pagos_saldo = 'El campo saldo es obligatorio'
+      formErrors.pagos_saldo = 'El campo es obligatorio'
     }
     if (!newUserPagosAtualizacion.trim()) {
-      formErrors.pagos_actualizacion = 'El campo actualización es obligatorio'
+      formErrors.pagos_actualizacion = 'El campo es obligatorio'
     }
 
     if (Object.keys(formErrors).length === 0) {
@@ -130,6 +130,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
         }
       }
     }
+    setCambios(true)
     setSendingData(false)
     setErrors(formErrors)
   }
@@ -204,7 +205,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
           />
         </div>
         {errors.nombre && (
-          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.nombre}
           </p>
         )}
@@ -222,7 +223,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
           />
         </div>
         {errors.apellido && (
-          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.apellido}
           </p>
         )}
@@ -234,7 +235,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             E-Mail:
           </label>
           <input
-            placeholder="E-Mail"
+            placeholder="mail@ejemplo.com"
             className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
             id="email"
             name="email"
@@ -244,7 +245,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
           />
         </div>
         {errors.email && (
-          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.email}
           </p>
         )}
@@ -256,7 +257,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             Password:
           </label>
           <input
-            placeholder="Contraseña"
+            placeholder="Mínimo 8 caracteres"
             className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
             id="password"
             name="password"
@@ -267,7 +268,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
           />
         </div>
         {errors.password && (
-          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.password}
           </p>
         )}
@@ -276,7 +277,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             Teléfono:
           </label>
           <input
-            placeholder="Teléfono"
+            placeholder="+54 9 11 56505050"
             className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
             type="tel"
             name="phoneNumber"
@@ -285,7 +286,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
           />
         </div>
         {errors.telefono && (
-          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.telefono}
           </p>
         )}
@@ -294,8 +295,8 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             Fecha de nac.:
           </label>
           <input
-            placeholder="Fecha de nac."
-            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto"
+            placeholder="dd/mm/aaaa"
+            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto appearance-none"
             type="date"
             name="birthdate"
             value={newUserBirthdate}
@@ -303,13 +304,13 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
           />
         </div>
         {errors.birthdate && (
-          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.birthdate}
           </p>
         )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-white">
-            Instr.:
+            Instrumento:
           </label>
           <select
             className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto appearance-none"
@@ -317,16 +318,16 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             value={newUserInstrumento}
             onChange={(e) => setNewUserInstrumento(e.target.value)}
           >
-            <option value="">Seleccione un instrumento</option>
+            <option className='text-[#666666]' value="">Seleccione un instrumento</option>
             {instrumentos.map((instrumento, index) => (
-              <option key={index} value={instrumento}>
+              <option className='text-black' key={index} value={instrumento}>
                 {instrumento}
               </option>
             ))}
           </select>
         </div>
         {errors.instrumento && (
-          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.instrumento}
           </p>
         )}
@@ -340,9 +341,9 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             value={newUserProfesor}
             onChange={(e) => setNewUserProfesor(e.target.value)}
           >
-            <option value="">Seleccione un profesor</option>
+            <option className='text-[#666666]' value="">Seleccione un profesor</option>
             {profesores.map((profesor, index) => (
-              <option key={index} value={profesor.id}>
+              <option className='text-black' key={index} value={profesor.id}>
                 {profesor.usuario.full_name.nombre}{' '}
                 {profesor.usuario.full_name.apellido} / {profesor.instrumento} / {profesor.dias}
               </option>
@@ -350,7 +351,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
           </select>
         </div>
         {errors.profesor && (
-          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.profesor}
           </p>
         )}
@@ -362,16 +363,16 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             value={newUserClaseDia}
             onChange={(e) => setNewUserClaseDia(e.target.value)}
           >
-            <option value="">Seleccione un día</option>
+            <option className='text-[#666666]' value="">Seleccione un día</option>
             {diasSemana.map((dia, index) => (
-              <option key={index} value={dia}>
+              <option className='text-black' key={index} value={dia}>
                 {dia}
               </option>
             ))}
           </select>
         </div>
         {errors.clase_dia && (
-          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.clase_dia}
           </p>
         )}
@@ -385,16 +386,16 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             value={newUserClaseHoraInicio}
             onChange={(e) => setNewUserClaseHoraInicio(e.target.value)}
           >
-            <option value="">Seleccione un horario</option>
+            <option className='text-[#666666]' value="">Seleccione un horario</option>
             {horarios.map((horario, index) => (
-              <option key={index} value={horario}>
+              <option className='text-black' key={index} value={horario}>
                 {horario}
               </option>
             ))}
           </select>
         </div>
         {errors.clase_hora_inicio && (
-          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.clase_hora_inicio}
           </p>
         )}
@@ -408,16 +409,16 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
             value={newUserClaseDuracion}
             onChange={(e) => setNewUserClaseDuracion(e.target.value)}
           >
-            <option value="">Seleccione una duración</option>
+            <option className='text-[#666666]' value="">Seleccione una duración</option>
             {duracionOptions.map((duracion, index) => (
-              <option key={index} value={duracion}>
+              <option className='text-black' key={index} value={duracion}>
                 {duracion} minutos
               </option>
             ))}
           </select>
         </div>
         {errors.clase_duracion && (
-          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.clase_duracion}
           </p>
         )}
@@ -435,7 +436,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
           />
         </div>
         {errors.pagos_saldo && (
-          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.pagos_saldo}
           </p>
         )}
@@ -445,7 +446,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
           </label>
           <input
             placeholder="Actualización de pago"
-            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto"
+            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto appearance-none"
             type="date"
             name="pagos_actualizacion"
             value={newUserPagosAtualizacion}
@@ -453,7 +454,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm }) =>
           />
         </div>
         {errors.pagos_actualizacion && (
-          <p className="ml-auto pr-4 mt-1 text-orange-300 text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.pagos_actualizacion}
           </p>
         )}

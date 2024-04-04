@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react'
-
 import EditorAlumnos from '../components/EditorAlumnos'
 import EditorProfesor from '../components/EditorProfesor'
 import EliminarAlumno from '../components/EliminarAlumno'
 import EliminarProfesor from '../components/EliminarProfesor'
-
 import { useAuth } from '@/lib/firebase/useAuth'
 import { getAllAlumnos, getAllProfesores } from '@/lib/firebase/crud/read'
 
-const Buscador = () => {
+const Buscador = ({ cambios, setCambios }) => {
   const user = useAuth()
   const [alumnos, setAlumnos] = useState([])
   const [profesores, setProfesores] = useState([])
@@ -23,7 +21,7 @@ const Buscador = () => {
     getAllProfesores({ getUsuario: true }).then((data) => {
       setProfesores(data)
     })
-  }, [user, selectedAlumno, selectedProfesor])
+  }, [user, selectedAlumno, selectedProfesor, cambios])
 
   const normalizeString = (str) => {
     return str
@@ -132,12 +130,14 @@ const Buscador = () => {
       {selectedAlumno && (
         <div className="flex flex-col mx-auto sm:px-4 sm:py-2 items-center w-full md:w-4/6 lg:w-3/6">
           <EditorAlumnos
+            setCambios={setCambios}
             profesores={profesores}
             alumno={selectedAlumno}
             setSelectedAlumno={setSelectedAlumno}
             setSelectedProfesor={setSelectedProfesor}
           />
           <EliminarAlumno
+            setCambios={setCambios}
             selectedAlumno={selectedAlumno}
             setSelectedAlumno={setSelectedAlumno}
           />
@@ -160,11 +160,13 @@ const Buscador = () => {
       {selectedProfesor && (
         <div className="flex flex-col mx-auto sm:px-4 sm:py-2 items-center w-full md:w-4/6 lg:w-3/6">
           <EditorProfesor
+            setCambios={setCambios}
             profesor={selectedProfesor}
             setSelectedAlumno={setSelectedAlumno}
             setSelectedProfesor={setSelectedProfesor}
           />
           <EliminarProfesor
+            setCambios={setCambios}
             selectedProfesor={selectedProfesor}
             setSelectedProfesor={setSelectedProfesor}
           />

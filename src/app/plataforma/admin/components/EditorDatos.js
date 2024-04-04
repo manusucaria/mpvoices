@@ -1,7 +1,7 @@
 import { updateUsuarioAlumnoById } from '@/lib/firebase/actions.admin'
 import React, { useState, useEffect } from 'react'
 
-const EditorDatos = ({ alumno, setSelectedAlumno }) => {
+const EditorDatos = ({ alumno, setSelectedAlumno, setCambios }) => {
   const [nombre, setNombre] = useState('')
   const [apellido, setApellido] = useState('')
   const [birthdate, setBirthdate] = useState('')
@@ -43,6 +43,7 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
         usuario: alumno.usuario
       })
       setSelectedAlumno(updatedAlumnoData)
+      setCambios(true)
       setEditMode(false)
       setShowConfirmation(true)
     } catch (error) {
@@ -108,7 +109,7 @@ const EditorDatos = ({ alumno, setSelectedAlumno }) => {
             <div className="flex mb-6">
               <label className="font-bold mr-auto w-2/6">Fecha de nac.:</label>
               <input
-                className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto"
+                className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto appearance-none"
                 type="date"
                 name="fecha"
                 value={birthdate}

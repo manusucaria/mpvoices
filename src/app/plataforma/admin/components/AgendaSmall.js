@@ -6,7 +6,7 @@ import NotificacionAdmin from './NotificacionAdmin.js'
 import { getAllAlumnos, getAllProfesores } from '@/lib/firebase/crud/read.js'
 import { isWithinInterval, addDays } from 'date-fns'
 
-const AgendaSmall = () => {
+const AgendaSmall = ({ cambios }) => {
   const [alumnos, setAlumnos] = useState([])
   const [profesores, setProfesores] = useState([])
   const [selectedDay, setSelectedDay] = useState('')
@@ -16,20 +16,19 @@ const AgendaSmall = () => {
   const [backgroundColorAlpha, setBackgroundColorAlpha] = useState(1)
   const [showNotification, setShowNotification] = useState(false)
   const [selectedAlumno, setSelectedAlumno] = useState()
-  const [notification, setNotification] = useState([])
+  const [notificaciones, setNotificaciones] = useState([])
 
   useEffect(() => {
     (async () => {
       const profesoresData = await getAllProfesores({ getUsuario: true })
       setProfesores(profesoresData)
-
       const alumnosData = await getAllAlumnos({
         getUsuario: true,
         getProfesor: true
       })
       setAlumnos(alumnosData)
     })()
-  }, [selectedDay, selectedAlumno])
+  }, [selectedDay, selectedAlumno, cambios])
 
   const filterAlumnosByDay = (day) => {
     setSelectedDay(day)
@@ -89,6 +88,10 @@ const AgendaSmall = () => {
     setFilteredAlumnos(filtered)
   }, [selectedDay, alumnos])
 
+  useEffect(() => {
+    setBackgroundColorAlpha(1)
+  }, [selectedDay])
+
   const handleNext = () => {
     if (startIndex + 1 < filteredProfesores.length) {
       setStartIndex((prevIndex) => {
@@ -116,7 +119,7 @@ const AgendaSmall = () => {
 
   const handleAlumnoClick = (alumno) => {
     setSelectedAlumno(alumno)
-    setNotification(alumno.clases.notificaciones)
+    setNotificaciones(alumno.clases.notificaciones)
     setShowNotification(true)
   }
 
@@ -187,7 +190,7 @@ const AgendaSmall = () => {
             priority
           />
           <div className="col-start-1 col-end-1 row-start-1 row-end-1 w-full m-auto z-40 flex flex-col">
-            <h2 className="text-center text-3xl m-auto text-white mb-8 sm:mb-6 lg:mb-8 xl:mb-10">
+            <h2 className="text-center text-2xl sm:text-3xl m-auto text-white mb-8 sm:mb-6 lg:mb-8 xl:mb-10">
               Días y horarios
             </h2>
             {diasSemana.map((dia, index) => (
@@ -304,7 +307,7 @@ const AgendaSmall = () => {
                       )
                       .map((alumno) => (
                         <div
-                          key={`${alumno.Nombre}`}
+                          key={`${alumno.id}`}
                           className="flex flex-col h-full w-full text-center border-none"
                           style={{
                             gridColumn:
@@ -317,7 +320,7 @@ const AgendaSmall = () => {
                               horarios.indexOf(alumno.clases.hora_inicio) + 2,
                             gridRowEnd:
                               horarios.indexOf(alumno.clases.hora_inicio) +
-                              3 +
+                              2 +
                               alumno.clases.duracion / 15
                           }}
                         >
@@ -377,12 +380,12 @@ const AgendaSmall = () => {
                                   )}
                             </div>
                           </div>
-                          {showNotification && notification && (
+                          {showNotification && (
                             <NotificacionAdmin
                               alumno={selectedAlumno}
                               setSelectedAlumno={setSelectedAlumno}
-                              notification={notification}
-                              setNotification={setNotification}
+                              notificaciones={notificaciones}
+                              setNotificaciones={setNotificaciones}
                               setShowNotification={setShowNotification}
                             />
                           )}

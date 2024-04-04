@@ -16,8 +16,7 @@ const AgendaProfes = ({ profesor }) => {
   const [showNotification, setShowNotification] = useState(false)
   const [availableDays, setAvailableDays] = useState()
   const [selectedAlumno, setSelectedAlumno] = useState()
-  const [notification, setNotification] = useState([])
-  const [notas, setNotas] = useState([])
+  const [notificaciones, setNotificaciones] = useState([])
 
   useEffect(() => {
     if (profesor && profesor?.dias) {
@@ -37,8 +36,7 @@ const AgendaProfes = ({ profesor }) => {
 
   const handleAlumnoClick = (alumno) => {
     setSelectedAlumno(alumno)
-    setNotification(alumno.clases.notificaciones)
-    setNotas(alumno.notas)
+    setNotificaciones(alumno.clases.notificaciones)
     setShowNotification(true)
   }
 
@@ -59,7 +57,7 @@ const AgendaProfes = ({ profesor }) => {
       })
       setAlumnos(alumnosData)
     })()
-  }, [selectedDay])
+  }, [selectedDay, selectedAlumno])
 
   useEffect(() => {
     const alumnosDelProfesor = alumnos.filter(
@@ -159,7 +157,7 @@ const AgendaProfes = ({ profesor }) => {
             priority
           />
           <div className="col-start-1 col-end-1 row-start-1 row-end-1 w-full m-auto z-40 flex flex-col">
-            <h2 className="text-center text-3xl m-auto text-white mb-8 sm:mb-6 lg:mb-8 xl:mb-10">
+            <h2 className="text-center text-2xl sm:text-3xl m-auto text-white mb-8 sm:mb-6 lg:mb-8 xl:mb-10">
               Días y horarios
             </h2>
             {availableDays
@@ -214,14 +212,14 @@ const AgendaProfes = ({ profesor }) => {
                 </div>
                 {filteredAlumnos.map((alumno) => (
                   <div
-                    key={`${alumno.Nombre}`}
+                    key={`${alumno.id}`}
                     className="flex flex-col h-full w-full text-center border-none"
                     style={{
                       gridRowStart:
                         horarios.indexOf(alumno.clases.hora_inicio) + 2,
                       gridRowEnd:
                         horarios.indexOf(alumno.clases.hora_inicio) +
-                        3 +
+                        2 +
                         alumno.clases.duracion / 15
                     }}
                   >
@@ -281,13 +279,12 @@ const AgendaProfes = ({ profesor }) => {
                             )}
                       </div>
                     </div>
-                    {showNotification && notification && (
+                    {showNotification && (
                       <NotificacionProfe
                         alumno={selectedAlumno}
                         setSelectedAlumno={setSelectedAlumno}
-                        notification={notification}
-                        notas={notas}
-                        setNotification={setNotification}
+                        notificaciones={notificaciones}
+                        setNotificaciones={setNotificaciones}
                         setShowNotification={setShowNotification}
                       />
                     )}

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-
 import { updatePagosAlumno } from '@/lib/firebase/actions.admin'
 
-const EditorPagos = ({ alumno, setSelectedAlumno }) => {
+const EditorPagos = ({ alumno, setSelectedAlumno, setCambios }) => {
   const [saldo, setSaldo] = useState(0)
   const [originalSaldo, setOriginalSaldo] = useState(0)
   const [actualizacion, setActualizacion] = useState('')
@@ -27,6 +26,7 @@ const EditorPagos = ({ alumno, setSelectedAlumno }) => {
         actualizacion
       })
       setSelectedAlumno(updatedAlumnoData)
+      setCambios(true)
       setEditMode(false)
       setShowConfirmation(true)
     } catch (error) {
@@ -76,7 +76,7 @@ const EditorPagos = ({ alumno, setSelectedAlumno }) => {
             <div className="flex mb-6">
               <label className="font-bold mr-auto w-2/6">Actualización:</label>
               <input
-                className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto"
+                className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto appearance-none"
                 type="date"
                 name="actualizacion"
                 value={actualizacion}

@@ -6,7 +6,7 @@ import { diasSemana, horarios } from '@/app/api/data'
 import NotificacionAdmin from './NotificacionAdmin.js'
 import { getAllAlumnos, getAllProfesores } from '@/lib/firebase/crud/read.js'
 
-const AgendaFull = () => {
+const AgendaFull = ({ cambios }) => {
   const [alumnos, setAlumnos] = useState([])
   const [profesores, setProfesores] = useState([])
   const [selectedDay, setSelectedDay] = useState('')
@@ -16,7 +16,7 @@ const AgendaFull = () => {
   const [backgroundColorAlpha, setBackgroundColorAlpha] = useState(1)
   const [showNotification, setShowNotification] = useState(false)
   const [selectedAlumno, setSelectedAlumno] = useState()
-  const [notification, setNotification] = useState([])
+  const [notificaciones, setNotificaciones] = useState([])
 
   useEffect(() => {
     (async () => {
@@ -29,7 +29,7 @@ const AgendaFull = () => {
       })
       setAlumnos(alumnosData)
     })()
-  }, [selectedDay, selectedAlumno])
+  }, [selectedDay, selectedAlumno, cambios])
 
   const filterAlumnosByDay = (day) => {
     setSelectedDay(day)
@@ -89,6 +89,10 @@ const AgendaFull = () => {
     setFilteredAlumnos(filtered)
   }, [selectedDay, alumnos])
 
+  useEffect(() => {
+    setBackgroundColorAlpha(1)
+  }, [selectedDay])
+
   const handleNext = () => {
     if (startIndex + 1 < filteredProfesores.length) {
       setStartIndex((prevIndex) => {
@@ -116,7 +120,7 @@ const AgendaFull = () => {
 
   const handleAlumnoClick = (alumno) => {
     setSelectedAlumno(alumno)
-    setNotification(alumno.clases.notificaciones)
+    setNotificaciones(alumno.clases.notificaciones)
     setShowNotification(true)
   }
 
@@ -184,7 +188,7 @@ const AgendaFull = () => {
             priority
           />
           <div className="col-start-1 col-end-1 row-start-1 row-end-1 w-full m-auto z-40 flex flex-col">
-            <h2 className="text-center text-3xl m-auto text-white mb-8 sm:mb-6 lg:mb-8 xl:mb-10">
+            <h2 className="text-center text-2xl sm:text-3xl m-auto text-white mb-8 sm:mb-6 lg:mb-8 xl:mb-10">
               Días y horarios
             </h2>
             {diasSemana.map((dia, index) => (
@@ -305,7 +309,7 @@ const AgendaFull = () => {
                       )
                       .map((alumno) => (
                         <div
-                          key={`${alumno.usuario.full_name.nombre}`}
+                          key={`${alumno.id}`}
                           className="flex flex-col h-full w-full text-center border-none"
                           style={{
                             gridColumn:
@@ -318,7 +322,7 @@ const AgendaFull = () => {
                               horarios.indexOf(alumno.clases.hora_inicio) + 2,
                             gridRowEnd:
                               horarios.indexOf(alumno.clases.hora_inicio) +
-                              3 +
+                              2 +
                               alumno.clases.duracion / 15
                           }}
                         >
@@ -380,12 +384,12 @@ const AgendaFull = () => {
                                   )}
                             </div>
                           </div>
-                          {showNotification && notification && (
+                          {showNotification && (
                             <NotificacionAdmin
                               alumno={selectedAlumno}
                               setSelectedAlumno={setSelectedAlumno}
-                              notification={notification}
-                              setNotification={setNotification}
+                              notificaciones={notificaciones}
+                              setNotificaciones={setNotificaciones}
                               setShowNotification={setShowNotification}
                             />
                           )}

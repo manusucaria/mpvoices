@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { deleteUserAsAdmin } from '@/lib/firebase/actions.admin'
 
-const EliminarProfesor = ({ selectedProfesor, setSelectedProfesor }) => {
+const EliminarProfesor = ({ selectedProfesor, setSelectedProfesor, setCambios }) => {
   const [showConfirmation, setShowConfirmation] = useState(false)
   const [showDone, setShowDone] = useState(false)
 
@@ -13,6 +13,7 @@ const EliminarProfesor = ({ selectedProfesor, setSelectedProfesor }) => {
   const handleConfirmDelete = async () => {
     try {
       await deleteUserAsAdmin({ uid: selectedProfesor.id })
+      setCambios(true)
       setShowConfirmation(false)
       setShowDone(true)
     } catch (error) {
@@ -35,7 +36,7 @@ const EliminarProfesor = ({ selectedProfesor, setSelectedProfesor }) => {
       {showConfirmation && (
           <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-50 z-50">
             <div className="bg-white p-12 rounded-lg text-center flex flex-col">
-              <p className="text-black text-xl mb-4 font-bold">¿Está seguro de que desea eliminar al profesor?</p>
+              <p className="text-black text-xl mb-4 font-bold">¿Seguro de que desea eliminar al profesor?</p>
               <div className='flex mx-auto gap-x-16'>
                 <button
                   className="text-orange-600 md:hover:text-orange-300 font-bold"

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-
 import { signUp } from '@/lib/firebase/auth'
 import { getRolByName } from '@/lib/firebase/crud/read'
 import { diasSemana, instrumentos } from '@/app/api/data'
 
-const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
+const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm, setCambios }) => {
   const [showDaysOptions, setShowDaysOptions] = useState(false)
   const [selectedDays, setSelectedDays] = useState([])
   const [newUserEmail, setNewUserEmail] = useState('')
@@ -17,7 +16,6 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
   const [newUserBirthdate, setNewUserBirthdate] = useState('')
   const [errors, setErrors] = useState({})
   const [showConfirmation, setShowConfirmation] = useState(false)
-
   const [sendingData, setSendingData] = useState(false)
 
   useEffect(() => {
@@ -56,28 +54,28 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
     const formErrors = {}
 
     if (!newUserEmail.trim()) {
-      formErrors.email = 'El campo de correo electrónico es obligatorio'
+      formErrors.email = 'El campo es obligatorio'
     }
     if (!newUserPassword) {
-      formErrors.password = 'El campo de contraseña es obligatorio'
+      formErrors.password = 'El campo es obligatorio'
     }
     if (!newUserPhoneNumber.trim()) {
-      formErrors.phoneNumber = 'El campo de teléfono es obligatorio'
+      formErrors.phoneNumber = 'El campo es obligatorio'
     }
     if (!newUserNombre.trim()) {
-      formErrors.nombre = 'El campo de nombre es obligatorio'
+      formErrors.nombre = 'El campo es obligatorio'
     }
     if (!newUserApellido.trim()) {
-      formErrors.apellido = 'El campo de apellido es obligatorio'
+      formErrors.apellido = 'El campo es obligatorio'
     }
     if (!newUserBirthdate.trim()) {
-      formErrors.birthdate = 'El campo fecha de nacimiento es obligatorio'
+      formErrors.birthdate = 'El campo es obligatorio'
     }
     if (!selectedDays.join(', ').trim()) {
-      formErrors.dias = 'El campo de días es obligatorio'
+      formErrors.dias = 'El campo es obligatorio'
     }
     if (!newUserInstrumento.trim()) {
-      formErrors.instrumento = 'El campo de instrumento es obligatorio'
+      formErrors.instrumento = 'El campo es obligatorio'
     }
 
     if (Object.keys(formErrors).length === 0) {
@@ -113,7 +111,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
         }
       }
     }
-
+    setCambios(true)
     setSendingData(false)
     setErrors(formErrors)
   }
@@ -188,7 +186,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
           />
         </div>
         {errors.nombre && (
-          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.nombre}
           </p>
         )}
@@ -206,7 +204,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
           />
         </div>
         {errors.apellido && (
-          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.apellido}
           </p>
         )}
@@ -215,8 +213,8 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
             Fecha de nac.:
           </label>
           <input
-            placeholder="Fecha de nac."
-            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto"
+            placeholder="dd/mm/aaaa"
+            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto appearance-none"
             type="date"
             name="birthdate"
             value={newUserBirthdate}
@@ -224,13 +222,13 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
           />
         </div>
         {errors.birthdate && (
-          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.birthdate}
           </p>
         )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-white">
-            Instr.:
+            Instrumento:
           </label>
           <select
             className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto appearance-none"
@@ -238,7 +236,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
             value={newUserInstrumento}
             onChange={(e) => setNewUserInstrumento(e.target.value)}
           >
-            <option value="">Seleccione un instrumento</option>
+            <option className="text-[#666666]" value="">Seleccione un instrumento</option>
             {instrumentos.map((instrumento, index) => (
               <option key={index} value={instrumento}>
                 {instrumento}
@@ -247,7 +245,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
           </select>
         </div>
         {errors.instrumento && (
-          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.instrumento}
           </p>
         )}
@@ -286,7 +284,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
           </div>
         )}
         {errors.dias && (
-          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.dias}
           </p>
         )}
@@ -295,7 +293,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
             Teléfono:
           </label>
           <input
-            placeholder="Teléfono"
+            placeholder="+54 9 11 56505050"
             className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
             type="tel"
             name="phoneNumber"
@@ -304,7 +302,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
           />
         </div>
         {errors.phoneNumber && (
-          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.phoneNumber}
           </p>
         )}
@@ -316,7 +314,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
             E-Mail:
           </label>
           <input
-            placeholder="E-Mail"
+            placeholder="mail@ejemplo.com"
             className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
             id="email"
             type="email"
@@ -325,7 +323,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
           />
         </div>
         {errors.email && (
-          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.email}
           </p>
         )}
@@ -337,7 +335,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
             Password:
           </label>
           <input
-            placeholder="Contraseña"
+            placeholder="Mínimo 8 caracteres"
             className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
             id="password"
             type="text"
@@ -347,7 +345,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm }) => {
           />
         </div>
         {errors.password && (
-          <p className="ml-auto pr-4 mt-1 text-navy-blue-light text-sm">
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.password}
           </p>
         )}

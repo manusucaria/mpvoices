@@ -1,7 +1,6 @@
 import { arrayRemove, arrayUnion, doc, getDoc, updateDoc } from 'firebase/firestore'
 import { format } from 'date-fns'
 import { es } from 'date-fns/locale'
-
 import { db } from '../firebase'
 import { getAlumnoById } from './read'
 
