@@ -1,10 +1,19 @@
-import { arrayRemove, arrayUnion, doc, getDoc, updateDoc } from 'firebase/firestore'
+import {
+  arrayRemove,
+  arrayUnion,
+  doc,
+  getDoc,
+  updateDoc
+} from 'firebase/firestore'
 import { format } from 'date-fns'
 import { es } from 'date-fns/locale'
 import { db } from '../firebase'
 import { getAlumnoById } from './read'
 
-export const updateAlumnoCancelarClase = async (uid, { fecha, hora_inicio, duracion }) => {
+export const updateAlumnoCancelarClase = async (
+  uid,
+  { fecha, hora_inicio, duracion }
+) => {
   try {
     const alumnoRef = doc(db, 'alumnos', uid)
     const alumnoSnap = await getDoc(alumnoRef)
@@ -19,13 +28,11 @@ export const updateAlumnoCancelarClase = async (uid, { fecha, hora_inicio, durac
     ) {
       await updateDoc(alumnoRef, {
         'clases.agendadas': arrayRemove({ fecha, hora_inicio, duracion }),
-        'clases.canceladas': arrayUnion({ fecha, hora_inicio, duracion }),
-        'clases.notificaciones': arrayUnion({ fecha, tipo: 'cancelar' })
+        'clases.canceladas': arrayUnion({ fecha, hora_inicio, duracion })
       })
     } else {
       await updateDoc(alumnoRef, {
-        'clases.agendadas': arrayRemove({ fecha, hora_inicio, duracion }),
-        'clases.notificaciones': arrayUnion({ fecha, tipo: 'cancelar' })
+        'clases.agendadas': arrayRemove({ fecha, hora_inicio, duracion })
       })
     }
 
@@ -35,18 +42,33 @@ export const updateAlumnoCancelarClase = async (uid, { fecha, hora_inicio, durac
     })
     return alumnoUpdated
   } catch (error) {
-    console.log(error)
     throw error
   }
 }
 
-export const updateAlumnoRecuperarClase = async (uid, { fecha, hora_inicio, duracion }) => {
+export const updateAlumnoRecuperarClase = async (
+  uid,
+  { fecha, hora_inicio, duracion, alumno_clase_cancelada_uid }
+) => {
   try {
     const alumnoRef = doc(db, 'alumnos', uid)
+    const alumnoSnap = await (await getDoc(doc(db, 'usuarios', uid))).data()
+
+    const alumnoCanceladoRef = doc(db, 'alumnos', alumno_clase_cancelada_uid)
 
     await updateDoc(alumnoRef, {
-      'clases.agendadas': arrayUnion({ fecha, hora_inicio, duracion }),
-      'clases.notificaciones': arrayUnion({ fecha, tipo: 'recuperar' })
+      'clases.agendadas': arrayUnion({ fecha, hora_inicio, duracion })
+    })
+
+    await updateDoc(alumnoCanceladoRef, {
+      'clases.notificaciones': arrayUnion({
+        fecha,
+        tipo: 'agendada',
+        usuario: {
+          nombre: alumnoSnap.full_name.nombre,
+          apellido: alumnoSnap.full_name.apellido
+        }
+      })
     })
 
     const alumnoUpdated = await getAlumnoById(uid, {
