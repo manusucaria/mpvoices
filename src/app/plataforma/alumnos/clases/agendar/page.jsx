@@ -52,10 +52,12 @@ const page = () => {
             window.location.reload()
           }
           if (
-            !(dataAlumno.clases.agendadas.length <
-              dataAlumno.clases.canceladas.length ||
-            (dataAlumno.clases.agendadas.length === 0 &&
-              dataAlumno.clases.canceladas.length > 0))
+            !(
+              dataAlumno.clases?.agendadas?.length <
+                dataAlumno.clases?.canceladas?.length ||
+              (dataAlumno.clases?.agendadas?.length === 0 &&
+                dataAlumno.clases?.canceladas?.length > 0)
+            )
           ) {
             window.location.href = '/plataforma/alumnos'
           }
@@ -68,18 +70,20 @@ const page = () => {
           const days = []
           const agendedDays = []
           const canceledDays = []
-          alumnosDelProfesorActual.forEach((a) => {
-            a.clases.agendadas.forEach((agendada) => {
+          alumnosDelProfesorActual?.forEach((a) => {
+            a?.clases?.agendadas?.forEach((agendada) => {
               agendedDays.push({
                 ...agendada,
-                fecha: new Date(agendada.fecha.seconds * 1000)
+                fecha: new Date(agendada.fecha.seconds * 1000),
+                alumno: a
               })
             })
-            a.clases.canceladas.forEach((cancelada) => {
+            a?.clases?.canceladas?.forEach((cancelada) => {
               canceledDays.push({
                 fecha: new Date(cancelada.fecha.seconds * 1000),
                 hora_inicio: a.clases.hora_inicio,
-                duracion: a.clases.duracion
+                duracion: a.clases.duracion,
+                alumno: a
               })
             })
           })
@@ -116,7 +120,8 @@ const page = () => {
           days.push({
             fecha: date,
             hora_inicio: day.hora_inicio,
-            duracion: day.duracion
+            duracion: day.duracion,
+            alumno: day.alumno
           })
         }
       })
@@ -144,7 +149,8 @@ const page = () => {
       const newAlumnoData = await updateAlumnoRecuperarClase(alumno.id, {
         fecha: selectedDate.fecha,
         hora_inicio: selectedDate.hora_inicio,
-        duracion: selectedDate.duracion
+        duracion: selectedDate.duracion,
+        alumno_clase_cancelada_uid: selectedDate.alumno.id
       })
       setAlumno(newAlumnoData)
       setShowModal(false)
