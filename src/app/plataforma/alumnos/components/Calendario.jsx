@@ -45,19 +45,19 @@ const Calendario = ({
       }
       date.setDate(date.getDate() + 1)
     }
-    // const agendadas = clases?.agendadas?.map((agendada) => {
-    //   return new Date(agendada.fecha.seconds * 1000).getDate()
-    // })
 
-    const agendadas = clases?.agendadas?.filter((agendada) => {
-      const agendadaDate = new Date(agendada.fecha.seconds * 1000)
-      return agendadaDate.getMonth() === currentMonth.getMonth()
-    }).map((agendada) => {
-      return new Date(agendada?.fecha?.seconds * 1000).getDate()
-    })
+    const agendadas =
+      clases?.agendadas
+        ?.filter((agendada) => {
+          const agendadaDate = new Date(agendada.fecha.seconds * 1000)
+          return agendadaDate.getMonth() === currentMonth.getMonth()
+        })
+        .map((agendada) => {
+          return new Date(agendada?.fecha?.seconds * 1000).getDate()
+        }) || []
 
     setFechasCanceladas(
-      clases.canceladas.map(
+      clases?.canceladas?.map(
         (cancelada) => new Date(cancelada?.fecha?.seconds * 1000)
       )
     )
@@ -87,8 +87,12 @@ const Calendario = ({
   const handleDateClick = (day) => {
     setSelectedDay(null)
     setSelectedDay(day)
-    const selectedDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), day)
-    const agendada = fechasAgendadas.find(
+    const selectedDate = new Date(
+      currentMonth.getFullYear(),
+      currentMonth.getMonth(),
+      day
+    )
+    const agendada = fechasAgendadas?.find(
       (agendada) =>
         new Date(agendada.fecha).getDate() === day &&
         new Date(agendada.fecha).getMonth() === currentMonth.getMonth() &&
@@ -97,7 +101,11 @@ const Calendario = ({
     if (agendada) {
       setSelectedDate(agendada)
     } else {
-      setSelectedDate({ fecha: selectedDate, hora_inicio: clases.hora_inicio, duracion: clases.duracion })
+      setSelectedDate({
+        fecha: selectedDate,
+        hora_inicio: clases.hora_inicio,
+        duracion: clases.duracion
+      })
     }
   }
 
@@ -119,13 +127,13 @@ const Calendario = ({
     const emptyDays = Array.from({ length: firstDayOfMonth }, (i) => null)
 
     return [...emptyDays, ...calendarDays].map((day, i) => {
-      const fechaCancelada = fechasCanceladas.find(
+      const fechaCancelada = fechasCanceladas?.find(
         (cancelada) =>
           cancelada.getDate() === day &&
           cancelada.getMonth() === currentMonth.getMonth() &&
           cancelada.getFullYear() === currentMonth.getFullYear()
       )
-      const fechaAgendada = fechasAgendadas.find(
+      const fechaAgendada = fechasAgendadas?.find(
         (agendada) =>
           new Date(agendada.fecha).getDate() === day &&
           new Date(agendada.fecha).getMonth() === currentMonth.getMonth() &&
@@ -242,7 +250,9 @@ const Calendario = ({
       <p className="w-full text-start flex flex-col items-start justify-start">
         {selectedDate && (
           <>
-            <span>{format(selectedDate.fecha, 'EEEE d MMMM', { locale: es })}</span>
+            <span>
+              {format(selectedDate.fecha, 'EEEE d MMMM', { locale: es })}
+            </span>
             <span>{selectedDate.hora_inicio} hs</span>
             <span>{selectedDate.duracion} minutos</span>
           </>
