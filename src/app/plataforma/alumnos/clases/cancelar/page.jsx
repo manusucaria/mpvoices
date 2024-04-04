@@ -91,7 +91,7 @@ const page = () => {
         button={
           <Button
             text={'Cancelar clase'}
-            mode={!selectedDate ? 'disabled' : ''}
+            mode={!selectedDate ? 'disabled-light' : ''}
             onClick={() => setShowModal(true)}
             disabled={!selectedDate}
             hasACallback
