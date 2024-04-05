@@ -140,7 +140,7 @@ const AgendaFull = ({ cambios }) => {
   }
 
   return (
-    <div id="Agenda" className="hidden md:flex md:flex-col bg-[#212121]">
+    <div id="Agenda" className="hidden md:flex md:flex-col lg:hidden bg-[#212121]">
       {selectedDay
         ? (
         <div className="flex justify-center mb-4 pt-8 bg-[#212121]">
