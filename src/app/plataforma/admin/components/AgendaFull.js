@@ -170,9 +170,9 @@ const AgendaFull = ({ cambios }) => {
               Días y horarios
             </h2>
             <p className="my-auto mx-4 sm:mx-8">|</p>
-            <p className="text-orange-300 my-auto lg:mt-1 text-xl sm:text-2xl">
+            <h2 className="text-orange-300 my-auto lg:mt-1 text-xl sm:text-2xl">
               {selectedDay}
-            </p>
+            </h2>
           </div>
         </div>
           )
