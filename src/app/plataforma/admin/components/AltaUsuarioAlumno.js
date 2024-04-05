@@ -169,13 +169,13 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm, setC
           </svg>
         </div>
         <div className="my-auto flex ml-4">
-          <h3 className="text-white my-auto text-xl sm:text-2xl">
+          <h2 className="text-white my-auto text-xl sm:text-2xl">
             Nuevos usuarios
-          </h3>
+          </h2>
           <p className="text-white my-auto mx-2">|</p>
-          <p className="text-orange-300 my-auto lg:mt-1 text-xl sm:text-2xl">
+          <h2 className="text-orange-300 my-auto lg:mt-1 text-xl sm:text-2xl">
             Alta alumno
-          </p>
+          </h2>
         </div>
       </div>
       <form

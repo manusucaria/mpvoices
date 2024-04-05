@@ -127,9 +127,9 @@ const AgendaProfes = ({ profesor }) => {
             </svg>
           </div>
           <div className="my-auto flex ml-4 sm:ml-8 mb-4">
-            <h3 className="text-white my-auto text-xl sm:text-2xl">
+            <h2 className="text-white my-auto text-xl sm:text-2xl">
               Días y horarios
-            </h3>
+            </h2>
             <p className="my-auto mx-4 sm:mx-8">|</p>
             <p className="text-orange-300 my-auto pt-1 text-xl sm:text-2xl">
               {selectedDay.toLowerCase()}
