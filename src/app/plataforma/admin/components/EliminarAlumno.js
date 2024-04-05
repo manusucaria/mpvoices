@@ -40,7 +40,7 @@ const EliminarAlumno = ({ selectedAlumno, setSelectedAlumno, setCambios }) => {
         Eliminar alumno
       </button>
       {showConfirmation && (
-        <div className='fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-50 z-50'>
+        <div className='fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-80 z-50'>
           <div className='bg-white p-12 rounded-lg text-center flex flex-col'>
             <p className='text-black text-xl mb-4 font-bold'>
               ¿Seguro de que desea eliminar al alumno?
@@ -63,7 +63,7 @@ const EliminarAlumno = ({ selectedAlumno, setSelectedAlumno, setCambios }) => {
         </div>
       )}
       {showDone && (
-        <div className='fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-50 z-50'>
+        <div className='fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-80 z-50'>
           <div className='bg-white p-12 rounded-lg text-center flex flex-col'>
             <p className='text-black text-xl mb-4 font-bold'>
               Alumno eliminado correctamente.

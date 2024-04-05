@@ -23,7 +23,7 @@ const NotificacionProfe = ({
   })
 
   return (
-      <div className='fixed top-0 left-0 w-full h-full flex justify-center items-center px-3 bg-[#0D0D0D] bg-opacity-30 z-[100]'>
+      <div className='fixed top-0 left-0 w-full h-full flex justify-center items-center px-3 bg-black bg-opacity-80 z-50'>
           {showingNotifications
             ? <div className='rounded-lg p-12 h-auto w-[90%] min-[490px]:w-4/6 md:w-3/6 lg:w-2/6 mx-auto flex flex-col bg-[#FFFFFF]'>
               <svg className='mx-auto mb-4 w-6 h-6' width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
