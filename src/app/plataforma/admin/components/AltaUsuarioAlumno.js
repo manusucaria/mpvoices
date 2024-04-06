@@ -519,7 +519,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm, setC
               ¡La cuenta se creó con éxito!
             </p>
             <button
-              className="text-orange-600 md:hover:text-[#DB9B6D] ml-auto font-bold"
+              className="text-orange-600 md:hover:text-[#DB9B6D] mx-auto font-bold"
               onClick={handleCloseConfirmation}
             >
               Entendido

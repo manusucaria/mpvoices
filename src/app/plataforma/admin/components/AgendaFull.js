@@ -343,7 +343,7 @@ const AgendaFull = ({ cambios }) => {
                                 alumno.clases.hora_inicio,
                                 alumno.clases.duracion
                               )}
-                              hs
+                              {' '}hs
                             </p>
                             <div className="ms-auto pb-2 pe-2 sm:pe-4">
                               {alumno &&

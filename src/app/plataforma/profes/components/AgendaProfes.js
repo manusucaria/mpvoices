@@ -5,7 +5,7 @@ import alasSmall from '@/app/assets/alasSmall.jpg'
 import alas from '@/app/assets/alas.jpg'
 import { horarios, diasSemana } from '@/app/api/data'
 import { getAllAlumnos } from '@/lib/firebase/crud/read'
-import NotificacionProfe from '../../admin/components/NotificacionProfe'
+import NotificacionProfe from './NotificacionProfe'
 import { isWithinInterval, addDays } from 'date-fns'
 
 const AgendaProfes = ({ profesor }) => {

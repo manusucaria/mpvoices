@@ -224,7 +224,7 @@ const EditorDatos = ({ alumno, setSelectedAlumno, setCambios }) => {
               Los cambios se guardaron correctamente.
             </p>
             <button
-              className="text-orange-600 md:hover:text-orange-300 ml-auto font-bold"
+              className="text-orange-600 md:hover:text-orange-300 mx-auto font-bold"
               onClick={handleCloseConfirmation}
             >
               Entendido
