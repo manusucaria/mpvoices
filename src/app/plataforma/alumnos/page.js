@@ -66,8 +66,8 @@ const page = () => {
       >
         <p className="w-full">Instrumento: {alumno.instrumento}</p>
         <p className="w-full">Días: {alumno.clases.dia}</p>
-        <p className="w-full">Horario: {alumno.clases.hora_inicio}hs</p>
-        <p className="w-full">Duración: {alumno.clases.duracion}minutos</p>
+        <p className="w-full">Horario: {alumno.clases.hora_inicio} hs</p>
+        <p className="w-full">Duración: {alumno.clases.duracion} minutos</p>
         <p className="w-full">
           Profesor: {alumno.profesor.usuario.full_name.nombre}
         </p>

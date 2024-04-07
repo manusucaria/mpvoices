@@ -127,7 +127,7 @@ const page = () => {
         <Modal
           callback={handleCancelarClase}
           isOpen={showModal}
-          leggend="¿Estás seguro que querés cancelar la clase?"
+          leggend="¿Seguro querés cancelar la clase?"
           onClose={() => setShowModal(false)}
         />
       </CardContainer>
