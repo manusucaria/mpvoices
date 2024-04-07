@@ -12,7 +12,8 @@ const Calendario = ({
   selectedDate,
   setSelectedDate,
   selectedDay,
-  setSelectedDay
+  setSelectedDay,
+  setAlumnoClaseCanceladaUid
 }) => {
   const [currentMonth, setCurrentMonth] = useState(new Date())
   const [highlightedDays, setHighlightedDays] = useState([])
@@ -99,6 +100,7 @@ const Calendario = ({
         new Date(agendada.fecha).getFullYear() === currentMonth.getFullYear()
     )
     if (agendada) {
+      setAlumnoClaseCanceladaUid(agendada.alumno_clase_cancelada.id)
       setSelectedDate(agendada)
     } else {
       setSelectedDate({

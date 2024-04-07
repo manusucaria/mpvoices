@@ -24,6 +24,7 @@ const page = () => {
   const [dayOfWeek, setDayOfWeek] = useState(null)
   const [selectedDate, setSelectedDate] = useState(null)
   const [selectedDay, setSelectedDay] = useState(null)
+  const [alumnoClaseCanceladaUid, setAlumnoClaseCanceladaUid] = useState(null)
   const [showModal, setShowModal] = useState(false)
   const [loading, setLoading] = useState(true)
   const [success, setSuccess] = useState(false)
@@ -60,7 +61,8 @@ const page = () => {
       const newAlumnoData = await updateAlumnoCancelarClase(user.uid, {
         fecha: selectedDate.fecha,
         duracion: selectedDate.duracion,
-        hora_inicio: selectedDate.hora_inicio
+        hora_inicio: selectedDate.hora_inicio,
+        alumno_clase_agendada_uid: alumnoClaseCanceladaUid
       })
       setAlumno(newAlumnoData)
       setShowModal(false)
@@ -105,6 +107,7 @@ const page = () => {
           setSelectedDate={setSelectedDate}
           selectedDay={selectedDay}
           setSelectedDay={setSelectedDay}
+          setAlumnoClaseCanceladaUid={setAlumnoClaseCanceladaUid}
         />
 
         {error && <p className="text-orange-600">{error.message}</p>}
