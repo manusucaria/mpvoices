@@ -20,7 +20,7 @@ const EditorAlumnos = ({ alumno, setSelectedAlumno, setSelectedProfesor, profeso
       <div className='flex flex-col w-full mx-auto'>
         <div className='w-full flex justify-center pb-6 sm:pb-8 mx-auto gap-x-4 sm:gap-x-6 pt-4 lg:pt-6'>
           <div className="my-auto ml-auto pt-[0.5px] xl:pt-1">
-            <svg className='hover:cursor-pointer stroke-white md:hover:stroke-orange-600' onClick={() => volver()} width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg className='hover:cursor-pointer stroke-white md:hover:stroke-orange-300' onClick={() => volver()} width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g id="iconamoon:arrow-up-2-light">
                 <path id="Vector" d="M19.8333 9.22572L12.75 15.8155L19.8333 22.4053" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </g>

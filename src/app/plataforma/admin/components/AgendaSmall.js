@@ -168,13 +168,13 @@ const AgendaSmall = ({ cambios }) => {
             </svg>
           </div>
           <div className="my-auto flex ml-4 sm:ml-8">
-            <h3 className="text-white my-auto text-xl sm:text-2xl">
+            <h2 className="text-white my-auto text-xl sm:text-2xl">
               Días y horarios
-            </h3>
+            </h2>
             <p className="my-auto mx-4 sm:mx-8">|</p>
-            <p className="text-orange-300 my-auto mt-1 lg:mt-1 text-xl sm:text-2xl">
+            <h2 className="text-orange-300 my-auto mt-1 lg:mt-1 text-xl sm:text-2xl">
               {selectedDay}
-            </p>
+            </h2>
           </div>
         </div>
           )
@@ -341,7 +341,7 @@ const AgendaSmall = ({ cambios }) => {
                                 alumno.clases.hora_inicio,
                                 alumno.clases.duracion
                               )}
-                              hs
+                              {' '}hs
                             </p>
                             <div className="ms-auto pb-2 pe-2 sm:pe-4">
                               {alumno &&

@@ -150,13 +150,13 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm, setCambios }) =
           </svg>
         </div>
         <div className="my-auto flex ml-4">
-          <h3 className="text-white my-auto text-xl sm:text-2xl">
+          <h2 className="text-white my-auto text-xl sm:text-2xl">
             Nuevos usuarios
-          </h3>
+          </h2>
           <p className="text-white my-auto mx-2">|</p>
-          <p className="text-navy-blue-light my-auto lg:mt-1 text-xl sm:text-2xl">
+          <h2 className="text-navy-blue-light my-auto lg:mt-1 text-xl sm:text-2xl">
             Alta profesor
-          </p>
+          </h2>
         </div>
       </div>
       <form
@@ -391,7 +391,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm, setCambios }) =
         </div>
       </form>
       {showConfirmation && (
-        <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-gray-800 bg-opacity-50 z-50">
+        <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-80 z-50">
           <div className="bg-white p-12 rounded-lg text-center flex flex-col">
             <svg
               className="mx-auto"
@@ -410,7 +410,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm, setCambios }) =
               ¡La cuenta se creó con éxito!
             </p>
             <button
-              className="text-orange-600 md:hover:text-orange-300 ml-auto font-bold"
+              className="text-orange-600 md:hover:text-orange-300 mx-auto font-bold"
               onClick={handleCloseConfirmation}
             >
               Entendido
