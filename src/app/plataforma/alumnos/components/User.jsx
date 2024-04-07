@@ -66,6 +66,9 @@ const User = ({ children }) => {
         >
           ¡Hola {alumno?.usuario?.full_name?.nombre}!
         </h1>
+        <h2 className="text-[1.6rem] sm:text-4xl text-center px-4">
+          Te damos la bienvenida a la Plataforma Voices
+        </h2>
       </div>
       <div className="bg-black-light w-full">{children}</div>
       <div className="bg-black-light w-full grid grid-cols-1">
