@@ -153,7 +153,7 @@ const Calendario = ({
             ' font-black text-orange-300 hover:bg-orange-600 hover:bg-opacity-40 pointer-events-auto'
         }
         if (fechaCancelada) {
-          buttonClass += ' bg-white text-black font-black'
+          buttonClass += ' bg-orange-300 text-black font-black'
         }
         if (fechaAgendada && !isSelected) {
           buttonClass +=
@@ -253,7 +253,7 @@ const Calendario = ({
         {selectedDate && (
           <>
             <span>
-              {format(selectedDate.fecha, 'EEEE d MMMM', { locale: es })}
+              {format(selectedDate.fecha, "EEEE d 'de' MMMM", { locale: es })}
             </span>
             <span>{selectedDate.hora_inicio} hs</span>
             <span>{selectedDate.duracion} minutos</span>
