@@ -233,7 +233,7 @@ const page = () => {
           ? (
           <div className="w-full flex flex-col gap-5 items-start justify-start pb-10 border-b-1">
             <p className="w-full">Instrumento: {alumno.instrumento}</p>
-            <p className="w-full">Días: {alumno.clases.dia}</p>
+            <p className="w-full">Día: {format(selectedDate.fecha, "EEEE d 'de' MMMM", { locale: es })}</p>
             <p className="w-full">Horario: {alumno.clases.hora_inicio} hs</p>
             <p className="w-full">Duración: {alumno.clases.duracion} minutos</p>
             <p className="w-full">
