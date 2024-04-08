@@ -200,7 +200,7 @@ const page = () => {
           !success && (
             <p className="w-full border-b-1 py-2">
               Clases disponibles |{' '}
-              <span className="text-orange-600">
+              <span className="text-orange-300">
                 {alumno.profesor.instrumento} | Profesor{' '}
                 {alumno.profesor.usuario.full_name.nombre}
               </span>
@@ -292,36 +292,37 @@ const page = () => {
               </li>
             </ul>
             <div className="w-full flex flex-col gap-5 items-start justify-start">
-              {highlightedDays.length > 0 &&
-                highlightedDays.map((day, index) => (
-                  <div key={index} className="w-full flex items-start gap-4 ">
-                    <input
-                      value={day}
-                      name="dia"
-                      type="radio"
-                      checked={
-                        isSelectedDay &&
-                        selectedDate.fecha.getDate() ===
-                          new Date(day.fecha).getDate()
-                      }
-                      className="w-4 h-4 rounded-full text-orange-600 bg-black border-gray-500 focus:ring-orange-600 focus:ring-2"
-                      onChange={() => handleDateClick(day)}
-                    />
-                    <label
-                      className="text-sm font-medium flex flex-col gap-1 items-start justify-start"
-                      htmlFor={`dia-${index}`}
-                    >
-                      <span>
-                        Día:{' '}
-                        {format(new Date(day.fecha), 'd MMMM yyyy', {
-                          locale: es
-                        })}
-                      </span>
-                      <span>Horario: {day.hora_inicio} hs</span>
-                      <span>Duración: {day.duracion} minutos</span>
-                    </label>
-                  </div>
-                ))}
+              {highlightedDays.length > 0
+                ? highlightedDays.map((day, index) => (
+                    <div key={index} className="w-full flex items-start gap-4 ">
+                      <input
+                        value={day}
+                        name="dia"
+                        type="radio"
+                        checked={
+                          isSelectedDay &&
+                          selectedDate.fecha.getDate() ===
+                            new Date(day.fecha).getDate()
+                        }
+                        className="w-4 h-4 rounded-full text-orange-600 bg-black border-gray-500 focus:ring-orange-600 focus:ring-2"
+                        onChange={() => handleDateClick(day)}
+                      />
+                      <label
+                        className="text-sm font-medium flex flex-col gap-1 items-start justify-start"
+                        htmlFor={`dia-${index}`}
+                      >
+                        <span>
+                          Día:{' '}
+                          {format(new Date(day.fecha), 'd MMMM yyyy', {
+                            locale: es
+                          })}
+                        </span>
+                        <span>Horario: {day.hora_inicio} hs</span>
+                        <span>Duración: {day.duracion} minutos</span>
+                      </label>
+                    </div>
+                ))
+                : 'No hay clases por mostrar'}
             </div>
 
             {error && <p className="text-orange-600">{error.message}</p>}
