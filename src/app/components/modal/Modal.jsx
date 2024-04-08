@@ -30,11 +30,11 @@ const Modal = ({
                 </svg>
               </div>
             )}
-            <p className={`text-center text-xl pb-5 ${openSans600.className}`}>
+            <p className={`Text-balanced text-center text-xl pb-5 ${openSans600.className}`}>
               {leggend}
             </p>
             <div
-              className={`text-orange-600 flex justify-end gap-14 mt-4 ${openSans800.className}`}
+              className={`text-orange-600 flex justify-center gap-14 mt-4 ${openSans800.className}`}
             >
               {callback && (
                 <button className="hover:text-orange-300" onClick={callback}>
