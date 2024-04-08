@@ -20,7 +20,7 @@ const Menu = ({ handleLogOut }) => {
           <svg className='fill-white mx-auto group-hover:fill-orange-300 mb-4' width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M7.99613 16C12.3809 16 16 12.3791 16 8C16 3.62089 12.3731 0 7.9884 0C3.61141 0 0 3.62089 0 8C0 12.3791 3.61914 16 7.99613 16ZM7.99613 14.4062C4.44659 14.4062 1.60851 11.5513 1.60851 8C1.60851 4.44874 4.44659 1.60155 7.9884 1.60155C11.5379 1.60155 14.3915 4.44874 14.3992 8C14.407 11.5513 11.5457 14.4062 7.99613 14.4062ZM4.0986 8.97486H7.9884C8.34413 8.97486 8.61479 8.70406 8.61479 8.3559V3.29594C8.61479 2.94778 8.34413 2.67698 7.9884 2.67698C7.64814 2.67698 7.37748 2.94778 7.37748 3.29594V7.73694H4.0986C3.7506 7.73694 3.47994 8.00774 3.47994 8.3559C3.47994 8.70406 3.7506 8.97486 4.0986 8.97486Z"/>
           </svg>
-          <span className='mx-auto text-white text-base group-hover:text-orange-300'>Dias y horarios</span>
+          <span className='mx-auto text-white text-base group-hover:text-orange-300'>Días y horarios</span>
         </a>
       </div>
       <div className='mx auto flex flex-col'>
