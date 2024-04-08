@@ -61,7 +61,7 @@ const Aside = () => {
         </li>
       </ul>
       <Modal
-        leggend="¿Estás segur@ que deseas cerrar sesión?"
+        leggend="¿Seguro querés cerrar sesión?"
         isOpen={isModalOpen}
         onClose={() => setModalOpen(false)}
         callback={handleLogout}
