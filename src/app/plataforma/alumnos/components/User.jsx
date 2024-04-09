@@ -86,7 +86,7 @@ const User = ({ children }) => {
               }`}
             >
               Clases a recuperar:{' '}
-              {clasesAgendadasQuantity - clasesCanceladasQuantity}
+              {clasesCanceladasQuantity - clasesAgendadasQuantity}
             </p>
             {clasesCanceladasQuantity > clasesAgendadasQuantity
               ? (
