@@ -62,7 +62,7 @@ const User = ({ children }) => {
     <>
       <div className="w-full py-12">
         <h1
-          className={`text-3xl sm:text-5xl text-center ${playfair600.className}`}
+          className={`text-3xl sm:text-5xl text-center mb-4 ${playfair600.className}`}
         >
           ¡Hola {alumno?.usuario?.full_name?.nombre}!
         </h1>
