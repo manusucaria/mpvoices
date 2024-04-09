@@ -185,7 +185,7 @@ const Calendario = ({
       <div className="w-80">
         <ul className="text-sm text-white text-opacity-50 flex flex-col gap-2">
           <li className="flex gap-2">
-            <span className="bg-white w-5 h-5 rounded-full"></span>Clases
+            <span className="bg-orange-300 w-5 h-5 rounded-full"></span>Clases
             canceladas
           </li>
           <li className="flex gap-2">
