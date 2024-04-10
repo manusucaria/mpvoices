@@ -312,6 +312,7 @@ const page = () => {
                     </div>
                 ))
                 : 'No hay clases por mostrar'}
+                <p className='text-orange-300'>Nota: sólo se mostrarán clases canceladas por otros alumnos.</p>
             </div>
 
             {error && <p className="text-orange-600">{error.message}</p>}
