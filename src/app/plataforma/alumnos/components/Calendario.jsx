@@ -185,12 +185,12 @@ const Calendario = ({
       <div className="w-80">
         <ul className="text-sm text-white text-opacity-50 flex flex-col gap-2">
           <li className="flex gap-2">
-            <span className="bg-orange-300 w-5 h-5 rounded-full"></span>Clases
-            canceladas
+            <span className="bg-orange-300 w-5 h-5 rounded-full"></span>
+            Tus clases canceladas
           </li>
           <li className="flex gap-2">
             <span className="bg-navy-blue-light w-5 h-5 rounded-full"></span>
-            Clases agendadas
+            Tus clases a recuperar
           </li>
         </ul>
         <ul className="bg-black text-white w-full py-1 rounded-t-md flex items-center justify-between">
