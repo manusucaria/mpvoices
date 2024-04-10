@@ -19,7 +19,7 @@
     @apply bg-white text-black pointer-events-none opacity-70;
   }
   &-signOut {
-    @apply bg-white text-black border border-orange-600 hover:text-orange-600 hover:opacity-100;
+    @apply bg-white text-black border-2 border-orange-600 hover:text-orange-600 hover:opacity-100;
   }
 
   &-alter {
