@@ -260,7 +260,7 @@ const AgendaFullScreen = ({ cambios }) => {
           </div>
           <div className="grid grid-cols-[8%_23%_23%_23%_23%] grid-rows-45 border-y-[0.5px] sm:border-y-1 border-y-black border-l-[0.5px] sm:border-l-1 border-l-black">
             <div className="bg-orange-600 h-9 sm:h-12 text-center col-start-1 col-end-2 row-start-1 row-end-2 flex border-b-[0.5px] sm:border-b-1 border-b-black">
-              <p className="text-md sm:text-md md:text-base m-auto text-white">
+              <p className="text-[0.9rem] m-auto text-white">
                 Hora
               </p>
             </div>
@@ -273,7 +273,7 @@ const AgendaFullScreen = ({ cambios }) => {
                     : 'border-b-[0.5px] sm:border-b-1 border-b-black'
                 }`}
               >
-                <p className="text-md sm:text-md md:text-base m-auto text-black">
+                <p className="text-[0.9rem] m-auto text-black">
                   {time}
                 </p>
               </div>
