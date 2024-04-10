@@ -150,7 +150,7 @@ const Calendario = ({
       if (day !== null) {
         if (isHighlighted && !fechaCancelada && !fechaAgendada && !isSelected) {
           buttonClass +=
-            ' font-black text-orange-300 hover:bg-orange-600 hover:bg-opacity-40 pointer-events-auto'
+            ' font-black text-navy-blue-light hover:bg-orange-600 hover:bg-opacity-40 pointer-events-auto'
         }
         if (fechaCancelada) {
           buttonClass += ' bg-orange-300 text-black font-black'
