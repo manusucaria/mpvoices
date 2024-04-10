@@ -297,7 +297,7 @@ const AgendaFull = ({ cambios }) => {
                       className="flex row-start-1 row-end-2 h-9 sm:h-12 text-sm border-b-[0.5px] sm:border-b-1 border-b-black"
                     >
                       <p className="text-md sm:text-md md:text-base m-auto">
-                        Profesor: {profesor.usuario.full_name.nombre} /{' '}
+                        {profesor.usuario.full_name.nombre} /{' '}
                         {profesor.instrumento}
                       </p>
                     </div>
