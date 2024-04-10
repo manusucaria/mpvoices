@@ -111,7 +111,7 @@ const User = ({ children }) => {
                 )}
           </div>
         </div>
-        <div className="bg-black-light w-full pt-10 pb-32 flex items-center justify-center">
+        <div className="bg-black-light w-full p-10 pb-32 flex items-center justify-center">
           <Button
             text="Cerrar sesión"
             mode="signOut"
