@@ -12,8 +12,11 @@ import Loader from '@/app/components/loader/Loader'
 import Button from '@/app/components/button/Button'
 import Modal from '@/app/components/modal/Modal'
 
+import useClasesSubscription from '../useClasesSubscription'
+
 const User = ({ children }) => {
   const user = useAuth()
+  const { clases } = useClasesSubscription(user?.uid)
 
   const [alumno, setAlumno] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -33,7 +36,7 @@ const User = ({ children }) => {
       setLoading(true)
       try {
         window.scrollTo(0, 0)
-        if (user) {
+        if (user && clases) {
           const dataAlumno =
             user?.uid && (await getAlumnoById(user?.uid, { getUsuario: true }))
           if (!dataAlumno) {
@@ -42,10 +45,10 @@ const User = ({ children }) => {
           }
           setAlumno(dataAlumno)
           setClasesCanceladasQuantity(
-            dataAlumno?.clases?.canceladas?.length || 0
+            clases?.canceladas || 0
           )
           setClasesAgendadasQuantity(
-            dataAlumno?.clases?.agendadas?.length || 0
+            clases?.agendadas || 0
           )
           setLoading(false)
         }
@@ -54,7 +57,7 @@ const User = ({ children }) => {
         window.location.reload()
       }
     })()
-  }, [user])
+  }, [user, clases])
 
   if (loading) return <Loader />
 
