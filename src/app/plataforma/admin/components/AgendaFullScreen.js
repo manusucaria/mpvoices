@@ -296,7 +296,7 @@ const AgendaFullScreen = ({ cambios }) => {
                       }}
                       className="flex row-start-1 row-end-2 h-9 sm:h-12 text-sm border-b-[0.5px] sm:border-b-1 border-b-black"
                     >
-                      <p className="text-sm m-auto">
+                      <p className="text-[0.9rem] m-auto">
                         Profesor: {profesor.usuario.full_name.nombre} /{' '}
                         {profesor.instrumento}
                       </p>
@@ -333,11 +333,11 @@ const AgendaFullScreen = ({ cambios }) => {
                                   : 'bg-[#ACFDB2]'
                               }`}
                             >
-                            <p className="text-base mt-auto font-bold pt-2 text-black">
+                            <p className="text-[0.9rem] mt-auto font-bold pt-2 text-black">
                               Alumno: {alumno.usuario.full_name.nombre}{' '}
                               {alumno.usuario.full_name.apellido}
                             </p>
-                            <p className="text-base mb-auto text-black">
+                            <p className="text-[0.9rem] mb-auto text-black">
                               {alumno.instrumento} {alumno.clases.hora_inicio}-
                               {calcularNuevoHorario(
                                 alumno.clases.hora_inicio,
