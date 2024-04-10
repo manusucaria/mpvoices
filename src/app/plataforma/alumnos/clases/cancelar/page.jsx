@@ -110,7 +110,7 @@ const page = () => {
           setAlumnoClaseCanceladaUid={setAlumnoClaseCanceladaUid}
         />
 
-        {error && <p className="text-orange-600">{error.message}</p>}
+        {error && <p className="text-orange-300">{error.message}</p>}
         {success && (
           <Modal
             isOpen={success}
