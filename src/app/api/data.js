@@ -23,7 +23,7 @@ export const diasSemana = ['lunes', 'martes', 'miércoles', 'jueves', 'viernes']
 
 export const instrumentos = [
   'Violin', 'Viola', 'Cello', 'Contrabajo', 'Bajo', 'Piano', 'Guitarra',
-  'Batería', 'Ukelele', 'Canto', 'Iniciación musical', 'Ensamble vocal', 'Ensamble',
+  'Batería', 'Ukelele', 'Canto', 'Inic. musical', 'Ensamble vocal', 'Ensamble',
   'Dúo de canto', 'Trío de canto', 'Cuarteto de canto', 'Bandoneón', 'Saxo',
-  'Trompeta', 'Composición', 'Producción', 'Profesorado de canto', 'Arpa'
+  'Trompeta', 'Composición', 'Producción', 'Prof. de canto', 'Arpa'
 ].sort()

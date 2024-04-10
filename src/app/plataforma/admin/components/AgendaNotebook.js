@@ -6,7 +6,7 @@ import { diasSemana, horarios } from '@/app/api/data'
 import NotificacionAdmin from './NotificacionAdmin.js'
 import { getAllAlumnos, getAllProfesores } from '@/lib/firebase/crud/read.js'
 
-const AgendaFullScreen = ({ cambios }) => {
+const AgendaNotebook = ({ cambios }) => {
   const [alumnos, setAlumnos] = useState([])
   const [profesores, setProfesores] = useState([])
   const [selectedDay, setSelectedDay] = useState('')
@@ -97,7 +97,7 @@ const AgendaFullScreen = ({ cambios }) => {
     if (startIndex + 1 < filteredProfesores.length) {
       setStartIndex((prevIndex) => {
         setBackgroundColorAlpha(backgroundColorAlpha - 0.07)
-        return prevIndex + 4
+        return prevIndex + 3
       })
     }
   }
@@ -105,7 +105,7 @@ const AgendaFullScreen = ({ cambios }) => {
   const handlePrev = () => {
     setBackgroundColorAlpha(backgroundColorAlpha + 0.07)
     setStartIndex((prevIndex) => {
-      return Math.max(prevIndex - 4, 0)
+      return Math.max(prevIndex - 3, 0)
     })
   }
 
@@ -140,7 +140,7 @@ const AgendaFullScreen = ({ cambios }) => {
   }
 
   return (
-    <div id="Agenda" className="hidden xl:flex xl:flex-col bg-[#212121]">
+    <div id="Agenda" className="hidden lg:flex lg:flex-col xl:hidden bg-[#212121]">
       {selectedDay
         ? (
         <div className="flex justify-center mb-4 pt-8 bg-[#212121]">
@@ -207,7 +207,7 @@ const AgendaFullScreen = ({ cambios }) => {
           )}
       {selectedDay && (
         <div className="flex flex-col overflow-x-auto mx-auto w-full px-2 md:w-5/6 mb-12 bg-[#212121]">
-          <div className="grid grid-cols-5 mt-4 h-12 bg-white rounded-t-2xl border-r-[0.5px] sm:border-r-[2px] border-r-black border-l-[0.5px] sm:border-l-1 border-l-black border-t-[0.5px] sm:border-t-1 border-t-black">
+          <div className="grid grid-cols-4 mt-4 h-12 bg-white rounded-t-2xl border-r-[0.5px] sm:border-r-[2px] border-r-black border-l-[0.5px] sm:border-l-1 border-l-black border-t-[0.5px] sm:border-t-1 border-t-black">
             {filteredProfesoresSorted.length >= 3 && startIndex > 0 && (
               <div className="flex col-start-1 col-end-2 mr-auto ml-4">
                 <svg
@@ -231,11 +231,11 @@ const AgendaFullScreen = ({ cambios }) => {
                 </svg>
               </div>
             )}
-            <h3 className="text-black col-start-2 col-end-5 mx-auto my-auto font-bold text-lg">
+            <h3 className="text-black col-start-2 col-end-4 mx-auto my-auto font-bold text-lg">
               {selectedDay}
             </h3>
             {startIndex + 2 < filteredProfesoresSorted.length && (
-              <div className="flex col-start-5 col-end-6 ml-auto mr-4">
+              <div className="flex col-start-4 col-end-5 ml-auto mr-4">
                 <svg
                   onClick={handleNext}
                   className="stroke-black md:hover:stroke-orange-600 m-auto md:hover:cursor-pointer"
@@ -258,9 +258,9 @@ const AgendaFullScreen = ({ cambios }) => {
               </div>
             )}
           </div>
-          <div className="grid grid-cols-[8%_23%_23%_23%_23%] grid-rows-45 border-y-[0.5px] sm:border-y-1 border-y-black border-l-[0.5px] sm:border-l-1 border-l-black">
+          <div className="grid grid-cols-[10%_30%_30%_30%] grid-rows-45 border-y-[0.5px] sm:border-y-1 border-y-black border-l-[0.5px] sm:border-l-1 border-l-black">
             <div className="bg-orange-600 h-9 sm:h-12 text-center col-start-1 col-end-2 row-start-1 row-end-2 flex border-b-[0.5px] sm:border-b-1 border-b-black">
-              <p className="text-[0.9rem] m-auto text-white">
+              <p className="text-md sm:text-md md:text-base m-auto text-white">
                 Hora
               </p>
             </div>
@@ -273,14 +273,14 @@ const AgendaFullScreen = ({ cambios }) => {
                     : 'border-b-[0.5px] sm:border-b-1 border-b-black'
                 }`}
               >
-                <p className="text-[0.9rem] m-auto text-black">
+                <p className="text-md sm:text-md md:text-base m-auto text-black">
                   {time}
                 </p>
               </div>
             ))}
-            <div className="col-start-2 col-end-6 row-start-1 row-end-46 grid grid-cols-4 bg-white border-r-[0.5px] sm:border-r-1 border-r-black rounded-br-2xl">
+            <div className="col-start-2 col-end-5 row-start-1 row-end-46 grid grid-cols-3 bg-white border-r-[0.5px] sm:border-r-1 border-r-black rounded-br-2xl">
               {filteredProfesoresSorted
-                .slice(startIndex, startIndex + 4)
+                .slice(startIndex, startIndex + 3)
                 .map((profesor, index, array) => (
                   <div
                     key={profesor.id}
@@ -296,7 +296,7 @@ const AgendaFullScreen = ({ cambios }) => {
                       }}
                       className="flex row-start-1 row-end-2 h-9 sm:h-12 text-sm border-b-[0.5px] sm:border-b-1 border-b-black"
                     >
-                      <p className="text-[0.9rem] m-auto">
+                      <p className="text-md sm:text-md md:text-base m-auto">
                         Profesor: {profesor.usuario.full_name.nombre} /{' '}
                         {profesor.instrumento}
                       </p>
@@ -333,11 +333,11 @@ const AgendaFullScreen = ({ cambios }) => {
                                   : 'bg-[#ACFDB2]'
                               }`}
                             >
-                            <p className="text-[0.9rem] mt-auto font-bold pt-2 text-black">
+                            <p className="text-sm sm:text-sm md:text-base mt-auto font-bold pt-2 text-black">
                               Alumno: {alumno.usuario.full_name.nombre}{' '}
                               {alumno.usuario.full_name.apellido}
                             </p>
-                            <p className="text-[0.9rem] mb-auto text-black">
+                            <p className="text-sm sm:text-sm md:text-base mb-auto text-black">
                               {alumno.instrumento} {alumno.clases.hora_inicio}-
                               {calcularNuevoHorario(
                                 alumno.clases.hora_inicio,
@@ -405,4 +405,4 @@ const AgendaFullScreen = ({ cambios }) => {
   )
 }
 
-export default AgendaFullScreen
+export default AgendaNotebook

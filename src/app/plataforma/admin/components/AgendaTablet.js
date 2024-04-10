@@ -6,7 +6,7 @@ import { diasSemana, horarios } from '@/app/api/data'
 import NotificacionAdmin from './NotificacionAdmin.js'
 import { getAllAlumnos, getAllProfesores } from '@/lib/firebase/crud/read.js'
 
-const AgendaFull = ({ cambios }) => {
+const AgendaTablet = ({ cambios }) => {
   const [alumnos, setAlumnos] = useState([])
   const [profesores, setProfesores] = useState([])
   const [selectedDay, setSelectedDay] = useState('')
@@ -405,4 +405,4 @@ const AgendaFull = ({ cambios }) => {
   )
 }
 
-export default AgendaFull
+export default AgendaTablet
