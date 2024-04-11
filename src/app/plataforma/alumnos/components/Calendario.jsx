@@ -150,7 +150,7 @@ const Calendario = ({
       if (day !== null) {
         if (isHighlighted && !fechaCancelada && !fechaAgendada && !isSelected) {
           buttonClass +=
-            ' font-black border border-navy-blue hover:bg-navy-blue-light hover:bg-opacity-40 pointer-events-auto'
+            ' font-black border border-navy-blue-light hover:bg-navy-blue-light hover:bg-opacity-40 pointer-events-auto'
         }
         if (fechaCancelada) {
           buttonClass += ' bg-orange-300 text-black font-black'
@@ -190,7 +190,7 @@ const Calendario = ({
           </li>
           <li className="flex gap-2">
             <span className="bg-navy-blue-light w-5 h-5 rounded-full"></span>
-            Clases aagendadas
+            Clases agendadas
           </li>
         </ul>
         <ul className="bg-black text-white w-full py-1 rounded-t-md flex items-center justify-between">
