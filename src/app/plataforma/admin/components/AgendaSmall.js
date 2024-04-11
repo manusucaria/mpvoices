@@ -141,7 +141,7 @@ const AgendaSmall = ({ cambios }) => {
   return (
     <div
       id="Agenda"
-      className={`flex flex-col bg-[#212121] md:hidden ${selectedDay ? 'mb-6' : ''}`}
+      className={`flex flex-col bg-[#212121] sm:hidden ${selectedDay ? 'mb-6' : ''}`}
     >
       {selectedDay
         ? (
