@@ -173,6 +173,7 @@ const Calendario = ({
           className={buttonClass}
           onClick={() => handleDateClick(day)}
           disabled={!isHighlighted || fechaCancelada}
+          title={`${day} de ${format(currentMonth, "MMMM 'de' yyyy", { locale: es })}`}
         >
           {day}
         </button>
