@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { addDays, isWithinInterval } from 'date-fns'
 import Image from 'next/image'
-import alas from '@/app/assets/alas.jpg'
+import alasSmall from '@/app/assets/alasSmall.jpg'
 import { diasSemana, horarios } from '@/app/api/data'
 import NotificacionAdmin from './NotificacionAdmin.js'
 import { getAllAlumnos, getAllProfesores } from '@/lib/firebase/crud/read.js'
@@ -94,7 +94,7 @@ const AgendaTablet = ({ cambios }) => {
   }, [selectedDay])
 
   const handleNext = () => {
-    if (startIndex + 1 < filteredProfesores.length) {
+    if (startIndex + 2 < filteredProfesores.length) {
       setStartIndex((prevIndex) => {
         setBackgroundColorAlpha(backgroundColorAlpha - 0.07)
         return prevIndex + 2
@@ -140,7 +140,7 @@ const AgendaTablet = ({ cambios }) => {
   }
 
   return (
-    <div id="Agenda" className="hidden md:flex md:flex-col lg:hidden bg-[#212121]">
+    <div id="Agenda" className="hidden sm:flex sm:flex-col md:hidden bg-[#212121]">
       {selectedDay
         ? (
         <div className="flex justify-center mb-4 pt-8 bg-[#212121]">
@@ -182,8 +182,8 @@ const AgendaTablet = ({ cambios }) => {
           <Image
             width={500}
             height={500}
-            className="col-start-1 col-end-1 row-start-1 row-end-1 w-full h-full hidden md:flex"
-            src={alas}
+            className="col-start-1 col-end-1 row-start-1 row-end-1 object-cover w-full flex"
+            src={alasSmall}
             alt="Separador Alas"
             priority
           />

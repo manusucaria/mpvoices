@@ -94,7 +94,7 @@ const AgendaFullScreen = ({ cambios }) => {
   }, [selectedDay])
 
   const handleNext = () => {
-    if (startIndex + 1 < filteredProfesores.length) {
+    if (startIndex + 4 < filteredProfesores.length) {
       setStartIndex((prevIndex) => {
         setBackgroundColorAlpha(backgroundColorAlpha - 0.07)
         return prevIndex + 4
@@ -140,7 +140,7 @@ const AgendaFullScreen = ({ cambios }) => {
   }
 
   return (
-    <div id="Agenda" className="hidden xl:flex xl:flex-col bg-[#212121]">
+    <div id="Agenda" className="hidden lg:flex lg:flex-col bg-[#212121]">
       {selectedDay
         ? (
         <div className="flex justify-center mb-4 pt-8 bg-[#212121]">
@@ -234,7 +234,7 @@ const AgendaFullScreen = ({ cambios }) => {
             <h3 className="text-black col-start-2 col-end-5 mx-auto my-auto font-bold text-lg">
               {selectedDay}
             </h3>
-            {startIndex + 2 < filteredProfesoresSorted.length && (
+            {startIndex + 4 < filteredProfesoresSorted.length && (
               <div className="flex col-start-5 col-end-6 ml-auto mr-4">
                 <svg
                   onClick={handleNext}
@@ -296,7 +296,7 @@ const AgendaFullScreen = ({ cambios }) => {
                       }}
                       className="flex row-start-1 row-end-2 h-9 sm:h-12 text-sm border-b-[0.5px] sm:border-b-1 border-b-black"
                     >
-                      <p className="text-[0.9rem] m-auto">
+                      <p className="lg:text-[0.75rem] min-[1130px]:text-[0.8rem] min-[1160px]:text-[0.9rem] m-auto">
                         Profesor: {profesor.usuario.full_name.nombre} /{' '}
                         {profesor.instrumento}
                       </p>
@@ -333,11 +333,11 @@ const AgendaFullScreen = ({ cambios }) => {
                                   : 'bg-[#ACFDB2]'
                               }`}
                             >
-                            <p className="text-[0.9rem] mt-auto font-bold pt-2 text-black">
+                            <p className="lg:text-[0.75rem] min-[1130px]:text-[0.8rem] min-[1160px]:text-[0.9rem] mt-auto font-bold pt-2 text-black">
                               Alumno: {alumno.usuario.full_name.nombre}{' '}
                               {alumno.usuario.full_name.apellido}
                             </p>
-                            <p className="text-[0.9rem] mb-auto text-black">
+                            <p className="lg:text-[0.75rem] min-[1130px]:text-[0.8rem] min-[1160px]:text-[0.9rem] mb-auto text-black">
                               {alumno.instrumento} {alumno.clases.hora_inicio}-
                               {calcularNuevoHorario(
                                 alumno.clases.hora_inicio,

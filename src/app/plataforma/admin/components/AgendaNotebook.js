@@ -94,7 +94,7 @@ const AgendaNotebook = ({ cambios }) => {
   }, [selectedDay])
 
   const handleNext = () => {
-    if (startIndex + 1 < filteredProfesores.length) {
+    if (startIndex + 3 < filteredProfesores.length) {
       setStartIndex((prevIndex) => {
         setBackgroundColorAlpha(backgroundColorAlpha - 0.07)
         return prevIndex + 3
@@ -140,7 +140,7 @@ const AgendaNotebook = ({ cambios }) => {
   }
 
   return (
-    <div id="Agenda" className="hidden lg:flex lg:flex-col xl:hidden bg-[#212121]">
+    <div id="Agenda" className="hidden md:flex md:flex-col lg:hidden bg-[#212121]">
       {selectedDay
         ? (
         <div className="flex justify-center mb-4 pt-8 bg-[#212121]">
@@ -234,7 +234,7 @@ const AgendaNotebook = ({ cambios }) => {
             <h3 className="text-black col-start-2 col-end-4 mx-auto my-auto font-bold text-lg">
               {selectedDay}
             </h3>
-            {startIndex + 2 < filteredProfesoresSorted.length && (
+            {startIndex + 3 < filteredProfesoresSorted.length && (
               <div className="flex col-start-4 col-end-5 ml-auto mr-4">
                 <svg
                   onClick={handleNext}
@@ -296,7 +296,7 @@ const AgendaNotebook = ({ cambios }) => {
                       }}
                       className="flex row-start-1 row-end-2 h-9 sm:h-12 text-sm border-b-[0.5px] sm:border-b-1 border-b-black"
                     >
-                      <p className="text-md sm:text-md md:text-base m-auto">
+                      <p className="text-[0.75rem] min-[810px]:text-[0.8rem] min-[950px]:text-[0.9rem] m-auto">
                         Profesor: {profesor.usuario.full_name.nombre} /{' '}
                         {profesor.instrumento}
                       </p>
@@ -333,11 +333,11 @@ const AgendaNotebook = ({ cambios }) => {
                                   : 'bg-[#ACFDB2]'
                               }`}
                             >
-                            <p className="text-sm sm:text-sm md:text-base mt-auto font-bold pt-2 text-black">
+                            <p className="text-[0.85rem] min-[810px]:text-[0.85rem] min-[950px]:text-[0.9rem] mt-auto font-bold pt-2 text-black">
                               Alumno: {alumno.usuario.full_name.nombre}{' '}
                               {alumno.usuario.full_name.apellido}
                             </p>
-                            <p className="text-sm sm:text-sm md:text-base mb-auto text-black">
+                            <p className="text-[0.85rem] min-[810px]:text-[0.85rem] min-[950px]:text-[0.9rem] mb-auto text-black">
                               {alumno.instrumento} {alumno.clases.hora_inicio}-
                               {calcularNuevoHorario(
                                 alumno.clases.hora_inicio,
