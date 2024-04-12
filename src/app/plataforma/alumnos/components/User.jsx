@@ -27,6 +27,7 @@ const User = ({ children }) => {
   const handleLogout = async () => {
     setLoading(true)
     await signOut()
+    setModalOpen(false)
     window.location.reload()
     setLoading(false)
   }
