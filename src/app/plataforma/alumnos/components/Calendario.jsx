@@ -77,12 +77,20 @@ const Calendario = ({
   const handleMonthChange = (increment) => {
     setSelectedDate(null)
     setSelectedDay(null)
-    setCurrentMonth((prevMonth) => {
-      const newMonth = new Date(prevMonth)
-      newMonth.setMonth(newMonth.getMonth() + increment)
-      return newMonth
-    })
-    setFormatCurrentMonth(format(currentMonth, 'MMMM yyyy', { locale: es }))
+
+    const nextMonth = new Date(currentMonth)
+    nextMonth.setMonth(nextMonth.getMonth() + increment)
+
+    const today = new Date()
+    const isSameOrAfterCurrentMonth =
+      nextMonth.getFullYear() > today.getFullYear() ||
+      (nextMonth.getFullYear() === today.getFullYear() &&
+        nextMonth.getMonth() >= today.getMonth())
+
+    if (isSameOrAfterCurrentMonth) {
+      setCurrentMonth(nextMonth)
+      setFormatCurrentMonth(format(nextMonth, 'MMMM yyyy', { locale: es }))
+    }
   }
 
   const handleDateClick = (day) => {
@@ -197,7 +205,7 @@ const Calendario = ({
         <ul className="bg-black text-white w-full py-1 rounded-t-md flex items-center justify-between">
           <li>
             <button
-              className="text-white hover:text-orange-300 rounded-md px-4 py-1"
+              className='text-white hover:text-orange-300 rounded-md px-4 py-1'
               onClick={() => handleMonthChange(-1)}
             >
               <svg
