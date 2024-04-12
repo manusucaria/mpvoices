@@ -15,6 +15,7 @@ const Aside = () => {
 
   const handleLogout = async () => {
     setLoading(true)
+    setModalOpen(false)
     await signOut()
     window.location.reload()
     setLoading(false)
