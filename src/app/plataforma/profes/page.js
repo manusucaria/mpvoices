@@ -53,7 +53,7 @@ const Page = () => {
           <AgendaProfes availableDays={availableDays} profesor={profesor} />
           <div className="bg-black-light flex w-full py-16">
             <button
-              className="bg-white mx-auto text-black md:hover:text-orange-600 border-2 border-orange-600 font-botones font-bold p-2 my-12 lg:mb-12 w-4/6 sm:w-2/6 h-12 sm:h-10 text-center rounded-3xl hover:cursor-pointer"
+              className="bg-white mx-auto text-black md:hover:text-orange-600 border-2 border-orange-600 font-botones font-bold p-2 my-12 lg:mb-12 w-4/6 sm:w-3/6 md:w-2/6 h-12 sm:h-10 text-center rounded-3xl hover:cursor-pointer"
               onClick={handleSubmit}
             >
               <p>Cerrar sesión</p>
