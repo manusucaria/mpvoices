@@ -154,13 +154,13 @@ const EditorDatosProfesor = ({
                 </g>
               </svg>
             </div>
-            <h3 className="text-white my-auto text-xl sm:text-2xl">
+            <h2 className="text-white my-auto text-xl sm:text-2xl">
               Profesor
-            </h3>
+            </h2>
             <p className="my-auto">|</p>
-            <p className="text-navy-blue-light my-auto md:mt-1 text-xl sm:text-2xl mr-auto">
+            <h2 className="text-navy-blue-light my-auto md:mt-1 text-xl sm:text-2xl mr-auto">
             {profesor?.usuario.full_name.nombre} {profesor?.usuario.full_name.apellido}
-            </p>
+            </h2>
           </div>
           <form
             className="px-4 sm:px-8 pt-8 w-full mx-auto bg-black"
