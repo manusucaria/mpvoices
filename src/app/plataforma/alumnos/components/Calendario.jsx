@@ -19,6 +19,7 @@ const Calendario = ({
   const [highlightedDays, setHighlightedDays] = useState([])
   const [fechasCanceladas, setFechasCanceladas] = useState([])
   const [fechasAgendadas, setFechasAgendadas] = useState([])
+  const [isVisiblePrevArrow, setIsVisiblePrevArrow] = useState(false)
 
   const [formatCurrentMonth, setFormatCurrentMonth] = useState('')
 
@@ -72,6 +73,14 @@ const Calendario = ({
     )
     setHighlightedDays([...days, ...agendadas])
     setFormatCurrentMonth(format(currentMonth, 'MMMM yyyy', { locale: es }))
+  }, [currentMonth])
+
+  useEffect(() => {
+    if (currentMonth.getMonth() === new Date().getMonth()) {
+      setIsVisiblePrevArrow(false)
+    } else {
+      setIsVisiblePrevArrow(true)
+    }
   }, [currentMonth])
 
   const handleMonthChange = (increment) => {
@@ -181,7 +190,9 @@ const Calendario = ({
           className={buttonClass}
           onClick={() => handleDateClick(day)}
           disabled={!isHighlighted || fechaCancelada}
-          title={`${day} de ${format(currentMonth, "MMMM 'de' yyyy", { locale: es })}`}
+          title={`${day} de ${format(currentMonth, "MMMM 'de' yyyy", {
+            locale: es
+          })}`}
         >
           {day}
         </button>
@@ -205,7 +216,9 @@ const Calendario = ({
         <ul className="bg-black text-white w-full py-1 rounded-t-md flex items-center justify-between">
           <li>
             <button
-              className='text-white hover:text-orange-300 rounded-md px-4 py-1'
+              className={`text-white hover:text-orange-300 rounded-md px-4 py-1 ${
+                !isVisiblePrevArrow && 'pointer-events-none opacity-0'
+              }`}
               onClick={() => handleMonthChange(-1)}
             >
               <svg
@@ -254,9 +267,7 @@ const Calendario = ({
           <li className="w-auto h-8 flex items-center justify-center">V</li>
           <li className="w-auto h-8 flex items-center justify-center">S</li>
         </ul>
-        <div className="w-full grid grid-cols-7 gap-2">
-          {renderCalendar()}
-        </div>
+        <div className="w-full grid grid-cols-7 gap-2">{renderCalendar()}</div>
       </div>
       <p className="w-full text-start flex flex-col items-start justify-start">
         {selectedDate && (
