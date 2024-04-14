@@ -215,24 +215,28 @@ const Calendario = ({
         </ul>
         <ul className="bg-black text-white w-full py-1 rounded-t-md flex items-center justify-between">
           <li>
-            <button
-              className={`text-white hover:text-orange-300 rounded-md px-4 py-1 ${
-                !isVisiblePrevArrow && 'pointer-events-none opacity-0'
-              }`}
-              onClick={() => handleMonthChange(-1)}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                fill="none"
+            {isVisiblePrevArrow
+              ? (
+              <button
+                className="text-white hover:text-orange-300 rounded-md px-4 py-1"
+                onClick={() => handleMonthChange(-1)}
               >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <polyline points="15 6 9 12 15 18" />
-              </svg>
-            </button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  fill="none"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <polyline points="15 6 9 12 15 18" />
+                </svg>
+              </button>
+                )
+              : (
+              <span className="px-7 py-1"></span>
+                )}
           </li>
           <li>
             <h2 className={`w-full py-1 text-center ${openSans500.className}`}>
