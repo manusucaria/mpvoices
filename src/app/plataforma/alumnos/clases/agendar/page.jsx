@@ -31,6 +31,7 @@ const page = () => {
   const [availableDays, setAvailableDays] = useState([])
   const [highlightedDays, setHighlightedDays] = useState([])
   const [currentMonth, setCurrentMonth] = useState(new Date())
+  const [isVisiblePrevArrow, setIsVisiblePrevArrow] = useState(false)
 
   const [showModal, setShowModal] = useState(false)
   const [success, setSuccess] = useState(false)
@@ -129,6 +130,14 @@ const page = () => {
     }
   }, [currentMonth, alumno])
 
+  useEffect(() => {
+    if (currentMonth.getMonth() === new Date().getMonth()) {
+      setIsVisiblePrevArrow(false)
+    } else {
+      setIsVisiblePrevArrow(true)
+    }
+  }, [currentMonth])
+
   const handleDateClick = (day) => {
     setIsSelectedDay(true)
     setSelectedDate(day)
@@ -181,7 +190,11 @@ const page = () => {
         }
         icon={
           success && (
-            <iframe height={37} width={38} src="https://lottie.host/embed/a89d138f-95a9-447b-87ed-65ad8d22a22f/spKLcMoKCb.json"></iframe>
+            <iframe
+              height={37}
+              width={38}
+              src="https://lottie.host/embed/a89d138f-95a9-447b-87ed-65ad8d22a22f/spKLcMoKCb.json"
+            ></iframe>
           )
         }
         isTitlePlayfair={success}
@@ -222,7 +235,10 @@ const page = () => {
           ? (
           <div className="w-full flex flex-col gap-5 items-start justify-start pb-10 border-b-1">
             <p className="w-full">Instrumento: {alumno.instrumento}</p>
-            <p className="w-full">Día: {format(selectedDate.fecha, "EEEE d 'de' MMMM", { locale: es })}</p>
+            <p className="w-full">
+              Día:{' '}
+              {format(selectedDate.fecha, "EEEE d 'de' MMMM", { locale: es })}
+            </p>
             <p className="w-full">Horario: {alumno.clases.hora_inicio} hs</p>
             <p className="w-full">Duración: {alumno.clases.duracion} minutos</p>
             <p className="w-full">
@@ -234,22 +250,28 @@ const page = () => {
           <>
             <ul className="bg-black text-white w-full py-1 rounded-t-md flex items-center justify-between">
               <li>
-                <button
-                  className="text-white hover:text-orange-300 rounded-md px-4 py-1"
-                  onClick={() => handleMonthChange(-1)}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    fill="none"
+                {isVisiblePrevArrow
+                  ? (
+                  <button
+                    className="text-white hover:text-orange-300 rounded-md px-4 py-1"
+                    onClick={() => handleMonthChange(-1)}
                   >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <polyline points="15 6 9 12 15 18" />
-                  </svg>
-                </button>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      fill="none"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <polyline points="15 6 9 12 15 18" />
+                    </svg>
+                  </button>
+                    )
+                  : (
+                  <span className="px-7 py-1"></span>
+                    )}
               </li>
               <li>
                 <h2
@@ -312,7 +334,9 @@ const page = () => {
                     </div>
                 ))
                 : 'No hay clases por mostrar'}
-                <p className='text-orange-300'>Nota: sólo se mostrarán clases canceladas por otros alumnos.</p>
+              <p className="text-orange-300">
+                Nota: sólo se mostrarán clases canceladas por otros alumnos.
+              </p>
             </div>
 
             {error && <p className="text-orange-600">{error.message}</p>}
