@@ -203,7 +203,7 @@ const Calendario = ({
   return (
     <div className="w-full grid grid-cols-1 place-content-center place-items-center gap-5">
       <div className="w-80">
-        <ul className="text-sm text-white text-opacity-50 flex flex-col gap-2">
+        <ul className="text-sm text-white flex flex-col gap-2">
           <li className="flex gap-2">
             <span className="bg-orange-300 w-5 h-5 rounded-full"></span>
             Clases canceladas
