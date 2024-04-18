@@ -64,7 +64,7 @@ const EditorPagos = ({ alumno, setSelectedAlumno, setCambios }) => {
         <div className="flex flex-col w-full bg-black px-4 sm:px-8 p-8 pt-4">
           <form className="w-full mx-auto" onSubmit={handleSubmit}>
             <div className="flex mb-6">
-              <label className="font-bold mr-auto w-2/6">Saldo:</label>
+              <label className="font-bold mr-auto w-2/6">Saldo deudor:</label>
               <input
                 className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
                 type="number"
@@ -134,7 +134,7 @@ const EditorPagos = ({ alumno, setSelectedAlumno, setCambios }) => {
         <div className="flex flex-col w-full mx-auto bg-black">
           <div className="px-4 sm:px-8 pb-8 w-full pt-4">
             <div className="mb-8 flex">
-              <p className="mr-2 text-base font-bold">Saldo:</p>
+              <p className="mr-2 text-base font-bold">Saldo deudor:</p>
               <p className="text-base">${saldo}</p>
             </div>
             <div className="flex">
