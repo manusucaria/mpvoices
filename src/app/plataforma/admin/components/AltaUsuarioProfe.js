@@ -13,6 +13,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm, setCambios }) =
   const [newUserNombre, setNewUserNombre] = useState('')
   const [newUserApellido, setNewUserApellido] = useState('')
   const [newUserInstrumento, setNewUserInstrumento] = useState('')
+  const [newUserInstagram, setNewUserInstagram] = useState('')
   const [newUserBirthdate, setNewUserBirthdate] = useState('')
   const [errors, setErrors] = useState({})
   const [showConfirmation, setShowConfirmation] = useState(false)
@@ -71,6 +72,9 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm, setCambios }) =
     if (!newUserBirthdate.trim()) {
       formErrors.birthdate = 'El campo es obligatorio'
     }
+    if (!newUserInstagram.trim()) {
+      formErrors.instagram = 'El campo es obligatorio'
+    }
     if (!selectedDays.join(', ').trim()) {
       formErrors.dias = 'El campo es obligatorio'
     }
@@ -87,6 +91,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm, setCambios }) =
           rolAsignado: newUserRol,
           nombre: newUserNombre,
           apellido: newUserApellido,
+          instagram: newUserInstagram,
           birthdate: newUserBirthdate,
           instrumento: newUserInstrumento,
           dias: selectedDays.join(', ')
@@ -98,6 +103,7 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm, setCambios }) =
         setNewUserPhoneNumber('')
         setNewUserNombre('')
         setNewUserApellido('')
+        setNewUserInstagram('')
         setNewUserInstrumento('')
         setNewUserBirthdate('')
         setSelectedDays([])
@@ -304,6 +310,24 @@ const AltaUsuarioProfe = ({ handleCancelar, setShowProfesorForm, setCambios }) =
         {errors.phoneNumber && (
           <p className="ml-auto pr-4 mt-1 text-white text-sm">
             {errors.phoneNumber}
+          </p>
+        )}
+        <div className="flex mt-6">
+          <label className="font-bold mr-auto w-2/6 text-white">
+            Instagram:
+          </label>
+          <input
+            placeholder="+@ejemplo"
+            className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+            type="text"
+            name="instagram"
+            value={newUserInstagram}
+            onChange={(e) => setNewUserInstagram(e.target.value)}
+          />
+        </div>
+        {errors.instagram && (
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
+            {errors.instagram}
           </p>
         )}
         <div className="flex mt-6">

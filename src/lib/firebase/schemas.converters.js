@@ -19,6 +19,7 @@ export const UsuarioConverter = {
       email: usuario.email,
       telefono: usuario.telefono,
       birthdate: usuario.birthdate,
+      instagram: usuario.instagram,
       rol: usuario.rol
     }
   },
@@ -29,6 +30,7 @@ export const UsuarioConverter = {
       apellido: data.apellido,
       email: data.email,
       telefono: data.telefono,
+      instagram: data.instagram,
       birthdate: data.birthdate,
       rolUid: data.rol
     })

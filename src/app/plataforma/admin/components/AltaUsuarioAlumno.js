@@ -17,6 +17,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm, setC
   const [newUserNombre, setNewUserNombre] = useState('')
   const [newUserApellido, setNewUserApellido] = useState('')
   const [newUserBirthdate, setNewUserBirthdate] = useState('')
+  const [newUserInstagram, setNewUserInstagram] = useState('')
   const [newUserInstrumento, setNewUserInstrumento] = useState('')
   const [newUserProfesor, setNewUserProfesor] = useState('')
   const [newUserClaseDia, setNewUserClaseDia] = useState('')
@@ -66,6 +67,9 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm, setC
     if (!newUserBirthdate.trim()) {
       formErrors.birthdate = 'El campo es obligatorio'
     }
+    if (!newUserInstagram.trim()) {
+      formErrors.instagram = 'El campo es obligatorio'
+    }
     if (!newUserInstrumento.trim()) {
       formErrors.instrumento = 'El campo es obligatorio'
     }
@@ -98,6 +102,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm, setC
           nombre: newUserNombre,
           apellido: newUserApellido,
           birthdate: newUserBirthdate,
+          instagram: newUserInstagram,
           instrumento: newUserInstrumento,
           profesor: newUserProfesor,
           clase_dia: newUserClaseDia,
@@ -113,6 +118,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm, setC
         setNewUserNombre('')
         setNewUserApellido('')
         setNewUserBirthdate('')
+        setNewUserInstagram('')
         setNewUserInstrumento('')
         setNewUserProfesor('')
         setNewUserClaseDia('')
@@ -292,6 +298,24 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm, setC
         )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-white">
+            Instagram:
+          </label>
+          <input
+            placeholder="@ejemplo"
+            className="text-black rounded-3xl h-8 px-2 w-4/6 ml-auto"
+            type="text"
+            name="instagram"
+            value={newUserInstagram}
+            onChange={(e) => setNewUserInstagram(e.target.value)}
+          />
+        </div>
+        {errors.instagram && (
+          <p className="ml-auto pr-4 mt-1 text-white text-sm">
+            {errors.instagram}
+          </p>
+        )}
+        <div className="flex mt-6">
+          <label className="font-bold mr-auto w-2/6 text-white">
             Fecha de nac.:
           </label>
           <input
@@ -424,7 +448,7 @@ const AltaUsuarioAlumno = ({ handleCancelar, profesores, setShowAlumnoForm, setC
         )}
         <div className="flex mt-6">
           <label className="font-bold mr-auto w-2/6 text-white">
-            Saldo:
+            Saldo deudor:
           </label>
           <input
             placeholder="Saldo"

@@ -6,7 +6,7 @@ import { getAlumnoById } from './crud/read'
 
 export const updateUsuarioProfesorById = async (
   uid,
-  { nombre, apellido, birthdate, email, telefono, dias, instrumento, usuario }
+  { nombre, apellido, birthdate, instagram, email, telefono, dias, instrumento, usuario }
 ) => {
   try {
     const data = await (
@@ -33,6 +33,7 @@ export const updateUsuarioProfesorById = async (
       nombre,
       apellido,
       birthdate,
+      instagram,
       email,
       telefono,
       rolUid: usuario.rol.id
@@ -63,7 +64,7 @@ export const updateUsuarioProfesorById = async (
 
 export const updateUsuarioAlumnoById = async (
   uid,
-  { nombre, apellido, birthdate, email, telefono, usuario }
+  { nombre, apellido, birthdate, email, instagram, telefono, usuario }
 ) => {
   try {
     const data = await (
@@ -86,6 +87,7 @@ export const updateUsuarioAlumnoById = async (
       apellido,
       birthdate,
       email,
+      instagram,
       telefono,
       rolUid: usuario.rol.id
     })

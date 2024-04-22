@@ -11,6 +11,7 @@ const EditorDatosProfesor = ({
   const [nombre, setNombre] = useState('')
   const [apellido, setApellido] = useState('')
   const [birthdate, setBirthdate] = useState('')
+  const [instagram, setInstagram] = useState('')
   const [email, setEmail] = useState('')
   const [telefono, setTelefono] = useState('')
   const [diasSeleccionados, setDiasSeleccionados] = useState([])
@@ -28,6 +29,7 @@ const EditorDatosProfesor = ({
       setApellido(profesor.usuario.full_name.apellido || '')
       setBirthdate(profesor.usuario.birthdate || '')
       setEmail(profesor.usuario.email || '')
+      setInstagram(profesor.usuario.instagram || '')
       setTelefono(profesor.usuario.telefono || '')
       setDiasSeleccionados(
         profesor.dias ? profesor.dias.split(',').map((dia) => dia.trim()) : []
@@ -38,6 +40,7 @@ const EditorDatosProfesor = ({
         apellido: profesor.usuario.full_name.apellido || '',
         birthdate: profesor.usuario.birthdate || '',
         email: profesor.usuario.email || '',
+        instagram: profesor.usuario.instagram || '',
         telefono: profesor.usuario.telefono || '',
         dia: profesor.dias || '',
         instrumento: profesor.instrumento || ''
@@ -61,6 +64,7 @@ const EditorDatosProfesor = ({
         apellido,
         birthdate,
         email,
+        instagram,
         telefono,
         dias: diasSeleccionados.join(', '),
         instrumento: formattedInstrumento,
@@ -221,6 +225,18 @@ const EditorDatosProfesor = ({
                 name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="flex mb-6">
+              <label className="text-base font-bold mr-auto w-2/6">
+                Instagram:
+              </label>
+              <input
+                className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+                type="text"
+                name="instagram"
+                value={instagram}
+                onChange={(e) => setInstagram(e.target.value)}
               />
             </div>
             <div className="flex mb-6">
@@ -397,6 +413,10 @@ const EditorDatosProfesor = ({
             <div className="mb-8 flex">
               <p className="mr-2 text-base font-bold">E-Mail:</p>
               <p className="text-base">{email}</p>
+            </div>
+            <div className="mb-8 flex">
+              <p className="mr-2 text-base font-bold">Instagram:</p>
+              <p className="text-base">{instagram}</p>
             </div>
             <div className="mb-8 flex">
               <p className="mr-2 text-base font-bold">Teléfono:</p>

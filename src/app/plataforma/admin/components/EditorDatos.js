@@ -7,6 +7,7 @@ const EditorDatos = ({ alumno, setSelectedAlumno, setCambios }) => {
   const [birthdate, setBirthdate] = useState('')
   const [email, setEmail] = useState('')
   const [telefono, setTelefono] = useState('')
+  const [instagram, setInstagram] = useState('')
   const [originalData, setOriginalData] = useState(null)
   const [editMode, setEditMode] = useState(false)
   const [showConfirmation, setShowConfirmation] = useState(false)
@@ -18,6 +19,7 @@ const EditorDatos = ({ alumno, setSelectedAlumno, setCambios }) => {
       setApellido(alumno.usuario.full_name.apellido || '')
       setBirthdate(alumno.usuario.birthdate || '')
       setEmail(alumno.usuario.email || '')
+      setInstagram(alumno.usuario.instagram || '')
       setTelefono(alumno.usuario.telefono || '')
 
       setOriginalData({
@@ -25,6 +27,7 @@ const EditorDatos = ({ alumno, setSelectedAlumno, setCambios }) => {
         apellido: alumno.usuario.full_name.apellido || '',
         birthdate: alumno.usuario.birthdate || '',
         email: alumno.usuario.email || '',
+        instagram: alumno.usuario.instagram || '',
         telefono: alumno.usuario.telefono || ''
       })
     }
@@ -39,6 +42,7 @@ const EditorDatos = ({ alumno, setSelectedAlumno, setCambios }) => {
         apellido,
         birthdate,
         email,
+        instagram,
         telefono,
         usuario: alumno.usuario
       })
@@ -62,6 +66,7 @@ const EditorDatos = ({ alumno, setSelectedAlumno, setCambios }) => {
       setApellido(originalData.apellido)
       setBirthdate(originalData.birthdate)
       setEmail(originalData.email)
+      setInstagram(originalData.instagram)
       setTelefono(originalData.telefono)
     }
     setEditMode(false)
@@ -124,6 +129,16 @@ const EditorDatos = ({ alumno, setSelectedAlumno, setCambios }) => {
                 name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="flex mb-6">
+              <label className="font-bold mr-auto w-2/6">Instagram:</label>
+              <input
+                className="text-black rounded-3xl h-8 pl-2 w-4/6 ml-auto"
+                type="text"
+                name="instagram"
+                value={instagram}
+                onChange={(e) => setInstagram(e.target.value)}
               />
             </div>
             <div className="flex mb-6">
@@ -201,6 +216,10 @@ const EditorDatos = ({ alumno, setSelectedAlumno, setCambios }) => {
             <div className="mb-8 flex">
               <p className="mr-2 text-base font-bold">E-Mail:</p>
               <p className="text-base">{email}</p>
+            </div>
+            <div className="mb-8 flex">
+              <p className="mr-2 text-base font-bold">Instagram:</p>
+              <p className="text-base">{instagram}</p>
             </div>
             <div className="flex">
               <p className="mr-2 text-base font-bold">Teléfono:</p>

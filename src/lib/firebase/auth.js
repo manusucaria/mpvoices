@@ -62,6 +62,7 @@ export const signUp = async ({
       nombre: rest.nombre,
       apellido: rest.apellido,
       telefono: phoneNumber,
+      instagram: rest.instagram,
       birthdate: rest.birthdate,
       rolUid: rolAsignado.id,
       email
