@@ -34,6 +34,7 @@ const page = () => {
   const [isVisiblePrevArrow, setIsVisiblePrevArrow] = useState(false)
 
   const [showModal, setShowModal] = useState(false)
+  const [showModalInfo, setShowModalInfo] = useState(true)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -346,6 +347,13 @@ const page = () => {
               callback={handleAgendarClase}
               isOpen={showModal}
               onClose={() => setShowModal(false)}
+            />
+            <Modal
+              leggend="Por cualquier consulta, por favor contacte con el administrador."
+              isCheckedIcon
+              isOpen={showModalInfo}
+              leggendClose="Entendido"
+              onClose={() => setShowModalInfo(false)}
             />
           </>
             )}
