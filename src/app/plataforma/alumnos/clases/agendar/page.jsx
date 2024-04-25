@@ -349,7 +349,7 @@ const page = () => {
               onClose={() => setShowModal(false)}
             />
             <Modal
-              leggend="Por cualquier consulta, por favor contacte con el administrador."
+              leggend="Por cualquier consulta, por favor contactate con el administrador."
               isCheckedIcon
               isOpen={showModalInfo}
               leggendClose="Entendido"
