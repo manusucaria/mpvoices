@@ -302,8 +302,11 @@ const AgendaTablet = ({ cambios }) => {
                       </p>
                     </div>
                     {filteredAlumnos
+                      .filter((alumno) => alumno.profesor && alumno.profesor.usuario)
                       .filter(
                         (alumno) =>
+                          alumno.profesor.usuario &&
+                          alumno.profesor.usuario.full_name &&
                           alumno.profesor.usuario.full_name.nombre ===
                           profesor.usuario.full_name.nombre
                       )
@@ -327,25 +330,28 @@ const AgendaTablet = ({ cambios }) => {
                           }}
                         >
                             <div
-                              className={`flex flex-col m-auto h-[97.5%] w-[95%] text-center ${
+                              className={`grid grid-cols-5 grid-rows-5 m-auto items-center h-[97.5%] w-[95%] text-center ${
                                 isNotificationWithinCurrentWeek(alumno.clases.notificaciones)
                                   ? 'bg-[#FFC9CB]'
                                   : 'bg-[#ACFDB2]'
                               }`}
                             >
-                            <p className="text-sm sm:text-sm md:text-base mt-auto font-bold pt-2 text-black">
-                              Alumno: {alumno.usuario.full_name.nombre}{' '}
-                              {alumno.usuario.full_name.apellido}
-                            </p>
-                            <p className="text-sm sm:text-sm md:text-base mb-auto text-black">
-                              {alumno.instrumento} {alumno.clases.hora_inicio}-
-                              {calcularNuevoHorario(
-                                alumno.clases.hora_inicio,
-                                alumno.clases.duracion
-                              )}
-                              {' '}hs
-                            </p>
-                            <div className="ms-auto pb-2 pe-2 sm:pe-4">
+                              <div className='row-start-2 row-end-5 col-start-1 col-end-6'>
+                                <p className="text-sm sm:text-sm md:text-base font-bold text-black">
+                                  Alumno: {alumno.usuario.full_name.nombre}{' '}
+                                  {alumno.usuario.full_name.apellido}
+                                </p>
+                                <p className="text-sm sm:text-sm md:text-base text-black">
+                                  {alumno.instrumento} {alumno.clases.hora_inicio}-
+                                  {calcularNuevoHorario(
+                                    alumno.clases.hora_inicio,
+                                    alumno.clases.duracion
+                                  )}
+                                  {' '}hs
+                                </p>
+                              </div>
+
+                            <div className="ms-auto mt-auto row-start-4 row-end-6 col-start-5 col-end-6 pe-2 pb-2">
                               {alumno &&
                               alumno.clases.notificaciones &&
                               (alumno.clases.notificaciones.length > 0 ||

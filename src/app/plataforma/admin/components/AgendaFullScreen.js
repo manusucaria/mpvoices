@@ -22,7 +22,6 @@ const AgendaFullScreen = ({ cambios }) => {
     (async () => {
       const profesoresData = await getAllProfesores({ getUsuario: true })
       setProfesores(profesoresData)
-
       const alumnosData = await getAllAlumnos({
         getUsuario: true,
         getProfesor: true
@@ -34,7 +33,6 @@ const AgendaFullScreen = ({ cambios }) => {
   const filterAlumnosByDay = (day) => {
     setSelectedDay(day)
   }
-
   const showAllDays = () => {
     setSelectedDay('')
     setStartIndex(0)
@@ -302,8 +300,11 @@ const AgendaFullScreen = ({ cambios }) => {
                       </p>
                     </div>
                     {filteredAlumnos
+                      .filter((alumno) => alumno.profesor && alumno.profesor.usuario)
                       .filter(
                         (alumno) =>
+                          alumno.profesor.usuario &&
+                          alumno.profesor.usuario.full_name &&
                           alumno.profesor.usuario.full_name.nombre ===
                           profesor.usuario.full_name.nombre
                       )
@@ -312,12 +313,6 @@ const AgendaFullScreen = ({ cambios }) => {
                           key={`${alumno.id}`}
                           className="flex flex-col h-full w-full text-center border-none"
                           style={{
-                            gridColumn:
-                              filteredProfesoresSorted.findIndex(
-                                (p) =>
-                                  p.usuario.full_name.nombre ===
-                                  profesor.usuario.full_name.nombre
-                              ) - startIndex,
                             gridRowStart:
                               horarios.indexOf(alumno.clases.hora_inicio) + 2,
                             gridRowEnd:
@@ -327,25 +322,27 @@ const AgendaFullScreen = ({ cambios }) => {
                           }}
                         >
                             <div
-                              className={`flex flex-col m-auto h-[97.5%] w-[95%] text-center ${
+                              className={`grid grid-cols-5 grid-rows-5 m-auto items-center h-[97.5%] w-[95%] text-center ${
                                 isNotificationWithinCurrentWeek(alumno.clases.notificaciones)
                                   ? 'bg-[#FFC9CB]'
                                   : 'bg-[#ACFDB2]'
                               }`}
                             >
-                            <p className="lg:text-[0.75rem] min-[1130px]:text-[0.8rem] min-[1160px]:text-[0.9rem] mt-auto font-bold pt-2 text-black">
-                              Alumno: {alumno.usuario.full_name.nombre}{' '}
-                              {alumno.usuario.full_name.apellido}
-                            </p>
-                            <p className="lg:text-[0.75rem] min-[1130px]:text-[0.8rem] min-[1160px]:text-[0.9rem] mb-auto text-black">
-                              {alumno.instrumento} {alumno.clases.hora_inicio}-
-                              {calcularNuevoHorario(
-                                alumno.clases.hora_inicio,
-                                alumno.clases.duracion
-                              )}
-                              {' '}hs
-                            </p>
-                            <div className="ms-auto pb-2 pe-2 sm:pe-4">
+                            <div className='row-start-2 row-end-5 col-start-1 col-end-6'>
+                              <p className="lg:text-[0.75rem] min-[1130px]:text-[0.8rem] min-[1160px]:text-[0.85rem] font-bold text-black">
+                                Alumno: {alumno.usuario.full_name.nombre}{' '}
+                                {alumno.usuario.full_name.apellido}
+                              </p>
+                              <p className="lg:text-[0.75rem] min-[1130px]:text-[0.8rem] min-[1160px]:text-[0.85rem] text-black">
+                                {alumno.instrumento} {alumno.clases.hora_inicio}-
+                                {calcularNuevoHorario(
+                                  alumno.clases.hora_inicio,
+                                  alumno.clases.duracion
+                                )}
+                                {' '}hs
+                              </p>
+                            </div>
+                            <div className="ms-auto mt-auto row-start-4 row-end-6 col-start-5 col-end-6 pe-2 pb-2">
                               {alumno &&
                               alumno.clases.notificaciones &&
                               (alumno.clases.notificaciones.length > 0 ||
