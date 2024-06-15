@@ -22,13 +22,20 @@ const AgendaFullScreen = ({ cambios }) => {
     (async () => {
       const profesoresData = await getAllProfesores({ getUsuario: true })
       setProfesores(profesoresData)
-      const alumnosData = await getAllAlumnos({
-        getUsuario: true,
-        getProfesor: true
-      })
-      setAlumnos(alumnosData)
     })()
   }, [selectedDay, selectedAlumno, cambios])
+
+  useEffect(() => {
+    (async () => {
+      if (selectedDay !== '') {
+        const alumnosData = await getAllAlumnos({
+          getUsuario: true,
+          getByDay: selectedDay
+        })
+        setAlumnos(alumnosData)
+      }
+    })()
+  }, [selectedDay])
 
   const filterAlumnosByDay = (day) => {
     setSelectedDay(day)
@@ -300,13 +307,15 @@ const AgendaFullScreen = ({ cambios }) => {
                       </p>
                     </div>
                     {filteredAlumnos
-                      .filter((alumno) => alumno.profesor && alumno.profesor.usuario)
+                      // .filter((alumno) => alumno.profesor && alumno.profesor.usuario)
+                      .filter((alumno) => alumno.profesor)
                       .filter(
                         (alumno) =>
-                          alumno.profesor.usuario &&
-                          alumno.profesor.usuario.full_name &&
-                          alumno.profesor.usuario.full_name.nombre ===
-                          profesor.usuario.full_name.nombre
+                          // alumno.profesor.usuario &&
+                          // alumno.profesor.usuario.full_name &&
+                          // alumno.profesor.usuario.full_name.nombre ===
+                          // profesor.usuario.full_name.nombre
+                          alumno.profesor.id === profesor.id
                       )
                       .map((alumno) => (
                         <div

@@ -91,22 +91,28 @@ export const getProfesorById = async (uid, { getUsuario, getRol } = {}) => {
   }
 }
 
-export const getAllAlumnos = async ({ getUsuario, getRol, getProfesor } = {}) => {
+export const getAllAlumnos = async ({ getUsuario, getRol, getProfesor, getByDay } = {}) => {
   try {
-    const ref = collection(db, 'alumnos')
+    let ref
+    if (getByDay) {
+      ref = collection(db, 'alumnos')
+      ref = query(ref, where('clases.dia', '==', getByDay))
+    } else {
+      ref = collection(db, 'alumnos')
+    }
     const querySnapshot = await getDocs(ref)
     const alumnos = []
     for (const doc of querySnapshot.docs) {
       let usuario = doc.data().usuario
       let profesor = doc.data().profesor
       if (getUsuario && usuario.id) {
-        usuario = await getUsuarioById({ id: usuario.id })
+        usuario = await (await getDoc(usuario)).data()
       }
       if (getRol && getUsuario && usuario.rol && usuario.rol.id) {
-        usuario.rol = await getRolById({ id: usuario.rol.id })
+        usuario.rol = await (await getDoc(usuario.rol)).data()
       }
       if (getProfesor && profesor && profesor.id) {
-        profesor = await getProfesorById(profesor.id, { getUsuario: true })
+        profesor = await (await getDoc(profesor)).data()
       }
       alumnos.push({ ...doc.data(), id: doc.id, usuario, profesor })
     }
