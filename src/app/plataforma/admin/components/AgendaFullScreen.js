@@ -30,7 +30,7 @@ const AgendaFullScreen = ({ cambios }) => {
       if (selectedDay !== '') {
         const alumnosData = await getAllAlumnos({
           getUsuario: true,
-          getByDay: selectedDay
+          getByDayName: selectedDay
         })
         setAlumnos(alumnosData)
       }
@@ -136,7 +136,10 @@ const AgendaFullScreen = ({ cambios }) => {
     const today = new Date()
     const endOfNextSixDays = addDays(today, 6)
     for (const notificacion of notificaciones) {
-      const fecha = new Date(notificacion.fecha.seconds * 1000 + notificacion.fecha.nanoseconds / 1000000)
+      const fecha = new Date(
+        notificacion.fecha.seconds * 1000 +
+          notificacion.fecha.nanoseconds / 1000000
+      )
       if (isWithinInterval(fecha, { start: today, end: endOfNextSixDays })) {
         return true
       }
@@ -265,9 +268,7 @@ const AgendaFullScreen = ({ cambios }) => {
           </div>
           <div className="grid grid-cols-[8%_23%_23%_23%_23%] grid-rows-45 border-y-[0.5px] sm:border-y-1 border-y-black border-l-[0.5px] sm:border-l-1 border-l-black">
             <div className="bg-orange-600 h-9 sm:h-12 text-center col-start-1 col-end-2 row-start-1 row-end-2 flex border-b-[0.5px] sm:border-b-1 border-b-black">
-              <p className="text-[0.9rem] m-auto text-white">
-                Hora
-              </p>
+              <p className="text-[0.9rem] m-auto text-white">Hora</p>
             </div>
             {horarios.map((time, index) => (
               <div
@@ -278,9 +279,7 @@ const AgendaFullScreen = ({ cambios }) => {
                     : 'border-b-[0.5px] sm:border-b-1 border-b-black'
                 }`}
               >
-                <p className="text-[0.9rem] m-auto text-black">
-                  {time}
-                </p>
+                <p className="text-[0.9rem] m-auto text-black">{time}</p>
               </div>
             ))}
             <div className="col-start-2 col-end-6 row-start-1 row-end-46 grid grid-cols-4 bg-white border-r-[0.5px] sm:border-r-1 border-r-black rounded-br-2xl">
@@ -330,25 +329,28 @@ const AgendaFullScreen = ({ cambios }) => {
                               alumno.clases.duracion / 15
                           }}
                         >
-                            <div
-                              className={`grid grid-cols-5 grid-rows-5 m-auto items-center h-[97.5%] w-[95%] text-center ${
-                                isNotificationWithinCurrentWeek(alumno.clases.notificaciones)
-                                  ? 'bg-[#FFC9CB]'
-                                  : 'bg-[#ACFDB2]'
-                              }`}
-                            >
-                            <div className='row-start-2 row-end-5 col-start-1 col-end-6'>
+                          <div
+                            className={`grid grid-cols-5 grid-rows-5 m-auto items-center h-[97.5%] w-[95%] text-center ${
+                              isNotificationWithinCurrentWeek(
+                                alumno.clases.notificaciones
+                              )
+                                ? 'bg-[#FFC9CB]'
+                                : 'bg-[#ACFDB2]'
+                            }`}
+                          >
+                            <div className="row-start-2 row-end-5 col-start-1 col-end-6">
                               <p className="lg:text-[0.75rem] min-[1130px]:text-[0.8rem] min-[1160px]:text-[0.85rem] font-bold text-black">
                                 Alumno: {alumno.usuario.full_name.nombre}{' '}
                                 {alumno.usuario.full_name.apellido}
                               </p>
                               <p className="lg:text-[0.75rem] min-[1130px]:text-[0.8rem] min-[1160px]:text-[0.85rem] text-black">
-                                {alumno.instrumento} {alumno.clases.hora_inicio}-
+                                {alumno.instrumento} {alumno.clases.hora_inicio}
+                                -
                                 {calcularNuevoHorario(
                                   alumno.clases.hora_inicio,
                                   alumno.clases.duracion
-                                )}
-                                {' '}hs
+                                )}{' '}
+                                hs
                               </p>
                             </div>
                             <div className="ms-auto mt-auto row-start-4 row-end-6 col-start-5 col-end-6 pe-2 pb-2">
