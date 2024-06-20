@@ -4,7 +4,9 @@ import {
   query,
   getDocs,
   getDoc,
-  doc
+  doc,
+  limit,
+  startAfter
 } from 'firebase/firestore'
 
 import { db } from '../firebase'
@@ -51,10 +53,15 @@ export const getUsuarioById = async ({ id }) => {
   }
 }
 
-export const getAllProfesores = async ({ getUsuario, getRol } = {}) => {
+export const getAllProfesores = async ({ getUsuario, getRol, page = 1, pageSize = 25 } = {}) => {
   try {
     const ref = collection(db, 'profesores')
-    const querySnapshot = await getDocs(ref)
+    let querySnap = query(ref, limit(pageSize))
+    if (page > 1) {
+      const lastDoc = await getDocs(query(ref, limit(pageSize * (page - 1))))
+      querySnap = query(ref, startAfter(lastDoc.docs[lastDoc.docs.length - 1]), limit(pageSize))
+    }
+    const querySnapshot = await getDocs(querySnap)
     const profesores = []
     for (const doc of querySnapshot.docs) {
       let usuario = doc.data().usuario
@@ -91,12 +98,12 @@ export const getProfesorById = async (uid, { getUsuario, getRol } = {}) => {
   }
 }
 
-export const getAllAlumnos = async ({ getUsuario, getRol, getProfesor, getByDay } = {}) => {
+export const getAllAlumnos = async ({ getUsuario, getRol, getProfesor, getByDayName } = {}) => {
   try {
     let ref
-    if (getByDay) {
+    if (getByDayName) {
       ref = collection(db, 'alumnos')
-      ref = query(ref, where('clases.dia', '==', getByDay))
+      ref = query(ref, where('clases.dia', '==', getByDayName))
     } else {
       ref = collection(db, 'alumnos')
     }
